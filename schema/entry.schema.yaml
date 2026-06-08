@@ -1,0 +1,190 @@
+# JSON Schema 2020-12, expressed in YAML.
+# Defines the YAML frontmatter of every entries/<domain>/<slug>.md file.
+# MVP: minimal fields needed for agent decision-making + MCP gap mapping.
+
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "datasources/schema/entry.schema.yaml"
+title: Dataset Entry
+type: object
+additionalProperties: false
+
+required:
+  - id
+  - name
+  - domain
+  - description
+  - homepage_url
+  - type
+  - auth_required
+  - cost
+  - license
+  - join_keys
+  - mcp_status
+  - last_verified
+
+properties:
+  id:
+    type: string
+    pattern: "^[a-z0-9][a-z0-9-]*[a-z0-9]$"
+
+  name:
+    type: string
+
+  domain:
+    type: string
+    enum:
+      - academic
+      - clinical-biotech
+      - bio-genomics
+      - public-health
+      - healthcare-claims
+      - finance-markets
+      - corporate-registry
+      - news-events
+      - consumer-signal
+      - government-open-data
+      - geospatial
+
+  description:
+    type: string
+
+  homepage_url:
+    type: string
+    format: uri
+
+  docs_url:
+    type: string
+    format: uri
+
+  type:
+    type: array
+    minItems: 1
+    items:
+      type: string
+      enum:
+        - rest-api
+        - bulk-download
+        - dataset-dump
+        - database
+        - web-ui
+        - scraper-required
+        - unofficial-api
+        - socrata
+        - odata
+        - powerbi-export
+
+  auth_required:
+    type: string
+    enum:
+      - none
+      - api-key-free
+      - api-key-paid
+      - account-required
+      - oauth
+      - dars-or-equivalent
+
+  cost:
+    type: string
+    enum:
+      - free
+      - freemium
+      - paid
+      - free-with-registration
+      - free-non-commercial
+
+  license:
+    type: string
+
+  rate_limit:
+    type: string
+
+  bulk_available:
+    type: boolean
+
+  frequency:
+    type: string
+
+  lag:
+    type: string
+
+  geography:
+    type: array
+    items: { type: string }
+
+  join_keys:
+    type: array
+    items: { type: string }
+    description: Canonical join keys from schema/join-keys.yaml that this source exposes for cross-source joining.
+
+  primary_keys:
+    type: array
+    items: { type: string }
+    description: Source-native identifiers the source mints to uniquely identify its own entities (e.g. OPENALEX_WORK_ID, COMPANIES_HOUSE_OFFICER_ID, GLOBALEVENTID). Free-form, do not need to appear in schema/join-keys.yaml. An ID can appear in both primary_keys and join_keys when the source mints it AND it is in the canonical registry (e.g. COMPANIES_HOUSE_NUMBER).
+
+  join_key_fields:
+    type: array
+    items:
+      type: object
+      additionalProperties: false
+      required: [join_key, fields]
+      properties:
+        join_key:
+          type: string
+          description: A canonical key listed in this entry's join_keys.
+        fields:
+          type: array
+          items: { type: string }
+          description: Source-side field paths where the join_key appears in actual response payloads (e.g. "ids.doi", "authorships.institutions.ror").
+    description: For each canonical join_key the source exposes, the source-side field paths that carry it. Lets the generator (and agents) know where to look in real payloads.
+
+  mcp_status:
+    type: string
+    enum:
+      - mcp-exists
+      - mcp-needed-high-value
+      - mcp-needed-low-value
+      - api-direct-sufficient
+      - requires-scraping
+      - fragile-unofficial
+
+  mcp_maturity:
+    type: string
+    enum:
+      - official
+      - community
+      - experimental
+      - none
+
+  mcp_package:
+    type: array
+    items: { type: string }
+    description: List of package names or repo URLs. Use a list (not a string) even when only one MCP exists; multiple community MCPs are common.
+
+  mcp_notes:
+    type: string
+
+  agent_use_cases:
+    type: array
+    items: { type: string }
+
+  access_test:
+    type: object
+    additionalProperties: false
+    required: [command]
+    properties:
+      command: { type: string }
+      expected_status: { type: integer }
+      expected_fields:
+        type: array
+        items: { type: string }
+
+  last_verified:
+    type: string
+    format: date
+
+  build_priority:
+    type: string
+    enum: [high, medium, low]
+
+  notes:
+    type: string

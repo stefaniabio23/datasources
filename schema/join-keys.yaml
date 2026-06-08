@@ -1,0 +1,385 @@
+# Canonical join-key registry.
+# Every value in an entry's join_keys must reference a key defined here.
+# To add a new canonical join key: PR a new entry to this file (alphabetised within section)
+# AND, if relevant, update existing dataset entries that expose it.
+#
+# Naming convention: UPPER_SNAKE_CASE. The Skill is responsible for mapping
+# messy source-side identifier names ("trial id", "nct number", "ClinicalTrialsGov ID")
+# to the canonical key (NCT_ID). The reverse index in generated/join-key-index.md
+# is rebuilt from per-entry YAML, never hand-edited.
+#
+# Distinction from primary_keys: this registry is for canonical identifiers with
+# cross-source utility (other datasets reference them). Source-internal IDs
+# (OPENALEX_WORK_ID, COMPANIES_HOUSE_OFFICER_ID, GLOBALEVENTID) live in each
+# entry's primary_keys field instead and do not need to be registered here.
+
+# ============================================================================
+# scholarly / bibliographic
+# ============================================================================
+
+DOI:
+  description: Digital Object Identifier for scholarly works and datasets.
+  entity_type: scholarly_work
+  pattern: "^10\\.\\d{4,9}/.+$"
+  examples: ["10.1038/s41586-020-2649-2"]
+
+PMID:
+  description: PubMed identifier.
+  entity_type: biomedical_article
+  pattern: "^[0-9]+$"
+
+PMCID:
+  description: PubMed Central identifier (open-access biomedical articles).
+  entity_type: open_access_biomedical_article
+  pattern: "^PMC[0-9]+$"
+
+ARXIV_ID:
+  description: arXiv preprint identifier. Covers both modern (YYMM.NNNNN) and pre-April-2007 (subj/YYMMNNN) forms.
+  entity_type: preprint
+  pattern: "^([0-9]{4}\\.[0-9]{4,5}|[a-z][a-z\\-]*[a-z]/[0-9]{7})(v[0-9]+)?$"
+  examples: ["2401.12345", "hep-th/9901001", "cs/0606001"]
+
+ORCID:
+  description: Researcher identifier.
+  entity_type: person
+  pattern: "^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]$"
+
+ISNI:
+  description: International Standard Name Identifier (ISO 27729). Covers both persons and organisations; complement to ORCID for non-researchers and library metadata.
+  entity_type: person_or_organisation
+  pattern: "^[0-9]{4} ?[0-9]{4} ?[0-9]{4} ?[0-9]{3}[0-9X]$"
+  examples: ["0000 0001 2103 2683"]
+
+ROR:
+  description: Research Organization Registry identifier (institutions).
+  entity_type: institution
+  pattern: "^[a-z0-9]{9}$"
+
+ISSN:
+  description: International Standard Serial Number (journals, serials).
+  entity_type: journal
+  pattern: "^[0-9]{4}-[0-9]{3}[0-9X]$"
+
+ISBN:
+  description: International Standard Book Number (ISBN-10 or ISBN-13).
+  entity_type: scholarly_work
+  pattern: "^(97[89])?[0-9]{9}[0-9X]$"
+
+FUNDER_DOI:
+  description: Open Funder Registry DOI (Crossref's funder identifier scheme, a DOI subspace).
+  entity_type: funding_organisation
+  pattern: "^10\\.13039/[0-9]+$"
+  examples: ["10.13039/100000001"]
+
+MAG_ID:
+  description: Microsoft Academic Graph identifier (legacy; still exposed by OpenAlex via ids.mag).
+  entity_type: scholarly_work
+  pattern: "^[0-9]+$"
+
+# ============================================================================
+# clinical / regulatory
+# ============================================================================
+
+NCT_ID:
+  description: ClinicalTrials.gov trial identifier.
+  entity_type: clinical_trial
+  pattern: "^NCT[0-9]{8}$"
+
+EU_CT_NUMBER:
+  description: EU CTIS trial identifier (Regulation 536/2014).
+  entity_type: clinical_trial
+  pattern: "^[0-9]{4}-[0-9]{6}-[0-9]{2}-[0-9]{2}$"
+
+EUDRACT_NUMBER:
+  description: Legacy EudraCT clinical trial identifier.
+  entity_type: clinical_trial
+  pattern: "^[0-9]{4}-[0-9]{6}-[0-9]{2}$"
+
+WHO_UTN:
+  description: WHO Universal Trial Number (ICMJE-recommended cross-registry identifier).
+  entity_type: clinical_trial
+  pattern: "^U[0-9]{4}-[0-9]{4}-[0-9]{4}$"
+
+NDC:
+  description: National Drug Code (US).
+  entity_type: drug_product
+  pattern: "^[0-9]{4,5}-[0-9]{3,4}-[0-9]{1,2}$"
+
+RXNORM_CUI:
+  description: RxNorm Concept Unique Identifier (US drug terminology).
+  entity_type: drug_concept
+
+CHEMBL_ID:
+  description: ChEMBL molecule, target, or assay identifier.
+  entity_type: chemical_or_target
+  pattern: "^CHEMBL[0-9]+$"
+
+DRUGBANK_ID:
+  description: DrugBank molecule identifier.
+  entity_type: drug
+  pattern: "^DB[0-9]{5}$"
+  examples: ["DB00945"]
+
+UNII:
+  description: FDA Unique Ingredient Identifier (Substance Registration System).
+  entity_type: chemical_substance
+  pattern: "^[A-Z0-9]{10}$"
+  examples: ["R16CO5Y76E"]
+
+INCHI_KEY:
+  description: 27-character hashed InChI identifier for a chemical structure.
+  entity_type: chemical_compound
+  pattern: "^[A-Z]{14}-[A-Z]{10}-[A-Z]$"
+  examples: ["XEEYBQQBJWHFJM-UHFFFAOYSA-N"]
+
+ATC_CODE:
+  description: WHO Anatomical Therapeutic Chemical classification code.
+  entity_type: drug_class
+  pattern: "^[A-Z][0-9]{2}[A-Z]{2}[0-9]{2}$"
+  examples: ["A10BA02"]
+
+FDA_APPLICATION_NUMBER:
+  description: US FDA application number (NDA/ANDA/BLA prefix optional; 6-digit body canonical).
+  entity_type: drug_approval
+  pattern: "^(NDA|ANDA|BLA)?[0-9]{6}$"
+  examples: ["NDA021440"]
+
+SETID:
+  description: FDA Structured Product Labeling (SPL) document UUIDv4. Used in DailyMed.
+  entity_type: spl_document
+  pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+
+MEDDRA_TERM:
+  description: Medical Dictionary for Regulatory Activities term (adverse events).
+  entity_type: adverse_event_term
+
+# ============================================================================
+# biology / genomics
+# ============================================================================
+
+UNIPROT_ACCESSION:
+  description: UniProt protein accession.
+  entity_type: protein
+  pattern: "^[A-NR-Z][0-9][A-Z0-9]{3}[0-9]$"
+
+ENSEMBL_ID:
+  description: Ensembl gene, transcript, or protein identifier.
+  entity_type: gene_transcript_or_protein
+  pattern: "^ENS[A-Z]*[GTPR][0-9]+$"
+
+ENTREZ_GENE_ID:
+  description: NCBI Entrez Gene identifier (integer).
+  entity_type: gene
+  pattern: "^[0-9]+$"
+  examples: ["7157"]
+
+GENE_SYMBOL:
+  description: HGNC gene symbol (human).
+  entity_type: gene
+  pattern: "^[A-Z][A-Z0-9-]*$"
+
+NCBI_TAXON_ID:
+  description: NCBI Taxonomy identifier.
+  entity_type: organism
+  pattern: "^[0-9]+$"
+  examples: ["9606"]
+
+EFO_ID:
+  description: Experimental Factor Ontology identifier.
+  entity_type: disease_or_phenotype
+  pattern: "^EFO_[0-9]+$"
+
+RSID:
+  description: dbSNP reference SNP identifier.
+  entity_type: variant
+  pattern: "^rs[0-9]+$"
+
+PDB_ID:
+  description: Protein Data Bank structure identifier.
+  entity_type: macromolecular_structure
+  pattern: "^[0-9][A-Z0-9]{3}$"
+  examples: ["1TUP"]
+
+INTERPRO_ID:
+  description: InterPro protein family or domain identifier.
+  entity_type: protein_family
+  pattern: "^IPR[0-9]{6}$"
+
+MIRBASE_ID:
+  description: miRBase microRNA precursor or mature identifier.
+  entity_type: microRNA
+  pattern: "^MI(MAT)?[0-9]{7}$"
+
+CHEBI_ID:
+  description: Chemical Entities of Biological Interest identifier (EBI).
+  entity_type: chemical_entity
+  pattern: "^CHEBI:[0-9]+$"
+
+# ============================================================================
+# health codes / ontologies
+# ============================================================================
+
+MESH_TERM:
+  description: Medical Subject Headings term.
+  entity_type: biomedical_concept
+
+ICD_10:
+  description: International Classification of Diseases, 10th revision.
+  entity_type: condition_code
+
+OPCS_4:
+  description: UK procedure classification code.
+  entity_type: procedure_code
+
+BNF_CODE:
+  description: UK British National Formulary drug code (chemical/product/presentation).
+  entity_type: drug_product
+
+GO_ID:
+  description: Gene Ontology term identifier (molecular function, biological process, or cellular component).
+  entity_type: ontology_term
+  pattern: "^GO:[0-9]{7}$"
+
+UBERON_ID:
+  description: Uber-anatomy ontology identifier (cross-species anatomy).
+  entity_type: anatomy_term
+  pattern: "^UBERON:[0-9]{7}$"
+
+# ============================================================================
+# US healthcare administrative
+# ============================================================================
+
+NPI:
+  description: US National Provider Identifier.
+  entity_type: healthcare_provider
+  pattern: "^[0-9]{10}$"
+
+HCPCS:
+  description: Healthcare Common Procedure Coding System code.
+  entity_type: procedure_or_drug_code
+
+CPT:
+  description: Current Procedural Terminology code.
+  entity_type: procedure_code
+
+HCPCS_J_CODE:
+  description: HCPCS J-code (clinician-administered drug).
+  entity_type: drug_product
+
+MMWR_WEEK:
+  description: US CDC week-of-year numbering for surveillance.
+  entity_type: time_period
+
+# ============================================================================
+# finance / corporate
+# ============================================================================
+
+CIK:
+  description: SEC Central Index Key.
+  entity_type: us_company
+  pattern: "^[0-9]+$"
+
+TICKER:
+  description: Public equity ticker symbol.
+  entity_type: public_company
+
+ISIN:
+  description: International Securities Identification Number.
+  entity_type: security
+  pattern: "^[A-Z]{2}[A-Z0-9]{9}[0-9]$"
+
+CUSIP:
+  description: Committee on Uniform Securities Identification Procedures (US).
+  entity_type: security
+  pattern: "^[0-9A-Z]{9}$"
+
+FIGI:
+  description: Financial Instrument Global Identifier (Bloomberg/OpenFIGI).
+  entity_type: security
+  pattern: "^BBG[0-9A-Z]{9}$"
+
+SEDOL:
+  description: Stock Exchange Daily Official List code (UK).
+  entity_type: security
+
+COMPANIES_HOUSE_NUMBER:
+  description: UK Companies House company number.
+  entity_type: uk_company
+  pattern: "^[A-Z0-9]{8}$"
+
+LEI:
+  description: Legal Entity Identifier (ISO 17442). Issued by GLEIF for financial counterparties.
+  entity_type: legal_entity
+  pattern: "^[A-Z0-9]{18}[0-9]{2}$"
+  examples: ["529900T8BM49AURSDO55"]
+
+# ============================================================================
+# geography
+# ============================================================================
+
+ISO_3:
+  description: ISO 3166-1 alpha-3 country code.
+  entity_type: country
+  pattern: "^[A-Z]{3}$"
+
+ISO_2:
+  description: ISO 3166-1 alpha-2 country code. Many APIs return alpha-2; map to ISO_3 when joining across sources that use the alpha-3 form.
+  entity_type: country
+  pattern: "^[A-Z]{2}$"
+
+FIPS:
+  description: US Federal Information Processing Standard code (state or county).
+  entity_type: us_geography
+
+ZCTA:
+  description: US Census ZIP Code Tabulation Area.
+  entity_type: us_geography
+  pattern: "^[0-9]{5}$"
+
+NUTS:
+  description: EU regional classification code.
+  entity_type: eu_geography
+
+LSOA:
+  description: UK Lower-layer Super Output Area.
+  entity_type: uk_geography
+
+MSOA:
+  description: UK Middle-layer Super Output Area.
+  entity_type: uk_geography
+
+LAD_CODE:
+  description: UK Local Authority District code.
+  entity_type: uk_geography
+
+ICB_CODE:
+  description: UK Integrated Care Board code.
+  entity_type: uk_geography
+
+OSM_ID:
+  description: OpenStreetMap object identifier. OSM IDs are namespaced by object type; store with the type prefix (e.g. "node/240109189") so the type is unambiguous. Bare numeric IDs are ambiguous between node, way, and relation.
+  entity_type: geographic_feature
+  examples: ["node/240109189", "way/4267181", "relation/146268"]
+
+# ============================================================================
+# cross-domain
+# ============================================================================
+
+WIKIDATA_QID:
+  description: Wikidata entity identifier.
+  entity_type: cross_domain_entity
+  pattern: "^Q[0-9]+$"
+
+WIKIPEDIA_ARTICLE:
+  description: Wikipedia article title (URL-encoded; prefix with language code when not unambiguous, e.g. en:Climate_change).
+  entity_type: wikipedia_article
+  examples: ["Climate_change", "en:Albert_Einstein"]
+
+URL:
+  description: Canonical web URL (last-resort join key).
+  entity_type: webpage_or_resource
+
+DATE:
+  description: ISO 8601 date.
+  entity_type: time
+  pattern: "^[0-9]{4}(-[0-9]{2}(-[0-9]{2})?)?$"
