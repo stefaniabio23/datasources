@@ -2,6 +2,7 @@
 id: newsapi
 name: NewsAPI
 domain: news-events
+entry_kind: event-stream
 description: Commercial REST API aggregating current and historic news articles from 150,000+ global publisher sources across 55 countries and 14 languages.
 homepage_url: https://newsapi.org/
 docs_url: https://newsapi.org/docs

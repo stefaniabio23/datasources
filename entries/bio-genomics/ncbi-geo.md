@@ -2,6 +2,7 @@
 id: ncbi-geo
 name: NCBI GEO
 domain: bio-genomics
+entry_kind: registry
 description: NIH/NCBI Gene Expression Omnibus, public repository of microarray, RNA-seq, and other high-throughput functional genomics data with 286k+ series and 8.5M+ samples.
 homepage_url: https://www.ncbi.nlm.nih.gov/geo/
 docs_url: https://www.ncbi.nlm.nih.gov/geo/info/geo_paccess.html

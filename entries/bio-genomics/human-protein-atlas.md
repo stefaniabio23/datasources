@@ -2,6 +2,7 @@
 id: human-protein-atlas
 name: Human Protein Atlas
 domain: bio-genomics
+entry_kind: registry
 description: Open-access atlas of human protein expression across tissues, single cells, brain regions, cancers, and blood, integrating antibody-based imaging with transcriptomics and proteomics.
 homepage_url: https://www.proteinatlas.org/
 docs_url: https://www.proteinatlas.org/about/help/dataaccess

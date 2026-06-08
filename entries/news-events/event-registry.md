@@ -2,6 +2,7 @@
 id: event-registry
 name: Event Registry
 domain: news-events
+entry_kind: event-stream
 description: Commercial news intelligence platform that ingests 150K+ global news sources in 60+ languages, clusters articles into events, and enriches with Wikidata-linked entities, sentiment, and categories.
 homepage_url: https://eventregistry.org/
 docs_url: https://newsapi.ai/documentation

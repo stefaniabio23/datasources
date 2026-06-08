@@ -2,6 +2,7 @@
 id: common-crawl
 name: Common Crawl
 domain: news-events
+entry_kind: corpus
 description: Free open repository of monthly web crawls (300B+ pages, 15 years) with raw HTML, metadata, and extracted plaintext available as bulk WARC/WAT/WET files plus a CDX URL index.
 homepage_url: https://commoncrawl.org/
 docs_url: https://commoncrawl.org/get-started

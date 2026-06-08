@@ -2,6 +2,7 @@
 id: fda-orange-book
 name: FDA Orange Book
 domain: clinical-biotech
+entry_kind: registry
 description: FDA's Approved Drug Products with Therapeutic Equivalence Evaluations, the canonical US source for approved drug products, therapeutic equivalence (TE) codes, listed patents, and marketing exclusivity periods.
 homepage_url: https://www.accessdata.fda.gov/scripts/cder/ob/
 docs_url: https://www.fda.gov/drugs/drug-approvals-and-databases/orange-book-data-files

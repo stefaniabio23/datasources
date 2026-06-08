@@ -2,6 +2,7 @@
 id: reddit
 name: Reddit Data API
 domain: consumer-signal
+entry_kind: corpus
 description: Official Reddit Data API exposing posts, comments, subreddits, users, and votes across the public Reddit network via OAuth2-authenticated REST endpoints.
 homepage_url: https://www.reddit.com/dev/api/
 docs_url: https://www.reddit.com/dev/api/

@@ -2,6 +2,7 @@
 id: europe-pmc
 name: Europe PMC
 domain: academic
+entry_kind: corpus
 description: Open archive of life-sciences literature covering ~48M articles, preprints, and full-text open-access biomedical papers, mirrored from PubMed Central with European deposit and funder linkage.
 homepage_url: https://europepmc.org/
 docs_url: https://europepmc.org/RestfulWebService

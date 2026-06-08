@@ -2,6 +2,7 @@
 id: chembl
 name: ChEMBL
 domain: clinical-biotech
+entry_kind: registry
 description: Manually curated database of bioactive molecules with drug-like properties, integrating chemistry, bioactivity, and target/genomic data from medicinal chemistry literature and approved drugs.
 homepage_url: https://www.ebi.ac.uk/chembl/
 docs_url: https://chembl.gitbook.io/chembl-interface-documentation

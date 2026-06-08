@@ -3,7 +3,7 @@
 Reverse index of canonical join keys mapped to the datasets that expose them.
 Generated from `entries/**/*.md`. Do not hand-edit.
 
-**50 datasets, 37 distinct canonical keys, 200 key→source links.**
+**51 datasets, 37 distinct canonical keys, 202 key→source links.**
 
 ## ARXIV_ID
 
@@ -56,7 +56,7 @@ _3 dataset(s)._
 
 ## DATE
 
-_15 dataset(s)._
+_16 dataset(s)._
 
 - [Alpha Vantage](../entries/finance-markets/alpha-vantage.md) — `finance-markets`
 - [Common Crawl](../entries/news-events/common-crawl.md) — `news-events`
@@ -72,6 +72,7 @@ _15 dataset(s)._
 - [Polygon.io](../entries/finance-markets/polygon-io.md) — `finance-markets`
 - [SEC EDGAR](../entries/corporate-registry/sec-edgar.md) — `corporate-registry`
 - [Stack Exchange Data Explorer](../entries/consumer-signal/stack-exchange-data-explorer.md) — `consumer-signal`
+- [WHO FluNet](../entries/public-health/who-flunet.md) — `public-health`
 - [Wikipedia Pageviews API](../entries/consumer-signal/wikipedia-pageviews.md) — `consumer-signal`
 
 ## DOI
@@ -183,7 +184,7 @@ _5 dataset(s)._
 
 ## ISO_3
 
-_10 dataset(s)._
+_11 dataset(s)._
 
 - [Alpha Vantage](../entries/finance-markets/alpha-vantage.md) — `finance-markets`
 - [Companies House (UK)](../entries/corporate-registry/companies-house.md) — `corporate-registry`
@@ -193,6 +194,7 @@ _10 dataset(s)._
 - [Nasdaq Data Link](../entries/finance-markets/nasdaq-data-link.md) — `finance-markets`
 - [OpenCorporates](../entries/corporate-registry/opencorporates.md) — `corporate-registry`
 - [OpenStreetMap](../entries/geospatial/openstreetmap.md) — `geospatial`
+- [WHO FluNet](../entries/public-health/who-flunet.md) — `public-health`
 - [Wikipedia Pageviews API](../entries/consumer-signal/wikipedia-pageviews.md) — `consumer-signal`
 - [World Bank Open Data](../entries/government-open-data/world-bank-open-data.md) — `government-open-data`
 

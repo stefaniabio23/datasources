@@ -2,6 +2,7 @@
 id: polygon-io
 name: Polygon.io
 domain: finance-markets
+entry_kind: time-series
 description: Multi-asset market data API covering US stocks, options, indices, forex, crypto, and futures with REST, WebSocket, and S3 flat-file delivery.
 homepage_url: https://polygon.io/
 docs_url: https://polygon.io/docs

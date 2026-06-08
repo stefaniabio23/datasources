@@ -2,6 +2,7 @@
 id: pubmed
 name: PubMed (NCBI E-utilities)
 domain: academic
+entry_kind: corpus
 description: NCBI's biomedical literature database (~37M citations from MEDLINE, life-science journals, and online books), exposed via the Entrez E-utilities REST API and annual XML bulk releases.
 homepage_url: https://pubmed.ncbi.nlm.nih.gov/
 docs_url: https://www.ncbi.nlm.nih.gov/books/NBK25501/

@@ -2,6 +2,7 @@
 id: arxiv
 name: arXiv
 domain: academic
+entry_kind: corpus
 description: Open-access preprint repository for physics, math, CS, quantitative biology, finance, statistics, EE, and economics, with a public metadata API and bulk full-text mirrors.
 homepage_url: https://arxiv.org/
 docs_url: https://info.arxiv.org/help/api/user-manual.html

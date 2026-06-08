@@ -2,6 +2,7 @@
 id: reactome
 name: Reactome
 domain: bio-genomics
+entry_kind: knowledge-graph
 description: Free, open-source, curated, and peer-reviewed pathway database covering human biology with orthology projections to model organisms.
 homepage_url: https://reactome.org/
 docs_url: https://reactome.org/dev

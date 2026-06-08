@@ -12,6 +12,7 @@ required:
   - id
   - name
   - domain
+  - entry_kind
   - description
   - homepage_url
   - type
@@ -44,6 +45,43 @@ properties:
       - consumer-signal
       - government-open-data
       - geospatial
+      - source-discovery
+
+  entry_kind:
+    type: string
+    enum:
+      - registry
+      - time-series
+      - panel
+      - event-stream
+      - knowledge-graph
+      - corpus
+      - reference-table
+      - source-discovery
+      - geospatial
+      - media-corpus
+      - mixed
+      - unknown
+    description: High-level classification of what kind of source this is. Required; lets agents filter by query shape (give me time-series of X, give me an entity registry for Y).
+
+  entry_level:
+    type: string
+    enum:
+      - provider
+      - dataset
+      - dataset-family
+      - endpoint
+      - series
+      - reference
+    description: Where in the layered metadata graph this entry sits. Optional in entries/. Catalog files require it. Use `provider` for multi-dataset sources (EIA, OECD), `dataset` for individual queryable datasets, `series` for one specific time series.
+
+  parent_source:
+    type: string
+    description: Optional reference to a parent source id. Used when entry_level is dataset/series/endpoint and the entry rolls up to a provider-level catalog entry.
+
+  catalog_path:
+    type: string
+    description: Optional path to deeper machine-readable metadata at catalog/<source_id>/source.yaml. Present when an entries/<slug>.md has a catalog/ counterpart.
 
   description:
     type: string

@@ -2,6 +2,7 @@
 id: orcid
 name: ORCID
 domain: academic
+entry_kind: registry
 description: Global registry of persistent researcher identifiers linking people to their works, affiliations, funding, and peer review activity.
 homepage_url: https://orcid.org/
 docs_url: https://info.orcid.org/documentation/

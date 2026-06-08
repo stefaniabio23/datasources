@@ -2,6 +2,7 @@
 id: fred
 name: FRED (Federal Reserve Economic Data)
 domain: finance-markets
+entry_kind: time-series
 description: Aggregated economic and financial time-series database (~800K series) maintained by the Federal Reserve Bank of St. Louis, covering US macro indicators plus international data from BIS, OECD, World Bank, and others.
 homepage_url: https://fred.stlouisfed.org/
 docs_url: https://fred.stlouisfed.org/docs/api/fred/

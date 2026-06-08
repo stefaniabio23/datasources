@@ -2,6 +2,7 @@
 id: clinicaltrials-gov
 name: ClinicalTrials.gov
 domain: clinical-biotech
+entry_kind: registry
 description: US federal registry and results database of publicly and privately supported clinical studies conducted globally, run by the National Library of Medicine.
 homepage_url: https://clinicaltrials.gov/
 docs_url: https://clinicaltrials.gov/data-api/api

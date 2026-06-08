@@ -2,6 +2,7 @@
 id: openstreetmap
 name: OpenStreetMap
 domain: geospatial
+entry_kind: geospatial
 description: Crowdsourced global geographic database of roads, buildings, points of interest, boundaries, and natural features, with multiple read/write APIs and weekly planet dumps.
 homepage_url: https://www.openstreetmap.org/
 docs_url: https://wiki.openstreetmap.org/wiki/API

@@ -2,6 +2,7 @@
 id: crossref
 name: Crossref
 domain: academic
+entry_kind: registry
 description: DOI registration agency and open metadata API for scholarly works, covering ~180M records deposited by member publishers across journals, books, conference proceedings, preprints, and datasets.
 homepage_url: https://www.crossref.org/
 docs_url: https://api.crossref.org/swagger-ui/index.html

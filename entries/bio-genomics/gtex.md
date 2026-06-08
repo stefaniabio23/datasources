@@ -2,6 +2,7 @@
 id: gtex
 name: GTEx (Genotype-Tissue Expression)
 domain: bio-genomics
+entry_kind: panel
 description: Reference atlas of tissue-specific gene expression and genetic regulation (eQTL/sQTL) across ~54 human tissues from ~1000 post-mortem donors.
 homepage_url: https://www.gtexportal.org/
 docs_url: https://gtexportal.org/api/v2/redoc

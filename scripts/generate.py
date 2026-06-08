@@ -32,6 +32,7 @@ CSV_COLUMNS = [
     "id",
     "name",
     "domain",
+    "entry_kind",
     "description",
     "type",
     "auth_required",

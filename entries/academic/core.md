@@ -2,6 +2,7 @@
 id: core
 name: CORE
 domain: academic
+entry_kind: corpus
 description: World's largest aggregator of open access research papers, harvesting metadata and full text from thousands of repositories and journals globally.
 homepage_url: https://core.ac.uk/
 docs_url: https://api.core.ac.uk/docs/v3

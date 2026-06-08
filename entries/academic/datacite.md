@@ -2,6 +2,7 @@
 id: datacite
 name: DataCite
 domain: academic
+entry_kind: registry
 description: Global DOI registration agency and metadata graph for research datasets, software, preprints, and other non-article research outputs.
 homepage_url: https://datacite.org/
 docs_url: https://support.datacite.org/docs/api

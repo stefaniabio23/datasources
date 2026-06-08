@@ -2,6 +2,7 @@
 id: ncbi-sra
 name: NCBI SRA (Sequence Read Archive)
 domain: bio-genomics
+entry_kind: registry
 description: Largest public repository of high-throughput raw sequencing reads and alignment metadata, run by NCBI/NLM/NIH.
 homepage_url: https://www.ncbi.nlm.nih.gov/sra
 docs_url: https://www.ncbi.nlm.nih.gov/sra/docs/

@@ -2,6 +2,7 @@
 id: openfda
 name: openFDA
 domain: clinical-biotech
+entry_kind: mixed
 description: US FDA Elasticsearch-backed public API and bulk downloads covering drug adverse events, product labeling, NDC directory, recalls, device safety reports, and food enforcement.
 homepage_url: https://open.fda.gov/
 docs_url: https://open.fda.gov/apis/

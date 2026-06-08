@@ -2,6 +2,7 @@
 id: dailymed
 name: DailyMed
 domain: clinical-biotech
+entry_kind: registry
 description: NLM's authoritative repository of FDA-submitted Structured Product Labels (SPLs) for prescription, OTC, homeopathic, animal, and other regulated drug products in the US.
 homepage_url: https://dailymed.nlm.nih.gov/
 docs_url: https://dailymed.nlm.nih.gov/dailymed/app-support-web-services.cfm

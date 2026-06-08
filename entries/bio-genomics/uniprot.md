@@ -2,6 +2,7 @@
 id: uniprot
 name: UniProt
 domain: bio-genomics
+entry_kind: registry
 description: Comprehensive, freely accessible protein sequence and functional annotation resource maintained by the UniProt Consortium (EMBL-EBI, SIB, PIR), with REST API, FTP bulk downloads, and rich cross-references to genomic, structural, and clinical databases.
 homepage_url: https://www.uniprot.org/
 docs_url: https://www.uniprot.org/help/api

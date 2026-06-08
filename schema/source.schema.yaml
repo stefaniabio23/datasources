@@ -1,0 +1,78 @@
+# JSON Schema 2020-12 for catalog/<source_id>/source.yaml.
+# Provider-level manifest for multi-dataset sources (EIA, OECD, World Bank, etc.).
+# Created in Phase A scaffolding; not yet enforced by validator (no catalog/ files exist).
+
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "datasources/schema/source.schema.yaml"
+title: Catalog Source Manifest
+type: object
+additionalProperties: false
+
+required:
+  - id
+  - name
+  - provider
+  - domain
+  - entry_level
+  - entry_kind
+
+properties:
+  id:
+    type: string
+    pattern: "^[a-z0-9][a-z0-9-]*[a-z0-9]$"
+    description: Must match the parent entries/<domain>/<slug>.md id AND the catalog directory name catalog/<id>/.
+
+  name:
+    type: string
+
+  provider:
+    type: string
+    description: Authoritative organisation publishing the source (e.g. "U.S. Energy Information Administration").
+
+  domain:
+    type: string
+    description: Must match a domain enum value from entry.schema.yaml.
+
+  entry_level:
+    type: string
+    enum: [provider, dataset-family]
+
+  entry_kind:
+    type: string
+    description: Same closed enum as entry.schema.yaml entry_kind.
+
+  access:
+    type: object
+    additionalProperties: false
+    properties:
+      api_base_url: { type: string, format: uri }
+      auth_required: { type: string }
+      bulk_available: { type: boolean }
+      bulk_update_frequency: { type: string }
+
+  dataset_discovery:
+    type: object
+    additionalProperties: false
+    description: How dataset routes can be discovered programmatically.
+    properties:
+      method:
+        type: string
+        enum: [api-metadata, manual, generated, registry-listing, sitemap]
+      route_tree_available: { type: boolean }
+      facets_available: { type: boolean }
+      data_columns_discoverable: { type: boolean }
+
+  datasets_path:
+    type: string
+    description: Conventionally "catalog/<id>/datasets/".
+
+  schemas_path:
+    type: string
+    description: Conventionally "catalog/<id>/schemas/".
+
+  series_index_path:
+    type: string
+    description: Optional path to a generated series-level index (catalog/<id>/generated/series-index.csv).
+
+  notes:
+    type: string

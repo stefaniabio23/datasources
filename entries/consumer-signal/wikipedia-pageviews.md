@@ -2,6 +2,7 @@
 id: wikipedia-pageviews
 name: Wikipedia Pageviews API
 domain: consumer-signal
+entry_kind: time-series
 description: Wikimedia REST endpoints exposing per-article and aggregate pageview counts for all Wikimedia projects, daily/monthly granularity, back to July 2015.
 homepage_url: https://wikimedia.org/api/rest_v1/
 docs_url: https://doc.wikimedia.org/analytics-api/

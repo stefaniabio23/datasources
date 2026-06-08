@@ -2,6 +2,7 @@
 id: drugbank
 name: DrugBank
 domain: clinical-biotech
+entry_kind: registry
 description: Curated drug knowledgebase covering chemistry, pharmacology, targets, interactions, and external identifiers for approved, investigational, and experimental small-molecule and biotech drugs.
 homepage_url: https://go.drugbank.com/
 docs_url: https://docs.drugbank.com/v1/

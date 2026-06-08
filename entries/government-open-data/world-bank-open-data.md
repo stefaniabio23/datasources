@@ -2,6 +2,7 @@
 id: world-bank-open-data
 name: World Bank Open Data
 domain: government-open-data
+entry_kind: mixed
 description: World Bank's free catalogue of global development statistics covering 16,000+ indicators across 200+ economies, with REST API, bulk downloads, and an official MCP for the newer Data360 platform.
 homepage_url: https://data.worldbank.org/
 docs_url: https://datahelpdesk.worldbank.org/knowledgebase/topics/125589-developer-information

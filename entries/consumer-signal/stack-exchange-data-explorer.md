@@ -2,6 +2,7 @@
 id: stack-exchange-data-explorer
 name: Stack Exchange Data Explorer
 domain: consumer-signal
+entry_kind: corpus
 description: Web-based T-SQL query interface over a weekly read-only snapshot of every public Stack Exchange site (Stack Overflow plus 170+ communities), backed by the same data published as monthly Internet Archive dumps.
 homepage_url: https://data.stackexchange.com/
 docs_url: https://meta.stackexchange.com/questions/2677/database-schema-documentation-for-the-public-data-dump-and-sede

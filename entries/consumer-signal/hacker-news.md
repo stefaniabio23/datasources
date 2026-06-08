@@ -2,6 +2,7 @@
 id: hacker-news
 name: Hacker News API
 domain: consumer-signal
+entry_kind: corpus
 description: Official Hacker News API exposing every story, comment, job post, Ask HN, Show HN, poll, and user profile as JSON via Firebase, with live update feeds and walk-the-entire-corpus access from item 1.
 homepage_url: https://github.com/HackerNews/API
 docs_url: https://github.com/HackerNews/API/blob/master/README.md

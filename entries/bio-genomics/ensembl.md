@@ -2,6 +2,7 @@
 id: ensembl
 name: Ensembl
 domain: bio-genomics
+entry_kind: knowledge-graph
 description: Open genome annotation project from EMBL-EBI covering 4,700+ genomes with REST API, BioMart, FTP downloads, and MySQL access.
 homepage_url: https://www.ensembl.org/
 docs_url: https://rest.ensembl.org/

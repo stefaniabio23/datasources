@@ -2,6 +2,7 @@
 id: alpha-vantage
 name: Alpha Vantage
 domain: finance-markets
+entry_kind: time-series
 description: Realtime and historical market data API covering global equities, FX, crypto, commodities, technical indicators, fundamentals, and macroeconomic series, accessed by ticker symbol with a single query endpoint.
 homepage_url: https://www.alphavantage.co/
 docs_url: https://www.alphavantage.co/documentation/

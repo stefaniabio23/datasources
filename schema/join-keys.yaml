@@ -76,6 +76,12 @@ MAG_ID:
   entity_type: scholarly_work
   pattern: "^[0-9]+$"
 
+ISO_639_1:
+  description: ISO 639-1 two-letter language code (en, fr, ja, zh). Useful for multilingual sources (OpenAlex, NewsAPI, Europe PMC, Common Crawl, Wikipedia).
+  entity_type: language
+  pattern: "^[a-z]{2}$"
+  examples: ["en", "fr", "ja", "zh"]
+
 # ============================================================================
 # clinical / regulatory
 # ============================================================================
@@ -312,6 +318,18 @@ LEI:
   entity_type: legal_entity
   pattern: "^[A-Z0-9]{18}[0-9]{2}$"
   examples: ["529900T8BM49AURSDO55"]
+
+ISO_4217:
+  description: ISO 4217 three-letter currency code (USD, EUR, GBP). Exposed by FRED, Alpha Vantage, Polygon, World Bank, Nasdaq Data Link.
+  entity_type: currency
+  pattern: "^[A-Z]{3}$"
+  examples: ["USD", "EUR", "GBP"]
+
+SIC_UK_2007:
+  description: UK Standard Industrial Classification (2007 edition). Companies House records SIC codes per company; ONS economic statistics use the same classification.
+  entity_type: industry_classification
+  pattern: "^[0-9]{5}$"
+  examples: ["62012", "70100"]
 
 # ============================================================================
 # geography

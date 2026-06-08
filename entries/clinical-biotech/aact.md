@@ -2,6 +2,7 @@
 id: aact
 name: AACT (Aggregate Analysis of ClinicalTrials.gov)
 domain: clinical-biotech
+entry_kind: registry
 description: Public PostgreSQL mirror of ClinicalTrials.gov, refreshed daily by CTTI at Duke, with all protocol and results data normalised into ~50 relational tables for SQL analysis.
 homepage_url: https://aact.ctti-clinicaltrials.org/
 docs_url: https://aact.ctti-clinicaltrials.org/learn_more

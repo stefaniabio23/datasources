@@ -2,6 +2,7 @@
 id: eu-ctis
 name: EU CTIS (Clinical Trials Information System)
 domain: clinical-biotech
+entry_kind: registry
 description: EU and EEA single-entry-point registry for clinical trials of human medicines under Regulation 536/2014, run by the European Medicines Agency in cooperation with member states and the European Commission.
 homepage_url: https://euclinicaltrials.eu/
 docs_url: https://euclinicaltrials.eu/about-this-website/

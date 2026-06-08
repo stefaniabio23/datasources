@@ -2,6 +2,7 @@
 id: fda-purple-book
 name: FDA Purple Book
 domain: clinical-biotech
+entry_kind: registry
 description: FDA database of all US-licensed biological products (including biosimilars and interchangeables) with BLA numbers, reference-product relationships, exclusivity dates, and patent listings.
 homepage_url: https://purplebooksearch.fda.gov/
 docs_url: https://purplebooksearch.fda.gov/index.cfm?event=userguide

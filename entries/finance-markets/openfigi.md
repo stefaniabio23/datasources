@@ -2,6 +2,7 @@
 id: openfigi
 name: OpenFIGI
 domain: finance-markets
+entry_kind: registry
 description: Bloomberg-operated open mapping service that resolves third-party security identifiers (ISIN, CUSIP, SEDOL, ticker) to the Financial Instrument Global Identifier (FIGI) and back.
 homepage_url: https://www.openfigi.com/
 docs_url: https://www.openfigi.com/api/documentation

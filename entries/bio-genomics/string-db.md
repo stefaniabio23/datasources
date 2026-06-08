@@ -2,6 +2,7 @@
 id: string-db
 name: STRING
 domain: bio-genomics
+entry_kind: knowledge-graph
 description: Database of known and predicted protein-protein interactions across ~12,500 organisms, covering ~59M proteins and 20B+ functional associations from experiments, co-expression, text-mining, and genomic context.
 homepage_url: https://string-db.org/
 docs_url: https://string-db.org/help/api/

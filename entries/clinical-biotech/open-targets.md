@@ -2,6 +2,7 @@
 id: open-targets
 name: Open Targets
 domain: clinical-biotech
+entry_kind: knowledge-graph
 description: Open-access drug target identification and prioritisation platform integrating genetics, genomics, transcriptomics, drugs, animal models, and scientific literature for target-disease association scoring.
 homepage_url: https://platform.opentargets.org/
 docs_url: https://platform-docs.opentargets.org/

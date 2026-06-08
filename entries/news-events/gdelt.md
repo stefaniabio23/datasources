@@ -2,6 +2,7 @@
 id: gdelt
 name: GDELT (Global Database of Events, Language, and Tone)
 domain: news-events
+entry_kind: event-stream
 description: Open real-time event database extracting people, organizations, locations, themes, and tone from global news media in 100+ languages.
 homepage_url: https://www.gdeltproject.org/
 docs_url: https://www.gdeltproject.org/data.html

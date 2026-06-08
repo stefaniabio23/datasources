@@ -1,0 +1,97 @@
+# JSON Schema 2020-12 for catalog/<source_id>/datasets/<dataset_id>.yaml.
+# One file per dataset/route/table within a multi-dataset source.
+
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "datasources/schema/dataset.schema.yaml"
+title: Catalog Dataset Manifest
+type: object
+additionalProperties: false
+
+required:
+  - id
+  - source_id
+  - name
+  - entry_level
+  - entry_kind
+
+properties:
+  id:
+    type: string
+    pattern: "^[a-z0-9][a-z0-9-]*[a-z0-9]$"
+
+  source_id:
+    type: string
+    description: Must match the id field of a catalog/<source_id>/source.yaml.
+
+  name:
+    type: string
+
+  entry_level:
+    type: string
+    enum: [dataset, endpoint, series, reference, dataset-family]
+
+  entry_kind:
+    type: string
+    description: Same enum as entry.schema.yaml entry_kind.
+
+  api:
+    type: object
+    additionalProperties: false
+    properties:
+      route: { type: string }
+      data_endpoint: { type: string }
+      metadata_endpoint: { type: string }
+      example_query: { type: string }
+
+  time_index:
+    type: string
+    description: Name of the field carrying the time dimension (e.g. "period", "date").
+
+  time_grain:
+    type: array
+    items:
+      type: string
+      enum: [annual, quarterly, monthly, weekly, daily, hourly, minutely, intraday, irregular]
+
+  primary_keys:
+    type: array
+    items: { type: string }
+
+  join_keys:
+    type: array
+    items: { type: string }
+
+  field_schema:
+    type: string
+    description: Path to the field schema file for this dataset (catalog/<source_id>/schemas/<dataset_id>.schema.yaml).
+
+  facets:
+    type: array
+    items:
+      type: object
+      additionalProperties: false
+      required: [name]
+      properties:
+        name: { type: string }
+        description: { type: string }
+        join_key:
+          type: string
+          description: Canonical join_key from schema/join-keys.yaml that this facet maps to, if any.
+
+  measures:
+    type: array
+    items:
+      type: object
+      additionalProperties: false
+      required: [name]
+      properties:
+        name: { type: string }
+        unit: { type: string }
+        description: { type: string }
+
+  agent_use_cases:
+    type: array
+    items: { type: string }
+
+  notes:
+    type: string

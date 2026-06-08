@@ -2,6 +2,7 @@
 id: openalex
 name: OpenAlex
 domain: academic
+entry_kind: knowledge-graph
 description: Open scholarly knowledge graph covering papers, authors, institutions, concepts, topics, and citations across all of academia.
 homepage_url: https://openalex.org/
 docs_url: https://docs.openalex.org/

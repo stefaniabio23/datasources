@@ -2,6 +2,7 @@
 id: google-trends
 name: Google Trends
 domain: consumer-signal
+entry_kind: time-series
 description: Google's public search-interest explorer, exposing normalised relative-search-volume time series and geographic breakdowns for any query, topic, or category back to 2004.
 homepage_url: https://trends.google.com/trends/
 docs_url: https://support.google.com/trends/

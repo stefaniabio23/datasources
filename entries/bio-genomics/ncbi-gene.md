@@ -2,6 +2,7 @@
 id: ncbi-gene
 name: NCBI Gene
 domain: bio-genomics
+entry_kind: registry
 description: NIH-maintained reference database of gene-specific information across all sequenced species, with nomenclature, sequences, maps, pathways, and cross-references.
 homepage_url: https://www.ncbi.nlm.nih.gov/gene
 docs_url: https://www.ncbi.nlm.nih.gov/books/NBK25501/

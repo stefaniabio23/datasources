@@ -2,6 +2,7 @@
 id: gwas-catalog
 name: GWAS Catalog
 domain: bio-genomics
+entry_kind: registry
 description: NHGRI-EBI curated catalogue of published genome-wide association studies, variant-trait associations, study metadata, and full summary statistics where available.
 homepage_url: https://www.ebi.ac.uk/gwas/
 docs_url: https://www.ebi.ac.uk/gwas/docs/api

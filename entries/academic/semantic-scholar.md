@@ -2,6 +2,7 @@
 id: semantic-scholar
 name: Semantic Scholar
 domain: academic
+entry_kind: knowledge-graph
 description: Ai2's scholarly knowledge graph covering 214M papers, 79M authors, and 2.49B citations across all disciplines, with paper-recommendation and bulk-snapshot endpoints.
 homepage_url: https://www.semanticscholar.org/product/api
 docs_url: https://api.semanticscholar.org/api-docs/

@@ -2,6 +2,7 @@
 id: opencorporates
 name: OpenCorporates
 domain: corporate-registry
+entry_kind: registry
 description: Cross-jurisdiction database of legal entities sourced from 140+ official company registries worldwide.
 homepage_url: https://opencorporates.com/
 docs_url: https://api.opencorporates.com/documentation/API-Reference

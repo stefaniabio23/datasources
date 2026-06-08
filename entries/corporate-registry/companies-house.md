@@ -2,6 +2,7 @@
 id: companies-house
 name: Companies House (UK)
 domain: corporate-registry
+entry_kind: registry
 description: UK statutory register of incorporated companies with profiles, officers, filing history, and persons with significant control.
 homepage_url: https://www.gov.uk/government/organisations/companies-house
 docs_url: https://developer.company-information.service.gov.uk/

@@ -2,6 +2,7 @@
 id: nasdaq-data-link
 name: Nasdaq Data Link
 domain: finance-markets
+entry_kind: mixed
 description: Nasdaq-operated marketplace and REST API delivering financial, economic, and alternative time-series and tables data (formerly Quandl), spanning free public-domain datasets and ~400+ premium vendor databases.
 homepage_url: https://data.nasdaq.com/
 docs_url: https://docs.data.nasdaq.com/

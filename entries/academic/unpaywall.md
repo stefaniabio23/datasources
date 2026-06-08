@@ -2,6 +2,7 @@
 id: unpaywall
 name: Unpaywall
 domain: academic
+entry_kind: registry
 description: Open database of free, legal open-access (OA) full-text locations for scholarly articles, keyed by DOI.
 homepage_url: https://unpaywall.org/
 docs_url: https://unpaywall.org/products/api/v2

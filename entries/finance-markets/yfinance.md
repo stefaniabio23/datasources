@@ -2,6 +2,7 @@
 id: yfinance
 name: yfinance
 domain: finance-markets
+entry_kind: time-series
 description: Unofficial Python wrapper around Yahoo Finance's undocumented JSON endpoints for historical OHLCV prices, fundamentals, options chains, dividends, splits, and corporate actions.
 homepage_url: https://pypi.org/project/yfinance/
 docs_url: https://ranaroussi.github.io/yfinance/

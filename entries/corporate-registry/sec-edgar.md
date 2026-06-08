@@ -2,6 +2,7 @@
 id: sec-edgar
 name: SEC EDGAR
 domain: corporate-registry
+entry_kind: mixed
 description: US SEC system of all corporate filings (10-K, 10-Q, 8-K, S-1, 13F, etc.) with company metadata and structured XBRL financial facts.
 homepage_url: https://www.sec.gov/edgar
 docs_url: https://www.sec.gov/search-filings/edgar-application-programming-interfaces
