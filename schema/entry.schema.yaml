@@ -1,6 +1,6 @@
 # JSON Schema 2020-12, expressed in YAML.
 # Defines the YAML frontmatter of every entries/<domain>/<slug>.md file.
-# MVP: minimal fields needed for agent decision-making + MCP gap mapping.
+# MVP: minimal fields needed for agent decision-making.
 
 $schema: "https://json-schema.org/draft/2020-12/schema"
 $id: "datasources/schema/entry.schema.yaml"

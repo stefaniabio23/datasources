@@ -221,6 +221,6 @@ Slash command:
 
 ## Context
 
-The directory is the EF-facing artifact: a public agent-readable catalogue of APIs and datasets. The two structural pieces that distinguish it from `awesome-public-datasets` and `data.gov` are the join-key reverse index (`generated/join-key-index.md`) and the MCP gap map (`generated/mcp-gap-map.md`), both generated from per-entry YAML.
+The directory is the EF-facing artifact: a public agent-readable registry of APIs, datasets, and databases. The structural piece that distinguishes it from `awesome-public-datasets` and `data.gov` is the join-key reverse index (`generated/join-key-index.md`), generated from per-entry YAML.
 
 The Skill's job is to populate that YAML accurately so the generators can do their work. **Quality of join-key mapping is the load-bearing variable.** Bad mapping breaks the reverse index, which breaks the project's main differentiator. When in doubt about a join key, flag for review rather than guess.

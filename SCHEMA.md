@@ -53,7 +53,7 @@ Every entry is one file at `entries/<domain>/<slug>.md` with two parts:
 - `mcp_notes` — short design notes for the connector
 - `agent_use_cases` — list of short verb phrases ("literature search", "company diligence")
 - `access_test` — `{ command, expected_status, expected_fields }`. Executable for future revalidation.
-- `build_priority` — `high` | `medium` | `low`. Optional, surfaced in `mcp-gap-map.md`.
+- `build_priority` — `high` | `medium` | `low`. Optional, free-form ranking hint.
 - `notes` — free-text catch-all; prefer the markdown body when possible.
 - `primary_keys` — list of source-native identifiers the source mints (e.g. `[OPENALEX_WORK_ID, OPENALEX_AUTHOR_ID]`). Free-form; not required to be in `schema/join-keys.yaml`.
 - `join_key_fields` — list of `{join_key, fields[]}` objects mapping each canonical join_key to the source-side field paths that carry it (e.g. `{join_key: DOI, fields: [doi, ids.doi]}`).
