@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'entries/**'
+      - 'catalog/**'
       - 'schema/**'
       - 'scripts/generate.py'
       - 'scripts/publish_to_sheet.py'
