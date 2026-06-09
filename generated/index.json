@@ -926,6 +926,148 @@
     ]
   },
   {
+    "_path": "entries/bio-genomics/american-gut-project.md",
+    "access_test": {
+      "command": "curl -sfI 'https://raw.githubusercontent.com/biocore/American-Gut/master/README.md'",
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "retrieve baseline gut microbiome composition for a Western cohort",
+      "cross-reference diet and lifestyle metadata with 16S taxonomy",
+      "benchmark new microbiome methods against an open reference dataset",
+      "replicate published American Gut analyses"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "Crowdfunded citizen-science microbiome dataset of stool, skin, and oral 16S rRNA samples paired with dietary and lifestyle questionnaires, run by the Knight Lab at UC San Diego.",
+    "docs_url": "https://github.com/biocore/American-Gut/blob/master/README.md",
+    "domain": "bio-genomics",
+    "entry_kind": "corpus",
+    "frequency": "irregular",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://github.com/biocore/American-Gut",
+    "id": "american-gut-project",
+    "join_key_fields": [
+      {
+        "fields": [
+          "README.md"
+        ],
+        "join_key": "DOI"
+      },
+      {
+        "fields": [
+          "README.md"
+        ],
+        "join_key": "PMID"
+      }
+    ],
+    "join_keys": [
+      "DOI",
+      "PMID"
+    ],
+    "lag": "GitHub snapshot frozen at May 2015; FTP mirror periodically refreshed; ENA accession ERP012803 updated when new submissions are deposited",
+    "last_verified": "2026-06-09",
+    "license": "BSD-3-Clause",
+    "mcp_maturity": "none",
+    "mcp_notes": "Static snapshot plus FTP mirror; no live API. A connector would mostly wrap FTP listing, OTU/BIOM table fetch, and metadata join against the GitHub mapping files. Limited cross-source value beyond microbiome-specific work.\n",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "American Gut Project",
+    "notes": "Repository last pushed 2017-03-17; superseded operationally by the Microsetta Initiative, but the deposited data remains the canonical open American Gut release. Access test built against raw GitHub; FTP mirror at ftp.microbio.me/AmericanGut not tested via curl.",
+    "primary_keys": [
+      "AMERICAN_GUT_BARCODE",
+      "QIITA_STUDY_ID",
+      "ENA_RUN_ACCESSION"
+    ],
+    "type": [
+      "bulk-download",
+      "dataset-dump"
+    ]
+  },
+  {
+    "_path": "entries/bio-genomics/cancer-cell-line-encyclopedia.md",
+    "agent_use_cases": [
+      "cancer cell line lookup by gene or mutation",
+      "drug sensitivity benchmarking across lines",
+      "expression and copy-number profiling for target validation",
+      "CRISPR essentiality scoring for dependency mapping",
+      "tissue-of-origin and lineage annotation for in vitro models"
+    ],
+    "auth_required": "none",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "cost": "free-non-commercial",
+    "description": "Multi-omic characterisation of ~1,000 human cancer cell lines (RNA-seq, WES/WGS, copy number, methylation, proteomics, metabolomics, drug sensitivity), distributed through the Broad Institute's DepMap Portal.",
+    "docs_url": "https://depmap.org/portal/data_page/?tab=overview",
+    "domain": "bio-genomics",
+    "entry_kind": "mixed",
+    "frequency": "DepMap releases bi-annually (e.g. 25Q2, 25Q4, 26Q1); historical CCLE Phase I-III drops are static",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://sites.broadinstitute.org/ccle",
+    "id": "cancer-cell-line-encyclopedia",
+    "join_key_fields": [
+      {
+        "fields": [
+          "ensembl_gene_id",
+          "gene_id"
+        ],
+        "join_key": "ENSEMBL_ID"
+      },
+      {
+        "fields": [
+          "gene",
+          "hugo_symbol",
+          "gene_symbol"
+        ],
+        "join_key": "GENE_SYMBOL"
+      },
+      {
+        "fields": [
+          "entrez_id",
+          "entrez_gene_id"
+        ],
+        "join_key": "ENTREZ_GENE_ID"
+      }
+    ],
+    "join_keys": [
+      "ENSEMBL_ID",
+      "GENE_SYMBOL",
+      "ENTREZ_GENE_ID",
+      "DOI",
+      "PMID"
+    ],
+    "lag": "current release lags collection by one quarter; legacy CCLE bulk files are pinned to publication dates (2012, 2015, 2019)",
+    "last_verified": "2026-06-09",
+    "license": "DepMap-Terms-Of-Use",
+    "mcp_maturity": "community",
+    "mcp_notes": "Three community MCP servers wrap DepMap/CCLE; none are official Broad releases. Coverage varies: per-gene essentiality, expression, mutations, copy number across adult and paediatric lines. A canonical connector should abstract over the release-versioned file layout (release_25q4/, release_26q1/) and surface the model metadata table so callers can resolve DEPMAP_ID, CCLE name, and Sanger model ID without hand-loading the index.\n",
+    "mcp_package": [
+      "github.com/openpharma-org/depmap-mcp-server",
+      "github.com/QuentinCody/depmap-mcp-server",
+      "github.com/Saurabhsing21/Deepmap-mcp"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "Cancer Cell Line Encyclopedia (CCLE)",
+    "notes": "no programmatic API for CCLE bulk files; access_test omitted. Freshness check: list https://depmap.org/portal/data_page/?tab=allData and confirm the latest release tag (e.g. 26Q1).",
+    "primary_keys": [
+      "DEPMAP_ID",
+      "CCLE_NAME",
+      "SANGER_MODEL_ID",
+      "BROAD_ID"
+    ],
+    "rate_limit": "no published per-IP limit; bulk files served via HTTPS and Google Cloud Storage",
+    "type": [
+      "bulk-download",
+      "web-ui",
+      "dataset-dump"
+    ]
+  },
+  {
     "_path": "entries/bio-genomics/ensembl.md",
     "access_test": {
       "command": "curl -sf -H 'Content-Type: application/json' 'https://rest.ensembl.org/lookup/id/ENSG00000157764?expand=1'",
@@ -1019,6 +1161,135 @@
       "rest-api",
       "bulk-download",
       "database"
+    ]
+  },
+  {
+    "_path": "entries/bio-genomics/gene-ontology.md",
+    "access_test": {
+      "command": "curl -sf 'https://api.geneontology.org/api/bioentity/gene/UniProtKB:P04637/function?rows=2' -H 'Accept: application/json'",
+      "expected_fields": [
+        "associations",
+        "subject.id",
+        "object.id",
+        "evidence_type"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "gene function lookup",
+      "GO term enrichment analysis",
+      "ontology term search and disambiguation",
+      "cross-species functional annotation transfer",
+      "resolving gene/protein IDs to biological process or pathway context"
+    ],
+    "auth_required": "none",
+    "build_priority": "high",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "Canonical open ontology of gene functions (molecular function, biological process, cellular component) plus curated GO annotations linking genes and gene products to GO terms across hundreds of species.",
+    "docs_url": "https://geneontology.org/docs/download-go-annotations/",
+    "domain": "bio-genomics",
+    "entry_kind": "knowledge-graph",
+    "frequency": "monthly",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://geneontology.org/",
+    "id": "gene-ontology",
+    "join_key_fields": [
+      {
+        "fields": [
+          "id",
+          "object.id",
+          "association.object.id"
+        ],
+        "join_key": "GO_ID"
+      },
+      {
+        "fields": [
+          "subject.id",
+          "association.subject.id",
+          "gaf.db_object_id"
+        ],
+        "join_key": "UNIPROT_ACCESSION"
+      },
+      {
+        "fields": [
+          "subject.id",
+          "gaf.db_object_id"
+        ],
+        "join_key": "ENSEMBL_ID"
+      },
+      {
+        "fields": [
+          "subject.label",
+          "gaf.db_object_symbol"
+        ],
+        "join_key": "GENE_SYMBOL"
+      },
+      {
+        "fields": [
+          "subject.id",
+          "gaf.db_object_id"
+        ],
+        "join_key": "ENTREZ_GENE_ID"
+      },
+      {
+        "fields": [
+          "subject.taxon.id",
+          "object.taxon.id",
+          "gaf.taxon"
+        ],
+        "join_key": "NCBI_TAXON_ID"
+      },
+      {
+        "fields": [
+          "reference",
+          "evidence.reference",
+          "gaf.db_reference"
+        ],
+        "join_key": "PMID"
+      },
+      {
+        "fields": [
+          "reference"
+        ],
+        "join_key": "DOI"
+      }
+    ],
+    "join_keys": [
+      "GO_ID",
+      "UNIPROT_ACCESSION",
+      "ENSEMBL_ID",
+      "GENE_SYMBOL",
+      "ENTREZ_GENE_ID",
+      "NCBI_TAXON_ID",
+      "PMID",
+      "DOI"
+    ],
+    "lag": "weeks",
+    "last_verified": "2026-06-09",
+    "license": "CC-BY-4.0",
+    "mcp_maturity": "community",
+    "mcp_notes": "Several overlapping community MCPs, none official from the GO Consortium. Most wrap AmiGO / api.geneontology.org search and term-lookup endpoints; the QuickGO MCP wraps the EBI mirror instead. Consolidated surface should expose search_term, get_term (with ancestors/descendants), list_annotations_for_gene, list_genes_for_term (with species filter), get_term_enrichment (gene list in), resolve_external_id (UniProt/Ensembl/symbol -> annotations), and fetch_ontology_snapshot (OBO/OWL by release date).\n",
+    "mcp_package": [
+      "github.com/Augmented-Nature/GeneOntology-MCP-Server",
+      "github.com/openpharma-org/geneontology-mcp-server",
+      "github.com/pipeworx-io/mcp-quickgo",
+      "github.com/uermel/go-graph-mcp"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "Gene Ontology",
+    "primary_keys": [
+      "GO_ID",
+      "GO_CAM_ID"
+    ],
+    "rate_limit": "unknown",
+    "type": [
+      "rest-api",
+      "bulk-download",
+      "database",
+      "web-ui"
     ]
   },
   {
@@ -1261,6 +1532,207 @@
     ]
   },
   {
+    "_path": "entries/bio-genomics/international-genome-sample-resource.md",
+    "access_test": {
+      "command": "curl -sf 'https://www.internationalgenome.org/api/beta/sample/NA12878'",
+      "expected_fields": [
+        "_source.name",
+        "_source.biosampleId",
+        "_source.populations",
+        "_source.dataCollections"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "resolve a Coriell sample to its sequencing data files",
+      "enumerate samples in a population or superpopulation",
+      "locate phase 3 or 30x high-coverage VCFs for a region",
+      "cross-reference IGSR sample to BioSample and downstream archives",
+      "bulk-pull population allele frequencies for cohort comparison"
+    ],
+    "auth_required": "none",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "EMBL-EBI hosted registry of open-consent human genome samples and population variant calls from the 1000 Genomes Project and successor collections (HGSVC, MAGE, ONT, Illumina Platinum).",
+    "docs_url": "https://www.internationalgenome.org/faq/",
+    "domain": "bio-genomics",
+    "entry_kind": "registry",
+    "frequency": "continuous",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://www.internationalgenome.org/",
+    "id": "international-genome-sample-resource",
+    "join_key_fields": [],
+    "join_keys": [
+      "DOI",
+      "PMID"
+    ],
+    "lag": "weeks-to-months between data producer release and ingestion into a new IGSR data collection",
+    "last_verified": "2026-06-09",
+    "license": "EMBL-EBI-Terms-of-Use",
+    "mcp_maturity": "community",
+    "mcp_notes": "Two community MCPs target the 1000 Genomes Project dataset (Java), neither branded as IGSR-wide. A production connector should expose sample lookup (Coriell NA/HG IDs), population lookup, data-collection enumeration, and FTP path resolution for VCF/BAM/CRAM files, plus a thin pass-through to the Ensembl variant browser for per-variant context.\n",
+    "mcp_package": [
+      "github.com/dnaerys/onekgpd-mcp",
+      "github.com/de-grave/onekgpd-mcp"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "IGSR (International Genome Sample Resource)",
+    "notes": "Access test executed 2026-06-09, returned 200 with sample record for NA12878 including biosampleId SAME123392, CEU/EUR population, and 7+ data collections.",
+    "primary_keys": [
+      "BIOSAMPLE_ID",
+      "IGSR_SAMPLE_NAME",
+      "IGSR_POPULATION_CODE",
+      "IGSR_SUPERPOPULATION_CODE",
+      "IGSR_DATA_COLLECTION_TITLE"
+    ],
+    "rate_limit": "FTP/HTTP downloads rate-limited; Globus and AWS recommended for large transfers. /api/beta JSON endpoints have no published limit.",
+    "type": [
+      "rest-api",
+      "bulk-download",
+      "web-ui"
+    ]
+  },
+  {
+    "_path": "entries/bio-genomics/kyoto-encyclopedia-of-genes-and-genomes.md",
+    "access_test": {
+      "command": "curl -sf 'https://rest.kegg.jp/info/kegg'",
+      "expected_fields": [
+        "kegg",
+        "pathway",
+        "orthology",
+        "genes",
+        "compound",
+        "reaction",
+        "disease",
+        "drug"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "pathway lookup and traversal",
+      "gene to pathway mapping",
+      "compound and reaction enrichment",
+      "drug interaction screening",
+      "cross-organism orthology via K numbers"
+    ],
+    "auth_required": "none",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "cost": "freemium",
+    "description": "Integrated database of pathways, genes, compounds, reactions, diseases, and drugs maintained by Kanehisa Laboratories at Kyoto University.",
+    "docs_url": "https://www.kegg.jp/kegg/rest/keggapi.html",
+    "domain": "bio-genomics",
+    "entry_kind": "knowledge-graph",
+    "frequency": "monthly",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://www.genome.jp/kegg/",
+    "id": "kyoto-encyclopedia-of-genes-and-genomes",
+    "join_key_fields": [
+      {
+        "fields": [
+          "SYMBOL",
+          "NAME"
+        ],
+        "join_key": "GENE_SYMBOL"
+      },
+      {
+        "fields": [
+          "DBLINKS.NCBI-GeneID"
+        ],
+        "join_key": "ENTREZ_GENE_ID"
+      },
+      {
+        "fields": [
+          "DBLINKS.UniProt"
+        ],
+        "join_key": "UNIPROT_ACCESSION"
+      },
+      {
+        "fields": [
+          "DBLINKS.Ensembl"
+        ],
+        "join_key": "ENSEMBL_ID"
+      },
+      {
+        "fields": [
+          "DBLINKS.ChEBI"
+        ],
+        "join_key": "CHEBI_ID"
+      },
+      {
+        "fields": [
+          "REFERENCE.PMID"
+        ],
+        "join_key": "PMID"
+      },
+      {
+        "fields": [
+          "TAXONOMY"
+        ],
+        "join_key": "NCBI_TAXON_ID"
+      },
+      {
+        "fields": [
+          "DBLINKS.PDB"
+        ],
+        "join_key": "PDB_ID"
+      }
+    ],
+    "join_keys": [
+      "GENE_SYMBOL",
+      "ENTREZ_GENE_ID",
+      "UNIPROT_ACCESSION",
+      "ENSEMBL_ID",
+      "CHEBI_ID",
+      "PMID",
+      "NCBI_TAXON_ID",
+      "PDB_ID"
+    ],
+    "lag": "weeks",
+    "last_verified": "2026-06-09",
+    "license": "KEGG-Custom",
+    "mcp_maturity": "community",
+    "mcp_notes": "Six community MCPs, none official from Kanehisa Laboratories. Most wrap the seven REST operations (info, list, find, get, conv, link, ddi). A consolidated connector should expose search_entry, get_entry (flat-file or JSON parse), list_by_database, resolve_external_id (NCBI/UniProt/ChEBI -> KEGG), get_pathway_map (KGML), get_genes_in_pathway, get_compounds_in_reaction, and check_drug_drug_interaction. Connector must abstract over flat-file response parsing (the default get output) and the org-prefixed gene identifier scheme (hsa:10458).\n",
+    "mcp_package": [
+      "github.com/Augmented-Nature/KEGG-MCP-Server",
+      "github.com/martinuslee/oh-my-kegg-mcp",
+      "github.com/Lucas-Servi/kegg-mcp-server-python",
+      "github.com/pipeworx-io/mcp-kegg",
+      "github.com/QuentinCody/kegg-mcp-server",
+      "github.com/openpharma-org/kegg-mcp-server"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "KEGG (Kyoto Encyclopedia of Genes and Genomes)",
+    "notes": "License is custom (not SPDX). Website and REST API are free for academic users; commercial use, FTP bulk downloads, and KEGG-backed services require a paid subscription via Pathway Solutions or an academic FTP subscription. See Review notes for license short-name proposal.",
+    "primary_keys": [
+      "KEGG_PATHWAY_ID",
+      "KEGG_ORTHOLOGY_ID",
+      "KEGG_COMPOUND_ID",
+      "KEGG_REACTION_ID",
+      "KEGG_GLYCAN_ID",
+      "KEGG_DRUG_ID",
+      "KEGG_DISEASE_ID",
+      "KEGG_MODULE_ID",
+      "KEGG_GENOME_ID",
+      "KEGG_ENZYME_EC",
+      "KEGG_GENE_ID",
+      "KEGG_BRITE_ID",
+      "KEGG_NETWORK_ID",
+      "KEGG_VARIANT_ID"
+    ],
+    "rate_limit": "unknown",
+    "type": [
+      "rest-api",
+      "bulk-download",
+      "web-ui"
+    ]
+  },
+  {
     "_path": "entries/bio-genomics/ncbi-gene.md",
     "access_test": {
       "command": "curl -sf 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=gene&id=7157&retmode=json'",
@@ -1424,6 +1896,97 @@
     ]
   },
   {
+    "_path": "entries/bio-genomics/ncbi-proteins.md",
+    "access_test": {
+      "command": "curl -sf 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=protein&id=15718680&retmode=json'",
+      "expected_fields": [
+        "header",
+        "result"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "protein sequence retrieval by accession or GI",
+      "GenPept feature annotation lookup",
+      "protein-to-publication mapping",
+      "cross-reference resolution to UniProt and PDB",
+      "taxonomy-scoped proteome retrieval"
+    ],
+    "auth_required": "api-key-free",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "NIH-maintained protein sequence database aggregating records from RefSeq, GenBank/EMBL/DDBJ translated CDS, SwissProt, PIR, PRF, and PDB into one Entrez-queryable surface.",
+    "docs_url": "https://www.ncbi.nlm.nih.gov/books/NBK25501/",
+    "domain": "bio-genomics",
+    "entry_kind": "registry",
+    "frequency": "daily",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://www.ncbi.nlm.nih.gov/protein/",
+    "id": "ncbi-proteins",
+    "join_key_fields": [
+      {
+        "fields": [
+          "GBSeq_other-seqids",
+          "GBSeq_xrefs.GBXref_id"
+        ],
+        "join_key": "UNIPROT_ACCESSION"
+      },
+      {
+        "fields": [
+          "GBSeq_other-seqids",
+          "GBSeq_xrefs.GBXref_id"
+        ],
+        "join_key": "PDB_ID"
+      },
+      {
+        "fields": [
+          "GBSeq_references.GBReference_pubmed",
+          "linksets.linksetdbs.links"
+        ],
+        "join_key": "PMID"
+      },
+      {
+        "fields": [
+          "result.<uid>.taxid",
+          "GBSeq_feature-table.GBFeature_quals.GBQualifier_value"
+        ],
+        "join_key": "NCBI_TAXON_ID"
+      }
+    ],
+    "join_keys": [
+      "UNIPROT_ACCESSION",
+      "PDB_ID",
+      "PMID",
+      "NCBI_TAXON_ID"
+    ],
+    "lag": "hours-to-days for new RefSeq protein annotations; matches the underlying source release cadence for SwissProt and PDB feeds",
+    "last_verified": "2026-06-09",
+    "license": "US-Government-Public-Domain",
+    "mcp_maturity": "community",
+    "mcp_notes": "No protein-specific official MCP. Community NCBI E-utilities MCPs cover the protein db via generic esearch/efetch/esummary calls. A purpose-built connector should wrap search_protein(term, organism), get_protein(accession_or_gi, format=fasta|gp|xml), get_protein_features, protein_to_pubmed, protein_to_gene, protein_to_structure, and resolve cross-references to UniProt and PDB without forcing the caller to parse GBSeqXML.\n",
+    "mcp_package": [
+      "github.com/Augmented-Nature/NCBI-Datasets-MCP-Server",
+      "github.com/vitorpavinato/ncbi-mcp-server",
+      "github.com/noahzeidenberg/ncbi-mcp",
+      "github.com/cyanheads/protein-mcp-server"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "NCBI Protein",
+    "primary_keys": [
+      "NCBI_PROTEIN_GI",
+      "NCBI_PROTEIN_ACCESSION"
+    ],
+    "rate_limit": "3 req/sec anon; 10 req/sec with free api_key (higher on request)",
+    "type": [
+      "rest-api",
+      "bulk-download",
+      "web-ui"
+    ]
+  },
+  {
     "_path": "entries/bio-genomics/ncbi-sra.md",
     "access_test": {
       "command": "curl -sf 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=SRR000001&retmode=json'",
@@ -1493,6 +2056,393 @@
       "rest-api",
       "bulk-download",
       "database"
+    ]
+  },
+  {
+    "_path": "entries/bio-genomics/ncbi-taxonomy.md",
+    "access_test": {
+      "command": "curl -sf 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=taxonomy&id=9606&retmode=json'",
+      "expected_fields": [
+        "header",
+        "result"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "organism name to taxon ID resolution",
+      "lineage and rank lookup for a taxon",
+      "taxonomic subtree enumeration (all descendants of a clade)",
+      "cross-database joins via NCBI_TAXON_ID",
+      "genetic code and division lookup per organism"
+    ],
+    "auth_required": "api-key-free",
+    "build_priority": "high",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "NCBI-curated classification and nomenclature for every organism represented in the public sequence databases, with a stable integer taxon ID linking nucleotide, protein, gene, assembly, BioSample, and PubMed records across NCBI and downstream resources.",
+    "docs_url": "https://www.ncbi.nlm.nih.gov/books/NBK53758/",
+    "domain": "bio-genomics",
+    "entry_kind": "knowledge-graph",
+    "frequency": "daily",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://www.ncbi.nlm.nih.gov/taxonomy",
+    "id": "ncbi-taxonomy",
+    "join_key_fields": [
+      {
+        "fields": [
+          "result.<uid>.taxid",
+          "result.<uid>.uid",
+          "result.<uid>.akataxid"
+        ],
+        "join_key": "NCBI_TAXON_ID"
+      },
+      {
+        "fields": [
+          "linksets.linksetdbs.links"
+        ],
+        "join_key": "PMID"
+      }
+    ],
+    "join_keys": [
+      "NCBI_TAXON_ID",
+      "PMID"
+    ],
+    "lag": "hours for new taxon additions to appear via E-utilities; daily taxdump snapshots on FTP",
+    "last_verified": "2026-06-09",
+    "license": "US-Government-Public-Domain",
+    "mcp_maturity": "community",
+    "mcp_notes": "No official MCP. Augmented-Nature/NCBI-Datasets-MCP-Server exposes dedicated search_taxonomy, get_taxonomy_info, and get_organism_info tools alongside its genome/gene/assembly coverage. The other E-utilities-based community servers can hit db=taxonomy generically via esearch/esummary/efetch but typically lack taxonomy-specific helpers (lineage walking, rank filtering, name-to-ID resolution with synonym handling).\n",
+    "mcp_package": [
+      "github.com/Augmented-Nature/NCBI-Datasets-MCP-Server",
+      "github.com/noahzeidenberg/ncbi-mcp",
+      "github.com/vitorpavinato/ncbi-mcp-server"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "NCBI Taxonomy",
+    "primary_keys": [
+      "NCBI_TAXON_ID"
+    ],
+    "rate_limit": "3 req/sec anon; 10 req/sec with free api_key (higher on request)",
+    "type": [
+      "rest-api",
+      "bulk-download",
+      "web-ui"
+    ]
+  },
+  {
+    "_path": "entries/bio-genomics/nci-genomic-data-commons.md",
+    "access_test": {
+      "command": "curl -sf 'https://api.gdc.cancer.gov/projects?size=2&format=json'",
+      "expected_fields": [
+        "data",
+        "hits",
+        "id",
+        "primary_site"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "assemble cancer cohorts by clinical phenotype",
+      "resolve cases to harmonised genomic files",
+      "look up mutations by gene or genomic position",
+      "retrieve project-level metadata across TCGA / TARGET / CPTAC / MMRF",
+      "generate manifests for bulk download via the GDC Data Transfer Tool"
+    ],
+    "auth_required": "dars-or-equivalent",
+    "build_priority": "high",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "NCI's unified repository of harmonised cancer genomic, clinical, and biospecimen data spanning TCGA, TARGET, CPTAC, MMRF, HCMI, and 30+ other programs, with a single REST API and bulk transfer tool.",
+    "docs_url": "https://docs.gdc.cancer.gov/API/Users_Guide/Getting_Started/",
+    "domain": "bio-genomics",
+    "entry_kind": "registry",
+    "frequency": "continuous",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://gdc.cancer.gov/access-data/gdc-data-portal",
+    "id": "nci-genomic-data-commons",
+    "join_key_fields": [
+      {
+        "fields": [
+          "genes.gene_id",
+          "ssms.consequence.transcript.gene.gene_id"
+        ],
+        "join_key": "ENSEMBL_ID"
+      },
+      {
+        "fields": [
+          "genes.symbol",
+          "ssms.consequence.transcript.gene.symbol"
+        ],
+        "join_key": "GENE_SYMBOL"
+      },
+      {
+        "fields": [
+          "genes.entrez_gene_id"
+        ],
+        "join_key": "ENTREZ_GENE_ID"
+      },
+      {
+        "fields": [
+          "diagnoses.icd_10_code"
+        ],
+        "join_key": "ICD_10"
+      },
+      {
+        "fields": [
+          "references.doi"
+        ],
+        "join_key": "DOI"
+      }
+    ],
+    "join_keys": [
+      "ENSEMBL_ID",
+      "GENE_SYMBOL",
+      "ENTREZ_GENE_ID",
+      "ICD_10",
+      "DOI"
+    ],
+    "lag": "tied to GDC data releases (roughly quarterly); submitter-controlled embargoes up to 6 months before harmonisation appears",
+    "last_verified": "2026-06-09",
+    "license": "US-Government-Public-Domain",
+    "mcp_notes": "No established MCP for GDC. A connector should wrap /projects, /cases, /files, /annotations, /data, /manifest, /slicing, /_mapping with thin filter helpers, surface case-to-file resolution and BAM slicing without forcing manifest-and-CLI flows, and route controlled-access requests through an X-Auth-Token header sourced from an env var. Critical surfaces: cohort assembly by clinical/biospecimen filters, mutation lookup by gene symbol or ENSEMBL ID, file manifest generation, dbGaP-gated download brokering.\n",
+    "mcp_status": "mcp-needed-high-value",
+    "name": "NCI Genomic Data Commons (GDC)",
+    "notes": "Access test executed 2026-06-09, returned 200 with expected fields. Open-access endpoints work anonymously; controlled-access file downloads require an X-Auth-Token tied to dbGaP authorisation.",
+    "primary_keys": [
+      "GDC_CASE_ID",
+      "GDC_FILE_ID",
+      "GDC_PROJECT_ID",
+      "GDC_SUBMITTER_ID",
+      "GDC_ALIQUOT_ID",
+      "GDC_SAMPLE_ID"
+    ],
+    "rate_limit": "unknown",
+    "type": [
+      "rest-api",
+      "bulk-download",
+      "web-ui"
+    ]
+  },
+  {
+    "_path": "entries/bio-genomics/nih-genome-sequencing-costs.md",
+    "agent_use_cases": [
+      "sequencing cost benchmarking over time",
+      "illustrating Moore's-law-vs-sequencing-cost comparisons",
+      "economic modelling of population-scale sequencing",
+      "historical context for genomics-market analysis"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "NHGRI-tracked annual cost-per-genome and cost-per-megabase data for human DNA sequencing at NIH-funded genome sequencing centers, 2001 to 2022.",
+    "docs_url": "https://www.genome.gov/about-genomics/fact-sheets/DNA-Sequencing-Costs-Data",
+    "domain": "bio-genomics",
+    "entry_kind": "time-series",
+    "frequency": "irregular; NHGRI states plans to update on a regular basis. Most recent table dated May 2022, page last updated May 2023.",
+    "geography": [
+      "USA",
+      "global"
+    ],
+    "homepage_url": "https://www.genome.gov/about-genomics/fact-sheets/Sequencing-Human-Genome-cost",
+    "id": "nih-genome-sequencing-costs",
+    "join_key_fields": [
+      {
+        "fields": [
+          "Date"
+        ],
+        "join_key": "DATE"
+      }
+    ],
+    "join_keys": [
+      "DATE"
+    ],
+    "lag": "approximately 12 months between cost-measurement date and table publication",
+    "last_verified": "2026-06-09",
+    "license": "US-Government-Public-Domain",
+    "mcp_notes": "Single small spreadsheet, two metrics, one time axis. No API needed. Agents should fetch the XLS directly and parse two columns (Cost per Mb, Cost per Genome) keyed by Date.\n",
+    "mcp_status": "api-direct-sufficient",
+    "name": "NHGRI DNA Sequencing Costs",
+    "notes": "Single XLS, ~20 rows. Treat as a reference time-series, not a queryable dataset.",
+    "primary_keys": [
+      "NHGRI_COST_DATE"
+    ],
+    "type": [
+      "bulk-download",
+      "web-ui"
+    ]
+  },
+  {
+    "_path": "entries/bio-genomics/personal-genome-project.md",
+    "access_test": {
+      "command": "curl -sfI 'https://my.pgp-hms.org/public_genetic_data'",
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "retrieve open-consent whole-genome and genotyping data for benchmarking",
+      "cross-reference genotype with self-reported phenotype and trait surveys",
+      "assemble an open-license cohort for variant-calling or imputation pipelines",
+      "link consumer DTC genotyping formats (23andMe, AncestryDNA) to research-grade VCF",
+      "identify open-data participants for re-contact-style citizen-science studies"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "Open-consent global network of participant-driven projects publishing whole-genome sequences, genotyping arrays, phenotype surveys, microbiome, and health records under a CC0-equivalent public-domain dedication.",
+    "docs_url": "https://my.pgp-hms.org/public_genetic_data",
+    "domain": "bio-genomics",
+    "entry_kind": "registry",
+    "frequency": "irregular",
+    "geography": [
+      "USA",
+      "CAN",
+      "GBR",
+      "AUT",
+      "CHN",
+      "global"
+    ],
+    "homepage_url": "https://www.personalgenomes.org/",
+    "id": "personal-genome-project",
+    "join_key_fields": [
+      {
+        "fields": [
+          "/profiles/public?hex={PGP_HU_ID}",
+          "/user_file/download/{file_id}"
+        ],
+        "join_key": "URL"
+      }
+    ],
+    "join_keys": [
+      "URL"
+    ],
+    "lag": "Updated when new participants enrol or upload data; no fixed cadence",
+    "last_verified": "2026-06-09",
+    "license": "CC0-1.0",
+    "mcp_maturity": "none",
+    "mcp_notes": "No public API. A connector would have to scrape the participant directory and the public_genetic_data table on my.pgp-hms.org, enumerate /user_file/download/{id} links, and normalise participant hex IDs across the five member sites. Demand is narrow (open-consent genomics researchers, citizen-science tooling) so this is low-value but technically tractable.\n",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "Personal Genome Project",
+    "notes": "Five member projects under the Personal Genome Project Global Network umbrella (Harvard, Canada, UK, Austria, China). Each runs its own portal; Harvard PGP at my.pgp-hms.org is the canonical and largest data surface. No machine-readable API; scraping the public_genetic_data table is currently the only programmatic access path.",
+    "primary_keys": [
+      "PGP_HU_ID",
+      "PGP_LEGACY_ID"
+    ],
+    "type": [
+      "web-ui",
+      "bulk-download",
+      "scraper-required"
+    ]
+  },
+  {
+    "_path": "entries/bio-genomics/protein-data-bank.md",
+    "access_test": {
+      "command": "curl -sf 'https://data.rcsb.org/rest/v1/core/entry/4HHB'",
+      "expected_fields": [
+        "rcsb_id",
+        "rcsb_entry_container_identifiers",
+        "rcsb_accession_info",
+        "citation",
+        "exptl"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "structure lookup by PDB ID",
+      "resolve UniProt accession to experimentally-solved structures",
+      "coordinate file retrieval (mmCIF, BinaryCIF, legacy PDB)",
+      "sequence and structure similarity search",
+      "ligand and binding-site queries"
+    ],
+    "auth_required": "none",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "Public repository of experimentally-determined 3D structures of proteins, nucleic acids, and complexes plus integrative and computed structure models, run by the RCSB consortium as the US member of the worldwide PDB.",
+    "docs_url": "https://data.rcsb.org/",
+    "domain": "bio-genomics",
+    "entry_kind": "registry",
+    "frequency": "weekly release every Wednesday (00:00 UTC)",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://www.rcsb.org/",
+    "id": "protein-data-bank",
+    "join_key_fields": [
+      {
+        "fields": [
+          "rcsb_id",
+          "entry.id",
+          "rcsb_entry_container_identifiers.entry_id"
+        ],
+        "join_key": "PDB_ID"
+      },
+      {
+        "fields": [
+          "rcsb_polymer_entity_container_identifiers.uniprot_ids",
+          "rcsb_polymer_entity_container_identifiers.reference_sequence_identifiers[database_name=UniProt].database_accession"
+        ],
+        "join_key": "UNIPROT_ACCESSION"
+      },
+      {
+        "fields": [
+          "citation.pdbx_database_id_DOI",
+          "rcsb_primary_citation.pdbx_database_id_doi"
+        ],
+        "join_key": "DOI"
+      },
+      {
+        "fields": [
+          "citation.pdbx_database_id_PubMed",
+          "rcsb_primary_citation.pdbx_database_id_pub_med"
+        ],
+        "join_key": "PMID"
+      },
+      {
+        "fields": [
+          "rcsb_entity_source_organism.ncbi_taxonomy_id",
+          "rcsb_entity_host_organism.ncbi_taxonomy_id"
+        ],
+        "join_key": "NCBI_TAXON_ID"
+      }
+    ],
+    "join_keys": [
+      "PDB_ID",
+      "UNIPROT_ACCESSION",
+      "DOI",
+      "PMID",
+      "NCBI_TAXON_ID"
+    ],
+    "lag": "experimental structures appear ~1-2 weeks after authors release; computed model snapshots refreshed periodically from AlphaFold and ModelArchive",
+    "last_verified": "2026-06-09",
+    "license": "CC0-1.0",
+    "mcp_maturity": "community",
+    "mcp_notes": "Several overlapping community MCPs, none official from RCSB. Most wrap the Data API entry/polymer-entity endpoints plus a subset of Search API queries. A consolidated connector should expose search_structures, get_entry, get_polymer_entity, get_uniprot_mappings, fetch_coordinates (mmCIF or BinaryCIF), search_by_sequence, with response trimming for verbose audit-revision history and routing of large coordinate pulls to the files.rcsb.org HTTPS or rsync mirror.\n",
+    "mcp_package": [
+      "github.com/pipeworx-io/mcp-rcsb-pdb",
+      "github.com/cnyambura/rcsb-mcp",
+      "github.com/r0bin2u/pdb-mcp",
+      "github.com/cyanheads/protein-mcp-server"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "RCSB Protein Data Bank",
+    "primary_keys": [
+      "PDB_ID",
+      "PDB_ENTITY_ID",
+      "PDB_ASSEMBLY_ID",
+      "PDB_CHAIN_ID",
+      "PDB_CSM_ID"
+    ],
+    "rate_limit": "no published per-IP limit; Data API caps batch requests at 1000 IDs per call. Search API has no published limit; contact info@rcsb.org for heavy use.",
+    "type": [
+      "rest-api",
+      "bulk-download",
+      "database",
+      "web-ui"
     ]
   },
   {
@@ -1597,6 +2547,101 @@
     ]
   },
   {
+    "_path": "entries/bio-genomics/rna-families-database.md",
+    "access_test": {
+      "command": "curl -sf 'https://rfam.org/family/RF00177?content-type=application/json'",
+      "expected_fields": [
+        "rfam.acc",
+        "rfam.id",
+        "rfam.description",
+        "rfam.curation",
+        "rfam.release"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "non-coding RNA family lookup",
+      "genome annotation with covariance models",
+      "sequence search for structural RNAs",
+      "cross-reference RNA structures to PDB and miRBase",
+      "phylogenetic distribution of RNA families"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "EMBL-EBI database of RNA families, each represented by a curated seed alignment, consensus secondary structure, and covariance model used for genome annotation.",
+    "docs_url": "https://docs.rfam.org/",
+    "domain": "bio-genomics",
+    "entry_kind": "knowledge-graph",
+    "frequency": "annual or semi-annual major releases",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://rfam.org/",
+    "id": "rna-families-database",
+    "join_key_fields": [
+      {
+        "fields": [
+          "pdb_id",
+          "structures.pdb_id"
+        ],
+        "join_key": "PDB_ID"
+      },
+      {
+        "fields": [
+          "database_link.db_id"
+        ],
+        "join_key": "MIRBASE_ID"
+      },
+      {
+        "fields": [
+          "rfamseq.ncbi_id",
+          "taxonomy.ncbi_id"
+        ],
+        "join_key": "NCBI_TAXON_ID"
+      },
+      {
+        "fields": [
+          "database_link.db_id"
+        ],
+        "join_key": "GO_ID"
+      },
+      {
+        "fields": [
+          "curation.seed_source",
+          "curation.structure_source",
+          "literature_reference.pmid"
+        ],
+        "join_key": "PMID"
+      }
+    ],
+    "join_keys": [
+      "PDB_ID",
+      "MIRBASE_ID",
+      "NCBI_TAXON_ID",
+      "GO_ID",
+      "PMID"
+    ],
+    "lag": "months between sequence-database freezes and the next Rfam release",
+    "last_verified": "2026-06-09",
+    "license": "CC0",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "Rfam",
+    "primary_keys": [
+      "RFAM_ACCESSION",
+      "RFAM_FAMILY_ID",
+      "RFAM_CLAN_ACCESSION"
+    ],
+    "rate_limit": "unknown",
+    "type": [
+      "rest-api",
+      "bulk-download",
+      "database",
+      "web-ui"
+    ]
+  },
+  {
     "_path": "entries/bio-genomics/string-db.md",
     "access_test": {
       "command": "curl -sf 'https://string-db.org/api/json/network?identifiers=TP53&species=9606'",
@@ -1674,6 +2719,182 @@
       "rest-api",
       "bulk-download",
       "dataset-dump"
+    ]
+  },
+  {
+    "_path": "entries/bio-genomics/the-cancer-genome-atlas.md",
+    "access_test": {
+      "command": "curl -sfI 'https://gdac.broadinstitute.org/runs/stddata__2016_01_28/'",
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "pan-cancer mutation prevalence lookup",
+      "cohort-level expression and survival analysis",
+      "tumour-vs-normal differential expression",
+      "copy-number and methylation profiling by gene",
+      "target-disease prioritisation for oncology"
+    ],
+    "auth_required": "none",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "Pan-cancer multi-omic atlas of ~11,000 tumour samples across 33 cancer types, processed and distributed by the Broad Institute GDAC Firehose pipeline as standardised level-3 datasets and analysis runs.",
+    "docs_url": "https://gdac.broadinstitute.org/runs/info/data_run_versioning.html",
+    "domain": "bio-genomics",
+    "entry_kind": "mixed",
+    "frequency": "frozen; final stddata run 2016-01-28, final analyses run 2016-01-28 (released 2017), CPTAC AWG runs through 2020",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://gdac.broadinstitute.org/",
+    "id": "the-cancer-genome-atlas",
+    "join_key_fields": [
+      {
+        "fields": [
+          "Hugo_Symbol",
+          "gene",
+          "gene_symbol"
+        ],
+        "join_key": "GENE_SYMBOL"
+      },
+      {
+        "fields": [
+          "Ensembl_gene_id",
+          "gene_id"
+        ],
+        "join_key": "ENSEMBL_ID"
+      },
+      {
+        "fields": [
+          "Entrez_Gene_Id",
+          "entrez_id"
+        ],
+        "join_key": "ENTREZ_GENE_ID"
+      }
+    ],
+    "join_keys": [
+      "GENE_SYMBOL",
+      "ENSEMBL_ID",
+      "ENTREZ_GENE_ID",
+      "DOI",
+      "PMID"
+    ],
+    "lag": "static archive; TCGA data collection completed 2013, GDAC processing wound down 2017",
+    "last_verified": "2026-06-09",
+    "license": "TCGA-Data-Use",
+    "mcp_maturity": "none",
+    "mcp_notes": "No MCP exists for GDAC Firehose or the NCI GDC TCGA endpoints. Suggested surface: list_cohorts, get_clinical(cohort, barcode), get_mutations(gene, cohort), get_expression(gene, cohort), get_copy_number(gene, cohort), get_survival(cohort). Connector must abstract over (a) frozen Firehose archive paths vs live GDC API, (b) TCGA barcode hierarchy (project, patient, sample, portion, aliquot), and (c) the split between open (clinical, level-3 summaries) and controlled (raw BAMs, germline variants under dbGaP phs000178) access tiers.\n",
+    "mcp_status": "mcp-needed-high-value",
+    "name": "The Cancer Genome Atlas (TCGA, via Broad GDAC Firehose)",
+    "notes": "GDAC Firehose is the Broad's frozen processing mirror of TCGA. For current TCGA queries, agents should also know about the NCI Genomic Data Commons REST API at api.gdc.cancer.gov, which is the canonical live endpoint; this entry covers the Broad GDAC URL the user supplied. FireBrowse REST (firebrowse.org) currently returns certificate errors via WebFetch and was not test-hit.",
+    "primary_keys": [
+      "TCGA_BARCODE",
+      "TCGA_PATIENT_BARCODE",
+      "TCGA_SAMPLE_BARCODE",
+      "TCGA_ALIQUOT_BARCODE",
+      "TCGA_PROJECT_ID",
+      "TCGA_COHORT_CODE"
+    ],
+    "rate_limit": "no published per-IP limit; bulk archives served over HTTPS, FireBrowse REST has no documented quota",
+    "type": [
+      "bulk-download",
+      "rest-api",
+      "web-ui",
+      "dataset-dump"
+    ]
+  },
+  {
+    "_path": "entries/bio-genomics/ucsc-genome-browser.md",
+    "access_test": {
+      "command": "curl -sf 'https://api.genome.ucsc.edu/list/ucscGenomes'",
+      "expected_fields": [
+        "downloadTime",
+        "ucscGenomes"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "assembly and track discovery",
+      "sequence retrieval by coordinate",
+      "annotation-track lookup for a region",
+      "cross-assembly coordinate liftOver",
+      "conservation and alignment scoring lookup"
+    ],
+    "auth_required": "none",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "UCSC Genomics Institute's reference genome browser with assemblies, annotation tracks, and pairwise/multiple alignments for human, mouse, and thousands of other species, exposed via REST API, public MySQL, FTP, and Table Browser.",
+    "docs_url": "https://genome.ucsc.edu/goldenPath/help/api.html",
+    "domain": "bio-genomics",
+    "entry_kind": "mixed",
+    "frequency": "track-by-track; most reference tracks refresh on a months cadence, MySQL servers sync weekly Monday mornings Pacific",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://genome.ucsc.edu/",
+    "id": "ucsc-genome-browser",
+    "join_key_fields": [
+      {
+        "fields": [
+          "knownGene.geneSymbol",
+          "refGene.name2",
+          "ncbiRefSeq.name2"
+        ],
+        "join_key": "GENE_SYMBOL"
+      },
+      {
+        "fields": [
+          "knownGene.name",
+          "knownToEnsembl.value",
+          "ensGene.name"
+        ],
+        "join_key": "ENSEMBL_ID"
+      },
+      {
+        "fields": [
+          "snp151.name",
+          "dbSnp155.name"
+        ],
+        "join_key": "RSID"
+      },
+      {
+        "fields": [
+          "refGene.name",
+          "knownToLocusLink.value"
+        ],
+        "join_key": "ENTREZ_GENE_ID"
+      }
+    ],
+    "join_keys": [
+      "GENE_SYMBOL",
+      "ENSEMBL_ID",
+      "RSID",
+      "ENTREZ_GENE_ID",
+      "DOI"
+    ],
+    "lag": "weeks-to-months between upstream annotation release and inclusion in a UCSC track",
+    "last_verified": "2026-06-09",
+    "license": "MIT",
+    "mcp_maturity": "community",
+    "mcp_notes": "Two community MCPs wrap the REST API; neither official. Surface is small (findGenome, list, getData, search) so a clean connector is tractable. Track-name discovery and coordinate validation are the load-bearing pieces; payload trimming matters because getData responses can hit the 1M-item cap on dense tracks.\n",
+    "mcp_package": [
+      "github.com/hlydecker/ucsc-genome-mcp",
+      "github.com/QuentinCody/ucsc-mcp-server"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "UCSC Genome Browser",
+    "primary_keys": [
+      "UCSC_ASSEMBLY_DB",
+      "UCSC_TRACK_NAME",
+      "UCSC_CHROM"
+    ],
+    "rate_limit": "soft guidance ~1 req/sec to REST API; botDelay enforced server-side under load; MySQL servers throttle heavy queries",
+    "type": [
+      "rest-api",
+      "bulk-download",
+      "database",
+      "web-ui"
     ]
   },
   {
@@ -2613,6 +3834,194 @@
     ]
   },
   {
+    "_path": "entries/clinical-biotech/pub-chem.md",
+    "access_test": {
+      "command": "curl -sf 'https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/2244/property/MolecularFormula,MolecularWeight,InChIKey/JSON'",
+      "expected_fields": [
+        "PropertyTable.Properties.CID",
+        "PropertyTable.Properties.MolecularFormula",
+        "PropertyTable.Properties.InChIKey"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "chemical structure search",
+      "identifier crosswalk between chemistry databases",
+      "bioassay screening data retrieval",
+      "drug compound metadata lookup",
+      "target-bioactivity mapping"
+    ],
+    "auth_required": "none",
+    "build_priority": "high",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "Open chemistry database from NIH/NLM aggregating compounds, substances, and bioassays with dense cross-references to drug, target, and literature resources.",
+    "docs_url": "https://pubchem.ncbi.nlm.nih.gov/docs/programmatic-access",
+    "domain": "clinical-biotech",
+    "entry_kind": "knowledge-graph",
+    "frequency": "compound and substance records updated continuously; FTP snapshots refreshed regularly (weekly for most subsets)",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://pubchem.ncbi.nlm.nih.gov/",
+    "id": "pub-chem",
+    "join_key_fields": [
+      {
+        "fields": [
+          "InChIKey",
+          "props.urn.label=InChIKey"
+        ],
+        "join_key": "INCHI_KEY"
+      },
+      {
+        "fields": [
+          "xrefs.RegistryID",
+          "source.SourceName=ChEMBL"
+        ],
+        "join_key": "CHEMBL_ID"
+      },
+      {
+        "fields": [
+          "xrefs.RegistryID",
+          "source.SourceName=DrugBank"
+        ],
+        "join_key": "DRUGBANK_ID"
+      },
+      {
+        "fields": [
+          "xrefs.RegistryID",
+          "source.SourceName=ChEBI"
+        ],
+        "join_key": "CHEBI_ID"
+      },
+      {
+        "fields": [
+          "xrefs.RegistryID",
+          "source.SourceName=FDA-Global-Substance-Registration-System-GSRS"
+        ],
+        "join_key": "UNII"
+      },
+      {
+        "fields": [
+          "xrefs.MeSH",
+          "synonyms"
+        ],
+        "join_key": "MESH_TERM"
+      },
+      {
+        "fields": [
+          "xrefs.PubMedID",
+          "literature.PMID"
+        ],
+        "join_key": "PMID"
+      },
+      {
+        "fields": [
+          "xrefs.DOI",
+          "reference.DOI"
+        ],
+        "join_key": "DOI"
+      },
+      {
+        "fields": [
+          "target.protein_accession",
+          "gene_target.uniprot"
+        ],
+        "join_key": "UNIPROT_ACCESSION"
+      },
+      {
+        "fields": [
+          "gene.symbol",
+          "target.gene_symbol"
+        ],
+        "join_key": "GENE_SYMBOL"
+      },
+      {
+        "fields": [
+          "gene.GeneID",
+          "xrefs.GeneID"
+        ],
+        "join_key": "ENTREZ_GENE_ID"
+      },
+      {
+        "fields": [
+          "taxonomy.TaxID",
+          "xrefs.TaxonomyID"
+        ],
+        "join_key": "NCBI_TAXON_ID"
+      },
+      {
+        "fields": [
+          "xrefs.RegistryID",
+          "source.SourceName=FDA-NDC"
+        ],
+        "join_key": "NDC"
+      },
+      {
+        "fields": [
+          "classification.ATC"
+        ],
+        "join_key": "ATC_CODE"
+      },
+      {
+        "fields": [
+          "xrefs.RegistryID",
+          "source.SourceName=RxNorm"
+        ],
+        "join_key": "RXNORM_CUI"
+      },
+      {
+        "fields": [
+          "xrefs.Wikidata"
+        ],
+        "join_key": "WIKIDATA_QID"
+      }
+    ],
+    "join_keys": [
+      "INCHI_KEY",
+      "CHEMBL_ID",
+      "DRUGBANK_ID",
+      "CHEBI_ID",
+      "UNII",
+      "MESH_TERM",
+      "PMID",
+      "DOI",
+      "UNIPROT_ACCESSION",
+      "GENE_SYMBOL",
+      "ENTREZ_GENE_ID",
+      "NCBI_TAXON_ID",
+      "NDC",
+      "ATC_CODE",
+      "RXNORM_CUI",
+      "WIKIDATA_QID"
+    ],
+    "lag": "hours-to-days for new depositor submissions; weeks-to-months for full cross-reference enrichment",
+    "last_verified": "2026-06-09",
+    "license": "US-Government-Public-Domain",
+    "mcp_maturity": "community",
+    "mcp_notes": "Five community MCP wrappers exist (no official). The cyanheads server is the broadest (search, properties, safety, bioactivity, cross-refs, both STDIO and Streamable HTTP). Suggested canonical surface: search_compound (by name, SMILES, InChIKey, CID), get_compound_properties, get_bioassay, get_substance_xrefs, resolve_identifier, get_classification. Connector should trim heavy PUG-View JSON sections by default and route bulk pulls to FTP rather than paginating the REST API.\n",
+    "mcp_package": [
+      "github.com/cyanheads/pubchem-mcp-server",
+      "github.com/augmented-nature/pubchem-mcp-server",
+      "github.com/JackKuo666/PubChem-MCP-Server",
+      "github.com/BioContext/PubChem-MCP",
+      "github.com/PhelanShao/pubchem-mcp-server"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "PubChem",
+    "primary_keys": [
+      "PUBCHEM_CID",
+      "PUBCHEM_SID",
+      "PUBCHEM_AID"
+    ],
+    "rate_limit": "5 req/sec, 400 req/min; dynamic throttling via response headers",
+    "type": [
+      "rest-api",
+      "bulk-download",
+      "web-ui"
+    ]
+  },
+  {
     "_path": "entries/consumer-signal/google-trends.md",
     "agent_use_cases": [
       "search-intent measurement",
@@ -2753,6 +4162,111 @@
     "rate_limit": "no published limit; documentation states 'There is currently no rate limit' but expect Firebase-level throttling under abuse",
     "type": [
       "rest-api"
+    ]
+  },
+  {
+    "_path": "entries/consumer-signal/music-brainz-api.md",
+    "access_test": {
+      "command": "curl -sf -A '${MUSICBRAINZ_USER_AGENT}' 'https://musicbrainz.org/ws/2/artist/0383dadf-2a4e-4d10-a46a-e9e041da8eb3?fmt=json'",
+      "expected_fields": [
+        "id",
+        "name",
+        "sort-name",
+        "type",
+        "isnis",
+        "area"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "artist and release metadata lookup",
+      "cross-platform music identifier resolution (ISRC, ISWC, MBID, Wikidata)",
+      "discography and label catalogue enumeration",
+      "canonical track identification for audio recognition pipelines",
+      "music knowledge-graph construction"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": true,
+    "cost": "free-non-commercial",
+    "description": "Community-maintained open music metadata database for artists, releases, recordings, works, labels, and places, exposed via REST API and full PostgreSQL bulk dumps.",
+    "docs_url": "https://musicbrainz.org/doc/MusicBrainz_API",
+    "domain": "consumer-signal",
+    "entry_kind": "knowledge-graph",
+    "frequency": "weekly",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://musicbrainz.org/",
+    "id": "music-brainz-api",
+    "join_key_fields": [
+      {
+        "fields": [
+          "isnis"
+        ],
+        "join_key": "ISNI"
+      },
+      {
+        "fields": [
+          "area.iso-3166-1-codes",
+          "begin-area.iso-3166-1-codes"
+        ],
+        "join_key": "ISO_2"
+      },
+      {
+        "fields": [
+          "relations[type=wikidata].url.resource"
+        ],
+        "join_key": "WIKIDATA_QID"
+      },
+      {
+        "fields": [
+          "relations[].url.resource"
+        ],
+        "join_key": "URL"
+      }
+    ],
+    "join_keys": [
+      "ISNI",
+      "ISO_2",
+      "WIKIDATA_QID",
+      "URL"
+    ],
+    "lag": "weekly full + incremental Postgres dumps; live web-service reflects edits within seconds",
+    "last_verified": "2026-06-09",
+    "license": "CC0",
+    "mcp_maturity": "community",
+    "mcp_notes": "Several community MCPs cover the read surface (search, lookup, browse). No Anthropic-maintained server. A consolidated connector should abstract the 1-req/sec throttle, paginate browse results, inject the descriptive User-Agent, expand relation edges to ISRC/ISWC/Wikidata/Discogs, and handle MBID merge redirects transparently.\n",
+    "mcp_package": [
+      "github.com/zas/mcp-musicbrainz",
+      "github.com/usercourses63/musicbrainz-mcp-server",
+      "github.com/chrischall/musicbrainz-mcp",
+      "github.com/pipeworx-io/mcp-musicbrainz",
+      "github.com/volspan-deployments/borewit-musicbrainz-api-mcp"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "MusicBrainz API",
+    "notes": "access_test executed 2026-06-09 against the Queen artist MBID; returned 200 with isnis, ipis, area.iso-3166-1-codes populated. Commercial users must move to the MetaBrainz Live Data Feed (paid).",
+    "primary_keys": [
+      "MBID_ARTIST",
+      "MBID_RELEASE",
+      "MBID_RELEASE_GROUP",
+      "MBID_RECORDING",
+      "MBID_WORK",
+      "MBID_LABEL",
+      "MBID_AREA",
+      "MBID_PLACE",
+      "MBID_EVENT",
+      "ISRC",
+      "ISWC",
+      "GTIN",
+      "DISC_ID"
+    ],
+    "rate_limit": "1 req/sec per IP for the public web service; descriptive User-Agent header mandatory; commercial users routed to the Live Data Feed under a paid agreement",
+    "type": [
+      "rest-api",
+      "bulk-download",
+      "database"
     ]
   },
   {
@@ -3322,6 +4836,208 @@
     ]
   },
   {
+    "_path": "entries/finance-markets/cboe-volatility-index-vix.md",
+    "access_test": {
+      "command": "curl -sfI 'https://raw.githubusercontent.com/datasets/finance-vix/master/data/vix-daily.csv'",
+      "expected_fields": [
+        "DATE",
+        "OPEN",
+        "HIGH",
+        "LOW",
+        "CLOSE"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "retrieve VIX daily OHLC history for backtesting",
+      "track market-implied volatility regime",
+      "feature-engineer a fear-gauge signal for cross-asset models",
+      "join VIX closes to equity or macro series by trading date",
+      "monthly close lookup for regime-switching analysis"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "Daily OHLC time series of the CBOE Volatility Index (VIX) from January 1990 to present, mirrored from the official CBOE CSV by DataHub's Core dataset pipeline.",
+    "docs_url": "https://github.com/datasets/finance-vix",
+    "domain": "finance-markets",
+    "entry_kind": "time-series",
+    "frequency": "approximately every 4 hours via DataHub Core pipeline; upstream CBOE file updates each US trading day",
+    "geography": [
+      "USA"
+    ],
+    "homepage_url": "https://datahub.io/core/finance-vix",
+    "id": "cboe-volatility-index-vix",
+    "join_key_fields": [
+      {
+        "fields": [
+          "DATE",
+          "Date"
+        ],
+        "join_key": "DATE"
+      }
+    ],
+    "join_keys": [
+      "DATE"
+    ],
+    "lag": "same-day for the upstream CBOE CSV; up to ~4 hours for the DataHub mirror",
+    "last_verified": "2026-06-09",
+    "license": "ODC-PDDL-1.0",
+    "mcp_notes": "Two CSV files at stable URLs (DataHub mirror + GitHub raw + upstream CBOE), no auth, no rate limit. curl plus a CSV parser covers the whole surface; an MCP wrapper would add little beyond what a generic CSV / time-series MCP already provides.\n",
+    "mcp_status": "api-direct-sufficient",
+    "name": "CBOE Volatility Index (VIX)",
+    "notes": "Pre-2004 OHLC rows carry identical open / high / low / close values because CBOE only published the daily close before mid-June 2004. Treat the intraday range as unavailable before 2004-06-11.",
+    "primary_keys": [
+      "DATE"
+    ],
+    "rate_limit": "none; static CSV download",
+    "type": [
+      "bulk-download",
+      "dataset-dump"
+    ]
+  },
+  {
+    "_path": "entries/finance-markets/commodity-price-api.md",
+    "access_test": {
+      "command": "curl -sf 'https://api.commoditypriceapi.com/v2/symbols?apiKey=${COMMODITY_PRICE_API_KEY}'",
+      "expected_fields": [
+        "success",
+        "symbols"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "real-time commodity price snapshot across metals, energy, agricultural",
+      "historical commodity rate lookup back to 1990 for backtesting",
+      "currency-converted commodity prices in non-USD quote currencies",
+      "fluctuation/change metrics over arbitrary date ranges",
+      "sanity-check commodity prints against vendor or exchange feeds"
+    ],
+    "auth_required": "api-key-free",
+    "build_priority": "low",
+    "bulk_available": false,
+    "cost": "freemium",
+    "description": "Commercial REST API for real-time and historical prices on 130+ commodities (precious metals, energy, agricultural, soft commodities) with quote-currency conversion across 175+ currencies and daily history back to 1990.",
+    "docs_url": "https://commoditypriceapi.com/#documentation",
+    "domain": "finance-markets",
+    "entry_kind": "time-series",
+    "frequency": "60-second refresh on Plus and Premium; 10-minute delay on Lite. Monthly-only commodities deliver closing rate only.",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://commoditypriceapi.com/",
+    "id": "commodity-price-api",
+    "join_key_fields": [
+      {
+        "fields": [
+          "date",
+          "timestamp",
+          "startDate",
+          "endDate",
+          "rates.<date>"
+        ],
+        "join_key": "DATE"
+      },
+      {
+        "fields": [
+          "quote",
+          "metaData.quote"
+        ],
+        "join_key": "ISO_4217"
+      }
+    ],
+    "join_keys": [
+      "DATE",
+      "ISO_4217"
+    ],
+    "lag": "60 seconds (paid Plus/Premium); 10 minutes (Lite); historical series complete to prior trading day",
+    "last_verified": "2026-06-09",
+    "license": "CommodityPriceAPI-Proprietary",
+    "mcp_maturity": "none",
+    "mcp_notes": "No MCP found on GitHub, npm, or PyPI as of 2026-06-09. Wrapping the six v2 endpoints (usage, symbols, rates/latest, rates/historical, rates/time-series, rates/fluctuation) is straightforward but the upstream license forbids redistribution and most cross-source commodity workflows can be served by free sources (World Bank Pink Sheet for monthly benchmarks, FRED for validated US energy series, EIA for native US data). Low-value tag reflects the narrow audience that needs paid 60-second commodity refresh and accepts the no-redistribute terms.\n",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "CommodityPriceAPI",
+    "notes": "access_test not yet executed; requires ${COMMODITY_PRICE_API_KEY}. Vendor advertises an unlimited free trial without credit card, but Terms of Service classify all access as licensed-not-sold and prohibit redistribution; treat as commercial-licensed regardless of cost tier.",
+    "primary_keys": [
+      "COMMODITY_PRICE_API_SYMBOL"
+    ],
+    "rate_limit": "10 requests/minute on free and Lite tiers; no documented per-minute cap on Plus and Premium. Monthly call quotas vary by plan (Lite 2,000; Plus 10,000; Premium 50,000).",
+    "type": [
+      "rest-api"
+    ]
+  },
+  {
+    "_path": "entries/finance-markets/defillama-stablecoins.md",
+    "access_test": {
+      "command": "curl -sf 'https://stablecoins.llama.fi/stablecoins?includePrices=true'",
+      "expected_fields": [
+        "peggedAssets"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "stablecoin circulating supply lookup per chain",
+      "stablecoin market-cap time series",
+      "peg-mechanism classification",
+      "de-peg detection from historical price series",
+      "cross-chain stablecoin distribution snapshot"
+    ],
+    "auth_required": "none",
+    "build_priority": "medium",
+    "bulk_available": false,
+    "cost": "freemium",
+    "description": "Open API tracking circulating supply, chain distribution, peg mechanism, and historical market cap of stablecoins across every supported blockchain, run as the stablecoins module of the DefiLlama TVL aggregator.",
+    "docs_url": "https://api-docs.defillama.com/",
+    "domain": "finance-markets",
+    "entry_kind": "time-series",
+    "frequency": "circulating supply refreshed hourly per chain; historical mcap and price series updated daily",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://defillama.com/stablecoins",
+    "id": "defillama-stablecoins",
+    "join_key_fields": [
+      {
+        "fields": [
+          "peggedAssets[].circulating",
+          "peggedAssets[].circulatingPrevDay",
+          "peggedAssets[].circulatingPrevWeek",
+          "peggedAssets[].circulatingPrevMonth",
+          "tokens[].date"
+        ],
+        "join_key": "DATE"
+      },
+      {
+        "fields": [
+          "peggedAssets[].pegType"
+        ],
+        "join_key": "ISO_4217"
+      }
+    ],
+    "join_keys": [
+      "DATE",
+      "ISO_4217"
+    ],
+    "lag": "near real-time for current supply (intra-hour); daily series lag ~24h",
+    "last_verified": "2026-06-09",
+    "license": "DefiLlama-Terms",
+    "mcp_notes": "No widely adopted MCP server as of last verify. Suggested surface: list_stablecoins, get_stablecoin(asset_id), get_stablecoin_chain_history(chain), get_stablecoinchains_snapshot, get_stablecoinprices. Connector should normalise pegType strings (peggedUSD, peggedEUR, peggedVAR) to ISO_4217 where possible, expose chain slugs as a closed enum loaded from /v2/chains, and surface the free api.llama.fi vs stablecoins.llama.fi host split so callers don't hit 404s.\n",
+    "mcp_status": "mcp-needed-high-value",
+    "name": "DefiLlama Stablecoins",
+    "notes": "The URL Stephanie supplied (api-docs.defillama.com/#tag/tvl/get/api/chainAssets) points at a Pro-only TVL endpoint, but the slug scopes this entry to the broader Stablecoins data product, which is on the free tier. See Review notes for the host-split gotcha.",
+    "primary_keys": [
+      "DEFILLAMA_STABLECOIN_ID",
+      "DEFILLAMA_CHAIN_SLUG",
+      "DEFILLAMA_PROTOCOL_SLUG",
+      "GECKO_ID"
+    ],
+    "rate_limit": "no published per-key cap on the free host; informal fair-use throttling, Pro plan ($300/mo) raises limits and unlocks /api/chainAssets and other TVL Pro endpoints",
+    "type": [
+      "rest-api"
+    ]
+  },
+  {
     "_path": "entries/finance-markets/eia-open-data.md",
     "agent_use_cases": [
       "electricity price time series",
@@ -3362,6 +5078,138 @@
     "type": [
       "rest-api",
       "bulk-download"
+    ]
+  },
+  {
+    "_path": "entries/finance-markets/finnhub-stock-api.md",
+    "access_test": {
+      "command": "curl -sf 'https://finnhub.io/api/v1/quote?symbol=AAPL&token=${FINNHUB_API_KEY}'",
+      "expected_fields": [
+        "c",
+        "h",
+        "l",
+        "o",
+        "pc",
+        "t"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "real-time US equity quote retrieval",
+      "company profile and fundamentals lookup",
+      "earnings and EPS-estimate fetch",
+      "insider transactions and congressional trading pulls",
+      "cross-source ticker-to-FIGI/ISIN/CUSIP mapping"
+    ],
+    "auth_required": "api-key-free",
+    "build_priority": "medium",
+    "bulk_available": false,
+    "cost": "freemium",
+    "description": "Multi-asset market data API covering global equities, FX, crypto, company fundamentals, estimates, alternative data, and economic indicators behind a single REST endpoint plus WebSocket streaming, with a generous free tier the provider markets as real-time.",
+    "docs_url": "https://finnhub.io/docs/api",
+    "domain": "finance-markets",
+    "entry_kind": "time-series",
+    "frequency": "real-time on US equities (free) and global equities on premium; intraday and daily candles",
+    "geography": [
+      "global",
+      "USA"
+    ],
+    "homepage_url": "https://finnhub.io/",
+    "id": "finnhub-stock-api",
+    "join_key_fields": [
+      {
+        "fields": [
+          "symbol",
+          "displaySymbol",
+          "ticker"
+        ],
+        "join_key": "TICKER"
+      },
+      {
+        "fields": [
+          "isin"
+        ],
+        "join_key": "ISIN"
+      },
+      {
+        "fields": [
+          "cusip"
+        ],
+        "join_key": "CUSIP"
+      },
+      {
+        "fields": [
+          "figi",
+          "shareClassFIGI"
+        ],
+        "join_key": "FIGI"
+      },
+      {
+        "fields": [
+          "cik"
+        ],
+        "join_key": "CIK"
+      },
+      {
+        "fields": [
+          "lei"
+        ],
+        "join_key": "LEI"
+      },
+      {
+        "fields": [
+          "country"
+        ],
+        "join_key": "ISO_3"
+      },
+      {
+        "fields": [
+          "currency"
+        ],
+        "join_key": "ISO_4217"
+      },
+      {
+        "fields": [
+          "ipo",
+          "filedDate",
+          "acceptedDate",
+          "period",
+          "date"
+        ],
+        "join_key": "DATE"
+      }
+    ],
+    "join_keys": [
+      "TICKER",
+      "ISIN",
+      "CUSIP",
+      "FIGI",
+      "CIK",
+      "LEI",
+      "ISO_3",
+      "ISO_4217",
+      "DATE"
+    ],
+    "lag": "real-time for US trades on the free tier per provider claim; non-US realtime gated behind premium per-exchange licences",
+    "last_verified": "2026-06-09",
+    "license": "Finnhub-Terms-of-Service",
+    "mcp_maturity": "community",
+    "mcp_notes": "Several community MCP servers wrap the Finnhub REST API; none are vendor-published. SalZaki/finnhub-mcp (C#, SSE + STDIO transports) and aloewright/finnhub-mcp (TypeScript, Cloudflare Workers) are the most current as of last verify. Official Apache-2.0 SDKs in Python, JS, Go, Ruby, PHP, and Kotlin sit under github.com/Finnhub-Stock-API and are the safer build base for a hardened connector. Connector should abstract over the 100+ method surface, normalise symbol formats (US tickers vs exchange-prefixed like `MSFT.US`, `RDSA.L`), and expose per-method rate-limit budget.\n",
+    "mcp_package": [
+      "github.com/SalZaki/finnhub-mcp",
+      "github.com/aloewright/finnhub-mcp",
+      "github.com/jackdark425/aigroup-finnhub-mcp"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "Finnhub Stock API",
+    "notes": "access_test constructed but not executed against a real key; live probe with token=demo returned HTTP 401 (Invalid API key), confirming the endpoint is reachable but auth-gated. Requires ${FINNHUB_API_KEY} for revalidation.",
+    "primary_keys": [
+      "FINNHUB_SYMBOL",
+      "FINNHUB_FILING_ID"
+    ],
+    "rate_limit": "60 API calls/minute on the free tier; 30 calls/second hard cap across all paid plans per ToS",
+    "type": [
+      "rest-api"
     ]
   },
   {
@@ -3761,6 +5609,73 @@
     ]
   },
   {
+    "_path": "entries/finance-markets/predscope-prediction-market-data.md",
+    "access_test": {
+      "command": "curl -sf 'https://predscope.com/api/markets.json'",
+      "expected_fields": [
+        "meta.source",
+        "meta.total_markets",
+        "markets"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "prediction-market odds snapshot",
+      "political event probability tracking",
+      "sports and crypto market sentiment",
+      "resolved-market backtesting and accuracy research",
+      "category-level event monitoring"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": false,
+    "cost": "free",
+    "description": "Free, no-auth REST API exposing live and resolved Polymarket prediction-market odds, volumes, and outcomes, refreshed every 10 minutes.",
+    "docs_url": "https://predscope.com/api/",
+    "domain": "finance-markets",
+    "entry_kind": "event-stream",
+    "frequency": "10 minutes",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://predscope.com/",
+    "id": "predscope-prediction-market-data",
+    "join_key_fields": [
+      {
+        "fields": [
+          "meta.generated_at",
+          "events.end_date"
+        ],
+        "join_key": "DATE"
+      },
+      {
+        "fields": [
+          "markets.url",
+          "events.url"
+        ],
+        "join_key": "URL"
+      }
+    ],
+    "join_keys": [
+      "DATE",
+      "URL"
+    ],
+    "lag": "near-real-time (10-minute refresh from upstream Polymarket Gamma API)",
+    "last_verified": "2026-06-09",
+    "license": "unknown",
+    "mcp_notes": "No connector found. A thin MCP wrapper would add little over the two flat JSON endpoints since there is no pagination, auth, or query parameter to abstract. Real value would come from a Polymarket-direct connector covering the full market universe, order book, and historical price series, with PredScope used only as a cached top-100 fallback.\n",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "PredScope Prediction Market Data",
+    "notes": "Top-100-only on the live endpoint; full universe lives upstream at Polymarket's Gamma API. PredScope ownership and legal entity are not disclosed on the site.",
+    "primary_keys": [
+      "PREDSCOPE_MARKET_SLUG"
+    ],
+    "rate_limit": "no documented quota; CORS open from any domain",
+    "type": [
+      "rest-api"
+    ]
+  },
+  {
     "_path": "entries/finance-markets/sp500-companies-financials.md",
     "access_test": {
       "command": "curl -sfI 'https://raw.githubusercontent.com/datasets/s-and-p-500-companies-financials/master/data/constituents-financials.csv'",
@@ -3819,6 +5734,275 @@
     "type": [
       "bulk-download",
       "dataset-dump"
+    ]
+  },
+  {
+    "_path": "entries/finance-markets/trading-economics-commodities.md",
+    "access_test": {
+      "command": "curl -sf 'https://api.tradingeconomics.com/markets/commodities?c=${TRADINGECONOMICS_KEY}&f=json'",
+      "expected_fields": [
+        "Symbol",
+        "Ticker",
+        "Name",
+        "Last",
+        "Group",
+        "Unit",
+        "Date",
+        "DailyChange",
+        "DailyPercentualChange"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "live commodity price snapshot across energy, metals, and agriculture",
+      "historical commodity price series for backtesting",
+      "commodity-group sector comparison (Energy vs Metals vs Agricultural)",
+      "currency- and country-specific contracts (CNY/T eggs, EUR carbon permits)",
+      "macro-correlation studies pairing commodities with FX and macro indicators"
+    ],
+    "auth_required": "api-key-paid",
+    "build_priority": "low",
+    "bulk_available": false,
+    "cost": "paid",
+    "description": "Live and historical prices, forecasts, and metadata for ~100 commodities (energy, metals, agricultural, industrial, livestock, electricity, carbon) accessed via the Trading Economics markets API and web tables.",
+    "docs_url": "https://docs.tradingeconomics.com/",
+    "domain": "finance-markets",
+    "entry_kind": "time-series",
+    "frequency": "intraday quotes during market hours; end-of-day snapshots; historical series go back decades for major contracts",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://tradingeconomics.com/commodities",
+    "id": "trading-economics-commodities",
+    "join_key_fields": [
+      {
+        "fields": [
+          "Date",
+          "LastUpdate"
+        ],
+        "join_key": "DATE"
+      },
+      {
+        "fields": [
+          "Unit"
+        ],
+        "join_key": "ISO_4217"
+      }
+    ],
+    "join_keys": [
+      "DATE",
+      "ISO_4217"
+    ],
+    "lag": "minutes for major futures during exchange hours; end-of-day for smaller contracts and physical benchmarks",
+    "last_verified": "2026-06-09",
+    "license": "Trading-Economics-Proprietary",
+    "mcp_maturity": "community",
+    "mcp_notes": "One community MCP (slekrem/MacroPulseMCP, .NET 9.0, 0 stars at last check) wraps the Trading Economics API including a MarketsTools surface that covers commodity prices. Auth via the TradingEconomics:ApiKey config slot; defaults to the guest:guest evaluation key which is rate-capped. A second community MCP (gavinHuang/trading_economics_calendar_mcp) covers the economic calendar only and does not expose commodity quotes.\n",
+    "mcp_package": [
+      "github.com/slekrem/MacroPulseMCP"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "Trading Economics Commodities",
+    "notes": "access_test not yet executed; requires ${TRADINGECONOMICS_KEY}. The legacy guest:guest key on /markets/commodities returns HTTP 410 Gone as of 2026-06-09, so a paid or trial key is now required end-to-end.",
+    "primary_keys": [
+      "TE_SYMBOL",
+      "TE_TICKER"
+    ],
+    "rate_limit": "trial accounts capped at 100,000 data points and 100 requests; paid tier limits are contract-specific and not published",
+    "type": [
+      "rest-api",
+      "web-ui"
+    ]
+  },
+  {
+    "_path": "entries/finance-markets/vc-deal-flow-signal.md",
+    "access_test": {
+      "command": "curl -sf 'https://datasets-server.huggingface.co/info?dataset=the-data-nerd%2Fvc-deal-flow-signal'",
+      "expected_fields": [
+        "dataset_info.sector_aggregates.features.period",
+        "dataset_info.sector_aggregates.features.sector_slug",
+        "dataset_info.sector_aggregates.features.avg_commit_velocity_14d"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "venture deal-flow leading-indicator backtests",
+      "sector-level engineering-velocity comparisons",
+      "startup-stage classification from commit activity",
+      "fundraise-timing prediction research",
+      "alt-data feature engineering for VC sourcing"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "Quarterly longitudinal panel of GitHub engineering-velocity metrics across ~55 venture-backed startups and ~20 sectors, hosted on Hugging Face as three CSV/Parquet configurations.",
+    "docs_url": "https://huggingface.co/datasets/the-data-nerd/vc-deal-flow-signal",
+    "domain": "finance-markets",
+    "entry_kind": "panel",
+    "frequency": "quarterly",
+    "geography": [
+      "global",
+      "USA",
+      "GBR",
+      "EU",
+      "CAN"
+    ],
+    "homepage_url": "https://huggingface.co/datasets/the-data-nerd/vc-deal-flow-signal",
+    "id": "vc-deal-flow-signal",
+    "join_key_fields": [
+      {
+        "fields": [
+          "period"
+        ],
+        "join_key": "DATE"
+      }
+    ],
+    "join_keys": [
+      "DATE"
+    ],
+    "lag": "unknown; v1.0.0 covers Q3 2025 through Q2 2026",
+    "last_verified": "2026-06-09",
+    "license": "CC-BY-4.0",
+    "mcp_maturity": "official",
+    "mcp_notes": "Hugging Face publishes an official MCP server fronting the Hub, datasets-server, and Spaces. It exposes dataset discovery and metadata but does not stream row content; for actual panel analysis an agent should download the CSV/Parquet files via the Hub or the datasets library directly.\n",
+    "mcp_package": [
+      "github.com/evalstate/hf-mcp-server"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "VC Deal Flow Signal",
+    "notes": "Small dataset (306 rows, 49 KB) and a thin research artefact rather than a live feed. Underlying signals come from the public GitHub REST API; an agent that wants fresh velocity numbers should hit GitHub directly. Startups are identified by free-text name and a kebab-case slug (e.g. paperless-ngx, langchain-ai); no CIK, ticker, ISIN, or domain field is published.",
+    "primary_keys": [
+      "STARTUP_SLUG",
+      "SECTOR_SLUG",
+      "PERIOD"
+    ],
+    "rate_limit": "Hugging Face Hub fair-use; datasets-server endpoints typically 120 req/min anonymous",
+    "type": [
+      "dataset-dump",
+      "bulk-download",
+      "rest-api"
+    ]
+  },
+  {
+    "_path": "entries/finance-markets/visa-onchain-stablecoin-analytics.md",
+    "agent_use_cases": [
+      "stablecoin market-share monitoring across chains",
+      "adjusted-versus-raw stablecoin transfer volume context",
+      "L1-versus-L2 stablecoin activity comparison",
+      "stablecoin lending TVL and average loan-size snapshots",
+      "chain-level active-address trends per stablecoin"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": false,
+    "cost": "free",
+    "description": "Free public web dashboard, built by Visa with Allium Labs, charting fiat-backed stablecoin supply, transfers, addresses, and lending across 19+ public blockchains.",
+    "docs_url": "https://docs.allium.so/historical-data/stablecoins",
+    "domain": "finance-markets",
+    "entry_kind": "panel",
+    "frequency": "daily (per Allium upstream aggregation; not stated on dashboard itself)",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://visaonchainanalytics.com/",
+    "id": "visa-onchain-stablecoin-analytics",
+    "join_key_fields": [
+      {
+        "fields": [
+          "date"
+        ],
+        "join_key": "DATE"
+      },
+      {
+        "fields": [
+          "currency"
+        ],
+        "join_key": "ISO_4217"
+      }
+    ],
+    "join_keys": [
+      "DATE",
+      "ISO_4217"
+    ],
+    "lag": "unknown; cadence not published on the dashboard",
+    "last_verified": "2026-06-09",
+    "license": "unknown",
+    "mcp_notes": "No API. All data is rendered client-side on the visaonchainanalytics.com SPA from pre-computed Allium aggregates. An MCP would need browser automation or HTML / chart-JSON scraping to read values; the higher-value connector targets Allium directly (paid) rather than the Visa dashboard surface. Treat this entry as a discovery surface pointing at the upstream paid Allium tables.\n",
+    "mcp_status": "requires-scraping",
+    "name": "Visa Onchain Analytics Dashboard",
+    "notes": "Display-only dashboard. Raw queryable data lives upstream at Allium and is a paid product; Visa exposes the visualisations free, no API, no bulk download, no published data-licence. Adjusted tab strips bot/MEV/CEX-internal flows. ~10 stablecoins and ~19 chains tracked at last verify; full list in body.",
+    "primary_keys": [
+      "VISA_ONCHAIN_CHAIN_NAME",
+      "VISA_ONCHAIN_STABLECOIN_TICKER"
+    ],
+    "rate_limit": "no documented quota; static dashboard, charts render from pre-aggregated Allium tables",
+    "type": [
+      "web-ui"
+    ]
+  },
+  {
+    "_path": "entries/finance-markets/world-bank-commodity-prices.md",
+    "access_test": {
+      "command": "curl -sfI 'https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx'",
+      "expected_fields": [],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "commodity price time series for backtest and feature engineering",
+      "cross-commodity index lookup (energy, non-energy, agriculture, metals)",
+      "inflation-adjusted commodity benchmark series",
+      "monthly commodity forecast input",
+      "sanity-check commodity print against vendor feeds"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "World Bank's monthly Pink Sheet of global commodity price benchmarks across energy, agriculture, fertilizers, metals, and precious metals, published as Excel workbooks with full monthly history back to 1960 and annual aggregates.",
+    "docs_url": "https://www.worldbank.org/en/research/commodity-markets",
+    "domain": "finance-markets",
+    "entry_kind": "time-series",
+    "frequency": "monthly",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://www.worldbank.org/en/research/commodity-markets",
+    "id": "world-bank-commodity-prices",
+    "join_key_fields": [
+      {
+        "fields": [
+          "Monthly Prices.Date",
+          "Annual Prices.Year"
+        ],
+        "join_key": "DATE"
+      },
+      {
+        "fields": [
+          "units (price columns labeled in $/bbl, $/mt, $/kg, c/lb, etc., all USD)"
+        ],
+        "join_key": "ISO_4217"
+      }
+    ],
+    "join_keys": [
+      "DATE",
+      "ISO_4217"
+    ],
+    "lag": "approximately one month (June 2026 release dated 2026-06-02 covers May 2026 prices)",
+    "last_verified": "2026-06-09",
+    "license": "CC-BY-4.0",
+    "mcp_maturity": "none",
+    "mcp_notes": "No dedicated MCP. The whole surface is two Excel files plus a monthly PDF at stable URLs. A thin MCP wrapping pandas.read_excel against the monthly and annual workbooks (resolve_commodity, get_series, latest_print) covers every realistic use. Low value because the upstream cadence is monthly and the file is tiny enough to cache locally per release.\n",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "World Bank Commodity Prices (Pink Sheet)",
+    "notes": "Distinct from the world-bank-open-data entry (which covers the /v2 Indicators API for development statistics). Pink Sheet is its own data product under the Prospects Group, distributed only as Excel and PDF; not exposed via the Indicators API or the Data360 MCP.",
+    "primary_keys": [
+      "WB_COMMODITY_CODE"
+    ],
+    "rate_limit": "none; static Excel and PDF downloads",
+    "type": [
+      "bulk-download",
+      "web-ui"
     ]
   },
   {
@@ -3889,6 +6073,201 @@
     "rate_limit": "unspecified; Yahoo throttles aggressively on the underlying endpoints and returns HTTP 429 under load. Community guidance: keep concurrent calls low (<5/sec), back off on 429, cache responses.",
     "type": [
       "unofficial-api"
+    ]
+  },
+  {
+    "_path": "entries/geospatial/global-biodiversity-information-facility.md",
+    "access_test": {
+      "command": "curl -sf 'https://api.gbif.org/v1/occurrence/search?limit=1'",
+      "expected_fields": [
+        "offset",
+        "limit",
+        "endOfRecords",
+        "count",
+        "results"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "species occurrence search by name, taxon, geography, or date",
+      "taxonomic name resolution and backbone lookup",
+      "dataset and publisher discovery",
+      "reproducible biodiversity download via citable DOI",
+      "cross-source joins on NCBI taxon, country, or geographic feature"
+    ],
+    "auth_required": "none",
+    "build_priority": "high",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "International network and integrated infrastructure aggregating species occurrence records, taxonomic backbone, datasets, and publishing organisations from thousands of natural-history collections, surveys, and citizen-science feeds, each occurrence carrying lat/lon, eventDate, taxonomic keys, and Darwin Core fields.",
+    "docs_url": "https://techdocs.gbif.org/en/openapi/",
+    "domain": "geospatial",
+    "entry_kind": "mixed",
+    "frequency": "Continuous ingestion from publishers; species backbone rebuilt periodically (months); occurrence index updated as datasets are re-crawled",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://www.gbif.org/",
+    "id": "global-biodiversity-information-facility",
+    "join_key_fields": [
+      {
+        "fields": [
+          "identifiers.identifier"
+        ],
+        "join_key": "NCBI_TAXON_ID"
+      },
+      {
+        "fields": [
+          "identifiers.identifier"
+        ],
+        "join_key": "WIKIDATA_QID"
+      },
+      {
+        "fields": [
+          "doi",
+          "citation.identifier"
+        ],
+        "join_key": "DOI"
+      },
+      {
+        "fields": [
+          "recordedByIDs.value",
+          "identifiedByIDs.value"
+        ],
+        "join_key": "ORCID"
+      },
+      {
+        "fields": [
+          "gbifRegion",
+          "publishingCountry"
+        ],
+        "join_key": "ISO_3"
+      },
+      {
+        "fields": [
+          "countryCode",
+          "publishingCountry"
+        ],
+        "join_key": "ISO_2"
+      },
+      {
+        "fields": [
+          "eventDate",
+          "year"
+        ],
+        "join_key": "DATE"
+      }
+    ],
+    "join_keys": [
+      "NCBI_TAXON_ID",
+      "WIKIDATA_QID",
+      "DOI",
+      "ORCID",
+      "ISO_3",
+      "ISO_2",
+      "DATE"
+    ],
+    "lag": "minutes to days from publisher update to appearance in the GBIF index, depending on crawl schedule",
+    "last_verified": "2026-06-09",
+    "license": "CC-BY-4.0",
+    "mcp_maturity": "community",
+    "mcp_notes": "Three community Node MCPs wrap the public v1 endpoints (species, occurrence, dataset, publisher). No official server. Existing surfaces cover synchronous search well but typically do not orchestrate the asynchronous Occurrence Download API (predicate JSON -> download key -> poll -> fetch DwC-A) which is the correct path for any job over a few thousand records.\n",
+    "mcp_package": [
+      "@cyanheads/gbif-biodiversity-mcp-server",
+      "@pipeworx/mcp-gbif",
+      "pipeworx-mcp-gbif"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "Global Biodiversity Information Facility (GBIF)",
+    "primary_keys": [
+      "GBIF_OCCURRENCE_ID",
+      "GBIF_TAXON_KEY",
+      "GBIF_DATASET_KEY",
+      "GBIF_PUBLISHING_ORG_KEY",
+      "GBIF_INSTALLATION_KEY",
+      "GBIF_DOWNLOAD_KEY",
+      "DWC_OCCURRENCE_ID"
+    ],
+    "rate_limit": "Search endpoints throttled when load is high (HTTP 429). For workloads longer than ~15 min, use the asynchronous Occurrence Download API instead of paged search. POST/PUT/DELETE require HTTP Basic auth with a GBIF user account.",
+    "type": [
+      "rest-api",
+      "bulk-download",
+      "dataset-dump"
+    ]
+  },
+  {
+    "_path": "entries/geospatial/open-meteo.md",
+    "access_test": {
+      "command": "curl -sf 'https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current=temperature_2m&hourly=temperature_2m&forecast_days=1'",
+      "expected_fields": [
+        "latitude",
+        "longitude",
+        "current",
+        "hourly",
+        "hourly_units"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "point-location weather forecast (hourly/daily)",
+      "historical weather reconstruction via ERA5 reanalysis (1940-present)",
+      "marine and air-quality conditions for a coordinate",
+      "geocoding place names to lat/lon",
+      "elevation lookup for a coordinate"
+    ],
+    "auth_required": "none",
+    "build_priority": "medium",
+    "bulk_available": false,
+    "cost": "free-non-commercial",
+    "description": "Free weather, climate, marine, air-quality, and historical-reanalysis API aggregating 30+ national weather models (ECMWF, NOAA GFS, DWD ICON, JMA, MeteoFrance) at 1-11 km global resolution, queried by latitude/longitude with no API key.",
+    "docs_url": "https://open-meteo.com/en/docs",
+    "domain": "geospatial",
+    "entry_kind": "time-series",
+    "frequency": "forecast updated hourly to 6-hourly depending on model; ERA5 reanalysis updated daily with ~5 day lag; historical-forecast archive continuous since 2021",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://open-meteo.com/",
+    "id": "open-meteo",
+    "join_key_fields": [
+      {
+        "fields": [
+          "country_code"
+        ],
+        "join_key": "ISO_2"
+      },
+      {
+        "fields": [
+          "time",
+          "hourly.time",
+          "daily.time",
+          "current.time"
+        ],
+        "join_key": "DATE"
+      }
+    ],
+    "join_keys": [
+      "ISO_2",
+      "DATE"
+    ],
+    "lag": "minutes for current forecast; ~5 days for ERA5 historical; ~2 days for historical-forecast archive",
+    "last_verified": "2026-06-09",
+    "license": "CC-BY-4.0",
+    "mcp_maturity": "community",
+    "mcp_notes": "No official Open-Meteo MCP. Several community implementations cover overlapping but uneven surfaces; cmer81/open-meteo-mcp is the broadest (forecast, archive, air-quality, marine, elevation, geocoding, DWD ICON). Most wrappers only expose the forecast endpoint; agents needing climate-change, ensemble, flood, or satellite-radiation will hit gaps.\n",
+    "mcp_package": [
+      "github.com/cmer81/open-meteo-mcp",
+      "github.com/isdaniel/mcp_weather_server",
+      "github.com/gbrigandi/mcp-server-openmeteo",
+      "github.com/JeremyMorgan/Weather-MCP-Server",
+      "github.com/windsornguyen/open-meteo-mcp"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "Open-Meteo",
+    "primary_keys": [],
+    "rate_limit": "non-commercial free tier: 600 calls/min, 5,000 calls/hour, 10,000 calls/day per provider; unlimited on paid tiers",
+    "type": [
+      "rest-api"
     ]
   },
   {
@@ -3994,6 +6373,92 @@
     ]
   },
   {
+    "_path": "entries/government-open-data/bureau-of-labour-statistics.md",
+    "access_test": {
+      "command": "curl -sf -X POST -H 'Content-Type: application/json' -d '{\"seriesid\":[\"LNS14000000\"]}' https://api.bls.gov/publicAPI/v2/timeseries/data/",
+      "expected_fields": [
+        "status",
+        "Results.series"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "unemployment-rate and labour-force lookup",
+      "inflation tracking via CPI and PPI series",
+      "state and metro-area employment panels",
+      "wage and compensation benchmarking",
+      "job-openings and labour-turnover (JOLTS) monitoring"
+    ],
+    "auth_required": "api-key-free",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "US Bureau of Labor Statistics Public Data API and bulk flat files covering employment, unemployment, wages, prices (CPI/PPI), productivity, job openings, and compensation across dozens of survey programs.",
+    "docs_url": "https://www.bls.gov/developers/",
+    "domain": "government-open-data",
+    "entry_kind": "mixed",
+    "frequency": "monthly for most series; weekly/quarterly/annual underlying cadence varies by survey",
+    "geography": [
+      "USA"
+    ],
+    "homepage_url": "https://www.bls.gov/data/",
+    "id": "bureau-of-labour-statistics",
+    "join_key_fields": [
+      {
+        "fields": [
+          "Results.series.data.year",
+          "Results.series.data.period",
+          "Results.series.data.periodName"
+        ],
+        "join_key": "DATE"
+      },
+      {
+        "fields": [
+          "Results.series.catalog.area",
+          "Results.series.catalog.state"
+        ],
+        "join_key": "US_STATE_CODE"
+      },
+      {
+        "fields": [
+          "Results.series.catalog.area_code"
+        ],
+        "join_key": "FIPS"
+      }
+    ],
+    "join_keys": [
+      "DATE",
+      "US_STATE_CODE",
+      "FIPS"
+    ],
+    "lag": "typically 1-6 weeks after reference period (e.g. Employment Situation released first Friday of following month; CPI mid-month)",
+    "last_verified": "2026-06-09",
+    "license": "US-Government-Public-Domain",
+    "mcp_maturity": "community",
+    "mcp_notes": "Multiple community MCPs exist; cyanheads/bls-labor-mcp-server exposes 7 tools (list_surveys, search_series, get_series, get_latest, plus optional DuckDB dataframe ops). All wrap the v2 REST API; registered key recommended for the 500/day quota. No official BLS-maintained MCP.\n",
+    "mcp_package": [
+      "github.com/cyanheads/bls-labor-mcp-server",
+      "github.com/larasrinath/bls_mcp",
+      "github.com/shawndrake2/mcp-bls",
+      "github.com/pipeworx-io/mcp-bls",
+      "github.com/kovashikawa/bls_mcp",
+      "github.com/RakeemRanger/bls-mcp"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "Bureau of Labor Statistics (BLS) Public Data API",
+    "notes": "access_test executed successfully without API key (anonymous tier returns status=REQUEST_SUCCEEDED for series LNS14000000, the seasonally adjusted civilian unemployment rate). Registered key recommended for production use.",
+    "primary_keys": [
+      "BLS_SERIES_ID",
+      "BLS_SURVEY_ABBREVIATION"
+    ],
+    "rate_limit": "v2 with registered API key: 500 queries/day, up to 50 series per query, 20-year span; v2 without key: 25 queries/day, up to 25 series, 10-year span",
+    "type": [
+      "rest-api",
+      "bulk-download",
+      "web-ui"
+    ]
+  },
+  {
     "_path": "entries/government-open-data/harmonized-system-codes.md",
     "access_test": {
       "command": "curl -sfL 'https://datahub.io/core/harmonized-system/r/harmonized-system.csv' | head -5",
@@ -4043,6 +6508,72 @@
     "rate_limit": "none documented; static CSV behind Cloudflare R2",
     "type": [
       "bulk-download"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/iban-country-codes.md",
+    "access_test": {
+      "command": "curl -sf 'https://www.iban.com/country-codes' | grep -c 'USA'",
+      "expected_fields": [
+        "country",
+        "alpha-2-code",
+        "alpha-3-code",
+        "numeric"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "country-code lookup",
+      "alpha-2 to alpha-3 translation",
+      "numeric-to-alpha ISO 3166 translation",
+      "reference-table seeding for country joins"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": false,
+    "cost": "free",
+    "description": "HTML lookup table of ISO 3166-1 country codes (alpha-2, alpha-3, numeric) keyed by country name, republished by iban.com.",
+    "docs_url": "https://www.iban.com/country-codes",
+    "domain": "government-open-data",
+    "entry_kind": "reference-table",
+    "frequency": "irregular",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://www.iban.com/country-codes",
+    "id": "iban-country-codes",
+    "join_key_fields": [
+      {
+        "fields": [
+          "alpha-2-code"
+        ],
+        "join_key": "ISO_2"
+      },
+      {
+        "fields": [
+          "alpha-3-code"
+        ],
+        "join_key": "ISO_3"
+      }
+    ],
+    "join_keys": [
+      "ISO_2",
+      "ISO_3"
+    ],
+    "lag": "unknown",
+    "last_verified": "2026-06-09",
+    "license": "iban-com-terms",
+    "mcp_maturity": "none",
+    "mcp_notes": "Narrow lookup-table use. A connector would scrape the single HTML table once and expose lookup_by_alpha2, lookup_by_alpha3, lookup_by_numeric, lookup_by_country. Most agents are better served by the ISO 3166 list from the ISO Online Browsing Platform or a packaged ISO-codes library (pycountry, iso-3166).\n",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "IBAN Country Codes",
+    "notes": "Data is the ISO 3166-1 standard; iban.com republishes with database-rights claim. For redistribution, source from the ISO Online Browsing Platform or pycountry instead.",
+    "primary_keys": [
+      "ISO_3166_NUMERIC"
+    ],
+    "type": [
+      "web-ui",
+      "scraper-required"
     ]
   },
   {
@@ -4103,6 +6634,478 @@
     "type": [
       "web-ui",
       "scraper-required"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/oecd-data.md",
+    "access_test": {
+      "command": "curl -sf 'https://sdmx.oecd.org/public/rest/data/OECD.SDD.NAD,DSD_NAAG@DF_NAAG_I/all/?format=jsondata&dimensionAtObservation=AllDimensions&lastNObservations=1'",
+      "expected_fields": [
+        "meta",
+        "data.dataSets",
+        "data.structures"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "cross-country macro and social indicator comparison",
+      "long-run time series for GDP, trade, employment, education",
+      "dataflow discovery by department or keyword",
+      "tax and revenue statistics lookup",
+      "PISA, education, and skills outcome retrieval"
+    ],
+    "auth_required": "none",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "OECD's flagship data portal exposing 1,500+ statistical dataflows across 38 member countries via a public SDMX 2.1 REST API, with CSV/Excel downloads and a browsable web UI.",
+    "docs_url": "https://gitlab.algobank.oecd.org/public-documentation/dotstat-migration",
+    "domain": "government-open-data",
+    "entry_kind": "mixed",
+    "frequency": "varies by dataflow (annual, quarterly, monthly)",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://data-explorer.oecd.org/",
+    "id": "oecd-data",
+    "join_key_fields": [
+      {
+        "fields": [
+          "REF_AREA",
+          "COUNTERPART_AREA",
+          "REPORTING_COUNTRY"
+        ],
+        "join_key": "ISO_3"
+      },
+      {
+        "fields": [
+          "REF_AREA"
+        ],
+        "join_key": "ISO_2"
+      },
+      {
+        "fields": [
+          "CURRENCY",
+          "UNIT_MEASURE"
+        ],
+        "join_key": "ISO_4217"
+      }
+    ],
+    "join_keys": [
+      "ISO_3",
+      "ISO_2",
+      "ISO_4217"
+    ],
+    "lag": "weeks-to-years depending on dataflow",
+    "last_verified": "2026-06-09",
+    "license": "OECD-Terms-and-Conditions",
+    "mcp_maturity": "community",
+    "mcp_notes": "Multiple community MCPs wrap the SDMX 2.1 REST surface at sdmx.oecd.org/public/rest. cyanheads/oecd-mcp-server exposes dataflow search, dimension resolution, and observation queries with a DuckDB spillover for large pulls. No official OECD-published MCP yet.\n",
+    "mcp_package": [
+      "github.com/cyanheads/oecd-mcp-server",
+      "github.com/isakskogstad/OECD-MCP",
+      "github.com/pipeworx-io/mcp-oecd"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "OECD Data Explorer",
+    "primary_keys": [
+      "OECD_DATAFLOW_ID",
+      "OECD_AGENCY_ID",
+      "OECD_DSD_ID"
+    ],
+    "rate_limit": "no published per-key limit; anonymous; subject to fair-use throttling",
+    "type": [
+      "rest-api",
+      "bulk-download",
+      "web-ui"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/smithsonian-open-access.md",
+    "access_test": {
+      "command": "curl -sf 'https://api.si.edu/openaccess/api/v1.0/search?q=*&api_key=${SI_OPENACCESS_KEY}'",
+      "expected_fields": [
+        "status",
+        "responseCode",
+        "response.rowCount",
+        "response.rows"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "cultural-object lookup",
+      "museum-collection enrichment",
+      "image and 3D-model retrieval (CC0)",
+      "taxonomy / specimen metadata pulls",
+      "public-domain media for downstream generative work"
+    ],
+    "auth_required": "api-key-free",
+    "build_priority": "low",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "Smithsonian Institution's open metadata and media for 14M+ collection records across 19 museums, 9 research centers, libraries, archives, and the National Zoo, all CC0.",
+    "docs_url": "https://edan.si.edu/openaccess/apidocs/",
+    "domain": "government-open-data",
+    "entry_kind": "corpus",
+    "frequency": "weekly",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://www.si.edu/openaccess",
+    "id": "smithsonian-open-access",
+    "join_key_fields": [
+      {
+        "fields": [
+          "content.indexedStructured.online_media.media.idsId",
+          "content.freetext.identifier"
+        ],
+        "join_key": "WIKIDATA_QID"
+      },
+      {
+        "fields": [
+          "url",
+          "content.descriptiveNonRepeating.guid",
+          "content.descriptiveNonRepeating.record_link"
+        ],
+        "join_key": "URL"
+      }
+    ],
+    "join_keys": [
+      "WIKIDATA_QID",
+      "URL"
+    ],
+    "lag": "weekly push of new/updated metadata and images to S3",
+    "last_verified": "2026-06-09",
+    "license": "CC0-1.0",
+    "mcp_maturity": "none",
+    "mcp_notes": "No MCP. Stable REST search over a single endpoint; bulk dump on S3. Suggested surface: search_objects(q, unit, type, on_view), get_object(id), list_units, get_image_url(id). Connector should hide the freetext vs indexedStructured vs descriptiveNonRepeating split.\n",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "Smithsonian Open Access",
+    "notes": "access_test executed successfully with DEMO_KEY (HTTP 200); production use needs an api.data.gov key in SI_OPENACCESS_KEY.",
+    "primary_keys": [
+      "SI_EDAN_ID",
+      "SI_UNIT_CODE",
+      "SI_RECORD_ID",
+      "SI_GUID"
+    ],
+    "rate_limit": "api.data.gov tier: 1,000 req/hour per key by default; DEMO_KEY is throttled",
+    "type": [
+      "rest-api",
+      "bulk-download",
+      "dataset-dump"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/united-nations-code-for-trade-and-transport.md",
+    "access_test": {
+      "command": "curl -sfL -o /tmp/unlocode.zip 'https://service.unece.org/trade/locode/loc242csv.zip' && unzip -l /tmp/unlocode.zip",
+      "expected_fields": [
+        "UNLOCODE CodeListPart1.csv",
+        "SubdivisionCodes.csv"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "resolve port and airport codes in shipping documents",
+      "normalise location names across trade and logistics datasets",
+      "join customs filings, AIS vessel data, and freight manifests on UNLOCODE",
+      "look up function flags (port, rail, airport, border crossing) for a location",
+      "map UNLOCODE to ISO 3166-2 subdivision for sub-national geography"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "UNECE-maintained five-character code list identifying ports, airports, rail terminals, inland depots, and border crossings worldwide, used in trade and transport documentation.",
+    "docs_url": "https://unece.org/trade/cefact/UNLOCODE-Download",
+    "domain": "government-open-data",
+    "entry_kind": "reference-table",
+    "frequency": "biannual (July and December releases)",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://unece.org/trade/cefact/unlocode-code-list-country-and-territory",
+    "id": "united-nations-code-for-trade-and-transport",
+    "join_key_fields": [
+      {
+        "fields": [
+          "Country",
+          "CountryCode"
+        ],
+        "join_key": "ISO_2"
+      },
+      {
+        "fields": [],
+        "join_key": "ISO_3"
+      }
+    ],
+    "join_keys": [
+      "ISO_2",
+      "ISO_3"
+    ],
+    "lag": "current edition is 2024-2 at last verification; new editions land 6-12 months after data submitted",
+    "last_verified": "2026-06-09",
+    "license": "ODC-PDDL-1.0",
+    "mcp_maturity": "none",
+    "mcp_notes": "Static reference table; agents can load the ~116k-row CSV once and treat it as an in-memory lookup. A connector would only be useful inside a broader trade or logistics MCP that resolves shipping documents, vessel reports, or customs filings to canonical locations.\n",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "UN/LOCODE (United Nations Code for Trade and Transport Locations)",
+    "notes": "Native UNECE downloads are zipped CSV/TXT/MDB; filename version (e.g. loc242csv.zip = 2024 release 2) changes each cycle. DataHub mirrors a cleaned CSV snapshot at datahub.io/core/un-locode under ODC-PDDL-1.0 and is the easier endpoint for programmatic access.",
+    "primary_keys": [
+      "UNLOCODE",
+      "ISO_3166_2_SUBDIVISION"
+    ],
+    "rate_limit": "none documented; static zipped CSV download",
+    "type": [
+      "bulk-download",
+      "web-ui"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/wiki-data-query-service.md",
+    "access_test": {
+      "command": "curl -sf -H 'Accept: application/sparql-results+json' -A 'datasources-directory (contact@example.org)' 'https://query.wikidata.org/sparql?query=SELECT%20%3Fitem%20WHERE%20%7B%20%3Fitem%20wdt%3AP31%20wd%3AQ146.%20%7D%20LIMIT%202'",
+      "expected_fields": [
+        "head.vars",
+        "results.bindings"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "cross-source identifier resolution",
+      "entity disambiguation by Wikidata Q-ID",
+      "structured fact lookup on people, places, works, drugs, genes",
+      "building seed lists for downstream domain-specific pulls",
+      "federated SPARQL across Wikidata, Commons, and external life-science endpoints"
+    ],
+    "auth_required": "none",
+    "build_priority": "high",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "Public SPARQL endpoint over Wikidata's CC0 knowledge graph of 120M+ items, hubbing identifiers from DOI and ORCID to ISBN, NCT_ID, CHEMBL_ID, OSM_ID and most other cross-domain keys.",
+    "docs_url": "https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service",
+    "domain": "government-open-data",
+    "entry_kind": "knowledge-graph",
+    "frequency": "live mirror of Wikidata edits; full RDF dumps weekly",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://query.wikidata.org/",
+    "id": "wiki-data-query-service",
+    "join_key_fields": [
+      {
+        "fields": [
+          "item",
+          "?item (entity URI under http://www.wikidata.org/entity/Q...)"
+        ],
+        "join_key": "WIKIDATA_QID"
+      },
+      {
+        "fields": [
+          "?sitelink (schema:about ?item; schema:isPartOf <https://en.wikipedia.org/>)"
+        ],
+        "join_key": "WIKIPEDIA_ARTICLE"
+      },
+      {
+        "fields": [
+          "wdt:P356"
+        ],
+        "join_key": "DOI"
+      },
+      {
+        "fields": [
+          "wdt:P698"
+        ],
+        "join_key": "PMID"
+      },
+      {
+        "fields": [
+          "wdt:P932"
+        ],
+        "join_key": "PMCID"
+      },
+      {
+        "fields": [
+          "wdt:P818"
+        ],
+        "join_key": "ARXIV_ID"
+      },
+      {
+        "fields": [
+          "wdt:P496"
+        ],
+        "join_key": "ORCID"
+      },
+      {
+        "fields": [
+          "wdt:P213"
+        ],
+        "join_key": "ISNI"
+      },
+      {
+        "fields": [
+          "wdt:P6782"
+        ],
+        "join_key": "ROR"
+      },
+      {
+        "fields": [
+          "wdt:P236"
+        ],
+        "join_key": "ISSN"
+      },
+      {
+        "fields": [
+          "wdt:P212",
+          "wdt:P957"
+        ],
+        "join_key": "ISBN"
+      },
+      {
+        "fields": [
+          "wdt:P3098"
+        ],
+        "join_key": "NCT_ID"
+      },
+      {
+        "fields": [
+          "wdt:P592"
+        ],
+        "join_key": "CHEMBL_ID"
+      },
+      {
+        "fields": [
+          "wdt:P715"
+        ],
+        "join_key": "DRUGBANK_ID"
+      },
+      {
+        "fields": [
+          "wdt:P652"
+        ],
+        "join_key": "UNII"
+      },
+      {
+        "fields": [
+          "wdt:P267"
+        ],
+        "join_key": "ATC_CODE"
+      },
+      {
+        "fields": [
+          "wdt:P352"
+        ],
+        "join_key": "UNIPROT_ACCESSION"
+      },
+      {
+        "fields": [
+          "wdt:P594",
+          "wdt:P704",
+          "wdt:P705"
+        ],
+        "join_key": "ENSEMBL_ID"
+      },
+      {
+        "fields": [
+          "wdt:P351"
+        ],
+        "join_key": "ENTREZ_GENE_ID"
+      },
+      {
+        "fields": [
+          "wdt:P685"
+        ],
+        "join_key": "NCBI_TAXON_ID"
+      },
+      {
+        "fields": [
+          "wdt:P5531"
+        ],
+        "join_key": "CIK"
+      },
+      {
+        "fields": [
+          "wdt:P1278"
+        ],
+        "join_key": "LEI"
+      },
+      {
+        "fields": [
+          "wdt:P298"
+        ],
+        "join_key": "ISO_3"
+      },
+      {
+        "fields": [
+          "wdt:P297"
+        ],
+        "join_key": "ISO_2"
+      },
+      {
+        "fields": [
+          "wdt:P11693",
+          "wdt:P10689",
+          "wdt:P402"
+        ],
+        "join_key": "OSM_ID"
+      },
+      {
+        "fields": [
+          "wdt:P486"
+        ],
+        "join_key": "MESH_TERM"
+      }
+    ],
+    "join_keys": [
+      "WIKIDATA_QID",
+      "WIKIPEDIA_ARTICLE",
+      "DOI",
+      "PMID",
+      "PMCID",
+      "ARXIV_ID",
+      "ORCID",
+      "ISNI",
+      "ROR",
+      "ISSN",
+      "ISBN",
+      "NCT_ID",
+      "CHEMBL_ID",
+      "DRUGBANK_ID",
+      "UNII",
+      "ATC_CODE",
+      "UNIPROT_ACCESSION",
+      "ENSEMBL_ID",
+      "ENTREZ_GENE_ID",
+      "NCBI_TAXON_ID",
+      "CIK",
+      "LEI",
+      "ISO_3",
+      "ISO_2",
+      "OSM_ID",
+      "MESH_TERM"
+    ],
+    "lag": "minutes for live SPARQL; up to a week for RDF dumps",
+    "last_verified": "2026-06-09",
+    "license": "CC0",
+    "mcp_maturity": "community",
+    "mcp_notes": "Wikimedia Deutschland (wmde) maintains a read-only Python MCP that wraps SPARQL, entity fetch, and external-identifier resolution. cyanheads/wikidata-mcp-server is a more feature-rich TypeScript alternative (STDIO and Streamable HTTP) covering search, entity fetch, SPARQL execution, and identifier mapping. Connector job is to package SPARQL prefixes, inject a contact User-Agent, chunk over the 60s timeout, and translate Q-IDs to labels in the requested language.\n",
+    "mcp_package": [
+      "github.com/wmde/WikidataMCP",
+      "github.com/cyanheads/wikidata-mcp-server",
+      "github.com/ebaenamar/wikidata-mcp"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "Wikidata Query Service",
+    "primary_keys": [
+      "WIKIDATA_QID",
+      "WIKIDATA_PROPERTY_ID",
+      "WIKIDATA_LEXEME_ID"
+    ],
+    "rate_limit": "60s hard query timeout; soft per-IP throttling; descriptive User-Agent with contact required",
+    "type": [
+      "rest-api",
+      "bulk-download",
+      "web-ui"
     ]
   },
   {
@@ -4180,6 +7183,87 @@
       "WB_REGION_CODE"
     ],
     "rate_limit": "no published per-key limit; anonymous; backs off on abusive volume",
+    "type": [
+      "rest-api",
+      "bulk-download",
+      "web-ui"
+    ]
+  },
+  {
+    "_path": "entries/healthcare-claims/nhs-prescription-cost-analysis.md",
+    "access_test": {
+      "command": "curl -sf 'https://opendata.nhsbsa.net/api/3/action/package_show?id=prescription-cost-analysis-pca-monthly-data'",
+      "expected_fields": [
+        "success",
+        "result",
+        "resources"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "England community-pharmacy spend tracking",
+      "generic-vs-branded dispensing share",
+      "regional and STP-level prescribing benchmarking",
+      "drug-class cost trends over time",
+      "shortages and price-spike monitoring"
+    ],
+    "auth_required": "none",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "NHSBSA monthly count of items dispensed and net ingredient cost for every drug, dressing, appliance, and medical device reimbursed by the NHS in community pharmacies in England, broken down by BNF code and NHS region.",
+    "docs_url": "https://opendata.nhsbsa.net/dataset/prescription-cost-analysis-pca-monthly-data",
+    "domain": "healthcare-claims",
+    "entry_kind": "time-series",
+    "frequency": "monthly",
+    "geography": [
+      "GBR"
+    ],
+    "homepage_url": "https://www.nhsbsa.nhs.uk/prescription-data/dispensing-data/prescription-cost-analysis-pca-data",
+    "id": "nhs-prescription-cost-analysis",
+    "join_key_fields": [
+      {
+        "fields": [
+          "BNF_PRESENTATION_CODE",
+          "GENERIC_BNF_EQUIVALENT_CODE",
+          "BNF_CHEMICAL_SUBSTANCE_CODE",
+          "BNF_PARAGRAPH_CODE",
+          "BNF_SECTION_CODE",
+          "BNF_CHAPTER_CODE"
+        ],
+        "join_key": "BNF_CODE"
+      },
+      {
+        "fields": [
+          "YEAR_MONTH"
+        ],
+        "join_key": "DATE"
+      }
+    ],
+    "join_keys": [
+      "BNF_CODE",
+      "DATE"
+    ],
+    "lag": "~2 months (e.g. January data published in March)",
+    "last_verified": "2026-06-09",
+    "license": "OGL-3.0",
+    "mcp_maturity": "none",
+    "mcp_notes": "No MCP. Audience is UK health-policy analysts, pharmacoeconomics researchers, and primary-care benchmarking. A connector would wrap the NHSBSA Open Data Portal CKAN API. Suggested surface: search_pca(bnf_code, year_month), get_monthly_spend(bnf_chapter, region), top_drugs(year_month, by=spend|items), list_months(). Must handle the resource-per-month layout (one CKAN resource per YYYYMM) and the 2008-2020 historical archive that lives on the legacy NHSBSA website rather than the portal.\n",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "NHS Prescription Cost Analysis (PCA)",
+    "notes": "CKAN datastore_search and datastore_search_sql endpoints returned HTTP 500 during verification on 2026-06-09; package_show is the reliable metadata path. Bulk CSV download per month is the dependable data path. The 2008-02 to 2020-12 historical archive lives on the legacy NHSBSA site, not the open data portal.",
+    "primary_keys": [
+      "BNF_PRESENTATION_CODE",
+      "BNF_CHEMICAL_SUBSTANCE_CODE",
+      "BNF_PARAGRAPH_CODE",
+      "BNF_SECTION_CODE",
+      "BNF_CHAPTER_CODE",
+      "SNOMED_CODE",
+      "REGION_CODE",
+      "STP_CODE",
+      "YEAR_MONTH"
+    ],
+    "rate_limit": "not published; CKAN API is anonymous, polite use expected",
     "type": [
       "rest-api",
       "bulk-download",
@@ -4499,6 +7583,101 @@
     "rate_limit": "100 req/day free dev tier; 250K/mo Business ($449); 2M/mo Advanced ($1,749); unlimited Enterprise",
     "type": [
       "rest-api"
+    ]
+  },
+  {
+    "_path": "entries/public-health/uk-biobank.md",
+    "agent_use_cases": [
+      "genotype-phenotype association lookup",
+      "cohort definition by ICD-10 / OPCS-4 / BNF code",
+      "field-metadata and coding lookup via Data Showcase",
+      "PheWAS and ExWAS variant-to-phenotype mapping",
+      "imaging-derived-phenotype context for a disease"
+    ],
+    "auth_required": "dars-or-equivalent",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "cost": "paid",
+    "description": "Deep-phenotyped longitudinal cohort of ~500,000 UK adults with whole-genome sequencing, imaging, biomarkers, lifestyle questionnaires, and linked NHS hospital, cancer, death, and primary-care records. Access is by approved application only.",
+    "docs_url": "https://biobank.ndph.ox.ac.uk/showcase/",
+    "domain": "public-health",
+    "entry_kind": "panel",
+    "frequency": "rolling additions; major data refreshes (imaging, sequencing, linked EHR) on a multi-month cycle",
+    "geography": [
+      "GBR"
+    ],
+    "homepage_url": "https://www.ukbiobank.ac.uk/",
+    "id": "uk-biobank",
+    "join_key_fields": [
+      {
+        "fields": [
+          "field-41270 (HES diagnoses, main + secondary)",
+          "field-40001 (primary cause of death)",
+          "field-40002 (contributory causes of death)",
+          "field-40006 (cancer-registry ICD-10)"
+        ],
+        "join_key": "ICD_10"
+      },
+      {
+        "fields": [
+          "field-41272 (HES operative procedures)"
+        ],
+        "join_key": "OPCS_4"
+      },
+      {
+        "fields": [
+          "primary-care prescription tables (GP prescriptions, dispensing-system-specific BNF / Read v2 / dm+d mappings)"
+        ],
+        "join_key": "BNF_CODE"
+      },
+      {
+        "fields": [
+          "WES/WGS pVCF annotations",
+          "exome and imputed-variant per-gene burden tables"
+        ],
+        "join_key": "GENE_SYMBOL"
+      },
+      {
+        "fields": [
+          "WES/WGS VEP annotations on the RAP"
+        ],
+        "join_key": "ENSEMBL_ID"
+      },
+      {
+        "fields": [
+          "imputed-genotype bim/pgen files (rsid column)",
+          "GWAS summary-stats releases"
+        ],
+        "join_key": "RSID"
+      }
+    ],
+    "join_keys": [
+      "ICD_10",
+      "OPCS_4",
+      "BNF_CODE",
+      "GENE_SYMBOL",
+      "ENSEMBL_ID",
+      "RSID"
+    ],
+    "lag": "EHR linkage typically several months behind event date; imaging and -omics releases lag enrolment by years",
+    "last_verified": "2026-06-09",
+    "license": "UKB-Material-Transfer-Agreement",
+    "mcp_maturity": "none",
+    "mcp_notes": "No MCP. The substantive data is controlled-access and sits behind an Access Application Management System approval plus a fee, so a connector cannot front the bulk records. Useful MCP surface would target the public Data Showcase: search_fields, get_field_metadata, get_coding, list_categories, get_data_dictionary. The Showcase itself returns HTML; an MCP would scrape or wrap the published TSV exports of the data dictionary and codings catalogues.\n",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "UK Biobank",
+    "notes": "Substantive data access requires an approved application via the Access Management System (AMS), an institutional Material Transfer Agreement, and an access fee. The public Data Showcase exposes field, category, and coding metadata without login; that surface is what an MCP would realistically wrap.",
+    "primary_keys": [
+      "UKB_PARTICIPANT_EID",
+      "UKB_FIELD_ID",
+      "UKB_INSTANCE",
+      "UKB_ARRAY_INDEX"
+    ],
+    "rate_limit": "not applicable; data is delivered as bulk dispatches or accessed inside the DNAnexus Research Analysis Platform after application approval",
+    "type": [
+      "bulk-download",
+      "database",
+      "web-ui"
     ]
   },
   {
