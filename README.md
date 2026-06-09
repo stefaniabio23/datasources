@@ -22,30 +22,18 @@ datasources/
   schema/
     entry.schema.yaml         # JSON Schema for entries/<domain>/<slug>.md
     join-keys.yaml            # canonical join-key registry
-    source.schema.yaml        # for catalog/<id>/source.yaml
-    dataset.schema.yaml       # for catalog/<id>/datasets/*.yaml
-    field-schema.schema.yaml  # for catalog/<id>/schemas/*.schema.yaml
   entries/
     <domain>/
       <slug>.md               # public source card
-  catalog/                    # layered machine metadata for multi-dataset sources
-    README.md
-    <source_id>/
-      source.yaml             # provider-level manifest
-      datasets/*.yaml         # one per dataset/route/table
-      schemas/*.schema.yaml   # field-level schema per dataset
   skills/
     add-dataset-entry/SKILL.md
   scripts/
-    validate_entries.py       # validate entries/ AND catalog/
+    validate_entries.py       # validate entries/
     generate.py               # rebuild generated/ outputs
-    publish_to_sheet.py       # multi-tab Google Sheet push
-    discover_eia.py           # walk EIA v2 metadata tree → catalog/eia-open-data/
+    publish_to_sheet.py       # Google Sheet push (Sources + JoinKeys tabs)
   generated/
     index.json                # all entries flattened, machine-readable
     sources.csv               # one row per source → Sources tab
-    datasets.csv              # one row per catalog dataset → Datasets tab
-    fields.csv                # one row per catalog field → Fields tab
     join-keys.csv             # canonical registry as flat table → JoinKeys tab
     join-key-index.md         # human-readable reverse index
   .github/workflows/
@@ -81,13 +69,11 @@ See `SCHEMA.md` for the full field spec.
 
 ## Publishing
 
-GitHub is canonical. The `generated/*.csv` files are also published to a multi-tab Google Sheet as a render target. Each publish run clears each target tab and overwrites it with the current CSV; the repo stays canonical, the Sheet is downstream. Tab mapping:
+GitHub is canonical. The `generated/*.csv` files are also published to a Google Sheet as a render target. Each publish run clears each target tab and overwrites it with the current CSV; the repo stays canonical, the Sheet is downstream. Tab mapping:
 
 | CSV | Sheet tab |
 |---|---|
 | `generated/sources.csv` | `Sources` |
-| `generated/datasets.csv` | `Datasets` |
-| `generated/fields.csv` | `Fields` |
 | `generated/join-keys.csv` | `JoinKeys` |
 
 Tabs are created if missing; existing formatting on each tab persists across runs (Sheets API `values.clear` + `values.update` preserve formatting).
@@ -109,29 +95,9 @@ python3 scripts/publish_to_sheet.py
 
 One-time service-account setup: Google Cloud Console → IAM & Admin → Service Accounts → create account → enable Sheets API on the project → generate JSON key → share the target Sheet with the service-account email as Editor.
 
-## Catalog auto-discovery
-
-For sources with self-describing metadata APIs (EIA, OECD SDMX, World Bank, FRED), a discovery script can walk the API tree and emit dataset + field-schema manifests automatically. The hand-curated files in `catalog/<source>/` are never overwritten; the script is additive.
-
-`scripts/discover_eia.py` (EIA v2):
-
-```
-pip install requests pyyaml
-export EIA_API_KEY=...  # free at https://www.eia.gov/opendata/register.php
-python3 scripts/discover_eia.py [--dry-run] [--limit N] [--root /electricity]
-python3 scripts/validate_entries.py
-python3 scripts/generate.py
-git add -A && git commit -m "EIA discovery"
-git push  # CI updates the Sheet
-```
-
-The script polls the API root, walks every child route, and for each leaf (route with both facets and data columns) writes a `dataset.yaml` + `schema.yaml`. Slug = route path with slashes replaced by hyphens.
-
-Reuse the pattern for OECD, World Bank, FRED in follow-on scripts.
-
 ## Status
 
-MVP. 51 entries, EIA catalog (5 hand-curated datasets), schema locked, validator green, publish step ready.
+MVP. 56 entries, schema locked, validator green, publish step ready.
 
 ## Future plans
 

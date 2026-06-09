@@ -1,11 +1,8 @@
 #!/usr/bin/env python3
 """
-Publish the generated CSVs to a multi-tab Google Sheet.
+Publish generated CSVs to a Google Sheet, one tab per CSV.
 
-Each generated CSV is written to its own named tab:
   generated/sources.csv     → tab "Sources"
-  generated/datasets.csv    → tab "Datasets"
-  generated/fields.csv      → tab "Fields"
   generated/join-keys.csv   → tab "JoinKeys"
 
 Tabs are created if missing. Each run clears the existing tab content and writes
@@ -46,8 +43,6 @@ SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 
 TABS = [
     ("Sources", "sources.csv"),
-    ("Datasets", "datasets.csv"),
-    ("Fields", "fields.csv"),
     ("JoinKeys", "join-keys.csv"),
 ]
 

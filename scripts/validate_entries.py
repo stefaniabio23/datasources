@@ -1,19 +1,14 @@
 #!/usr/bin/env python3
 """
-Validate every entries/**/*.md and catalog/**/*.yaml against the relevant schemas.
+Validate every entries/**/*.md against schema/entry.schema.yaml.
 
-Entry checks (hard errors):
+Hard errors:
 - JSON Schema conformance
 - id matches filename slug
 - domain matches parent folder
 - join_keys reference schema/join-keys.yaml
 - mcp-exists requires mcp_maturity and mcp_package
 - last_verified is a valid ISO date
-
-Catalog checks (hard errors):
-- catalog/<id>/source.yaml validates against schema/source.schema.yaml AND id matches dir name
-- catalog/<id>/datasets/*.yaml validates against schema/dataset.schema.yaml AND source_id matches an existing source
-- catalog/<id>/schemas/*.schema.yaml validates against schema/field-schema.schema.yaml AND source_id matches an existing source
 
 Soft checks (warnings):
 - Required body H2 headings (Why this source matters, Agent use cases, Join strategy,
@@ -137,41 +132,14 @@ def check_entry(path, schema, registry):
     return errors, warnings
 
 
-def check_catalog_yaml(path, schema, dir_name=None, source_ids=None):
-    errors = []
-    try:
-        data = yaml.safe_load(path.read_text())
-    except yaml.YAMLError as e:
-        return [f"YAML parse error: {e}"]
-    if not isinstance(data, dict):
-        return ["root must be a mapping"]
-
-    for err in sorted(jsonschema.Draft202012Validator(schema).iter_errors(normalize(data)), key=str):
-        loc = ".".join(str(p) for p in err.absolute_path) or "<root>"
-        errors.append(f"schema {loc}: {err.message}")
-
-    if dir_name is not None and data.get("id") != dir_name:
-        errors.append(f"id '{data.get('id')}' does not match directory name '{dir_name}'")
-
-    if source_ids is not None and data.get("source_id") not in source_ids:
-        errors.append(f"source_id '{data.get('source_id')}' not found in catalog/")
-
-    return errors
-
-
 def main():
     project_root = Path(__file__).resolve().parent.parent
     schema_dir = project_root / "schema"
     entries_root = project_root / "entries"
-    catalog_root = project_root / "catalog"
 
     entry_schema = yaml.safe_load((schema_dir / "entry.schema.yaml").read_text())
     registry = yaml.safe_load((schema_dir / "join-keys.yaml").read_text())
-    source_schema = yaml.safe_load((schema_dir / "source.schema.yaml").read_text())
-    dataset_schema = yaml.safe_load((schema_dir / "dataset.schema.yaml").read_text())
-    field_schema_schema = yaml.safe_load((schema_dir / "field-schema.schema.yaml").read_text())
 
-    # ---- entries -----------------------------------------------------------
     entry_files = sorted(entries_root.rglob("*.md"))
     total_errors = 0
     total_warnings = 0
@@ -196,67 +164,7 @@ def main():
         else:
             print(f"[OK]   {rel}")
 
-    # ---- catalog -----------------------------------------------------------
-    catalog_sources = {}
-    catalog_files_count = 0
-    if catalog_root.exists():
-        for src_dir in sorted(catalog_root.iterdir()):
-            if not src_dir.is_dir():
-                continue
-            source_yaml = src_dir / "source.yaml"
-            if not source_yaml.exists():
-                continue
-            catalog_files_count += 1
-            errs = check_catalog_yaml(source_yaml, source_schema, dir_name=src_dir.name)
-            rel = source_yaml.relative_to(project_root)
-            if errs:
-                failed_files += 1
-                total_errors += len(errs)
-                print(f"\n[FAIL] {rel}")
-                for e in errs:
-                    print(f"  ERROR: {e}")
-            else:
-                print(f"[OK]   {rel}")
-            try:
-                catalog_sources[src_dir.name] = yaml.safe_load(source_yaml.read_text())
-            except yaml.YAMLError:
-                pass
-
-        for src_dir in sorted(catalog_root.iterdir()):
-            if not src_dir.is_dir():
-                continue
-            datasets_dir = src_dir / "datasets"
-            if datasets_dir.exists():
-                for path in sorted(datasets_dir.glob("*.yaml")):
-                    catalog_files_count += 1
-                    rel = path.relative_to(project_root)
-                    errs = check_catalog_yaml(path, dataset_schema, source_ids=set(catalog_sources.keys()))
-                    if errs:
-                        failed_files += 1
-                        total_errors += len(errs)
-                        print(f"\n[FAIL] {rel}")
-                        for e in errs:
-                            print(f"  ERROR: {e}")
-                    else:
-                        print(f"[OK]   {rel}")
-
-            schemas_dir = src_dir / "schemas"
-            if schemas_dir.exists():
-                for path in sorted(schemas_dir.glob("*.schema.yaml")):
-                    catalog_files_count += 1
-                    rel = path.relative_to(project_root)
-                    errs = check_catalog_yaml(path, field_schema_schema, source_ids=set(catalog_sources.keys()))
-                    if errs:
-                        failed_files += 1
-                        total_errors += len(errs)
-                        print(f"\n[FAIL] {rel}")
-                        for e in errs:
-                            print(f"  ERROR: {e}")
-                    else:
-                        print(f"[OK]   {rel}")
-
-    total_files = len(entry_files) + catalog_files_count
-    print(f"\nChecked {total_files} files ({len(entry_files)} entries, {catalog_files_count} catalog): "
+    print(f"\nChecked {len(entry_files)} entries: "
           f"{failed_files} failed, {total_errors} errors, {total_warnings} warnings.")
     return 1 if total_errors > 0 else 0
 

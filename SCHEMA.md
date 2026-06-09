@@ -58,9 +58,6 @@ Every entry is one file at `entries/<domain>/<slug>.md` with two parts:
 - `notes` — free-text catch-all; prefer the markdown body when possible.
 - `primary_keys` — list of source-native identifiers the source mints (e.g. `[OPENALEX_WORK_ID, OPENALEX_AUTHOR_ID]`). Free-form; not required to be in `schema/join-keys.yaml`.
 - `join_key_fields` — list of `{join_key, fields[]}` objects mapping each canonical join_key to the source-side field paths that carry it (e.g. `{join_key: DOI, fields: [doi, ids.doi]}`).
-- `entry_level` — where in the layered graph this entry sits: `provider` | `dataset` | `dataset-family` | `endpoint` | `series` | `reference`. Optional in entries/; required in catalog/ files.
-- `parent_source` — id of the parent source when this entry rolls up to a provider-level catalog entry.
-- `catalog_path` — path to deeper machine-readable metadata at `catalog/<source_id>/source.yaml` when one exists.
 
 ## Entry kinds
 
@@ -75,54 +72,12 @@ Closed enum classifying what kind of source each entry is. Required field. Lets 
 | `knowledge-graph` | Linked entities with relationships (Wikidata, OpenAlex, OpenTargets, Ensembl). |
 | `corpus` | Bulk text / document collection (Common Crawl, arXiv, Europe PMC, Reddit). |
 | `reference-table` | Small lookup vocabulary (ISO codes, currency codes, language codes). |
-| `source-discovery` | Directory of other datasets (awesome-public-datasets, HuggingFace Datasets, data.gov catalog). |
 | `geospatial` | Geographic features / spatial data (OpenStreetMap, GBIF). |
-| `media-corpus` | Bulk audio/video/image collections. |
 | `mixed` | Multi-dataset source where sub-datasets span several kinds (EIA, OECD, World Bank, openFDA). |
-| `unknown` | Escape hatch when classification is genuinely unclear; should be rare. |
 
-## Layered metadata: entries vs catalog
+## One entry per source
 
-`entries/` holds public source cards. One file per provider; agent-readable; the basis of the Sheet's primary tab.
-
-`catalog/` holds machine-readable provider/dataset/field metadata for sources where individual datasets, routes, or series matter (EIA, OECD, World Bank, NCBI E-utils). Convention:
-
-```
-catalog/<source_id>/
-  source.yaml                            # provider-level manifest
-  datasets/<dataset_id>.yaml             # one per dataset/route/table
-  schemas/<dataset_id>.schema.yaml       # field-level schema per dataset
-  generated/series-index.csv             # optional series-level index
-```
-
-Each layer has its own validation schema:
-
-- `schema/source.schema.yaml` — for `catalog/<source>/source.yaml`
-- `schema/dataset.schema.yaml` — for `catalog/<source>/datasets/*.yaml`
-- `schema/field-schema.schema.yaml` — for `catalog/<source>/schemas/*.schema.yaml`
-
-The generator produces multiple Sheet tabs from these layers: Sources / Datasets / Fields / Series / Join Keys.
-
-For single-dataset providers (OpenAlex, Crossref, Companies House), no catalog/ directory is needed. The entries/ source card is the whole story.
-
-## Field roles
-
-When a catalog dataset has a field schema, each field carries a `role` from this closed enum:
-
-| Role | Meaning |
-|---|---|
-| `primary_key` | Uniquely identifies a row in this dataset. |
-| `join_key` | Canonical identifier from `schema/join-keys.yaml` exposed by this field. |
-| `time_index` | The time axis (`period`, `date`, `timestamp`). |
-| `dimension` | Categorical slice (state, sector, instrument). |
-| `measure` | Numeric quantity (price, count, revenue). Carries a `unit`. |
-| `label` | Human-readable alias for a dimension (e.g. `stateDescription` next to `stateid`). |
-| `metadata` | Provenance, source flags, version markers. |
-| `url` | A URL pointing somewhere (record URL, source URL, asset URL). |
-| `geometry` | Geographic shape (GeoJSON, WKT). |
-| `text` | Free-form prose (article body, description, abstract). |
-
-The `role` is what lets quant/backtest agents pick a `measure` to model, a `time_index` to align on, and `dimensions` to slice by.
+`entries/` holds public source cards, one file per provider. Multi-dataset providers (EIA, OECD, World Bank, openFDA) get one entry that points at the provider's own metadata endpoints; sub-datasets, routes, and series are not modeled in this registry. The Sheet's primary tab is one flat row per source.
 
 ## Primary keys vs join keys
 

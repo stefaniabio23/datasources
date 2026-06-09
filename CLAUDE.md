@@ -19,17 +19,11 @@ datasources/
 ├── entries/<domain>/<slug>.md      # one file per dataset, YAML + markdown body
 ├── skills/
 │   └── add-dataset-entry/SKILL.md  # project-local Skill: URL -> compliant entry
-├── catalog/                        # layered machine metadata for multi-dataset sources
-│   ├── README.md
-│   └── <source_id>/                # one folder per provider with catalog content
-│       ├── source.yaml
-│       ├── datasets/*.yaml
-│       └── schemas/*.schema.yaml
 ├── scripts/
-│   ├── validate_entries.py         # validates entries/ AND catalog/
-│   ├── generate.py                 # rebuild generated/ outputs from entries/ + catalog/
-│   └── publish_to_sheet.py         # multi-tab Google Sheet push (Sources/Datasets/Fields/JoinKeys)
-├── generated/                      # sources.csv, datasets.csv, fields.csv, join-keys.csv, index.json, join-key-index.md
+│   ├── validate_entries.py         # validates entries/
+│   ├── generate.py                 # rebuild generated/ outputs from entries/
+│   └── publish_to_sheet.py         # Google Sheet push (Sources + JoinKeys tabs)
+├── generated/                      # sources.csv, join-keys.csv, index.json, join-key-index.md
 └── .github/workflows/
     └── publish.yml                 # CI: validate, generate, publish to Sheet
 ```
@@ -65,5 +59,7 @@ Global skills referenced:
 ## Notes
 
 MVP target: 50 entries. Out-of-MVP items are listed in `README.md` § Future plans; do not expand schema, lifecycle, scoring, or generated outputs beyond MVP without explicit user confirmation.
+
+One entry per source. Multi-dataset providers (EIA, OECD, FRED-style) get a single registry entry; sub-datasets are not modeled here and agents discover them via the provider's own metadata endpoints. Sheet 1 stays one flat row-per-source view.
 
 For batch porting (50+ new entries at once), use a Workflow with parallel fan-out over the add-dataset-entry Skill. Concurrency cap is 16. Each agent reads the spec, researches its target, writes one entry. Validator runs separately after.

@@ -3333,13 +3333,11 @@
     "auth_required": "api-key-free",
     "build_priority": "medium",
     "bulk_available": true,
-    "catalog_path": "catalog/eia-open-data/source.yaml",
     "cost": "free",
     "description": "US Energy Information Administration's REST API and bulk files covering energy production, consumption, prices, and forecasts across electricity, petroleum, natural gas, coal, nuclear, and international markets.",
     "docs_url": "https://www.eia.gov/opendata/documentation.php",
     "domain": "finance-markets",
     "entry_kind": "mixed",
-    "entry_level": "provider",
     "frequency": "twice-daily for most series; weekly/monthly/annual underlying cadence varies by route",
     "geography": [
       "USA",
@@ -3359,7 +3357,7 @@
     "mcp_notes": "Self-describing metadata API + thousands of series. A Skill-based wrapper that walks the route tree, inspects facets, and pulls series by id is more useful than a hand-coded MCP per route. Suggested surface: walk_routes, inspect, query, bulk_fetch.\n",
     "mcp_status": "mcp-needed-low-value",
     "name": "EIA Open Data",
-    "notes": "Multi-dataset provider; sub-datasets live under catalog/eia-open-data/. The 11 top-level route trees are electricity, petroleum, natural-gas, coal, nuclear, total-energy, international, steo, aeo, seds, co2-emissions.",
+    "notes": "Multi-dataset provider. The 11 top-level route trees are electricity, petroleum, natural-gas, coal, nuclear, total-energy, international, steo, aeo, seds, co2-emissions; agents discover sub-datasets and field schemas via the v2 metadata endpoints.",
     "rate_limit": "no published hard cap; standard practice is to keep concurrent requests modest",
     "type": [
       "rest-api",
@@ -3519,6 +3517,75 @@
       "rest-api",
       "bulk-download",
       "dataset-dump"
+    ]
+  },
+  {
+    "_path": "entries/finance-markets/nasdaq-listings.md",
+    "access_test": {
+      "command": "curl -sf 'https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt' | head -1",
+      "expected_fields": [
+        "Symbol",
+        "Security Name",
+        "Market Category",
+        "Test Issue",
+        "Financial Status",
+        "Round Lot Size",
+        "ETF",
+        "NextShares"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "canonical ticker universe construction",
+      "exchange and security-type lookup",
+      "ETF flag and mutual-fund classification",
+      "delisting and add/delete tracking",
+      "financial-status flagging (deficient, delinquent, bankrupt)"
+    ],
+    "auth_required": "none",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "Authoritative directory of Nasdaq-listed and other US exchange-listed securities published daily as pipe-delimited files by Nasdaq Trader.",
+    "docs_url": "https://www.nasdaqtrader.com/trader.aspx?id=symboldirdefs",
+    "domain": "finance-markets",
+    "entry_kind": "registry",
+    "frequency": "multiple times per trading day",
+    "geography": [
+      "USA"
+    ],
+    "homepage_url": "https://www.nasdaqtrader.com/trader.aspx?id=symboldirdefs",
+    "id": "nasdaq-listings",
+    "join_key_fields": [
+      {
+        "fields": [
+          "Symbol",
+          "ACT Symbol",
+          "NASDAQ Symbol",
+          "CQS Symbol"
+        ],
+        "join_key": "TICKER"
+      }
+    ],
+    "join_keys": [
+      "TICKER"
+    ],
+    "lag": "intraday; each file embeds a File Creation Time line in mmddyyyyhhmm format",
+    "last_verified": "2026-06-09",
+    "license": "unknown",
+    "mcp_maturity": "none",
+    "mcp_notes": "Static daily files; a thin loader (download, parse pipe-delimited, drop the File Creation Time footer) is enough. Suggested surface: list_nasdaq_symbols, list_other_listed_symbols, lookup_symbol, get_financial_status, list_mutual_funds.\n",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "Nasdaq Trader Symbol Directory",
+    "primary_keys": [
+      "NASDAQ_SYMBOL",
+      "ACT_SYMBOL",
+      "CQS_SYMBOL",
+      "MPID"
+    ],
+    "rate_limit": "no published limit; small text files (<1MB each) refreshed periodically through the trading day",
+    "type": [
+      "bulk-download"
     ]
   },
   {
@@ -3694,6 +3761,67 @@
     ]
   },
   {
+    "_path": "entries/finance-markets/sp500-companies-financials.md",
+    "access_test": {
+      "command": "curl -sfI 'https://raw.githubusercontent.com/datasets/s-and-p-500-companies-financials/master/data/constituents-financials.csv'",
+      "expected_fields": [
+        "Symbol",
+        "Name",
+        "Sector",
+        "Price",
+        "Market Cap",
+        "SEC Filings"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "resolve S&P 500 ticker list for a backtest universe",
+      "join company ticker to GICS sector for sector-neutral analysis",
+      "look up SEC EDGAR filings URL by ticker",
+      "sanity-check ticker spelling against a curated list"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "Static CSV roster of the 500 S&P 500 constituents with sector, ticker, SEC filings link, and a snapshot of common per-share valuation metrics.",
+    "docs_url": "https://github.com/datasets/s-and-p-500-companies-financials",
+    "domain": "finance-markets",
+    "entry_kind": "reference-table",
+    "frequency": "ad-hoc (script-triggered; constituents refreshed Feb 2026, financials refreshed Jun 2026)",
+    "geography": [
+      "USA"
+    ],
+    "homepage_url": "https://datahub.io/core/s-and-p-500-companies-financials",
+    "id": "sp500-companies-financials",
+    "join_key_fields": [
+      {
+        "fields": [
+          "Symbol"
+        ],
+        "join_key": "TICKER"
+      }
+    ],
+    "join_keys": [
+      "TICKER"
+    ],
+    "lag": "unknown; refresh is run-on-demand against Wikipedia + Yahoo Finance",
+    "last_verified": "2026-06-09",
+    "license": "ODC-PDDL-1.0",
+    "mcp_notes": "Three CSVs at stable URLs, no auth, no rate limit. Curl + a CSV parser covers the whole surface; an MCP wrapper would add little. Pair with a live-pricing MCP (Alpha Vantage, Polygon, yfinance) for fresh quotes.\n",
+    "mcp_status": "api-direct-sufficient",
+    "name": "S&P 500 Companies Financials",
+    "notes": "Financial metrics columns (Price, P/E, Market Cap, EBITDA, etc.) are a snapshot taken at the last manual refresh, not a live feed. Treat the financials columns as illustrative; pull live quotes from a market-data API for anything decision-relevant.",
+    "primary_keys": [
+      "Symbol"
+    ],
+    "rate_limit": "none; static CSV download",
+    "type": [
+      "bulk-download",
+      "dataset-dump"
+    ]
+  },
+  {
     "_path": "entries/finance-markets/yfinance.md",
     "access_test": {
       "command": "curl -sf -A 'Mozilla/5.0' 'https://query1.finance.yahoo.com/v8/finance/chart/AAPL?interval=1d&range=5d'",
@@ -3863,6 +3991,118 @@
       "rest-api",
       "bulk-download",
       "dataset-dump"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/harmonized-system-codes.md",
+    "access_test": {
+      "command": "curl -sfL 'https://datahub.io/core/harmonized-system/r/harmonized-system.csv' | head -5",
+      "expected_fields": [
+        "section",
+        "hscode",
+        "description",
+        "parent",
+        "level"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "decode HS codes from customs filings",
+      "walk product taxonomy (section -> 2-digit -> 4-digit -> 6-digit)",
+      "join trade-volume datasets to human-readable product names",
+      "normalise commodity descriptions across trade sources"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "Hierarchical lookup of the World Customs Organization Harmonized System (HS) classification, mirrored as public-domain CSV on DataHub from the UN Comtrade nomenclature endpoint.",
+    "docs_url": "https://github.com/datasets/harmonized-system",
+    "domain": "government-open-data",
+    "entry_kind": "reference-table",
+    "frequency": "irregular",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://datahub.io/core/harmonized-system",
+    "id": "harmonized-system-codes",
+    "join_key_fields": [],
+    "join_keys": [],
+    "lag": "tracks WCO nomenclature revisions (every 5 years); DataHub snapshot is version 2022.0",
+    "last_verified": "2026-06-09",
+    "license": "ODC-PDDL-1.0",
+    "mcp_maturity": "none",
+    "mcp_notes": "Static reference table; no server needed. A connector would only be useful as part of a broader trade-data MCP (UN Comtrade, Census USA Trade) that maps HS codes to human descriptions and walks the parent/child hierarchy.\n",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "Harmonized System Codes",
+    "notes": "Two CSV resources: sections.csv (21 sections, top-level groupings) and harmonized-system.csv (~5k rows covering 2-, 4-, and 6-digit HS codes). Snapshot is HS-2022 nomenclature.",
+    "primary_keys": [
+      "HS_CODE",
+      "HS_SECTION"
+    ],
+    "rate_limit": "none documented; static CSV behind Cloudflare R2",
+    "type": [
+      "bulk-download"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/iban-currency-codes.md",
+    "access_test": {
+      "command": "curl -sf 'https://www.iban.com/currency-codes' | grep -c 'USD'",
+      "expected_fields": [
+        "country",
+        "currency",
+        "code",
+        "number"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "currency-code lookup",
+      "mapping country to local currency",
+      "numeric-to-alpha ISO 4217 translation",
+      "reference-table seeding for FX pipelines"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": false,
+    "cost": "free",
+    "description": "HTML lookup table of ISO 4217 currency codes (alphabetic and numeric) keyed by country/territory, republished by iban.com.",
+    "docs_url": "https://www.iban.com/currency-codes",
+    "domain": "government-open-data",
+    "entry_kind": "reference-table",
+    "frequency": "irregular",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://www.iban.com/currency-codes",
+    "id": "iban-currency-codes",
+    "join_key_fields": [
+      {
+        "fields": [
+          "code"
+        ],
+        "join_key": "ISO_4217"
+      }
+    ],
+    "join_keys": [
+      "ISO_4217"
+    ],
+    "lag": "table dated 2026-01-09 at last verification",
+    "last_verified": "2026-06-09",
+    "license": "iban-com-terms",
+    "mcp_maturity": "none",
+    "mcp_notes": "Narrow lookup-table use. A connector would scrape the single HTML table once and expose lookup_by_alpha, lookup_by_numeric, list_by_country. Most agents are better served by the ISO 4217 list from the SIX maintenance agency or a packaged ISO-codes library.\n",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "IBAN Currency Codes",
+    "notes": "Data is the ISO 4217 standard; iban.com republishes with database-rights claim. For redistribution, source from the SIX maintenance agency XML feed instead.",
+    "primary_keys": [
+      "ISO_4217_ALPHA",
+      "ISO_4217_NUMERIC"
+    ],
+    "type": [
+      "web-ui",
+      "scraper-required"
     ]
   },
   {

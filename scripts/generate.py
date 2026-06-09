@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
 """
-Generate shareable outputs from entries/**/*.md and catalog/**/*.yaml.
+Generate shareable outputs from entries/**/*.md.
 
 Outputs:
 - generated/index.json         — all entries flattened, machine-readable
-- generated/sources.csv        — one row per source (entry + catalog source.yaml)
-- generated/datasets.csv       — one row per catalog dataset
-- generated/fields.csv         — one row per field across catalog field schemas
+- generated/sources.csv        — one row per entry, single flat sheet
 - generated/join-keys.csv      — one row per canonical join key from schema/join-keys.yaml
 - generated/join-key-index.md  — reverse index: each join_key → datasets that expose it
 
@@ -36,7 +34,6 @@ SOURCES_COLUMNS = [
     "name",
     "domain",
     "entry_kind",
-    "entry_level",
     "description",
     "type",
     "auth_required",
@@ -57,37 +54,6 @@ SOURCES_COLUMNS = [
     "docs_url",
     "build_priority",
     "last_verified",
-    "catalog_path",
-    "parent_source",
-]
-
-DATASETS_COLUMNS = [
-    "id",
-    "source_id",
-    "name",
-    "entry_level",
-    "entry_kind",
-    "route",
-    "data_endpoint",
-    "metadata_endpoint",
-    "time_index",
-    "time_grain",
-    "primary_keys",
-    "join_keys",
-    "field_schema",
-    "agent_use_cases",
-]
-
-FIELDS_COLUMNS = [
-    "source_id",
-    "dataset_id",
-    "field_name",
-    "type",
-    "role",
-    "join_key",
-    "unit",
-    "required",
-    "description",
 ]
 
 JOIN_KEYS_COLUMNS = [
@@ -144,52 +110,6 @@ def write_csv(out_path, columns, rows_dict_iter):
         writer.writerow(columns)
         for row in rows_dict_iter:
             writer.writerow([render_cell(row.get(c)) for c in columns])
-
-
-def load_catalog(project_root):
-    catalog_root = project_root / "catalog"
-    sources, datasets, fields = [], [], []
-    if not catalog_root.exists():
-        return sources, datasets, fields
-
-    for source_dir in sorted(catalog_root.iterdir()):
-        if not source_dir.is_dir():
-            continue
-        source_yaml = source_dir / "source.yaml"
-        if source_yaml.exists():
-            sources.append(normalize(yaml.safe_load(source_yaml.read_text())))
-
-        datasets_dir = source_dir / "datasets"
-        if datasets_dir.exists():
-            for ds_path in sorted(datasets_dir.glob("*.yaml")):
-                ds = normalize(yaml.safe_load(ds_path.read_text()))
-                if isinstance(ds, dict):
-                    api = ds.get("api") or {}
-                    ds["route"] = api.get("route")
-                    ds["data_endpoint"] = api.get("data_endpoint")
-                    ds["metadata_endpoint"] = api.get("metadata_endpoint")
-                    datasets.append(ds)
-
-        schemas_dir = source_dir / "schemas"
-        if schemas_dir.exists():
-            for sc_path in sorted(schemas_dir.glob("*.schema.yaml")):
-                sc = normalize(yaml.safe_load(sc_path.read_text()))
-                if not isinstance(sc, dict):
-                    continue
-                for f in (sc.get("fields") or []):
-                    fields.append({
-                        "source_id": sc.get("source_id"),
-                        "dataset_id": sc.get("dataset_id"),
-                        "field_name": f.get("name"),
-                        "type": f.get("type"),
-                        "role": f.get("role"),
-                        "join_key": f.get("join_key"),
-                        "unit": f.get("unit"),
-                        "required": f.get("required"),
-                        "description": f.get("description"),
-                    })
-
-    return sources, datasets, fields
 
 
 def write_join_key_index(entries, out_path):
@@ -258,36 +178,13 @@ def main():
         print("No entries found.")
         return 0
 
-    catalog_sources, catalog_datasets, catalog_fields = load_catalog(project_root)
-
-    # Sources tab = entries/ rows + catalog/<src>/source.yaml rows.
-    # If an id appears in both, the catalog/source.yaml row takes precedence at
-    # the listed columns and the entry contributes anything the catalog source
-    # didn't specify.
-    by_id = {e["id"]: dict(e) for e in entries}
-    for src in catalog_sources:
-        sid = src.get("id")
-        if sid in by_id:
-            merged = {**by_id[sid], **{k: v for k, v in src.items() if v is not None}}
-            by_id[sid] = merged
-        else:
-            by_id[sid] = src
-    sources_rows = [by_id[k] for k in sorted(by_id.keys())]
-
-    print(f"Loaded {len(entries)} entries, {len(catalog_sources)} catalog sources, "
-          f"{len(catalog_datasets)} catalog datasets, {len(catalog_fields)} catalog fields.")
+    print(f"Loaded {len(entries)} entries.")
 
     write_index_json(entries, generated_root / "index.json")
     print("  wrote generated/index.json")
 
-    write_csv(generated_root / "sources.csv", SOURCES_COLUMNS, sources_rows)
-    print(f"  wrote generated/sources.csv ({len(sources_rows)} rows)")
-
-    write_csv(generated_root / "datasets.csv", DATASETS_COLUMNS, catalog_datasets)
-    print(f"  wrote generated/datasets.csv ({len(catalog_datasets)} rows)")
-
-    write_csv(generated_root / "fields.csv", FIELDS_COLUMNS, catalog_fields)
-    print(f"  wrote generated/fields.csv ({len(catalog_fields)} rows)")
+    write_csv(generated_root / "sources.csv", SOURCES_COLUMNS, entries)
+    print(f"  wrote generated/sources.csv ({len(entries)} rows)")
 
     registry_path = project_root / "schema" / "join-keys.yaml"
     registry = yaml.safe_load(registry_path.read_text()) if registry_path.exists() else {}

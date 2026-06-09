@@ -3,7 +3,6 @@ id: eia-open-data
 name: EIA Open Data
 domain: finance-markets
 entry_kind: mixed
-entry_level: provider
 description: US Energy Information Administration's REST API and bulk files covering energy production, consumption, prices, and forecasts across electricity, petroleum, natural gas, coal, nuclear, and international markets.
 homepage_url: https://www.eia.gov/opendata/
 docs_url: https://www.eia.gov/opendata/documentation.php
@@ -22,7 +21,6 @@ join_keys:
   - DATE
   - ISO_3
   - US_STATE_CODE
-catalog_path: catalog/eia-open-data/source.yaml
 mcp_status: mcp-needed-low-value
 mcp_maturity: none
 mcp_notes: >
@@ -37,7 +35,7 @@ agent_use_cases:
   - macro energy supply/demand signal construction
 last_verified: 2026-06-09
 build_priority: medium
-notes: Multi-dataset provider; sub-datasets live under catalog/eia-open-data/. The 11 top-level route trees are electricity, petroleum, natural-gas, coal, nuclear, total-energy, international, steo, aeo, seds, co2-emissions.
+notes: Multi-dataset provider. The 11 top-level route trees are electricity, petroleum, natural-gas, coal, nuclear, total-energy, international, steo, aeo, seds, co2-emissions; agents discover sub-datasets and field schemas via the v2 metadata endpoints.
 ---
 
 # EIA Open Data
@@ -46,7 +44,7 @@ notes: Multi-dataset provider; sub-datasets live under catalog/eia-open-data/. T
 
 EIA's open data API and bulk files cover energy production, consumption, prices, and forecasts across electricity, petroleum, natural gas, coal, nuclear, and international markets. The v2 API is hierarchical and self-describing: routes return their child routes, available facets, data columns, and frequencies, which lets the schema be discovered rather than hand-coded. For quant/backtest agents, petroleum prices, natural gas storage, electricity retail series, and STEO forecasts are workhorse signals.
 
-11 top-level route trees and thousands of underlying series. The sub-datasets that are high-value enough to model individually live in `catalog/eia-open-data/`, see the Datasets and Fields tabs in the live Sheet.
+11 top-level route trees and thousands of underlying series. Sub-datasets are not modeled individually in this registry; agents walk the v2 metadata endpoints to discover them.
 
 ## Agent use cases
 
@@ -60,7 +58,7 @@ EIA's open data API and bulk files cover energy production, consumption, prices,
 
 `DATE` (period) is universal across all sub-datasets. `ISO_3` is the country dimension on international routes. `US_STATE_CODE` (two-letter USPS code) is the state granularity on electricity/SEDS routes.
 
-EIA-internal codes for sectors (RES, COM, IND, TRA), products (CL, GA, HO), and series IDs (RWTC, WTIPUUS, COPRPUS) are not in the canonical registry; they're documented per dataset in `catalog/eia-open-data/schemas/*.schema.yaml`.
+EIA-internal codes for sectors (RES, COM, IND, TRA), products (CL, GA, HO), and series IDs (RWTC, WTIPUUS, COPRPUS) are not in the canonical registry; agents fetch their definitions per-route from the v2 metadata response.
 
 Common pairings: FRED (cross-validate WTI spot, retail electricity), World Bank Open Data (international cross-country at lower cadence), Alpha Vantage / Polygon (real-time prices against EIA spot benchmarks).
 

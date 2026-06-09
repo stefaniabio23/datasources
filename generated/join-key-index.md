@@ -3,7 +3,7 @@
 Reverse index of canonical join keys mapped to the datasets that expose them.
 Generated from `entries/**/*.md`. Do not hand-edit.
 
-**52 datasets, 38 distinct canonical keys, 205 key→source links.**
+**56 datasets, 39 distinct canonical keys, 208 key→source links.**
 
 ## ARXIV_ID
 
@@ -200,6 +200,12 @@ _12 dataset(s)._
 - [Wikipedia Pageviews API](../entries/consumer-signal/wikipedia-pageviews.md) — `consumer-signal`
 - [World Bank Open Data](../entries/government-open-data/world-bank-open-data.md) — `government-open-data`
 
+## ISO_4217
+
+_1 dataset(s)._
+
+- [IBAN Currency Codes](../entries/government-open-data/iban-currency-codes.md) — `government-open-data`
+
 ## ISSN
 
 _6 dataset(s)._
@@ -325,12 +331,14 @@ _1 dataset(s)._
 
 ## TICKER
 
-_6 dataset(s)._
+_8 dataset(s)._
 
 - [Alpha Vantage](../entries/finance-markets/alpha-vantage.md) — `finance-markets`
 - [Nasdaq Data Link](../entries/finance-markets/nasdaq-data-link.md) — `finance-markets`
+- [Nasdaq Trader Symbol Directory](../entries/finance-markets/nasdaq-listings.md) — `finance-markets`
 - [OpenFIGI](../entries/finance-markets/openfigi.md) — `finance-markets`
 - [Polygon.io](../entries/finance-markets/polygon-io.md) — `finance-markets`
+- [S&P 500 Companies Financials](../entries/finance-markets/sp500-companies-financials.md) — `finance-markets`
 - [SEC EDGAR](../entries/corporate-registry/sec-edgar.md) — `corporate-registry`
 - [yfinance](../entries/finance-markets/yfinance.md) — `finance-markets`
 
