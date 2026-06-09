@@ -40,6 +40,7 @@ datasources/
     validate_entries.py       # validate entries/ AND catalog/
     generate.py               # rebuild generated/ outputs
     publish_to_sheet.py       # multi-tab Google Sheet push
+    discover_eia.py           # walk EIA v2 metadata tree → catalog/eia-open-data/
   generated/
     index.json                # all entries flattened, machine-readable
     sources.csv               # one row per source → Sources tab
@@ -108,9 +109,29 @@ python3 scripts/publish_to_sheet.py
 
 One-time service-account setup: Google Cloud Console → IAM & Admin → Service Accounts → create account → enable Sheets API on the project → generate JSON key → share the target Sheet with the service-account email as Editor.
 
+## Catalog auto-discovery
+
+For sources with self-describing metadata APIs (EIA, OECD SDMX, World Bank, FRED), a discovery script can walk the API tree and emit dataset + field-schema manifests automatically. The hand-curated files in `catalog/<source>/` are never overwritten; the script is additive.
+
+`scripts/discover_eia.py` (EIA v2):
+
+```
+pip install requests pyyaml
+export EIA_API_KEY=...  # free at https://www.eia.gov/opendata/register.php
+python3 scripts/discover_eia.py [--dry-run] [--limit N] [--root /electricity]
+python3 scripts/validate_entries.py
+python3 scripts/generate.py
+git add -A && git commit -m "EIA discovery"
+git push  # CI updates the Sheet
+```
+
+The script polls the API root, walks every child route, and for each leaf (route with both facets and data columns) writes a `dataset.yaml` + `schema.yaml`. Slug = route path with slashes replaced by hyphens.
+
+Reuse the pattern for OECD, World Bank, FRED in follow-on scripts.
+
 ## Status
 
-MVP. 50 entries, schema locked, validator green, publish step ready.
+MVP. 51 entries, EIA catalog (5 hand-curated datasets), schema locked, validator green, publish step ready.
 
 ## Future plans
 
