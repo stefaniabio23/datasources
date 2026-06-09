@@ -1,0 +1,44 @@
+dataset_id: eia-natural-gas-storage
+source_id: eia-open-data
+
+fields:
+  - name: period
+    type: string
+    description: Observation period (YYYY-MM-DD for weekly, YYYY-MM for monthly, YYYY for annual).
+    role: time_index
+    join_key: DATE
+    required: true
+    examples: ["2024-01-05", "2024-01", "2024"]
+
+  - name: duoarea
+    type: string
+    description: Geographic region code.
+    role: dimension
+    required: true
+    examples: ["NUS", "R31", "R32", "R33", "R34"]
+
+  - name: areaName
+    type: string
+    description: Human-readable region name.
+    role: label
+    required: false
+
+  - name: process
+    type: string
+    description: Storage operation type code.
+    role: dimension
+    required: true
+    examples: ["SAW", "SAB", "STR"]
+
+  - name: processName
+    type: string
+    description: Human-readable process name (Working Gas, Base Gas, Total Storage).
+    role: label
+    required: false
+
+  - name: value
+    type: number
+    description: Natural gas in storage.
+    role: measure
+    unit: billion cubic feet
+    required: false

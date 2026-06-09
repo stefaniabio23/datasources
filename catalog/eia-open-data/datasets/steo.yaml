@@ -1,0 +1,39 @@
+id: eia-steo
+source_id: eia-open-data
+name: EIA Short-Term Energy Outlook (STEO)
+entry_level: dataset
+entry_kind: time-series
+
+api:
+  route: /steo
+  data_endpoint: /steo/data
+  metadata_endpoint: /steo
+  example_query: /steo/data?data[]=value&facets[seriesId][]=WTIPUUS&frequency=monthly
+
+time_index: period
+time_grain: [monthly, quarterly, annual]
+
+primary_keys:
+  - EIA_ROUTE_PERIOD_SERIES
+
+join_keys:
+  - DATE
+
+field_schema: catalog/eia-open-data/schemas/steo.schema.yaml
+
+facets:
+  - name: seriesId
+    description: STEO series identifier (WTIPUUS=WTI price, COPRPUS=US crude production, CIPRPUS=US oil consumption, etc.).
+
+measures:
+  - name: value
+    unit: varies by series (consult metadata endpoint)
+    description: Forecast or historical value depending on period.
+
+agent_use_cases:
+  - forward energy price expectations
+  - US oil/gas/coal production forecasts
+  - energy macro scenario construction
+  - benchmark for private forecasts
+
+notes: STEO mixes historical and forecast data on the same period axis. Use the metadata endpoint to find the forecast horizon per series before treating any value as observed.

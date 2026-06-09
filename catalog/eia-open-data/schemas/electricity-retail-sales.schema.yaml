@@ -1,0 +1,59 @@
+dataset_id: eia-electricity-retail-sales
+source_id: eia-open-data
+
+fields:
+  - name: period
+    type: string
+    description: Observation period (YYYY-MM for monthly, YYYY-Qn for quarterly, YYYY for annual).
+    role: time_index
+    join_key: DATE
+    required: true
+    examples: ["2024-01", "2024-Q1", "2024"]
+
+  - name: stateid
+    type: string
+    description: US state two-letter code or Census region.
+    role: dimension
+    join_key: US_STATE_CODE
+    required: true
+    examples: ["CA", "TX", "NY", "US"]
+
+  - name: stateDescription
+    type: string
+    description: Human-readable state or region name.
+    role: label
+    required: false
+
+  - name: sectorid
+    type: string
+    description: Electricity end-use sector code.
+    role: dimension
+    required: true
+    examples: ["RES", "COM", "IND", "TRA", "ALL"]
+
+  - name: sectorName
+    type: string
+    description: Human-readable sector name.
+    role: label
+    required: false
+
+  - name: price
+    type: number
+    description: Average retail price of electricity.
+    role: measure
+    unit: cents per kilowatthour
+    required: false
+
+  - name: revenue
+    type: number
+    description: Electricity retail revenue.
+    role: measure
+    unit: million dollars
+    required: false
+
+  - name: sales
+    type: number
+    description: Electricity retail sales volume.
+    role: measure
+    unit: million kilowatthours
+    required: false

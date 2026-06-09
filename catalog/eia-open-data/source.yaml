@@ -1,0 +1,28 @@
+id: eia-open-data
+name: EIA Open Data
+provider: U.S. Energy Information Administration
+domain: finance-markets
+entry_level: provider
+entry_kind: mixed
+
+access:
+  api_base_url: https://api.eia.gov/v2
+  auth_required: api-key-free
+  bulk_available: true
+  bulk_update_frequency: twice-daily
+
+dataset_discovery:
+  method: api-metadata
+  route_tree_available: true
+  facets_available: true
+  data_columns_discoverable: true
+
+datasets_path: catalog/eia-open-data/datasets/
+schemas_path: catalog/eia-open-data/schemas/
+
+notes: >
+  EIA API v2 is self-describing. Parent routes return child routes, facets, and
+  available data columns, which lets a discover_eia.py script generate the
+  remaining dataset and schema manifests from the metadata tree. The five
+  hand-curated sub-datasets here cover the highest-value sub-domains for
+  quant/backtest signal work.

@@ -1,1 +1,35 @@
 source_id,dataset_id,field_name,type,role,join_key,unit,required,description
+eia-open-data,eia-electricity-retail-sales,period,string,time_index,DATE,,yes,"Observation period (YYYY-MM for monthly, YYYY-Qn for quarterly, YYYY for annual)."
+eia-open-data,eia-electricity-retail-sales,stateid,string,dimension,US_STATE_CODE,,yes,US state two-letter code or Census region.
+eia-open-data,eia-electricity-retail-sales,stateDescription,string,label,,,no,Human-readable state or region name.
+eia-open-data,eia-electricity-retail-sales,sectorid,string,dimension,,,yes,Electricity end-use sector code.
+eia-open-data,eia-electricity-retail-sales,sectorName,string,label,,,no,Human-readable sector name.
+eia-open-data,eia-electricity-retail-sales,price,number,measure,,cents per kilowatthour,no,Average retail price of electricity.
+eia-open-data,eia-electricity-retail-sales,revenue,number,measure,,million dollars,no,Electricity retail revenue.
+eia-open-data,eia-electricity-retail-sales,sales,number,measure,,million kilowatthours,no,Electricity retail sales volume.
+eia-open-data,eia-international-energy,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-international-energy,countryRegionId,string,dimension,ISO_3,,yes,ISO-3 country code or EIA regional aggregate.
+eia-open-data,eia-international-energy,countryRegionName,string,label,,,no,Human-readable country or region name.
+eia-open-data,eia-international-energy,productId,string,dimension,,,yes,Product code (numeric; see metadata endpoint for mapping).
+eia-open-data,eia-international-energy,productName,string,label,,,no,Human-readable product name.
+eia-open-data,eia-international-energy,activityId,string,dimension,,,yes,"Activity type code (production, consumption, imports, exports, reserves)."
+eia-open-data,eia-international-energy,activityName,string,label,,,no,Human-readable activity name.
+eia-open-data,eia-international-energy,value,number,measure,,"varies (Mb/d for oil, Bcf for gas, Mt for coal, GWh for electricity)",no,Quantity per country-product-activity-period.
+eia-open-data,eia-natural-gas-storage,period,string,time_index,DATE,,yes,"Observation period (YYYY-MM-DD for weekly, YYYY-MM for monthly, YYYY for annual)."
+eia-open-data,eia-natural-gas-storage,duoarea,string,dimension,,,yes,Geographic region code.
+eia-open-data,eia-natural-gas-storage,areaName,string,label,,,no,Human-readable region name.
+eia-open-data,eia-natural-gas-storage,process,string,dimension,,,yes,Storage operation type code.
+eia-open-data,eia-natural-gas-storage,processName,string,label,,,no,"Human-readable process name (Working Gas, Base Gas, Total Storage)."
+eia-open-data,eia-natural-gas-storage,value,number,measure,,billion cubic feet,no,Natural gas in storage.
+eia-open-data,eia-petroleum-spot-prices,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-spot-prices,series,string,dimension,,,yes,EIA series code identifying the price series.
+eia-open-data,eia-petroleum-spot-prices,seriesDescription,string,label,,,no,Human-readable series name.
+eia-open-data,eia-petroleum-spot-prices,duoarea,string,dimension,,,no,Geographic area code.
+eia-open-data,eia-petroleum-spot-prices,product,string,dimension,,,no,"Product code (CL crude, GA gasoline, HO heating oil, etc.)."
+eia-open-data,eia-petroleum-spot-prices,value,number,measure,,dollars per barrel (crude); cents per gallon (refined products),no,Spot price (units depend on series).
+eia-open-data,eia-petroleum-spot-prices,units,string,metadata,,,no,Unit string as returned by the API for this series row.
+eia-open-data,eia-steo,period,string,time_index,DATE,,yes,Observation period (mixes historical and forecast months).
+eia-open-data,eia-steo,seriesId,string,dimension,,,yes,STEO series identifier.
+eia-open-data,eia-steo,seriesDescription,string,label,,,no,Human-readable series name.
+eia-open-data,eia-steo,value,number,measure,,varies by series (consult metadata endpoint),no,Forecast or historical value depending on period.
+eia-open-data,eia-steo,units,string,metadata,,,no,Unit string for this series.

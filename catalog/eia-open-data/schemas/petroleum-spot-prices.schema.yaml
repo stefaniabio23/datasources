@@ -1,0 +1,49 @@
+dataset_id: eia-petroleum-spot-prices
+source_id: eia-open-data
+
+fields:
+  - name: period
+    type: string
+    description: Observation period.
+    role: time_index
+    join_key: DATE
+    required: true
+    examples: ["2024-01-15", "2024-01", "2024"]
+
+  - name: series
+    type: string
+    description: EIA series code identifying the price series.
+    role: dimension
+    required: true
+    examples: ["RWTC", "RBRTE", "EER_EPMRU_PF4_Y35NY_DPG"]
+
+  - name: seriesDescription
+    type: string
+    description: Human-readable series name.
+    role: label
+    required: false
+
+  - name: duoarea
+    type: string
+    description: Geographic area code.
+    role: dimension
+    required: false
+
+  - name: product
+    type: string
+    description: Product code (CL crude, GA gasoline, HO heating oil, etc.).
+    role: dimension
+    required: false
+
+  - name: value
+    type: number
+    description: Spot price (units depend on series).
+    role: measure
+    unit: dollars per barrel (crude); cents per gallon (refined products)
+    required: false
+
+  - name: units
+    type: string
+    description: Unit string as returned by the API for this series row.
+    role: metadata
+    required: false

@@ -354,6 +354,12 @@ ZCTA:
   entity_type: us_geography
   pattern: "^[0-9]{5}$"
 
+US_STATE_CODE:
+  description: US state two-letter USPS abbreviation. Used by EIA, CMS, CDC state-level data, Census APIs (alongside FIPS).
+  entity_type: us_state
+  pattern: "^[A-Z]{2}$"
+  examples: ["CA", "TX", "NY"]
+
 NUTS:
   description: EU regional classification code.
   entity_type: eu_geography

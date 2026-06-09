@@ -3322,6 +3322,51 @@
     ]
   },
   {
+    "_path": "entries/finance-markets/eia-open-data.md",
+    "agent_use_cases": [
+      "electricity price time series",
+      "natural gas storage signal monitoring",
+      "petroleum spot price forecasting input",
+      "state-level energy demand panel",
+      "macro energy supply/demand signal construction"
+    ],
+    "auth_required": "api-key-free",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "catalog_path": "catalog/eia-open-data/source.yaml",
+    "cost": "free",
+    "description": "US Energy Information Administration's REST API and bulk files covering energy production, consumption, prices, and forecasts across electricity, petroleum, natural gas, coal, nuclear, and international markets.",
+    "docs_url": "https://www.eia.gov/opendata/documentation.php",
+    "domain": "finance-markets",
+    "entry_kind": "mixed",
+    "entry_level": "provider",
+    "frequency": "twice-daily for most series; weekly/monthly/annual underlying cadence varies by route",
+    "geography": [
+      "USA",
+      "global"
+    ],
+    "homepage_url": "https://www.eia.gov/opendata/",
+    "id": "eia-open-data",
+    "join_keys": [
+      "DATE",
+      "ISO_3",
+      "US_STATE_CODE"
+    ],
+    "lag": "minutes for real-time series; weeks to months for survey-driven series",
+    "last_verified": "2026-06-09",
+    "license": "US-Government-Public-Domain",
+    "mcp_maturity": "none",
+    "mcp_notes": "Self-describing metadata API + thousands of series. A Skill-based wrapper that walks the route tree, inspects facets, and pulls series by id is more useful than a hand-coded MCP per route. Suggested surface: walk_routes, inspect, query, bulk_fetch.\n",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "EIA Open Data",
+    "notes": "Multi-dataset provider; sub-datasets live under catalog/eia-open-data/. The 11 top-level route trees are electricity, petroleum, natural-gas, coal, nuclear, total-energy, international, steo, aeo, seds, co2-emissions.",
+    "rate_limit": "no published hard cap; standard practice is to keep concurrent requests modest",
+    "type": [
+      "rest-api",
+      "bulk-download"
+    ]
+  },
+  {
     "_path": "entries/finance-markets/fred.md",
     "access_test": {
       "command": "curl -sf 'https://api.stlouisfed.org/fred/series?series_id=GNPCA&api_key=${FRED_API_KEY}&file_type=json'",

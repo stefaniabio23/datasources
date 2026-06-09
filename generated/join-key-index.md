@@ -3,7 +3,7 @@
 Reverse index of canonical join keys mapped to the datasets that expose them.
 Generated from `entries/**/*.md`. Do not hand-edit.
 
-**51 datasets, 37 distinct canonical keys, 202 key→source links.**
+**52 datasets, 38 distinct canonical keys, 205 key→source links.**
 
 ## ARXIV_ID
 
@@ -56,11 +56,12 @@ _3 dataset(s)._
 
 ## DATE
 
-_16 dataset(s)._
+_17 dataset(s)._
 
 - [Alpha Vantage](../entries/finance-markets/alpha-vantage.md) — `finance-markets`
 - [Common Crawl](../entries/news-events/common-crawl.md) — `news-events`
 - [Companies House (UK)](../entries/corporate-registry/companies-house.md) — `corporate-registry`
+- [EIA Open Data](../entries/finance-markets/eia-open-data.md) — `finance-markets`
 - [Event Registry](../entries/news-events/event-registry.md) — `news-events`
 - [FRED (Federal Reserve Economic Data)](../entries/finance-markets/fred.md) — `finance-markets`
 - [GDELT (Global Database of Events, Language, and Tone)](../entries/news-events/gdelt.md) — `news-events`
@@ -184,10 +185,11 @@ _5 dataset(s)._
 
 ## ISO_3
 
-_11 dataset(s)._
+_12 dataset(s)._
 
 - [Alpha Vantage](../entries/finance-markets/alpha-vantage.md) — `finance-markets`
 - [Companies House (UK)](../entries/corporate-registry/companies-house.md) — `corporate-registry`
+- [EIA Open Data](../entries/finance-markets/eia-open-data.md) — `finance-markets`
 - [FRED (Federal Reserve Economic Data)](../entries/finance-markets/fred.md) — `finance-markets`
 - [GDELT (Global Database of Events, Language, and Tone)](../entries/news-events/gdelt.md) — `news-events`
 - [Google Trends](../entries/consumer-signal/google-trends.md) — `consumer-signal`
@@ -363,6 +365,12 @@ _13 dataset(s)._
 - [SEC EDGAR](../entries/corporate-registry/sec-edgar.md) — `corporate-registry`
 - [Stack Exchange Data Explorer](../entries/consumer-signal/stack-exchange-data-explorer.md) — `consumer-signal`
 - [Wikipedia Pageviews API](../entries/consumer-signal/wikipedia-pageviews.md) — `consumer-signal`
+
+## US_STATE_CODE
+
+_1 dataset(s)._
+
+- [EIA Open Data](../entries/finance-markets/eia-open-data.md) — `finance-markets`
 
 ## WHO_UTN
 

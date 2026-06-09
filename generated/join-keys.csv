@@ -67,6 +67,7 @@ UBERON_ID,anatomy_term,^UBERON:[0-9]{7}$,,Uber-anatomy ontology identifier (cros
 UNII,chemical_substance,^[A-Z0-9]{10}$,R16CO5Y76E,FDA Unique Ingredient Identifier (Substance Registration System).
 UNIPROT_ACCESSION,protein,^[A-NR-Z][0-9][A-Z0-9]{3}[0-9]$,,UniProt protein accession.
 URL,webpage_or_resource,,,Canonical web URL (last-resort join key).
+US_STATE_CODE,us_state,^[A-Z]{2}$,CA; TX; NY,"US state two-letter USPS abbreviation. Used by EIA, CMS, CDC state-level data, Census APIs (alongside FIPS)."
 WHO_UTN,clinical_trial,^U[0-9]{4}-[0-9]{4}-[0-9]{4}$,,WHO Universal Trial Number (ICMJE-recommended cross-registry identifier).
 WIKIDATA_QID,cross_domain_entity,^Q[0-9]+$,,Wikidata entity identifier.
 WIKIPEDIA_ARTICLE,wikipedia_article,,Climate_change; en:Albert_Einstein,"Wikipedia article title (URL-encoded; prefix with language code when not unambiguous, e.g. en:Climate_change)."

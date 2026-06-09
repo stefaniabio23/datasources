@@ -1,0 +1,57 @@
+dataset_id: eia-international-energy
+source_id: eia-open-data
+
+fields:
+  - name: period
+    type: string
+    description: Observation period.
+    role: time_index
+    join_key: DATE
+    required: true
+    examples: ["2023", "2023-12", "2023-Q4"]
+
+  - name: countryRegionId
+    type: string
+    description: ISO-3 country code or EIA regional aggregate.
+    role: dimension
+    join_key: ISO_3
+    required: true
+    examples: ["USA", "CHN", "SAU", "WORLD"]
+
+  - name: countryRegionName
+    type: string
+    description: Human-readable country or region name.
+    role: label
+    required: false
+
+  - name: productId
+    type: string
+    description: Product code (numeric; see metadata endpoint for mapping).
+    role: dimension
+    required: true
+    examples: ["53", "55", "58"]
+
+  - name: productName
+    type: string
+    description: Human-readable product name.
+    role: label
+    required: false
+
+  - name: activityId
+    type: string
+    description: Activity type code (production, consumption, imports, exports, reserves).
+    role: dimension
+    required: true
+
+  - name: activityName
+    type: string
+    description: Human-readable activity name.
+    role: label
+    required: false
+
+  - name: value
+    type: number
+    description: Quantity per country-product-activity-period.
+    role: measure
+    unit: varies (Mb/d for oil, Bcf for gas, Mt for coal, GWh for electricity)
+    required: false
