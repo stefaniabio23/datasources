@@ -20,21 +20,33 @@ datasources/
   SCHEMA.md
   CLAUDE.md
   schema/
-    entry.schema.yaml
-    join-keys.yaml
+    entry.schema.yaml         # JSON Schema for entries/<domain>/<slug>.md
+    join-keys.yaml            # canonical join-key registry
+    source.schema.yaml        # for catalog/<id>/source.yaml
+    dataset.schema.yaml       # for catalog/<id>/datasets/*.yaml
+    field-schema.schema.yaml  # for catalog/<id>/schemas/*.schema.yaml
   entries/
     <domain>/
-      <slug>.md
+      <slug>.md               # public source card
+  catalog/                    # layered machine metadata for multi-dataset sources
+    README.md
+    <source_id>/
+      source.yaml             # provider-level manifest
+      datasets/*.yaml         # one per dataset/route/table
+      schemas/*.schema.yaml   # field-level schema per dataset
   skills/
     add-dataset-entry/SKILL.md
   scripts/
-    validate_entries.py       # check entries against schema
+    validate_entries.py       # validate entries/ AND catalog/
     generate.py               # rebuild generated/ outputs
-    publish_to_sheet.py       # overwrite a Google Sheet from dataset-table.csv
+    publish_to_sheet.py       # multi-tab Google Sheet push
   generated/
     index.json                # all entries flattened, machine-readable
-    dataset-table.csv         # flat tabular view, source for the Google Sheet
-    join-key-index.md         # reverse index of canonical keys
+    sources.csv               # one row per source → Sources tab
+    datasets.csv              # one row per catalog dataset → Datasets tab
+    fields.csv                # one row per catalog field → Fields tab
+    join-keys.csv             # canonical registry as flat table → JoinKeys tab
+    join-key-index.md         # human-readable reverse index
   .github/workflows/
     publish.yml               # CI: validate, generate, publish to Sheet
 ```
@@ -68,7 +80,16 @@ See `SCHEMA.md` for the full field spec.
 
 ## Publishing
 
-GitHub is canonical. The `generated/dataset-table.csv` is also published to a live Google Sheet as a render target. Each publish run clears the target range and overwrites it with the current CSV; the repo stays canonical, the Sheet is downstream.
+GitHub is canonical. The `generated/*.csv` files are also published to a multi-tab Google Sheet as a render target. Each publish run clears each target tab and overwrites it with the current CSV; the repo stays canonical, the Sheet is downstream. Tab mapping:
+
+| CSV | Sheet tab |
+|---|---|
+| `generated/sources.csv` | `Sources` |
+| `generated/datasets.csv` | `Datasets` |
+| `generated/fields.csv` | `Fields` |
+| `generated/join-keys.csv` | `JoinKeys` |
+
+Tabs are created if missing; existing formatting on each tab persists across runs (Sheets API `values.clear` + `values.update` preserve formatting).
 
 **Local:**
 

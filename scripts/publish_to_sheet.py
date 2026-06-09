@@ -1,25 +1,25 @@
 #!/usr/bin/env python3
 """
-Publish generated/dataset-table.csv to a Google Sheet.
+Publish the generated CSVs to a multi-tab Google Sheet.
 
-The Sheet is a downstream render target, not a source of truth. Each run clears
-the configured range and overwrites it with the current CSV contents.
+Each generated CSV is written to its own named tab:
+  generated/sources.csv     → tab "Sources"
+  generated/datasets.csv    → tab "Datasets"
+  generated/fields.csv      → tab "Fields"
+  generated/join-keys.csv   → tab "JoinKeys"
+
+Tabs are created if missing. Each run clears the existing tab content and writes
+the current CSV. The repo stays canonical; the Sheet is downstream.
 
 Required env vars:
   GOOGLE_SERVICE_ACCOUNT_JSON  — full JSON of a service account with editor
                                  access to the target Sheet
-  GOOGLE_SHEET_ID              — the spreadsheet ID (the long token in the URL)
-Optional env vars:
-  GOOGLE_SHEET_RANGE           — A1 range to clear and write (default: "Sheet1")
+  GOOGLE_SHEET_ID              — the spreadsheet ID
 
 Run locally:
   export GOOGLE_SERVICE_ACCOUNT_JSON="$(cat ~/.config/datasources-sa.json)"
   export GOOGLE_SHEET_ID="..."
   python3 scripts/publish_to_sheet.py
-
-In GitHub Actions: store GOOGLE_SERVICE_ACCOUNT_JSON and GOOGLE_SHEET_ID as
-repo secrets (Settings → Secrets and variables → Actions) and reference via
-${{ secrets.NAME }} in the workflow.
 
 Dependencies:
   pip install google-api-python-client google-auth
@@ -44,21 +44,32 @@ except ImportError:
 
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 
+TABS = [
+    ("Sources", "sources.csv"),
+    ("Datasets", "datasets.csv"),
+    ("Fields", "fields.csv"),
+    ("JoinKeys", "join-keys.csv"),
+]
+
+
+def get_or_create_tab(service, sheet_id, title):
+    meta = service.spreadsheets().get(spreadsheetId=sheet_id).execute()
+    existing = {s["properties"]["title"] for s in meta["sheets"]}
+    if title in existing:
+        return
+    service.spreadsheets().batchUpdate(
+        spreadsheetId=sheet_id,
+        body={"requests": [{"addSheet": {"properties": {"title": title}}}]},
+    ).execute()
+    print(f"  created tab '{title}'")
+
 
 def main():
     project_root = Path(__file__).resolve().parent.parent
-    csv_path = project_root / "generated" / "dataset-table.csv"
-
-    if not csv_path.exists():
-        print(
-            f"Missing {csv_path.relative_to(project_root)}. Run scripts/generate.py first.",
-            file=sys.stderr,
-        )
-        return 2
+    generated_root = project_root / "generated"
 
     sa_json = os.environ.get("GOOGLE_SERVICE_ACCOUNT_JSON")
     sheet_id = os.environ.get("GOOGLE_SHEET_ID")
-    sheet_range = os.environ.get("GOOGLE_SHEET_RANGE", "Sheet1")
 
     missing = []
     if not sa_json:
@@ -69,29 +80,38 @@ def main():
         print(f"Required env vars not set: {', '.join(missing)}", file=sys.stderr)
         return 2
 
-    with csv_path.open() as f:
-        rows = list(csv.reader(f))
-    print(f"Loaded {len(rows)} rows from {csv_path.relative_to(project_root)}")
-
     credentials = service_account.Credentials.from_service_account_info(
         json.loads(sa_json), scopes=SCOPES
     )
     service = build("sheets", "v4", credentials=credentials, cache_discovery=False)
-    sheets = service.spreadsheets().values()
+    values = service.spreadsheets().values()
 
-    sheets.clear(spreadsheetId=sheet_id, range=sheet_range).execute()
-    print(f"Cleared range '{sheet_range}'")
+    for title, csv_name in TABS:
+        csv_path = generated_root / csv_name
+        if not csv_path.exists():
+            print(f"  skip {title}: {csv_path.relative_to(project_root)} not found")
+            continue
 
-    result = sheets.update(
-        spreadsheetId=sheet_id,
-        range=sheet_range,
-        valueInputOption="RAW",
-        body={"values": rows},
-    ).execute()
+        with csv_path.open() as f:
+            rows = list(csv.reader(f))
 
-    updated_rows = result.get("updatedRows", 0)
-    updated_cols = result.get("updatedColumns", 0)
-    print(f"Wrote {updated_rows} rows × {updated_cols} cols to '{sheet_range}'")
+        get_or_create_tab(service, sheet_id, title)
+
+        values.clear(spreadsheetId=sheet_id, range=title).execute()
+        if not rows:
+            print(f"  {title}: 0 rows (empty)")
+            continue
+
+        result = values.update(
+            spreadsheetId=sheet_id,
+            range=f"{title}!A1",
+            valueInputOption="RAW",
+            body={"values": rows},
+        ).execute()
+        print(
+            f"  {title}: wrote {result.get('updatedRows', 0)} rows × "
+            f"{result.get('updatedColumns', 0)} cols"
+        )
 
     return 0
 

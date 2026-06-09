@@ -19,11 +19,17 @@ datasources/
 ├── entries/<domain>/<slug>.md      # one file per dataset, YAML + markdown body
 ├── skills/
 │   └── add-dataset-entry/SKILL.md  # project-local Skill: URL -> compliant entry
+├── catalog/                        # layered machine metadata for multi-dataset sources
+│   ├── README.md
+│   └── <source_id>/                # one folder per provider with catalog content
+│       ├── source.yaml
+│       ├── datasets/*.yaml
+│       └── schemas/*.schema.yaml
 ├── scripts/
-│   ├── validate_entries.py         # JSON Schema + registry + body-heading checks
-│   ├── generate.py                 # rebuild generated/ outputs from entries/
-│   └── publish_to_sheet.py         # overwrite a Google Sheet from dataset-table.csv
-├── generated/                      # index.json, dataset-table.csv, join-key-index.md
+│   ├── validate_entries.py         # validates entries/ AND catalog/
+│   ├── generate.py                 # rebuild generated/ outputs from entries/ + catalog/
+│   └── publish_to_sheet.py         # multi-tab Google Sheet push (Sources/Datasets/Fields/JoinKeys)
+├── generated/                      # sources.csv, datasets.csv, fields.csv, join-keys.csv, index.json, join-key-index.md
 └── .github/workflows/
     └── publish.yml                 # CI: validate, generate, publish to Sheet
 ```

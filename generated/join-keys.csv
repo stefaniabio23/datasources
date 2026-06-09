@@ -1,0 +1,73 @@
+join_key,entity_type,pattern,examples,description
+ARXIV_ID,preprint,"^([0-9]{4}\.[0-9]{4,5}|[a-z][a-z\-]*[a-z]/[0-9]{7})(v[0-9]+)?$",2401.12345; hep-th/9901001; cs/0606001,arXiv preprint identifier. Covers both modern (YYMM.NNNNN) and pre-April-2007 (subj/YYMMNNN) forms.
+ATC_CODE,drug_class,^[A-Z][0-9]{2}[A-Z]{2}[0-9]{2}$,A10BA02,WHO Anatomical Therapeutic Chemical classification code.
+BNF_CODE,drug_product,,,UK British National Formulary drug code (chemical/product/presentation).
+CHEBI_ID,chemical_entity,^CHEBI:[0-9]+$,,Chemical Entities of Biological Interest identifier (EBI).
+CHEMBL_ID,chemical_or_target,^CHEMBL[0-9]+$,,"ChEMBL molecule, target, or assay identifier."
+CIK,us_company,^[0-9]+$,,SEC Central Index Key.
+COMPANIES_HOUSE_NUMBER,uk_company,^[A-Z0-9]{8}$,,UK Companies House company number.
+CPT,procedure_code,,,Current Procedural Terminology code.
+CUSIP,security,^[0-9A-Z]{9}$,,Committee on Uniform Securities Identification Procedures (US).
+DATE,time,^[0-9]{4}(-[0-9]{2}(-[0-9]{2})?)?$,,ISO 8601 date.
+DOI,scholarly_work,"^10\.\d{4,9}/.+$",10.1038/s41586-020-2649-2,Digital Object Identifier for scholarly works and datasets.
+DRUGBANK_ID,drug,^DB[0-9]{5}$,DB00945,DrugBank molecule identifier.
+EFO_ID,disease_or_phenotype,^EFO_[0-9]+$,,Experimental Factor Ontology identifier.
+ENSEMBL_ID,gene_transcript_or_protein,^ENS[A-Z]*[GTPR][0-9]+$,,"Ensembl gene, transcript, or protein identifier."
+ENTREZ_GENE_ID,gene,^[0-9]+$,7157,NCBI Entrez Gene identifier (integer).
+EUDRACT_NUMBER,clinical_trial,^[0-9]{4}-[0-9]{6}-[0-9]{2}$,,Legacy EudraCT clinical trial identifier.
+EU_CT_NUMBER,clinical_trial,^[0-9]{4}-[0-9]{6}-[0-9]{2}-[0-9]{2}$,,EU CTIS trial identifier (Regulation 536/2014).
+FDA_APPLICATION_NUMBER,drug_approval,^(NDA|ANDA|BLA)?[0-9]{6}$,NDA021440,US FDA application number (NDA/ANDA/BLA prefix optional; 6-digit body canonical).
+FIGI,security,^BBG[0-9A-Z]{9}$,,Financial Instrument Global Identifier (Bloomberg/OpenFIGI).
+FIPS,us_geography,,,US Federal Information Processing Standard code (state or county).
+FUNDER_DOI,funding_organisation,^10\.13039/[0-9]+$,10.13039/100000001,"Open Funder Registry DOI (Crossref's funder identifier scheme, a DOI subspace)."
+GENE_SYMBOL,gene,^[A-Z][A-Z0-9-]*$,,HGNC gene symbol (human).
+GO_ID,ontology_term,^GO:[0-9]{7}$,,"Gene Ontology term identifier (molecular function, biological process, or cellular component)."
+HCPCS,procedure_or_drug_code,,,Healthcare Common Procedure Coding System code.
+HCPCS_J_CODE,drug_product,,,HCPCS J-code (clinician-administered drug).
+ICB_CODE,uk_geography,,,UK Integrated Care Board code.
+ICD_10,condition_code,,,"International Classification of Diseases, 10th revision."
+INCHI_KEY,chemical_compound,^[A-Z]{14}-[A-Z]{10}-[A-Z]$,XEEYBQQBJWHFJM-UHFFFAOYSA-N,27-character hashed InChI identifier for a chemical structure.
+INTERPRO_ID,protein_family,^IPR[0-9]{6}$,,InterPro protein family or domain identifier.
+ISBN,scholarly_work,^(97[89])?[0-9]{9}[0-9X]$,,International Standard Book Number (ISBN-10 or ISBN-13).
+ISIN,security,^[A-Z]{2}[A-Z0-9]{9}[0-9]$,,International Securities Identification Number.
+ISNI,person_or_organisation,^[0-9]{4} ?[0-9]{4} ?[0-9]{4} ?[0-9]{3}[0-9X]$,0000 0001 2103 2683,International Standard Name Identifier (ISO 27729). Covers both persons and organisations; complement to ORCID for non-researchers and library metadata.
+ISO_2,country,^[A-Z]{2}$,,ISO 3166-1 alpha-2 country code. Many APIs return alpha-2; map to ISO_3 when joining across sources that use the alpha-3 form.
+ISO_3,country,^[A-Z]{3}$,,ISO 3166-1 alpha-3 country code.
+ISO_4217,currency,^[A-Z]{3}$,USD; EUR; GBP,"ISO 4217 three-letter currency code (USD, EUR, GBP). Exposed by FRED, Alpha Vantage, Polygon, World Bank, Nasdaq Data Link."
+ISO_639_1,language,^[a-z]{2}$,en; fr; ja; zh,"ISO 639-1 two-letter language code (en, fr, ja, zh). Useful for multilingual sources (OpenAlex, NewsAPI, Europe PMC, Common Crawl, Wikipedia)."
+ISSN,journal,^[0-9]{4}-[0-9]{3}[0-9X]$,,"International Standard Serial Number (journals, serials)."
+LAD_CODE,uk_geography,,,UK Local Authority District code.
+LEI,legal_entity,^[A-Z0-9]{18}[0-9]{2}$,529900T8BM49AURSDO55,Legal Entity Identifier (ISO 17442). Issued by GLEIF for financial counterparties.
+LSOA,uk_geography,,,UK Lower-layer Super Output Area.
+MAG_ID,scholarly_work,^[0-9]+$,,Microsoft Academic Graph identifier (legacy; still exposed by OpenAlex via ids.mag).
+MEDDRA_TERM,adverse_event_term,,,Medical Dictionary for Regulatory Activities term (adverse events).
+MESH_TERM,biomedical_concept,,,Medical Subject Headings term.
+MIRBASE_ID,microRNA,^MI(MAT)?[0-9]{7}$,,miRBase microRNA precursor or mature identifier.
+MMWR_WEEK,time_period,,,US CDC week-of-year numbering for surveillance.
+MSOA,uk_geography,,,UK Middle-layer Super Output Area.
+NCBI_TAXON_ID,organism,^[0-9]+$,9606,NCBI Taxonomy identifier.
+NCT_ID,clinical_trial,^NCT[0-9]{8}$,,ClinicalTrials.gov trial identifier.
+NDC,drug_product,"^[0-9]{4,5}-[0-9]{3,4}-[0-9]{1,2}$",,National Drug Code (US).
+NPI,healthcare_provider,^[0-9]{10}$,,US National Provider Identifier.
+NUTS,eu_geography,,,EU regional classification code.
+OPCS_4,procedure_code,,,UK procedure classification code.
+ORCID,person,^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]$,,Researcher identifier.
+OSM_ID,geographic_feature,,node/240109189; way/4267181; relation/146268,"OpenStreetMap object identifier. OSM IDs are namespaced by object type; store with the type prefix (e.g. ""node/240109189"") so the type is unambiguous. Bare numeric IDs are ambiguous between node, way, and relation."
+PDB_ID,macromolecular_structure,^[0-9][A-Z0-9]{3}$,1TUP,Protein Data Bank structure identifier.
+PMCID,open_access_biomedical_article,^PMC[0-9]+$,,PubMed Central identifier (open-access biomedical articles).
+PMID,biomedical_article,^[0-9]+$,,PubMed identifier.
+ROR,institution,^[a-z0-9]{9}$,,Research Organization Registry identifier (institutions).
+RSID,variant,^rs[0-9]+$,,dbSNP reference SNP identifier.
+RXNORM_CUI,drug_concept,,,RxNorm Concept Unique Identifier (US drug terminology).
+SEDOL,security,,,Stock Exchange Daily Official List code (UK).
+SETID,spl_document,^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$,,FDA Structured Product Labeling (SPL) document UUIDv4. Used in DailyMed.
+SIC_UK_2007,industry_classification,^[0-9]{5}$,62012; 70100,UK Standard Industrial Classification (2007 edition). Companies House records SIC codes per company; ONS economic statistics use the same classification.
+TICKER,public_company,,,Public equity ticker symbol.
+UBERON_ID,anatomy_term,^UBERON:[0-9]{7}$,,Uber-anatomy ontology identifier (cross-species anatomy).
+UNII,chemical_substance,^[A-Z0-9]{10}$,R16CO5Y76E,FDA Unique Ingredient Identifier (Substance Registration System).
+UNIPROT_ACCESSION,protein,^[A-NR-Z][0-9][A-Z0-9]{3}[0-9]$,,UniProt protein accession.
+URL,webpage_or_resource,,,Canonical web URL (last-resort join key).
+WHO_UTN,clinical_trial,^U[0-9]{4}-[0-9]{4}-[0-9]{4}$,,WHO Universal Trial Number (ICMJE-recommended cross-registry identifier).
+WIKIDATA_QID,cross_domain_entity,^Q[0-9]+$,,Wikidata entity identifier.
+WIKIPEDIA_ARTICLE,wikipedia_article,,Climate_change; en:Albert_Einstein,"Wikipedia article title (URL-encoded; prefix with language code when not unambiguous, e.g. en:Climate_change)."
+ZCTA,us_geography,^[0-9]{5}$,,US Census ZIP Code Tabulation Area.
