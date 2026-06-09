@@ -1,0 +1,35 @@
+id: eia-nuclear-outages-generator-nuclear-outages
+source_id: eia-open-data
+name: EIA Generator Level Nuclear Outages
+entry_level: dataset
+entry_kind: panel
+api:
+  route: /nuclear-outages/generator-nuclear-outages
+  data_endpoint: /nuclear-outages/generator-nuclear-outages/data
+  metadata_endpoint: /nuclear-outages/generator-nuclear-outages
+time_index: period
+time_grain:
+- daily
+primary_keys:
+- EIA_ROUTE_PERIOD_FACILITY_GENERATOR
+join_keys:
+- DATE
+field_schema: catalog/eia-open-data/schemas/nuclear-outages-generator-nuclear-outages.schema.yaml
+facets:
+- name: facility
+  description: Plant code
+- name: generator
+  description: Facility's generator ID number
+measures:
+- name: capacity
+  unit: megawatts
+  description: ''
+- name: outage
+  unit: megawatts
+  description: ''
+- name: percentOutage
+  unit: percent
+  description: ''
+notes: "Generator level nuclear outages with capacity, outages, and percent outage.\
+  \  \n        Source:   Nuclear Regulatory Commission's Power Reactor Status Report.\
+  \  \n        Interactive data report:  Daily Status of Nuclear Reactors."

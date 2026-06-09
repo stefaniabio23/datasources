@@ -1,0 +1,35 @@
+dataset_id: eia-co2-emissions-co2-emissions-aggregates
+source_id: eia-open-data
+fields:
+- name: period
+  type: string
+  description: Observation period.
+  role: time_index
+  join_key: DATE
+  required: true
+- name: sectorId
+  type: string
+  description: Sector
+  role: dimension
+  required: true
+- name: fuelId
+  type: string
+  description: Fuel Type
+  role: dimension
+  required: true
+- name: stateId
+  type: string
+  description: State
+  role: dimension
+  required: true
+- name: value
+  type: number
+  description: ''
+  role: measure
+  unit: million metric tons of CO2
+  required: false
+- name: units
+  type: string
+  description: Unit string returned by the API for this row.
+  role: metadata
+  required: false

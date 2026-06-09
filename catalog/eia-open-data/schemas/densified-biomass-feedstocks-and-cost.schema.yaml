@@ -1,0 +1,31 @@
+dataset_id: eia-densified-biomass-feedstocks-and-cost
+source_id: eia-open-data
+fields:
+- name: period
+  type: string
+  description: Observation period.
+  role: time_index
+  join_key: DATE
+  required: true
+- name: fuelTypeId
+  type: string
+  description: Fuel Type
+  role: dimension
+  required: true
+- name: quantity
+  type: number
+  description: ''
+  role: measure
+  unit: tons
+  required: false
+- name: cost
+  type: number
+  description: ''
+  role: measure
+  unit: USD per ton
+  required: false
+- name: units
+  type: string
+  description: Unit string returned by the API for this row.
+  role: metadata
+  required: false

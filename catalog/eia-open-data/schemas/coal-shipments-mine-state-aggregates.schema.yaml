@@ -1,0 +1,54 @@
+dataset_id: eia-coal-shipments-mine-state-aggregates
+source_id: eia-open-data
+fields:
+- name: period
+  type: string
+  description: Observation period.
+  role: time_index
+  join_key: DATE
+  required: true
+- name: mineStateId
+  type: string
+  description: Mine State\Region
+  role: dimension
+  required: true
+- name: coalRankId
+  type: string
+  description: Coal Rank
+  role: dimension
+  required: true
+- name: quantity
+  type: number
+  description: ''
+  role: measure
+  unit: tons
+  required: false
+- name: price
+  type: number
+  description: ''
+  role: measure
+  unit: average dollars per ton
+  required: false
+- name: heat-content
+  type: number
+  description: ''
+  role: measure
+  unit: Btu per pound
+  required: false
+- name: sulfur-content
+  type: number
+  description: ''
+  role: measure
+  unit: percent by weight
+  required: false
+- name: ash-content
+  type: number
+  description: ''
+  role: measure
+  unit: percent by weight
+  required: false
+- name: units
+  type: string
+  description: Unit string returned by the API for this row.
+  role: metadata
+  required: false

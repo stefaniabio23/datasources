@@ -1,0 +1,40 @@
+dataset_id: eia-natural-gas-prod-deep
+source_id: eia-open-data
+fields:
+- name: period
+  type: string
+  description: Observation period.
+  role: time_index
+  join_key: DATE
+  required: true
+- name: duoarea
+  type: string
+  description: DuoArea
+  role: dimension
+  required: true
+- name: product
+  type: string
+  description: Product
+  role: dimension
+  required: true
+- name: process
+  type: string
+  description: Process
+  role: dimension
+  required: true
+- name: series
+  type: string
+  description: Series
+  role: dimension
+  required: true
+- name: value
+  type: number
+  description: ''
+  role: measure
+  unit: ''
+  required: false
+- name: units
+  type: string
+  description: Unit string returned by the API for this row.
+  role: metadata
+  required: false

@@ -1,4 +1,364 @@
 source_id,dataset_id,field_name,type,role,join_key,unit,required,description
+eia-open-data,eia-aeo-2014-er,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-aeo-2014-er,history,string,dimension,,,yes,History
+eia-open-data,eia-aeo-2014-er,scenario,string,dimension,,,yes,Scenario
+eia-open-data,eia-aeo-2014-er,tableId,string,dimension,,,yes,Table
+eia-open-data,eia-aeo-2014-er,seriesId,string,dimension,,,yes,Series
+eia-open-data,eia-aeo-2014-er,regionId,string,dimension,,,yes,Region
+eia-open-data,eia-aeo-2014-er,value,number,measure,,,no,
+eia-open-data,eia-aeo-2014-er,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-aeo-2014,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-aeo-2014,history,string,dimension,,,yes,History
+eia-open-data,eia-aeo-2014,scenario,string,dimension,,,yes,Scenario
+eia-open-data,eia-aeo-2014,tableId,string,dimension,,,yes,Table
+eia-open-data,eia-aeo-2014,seriesId,string,dimension,,,yes,Series
+eia-open-data,eia-aeo-2014,regionId,string,dimension,,,yes,Region
+eia-open-data,eia-aeo-2014,value,number,measure,,,no,
+eia-open-data,eia-aeo-2014,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-aeo-2015,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-aeo-2015,history,string,dimension,,,yes,History
+eia-open-data,eia-aeo-2015,scenario,string,dimension,,,yes,Scenario
+eia-open-data,eia-aeo-2015,tableId,string,dimension,,,yes,Table
+eia-open-data,eia-aeo-2015,seriesId,string,dimension,,,yes,Series
+eia-open-data,eia-aeo-2015,regionId,string,dimension,,,yes,Region
+eia-open-data,eia-aeo-2015,value,number,measure,,,no,
+eia-open-data,eia-aeo-2015,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-aeo-2016,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-aeo-2016,history,string,dimension,,,yes,History
+eia-open-data,eia-aeo-2016,scenario,string,dimension,,,yes,Scenario
+eia-open-data,eia-aeo-2016,tableId,string,dimension,,,yes,Table
+eia-open-data,eia-aeo-2016,seriesId,string,dimension,,,yes,Series
+eia-open-data,eia-aeo-2016,regionId,string,dimension,,,yes,Region
+eia-open-data,eia-aeo-2016,value,number,measure,,,no,
+eia-open-data,eia-aeo-2016,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-aeo-2017,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-aeo-2017,history,string,dimension,,,yes,History
+eia-open-data,eia-aeo-2017,scenario,string,dimension,,,yes,Scenario
+eia-open-data,eia-aeo-2017,tableId,string,dimension,,,yes,Table
+eia-open-data,eia-aeo-2017,seriesId,string,dimension,,,yes,Series
+eia-open-data,eia-aeo-2017,regionId,string,dimension,,,yes,Region
+eia-open-data,eia-aeo-2017,value,number,measure,,,no,
+eia-open-data,eia-aeo-2017,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-aeo-2018,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-aeo-2018,history,string,dimension,,,yes,History
+eia-open-data,eia-aeo-2018,scenario,string,dimension,,,yes,Scenario
+eia-open-data,eia-aeo-2018,tableId,string,dimension,,,yes,Table
+eia-open-data,eia-aeo-2018,seriesId,string,dimension,,,yes,Series
+eia-open-data,eia-aeo-2018,regionId,string,dimension,,,yes,Region
+eia-open-data,eia-aeo-2018,value,number,measure,,,no,
+eia-open-data,eia-aeo-2018,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-aeo-2019,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-aeo-2019,history,string,dimension,,,yes,History
+eia-open-data,eia-aeo-2019,scenario,string,dimension,,,yes,Scenario
+eia-open-data,eia-aeo-2019,tableId,string,dimension,,,yes,Table
+eia-open-data,eia-aeo-2019,seriesId,string,dimension,,,yes,Series
+eia-open-data,eia-aeo-2019,regionId,string,dimension,,,yes,Region
+eia-open-data,eia-aeo-2019,value,number,measure,,,no,
+eia-open-data,eia-aeo-2019,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-aeo-2020,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-aeo-2020,history,string,dimension,,,yes,History
+eia-open-data,eia-aeo-2020,scenario,string,dimension,,,yes,Scenario
+eia-open-data,eia-aeo-2020,tableId,string,dimension,,,yes,Table
+eia-open-data,eia-aeo-2020,seriesId,string,dimension,,,yes,Series
+eia-open-data,eia-aeo-2020,regionId,string,dimension,,,yes,Region
+eia-open-data,eia-aeo-2020,value,number,measure,,,no,
+eia-open-data,eia-aeo-2020,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-aeo-2021,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-aeo-2021,history,string,dimension,,,yes,History
+eia-open-data,eia-aeo-2021,scenario,string,dimension,,,yes,Scenario
+eia-open-data,eia-aeo-2021,tableId,string,dimension,,,yes,Table
+eia-open-data,eia-aeo-2021,seriesId,string,dimension,,,yes,Series
+eia-open-data,eia-aeo-2021,regionId,string,dimension,,,yes,Region
+eia-open-data,eia-aeo-2021,value,number,measure,,,no,
+eia-open-data,eia-aeo-2021,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-aeo-2022,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-aeo-2022,history,string,dimension,,,yes,History
+eia-open-data,eia-aeo-2022,scenario,string,dimension,,,yes,Scenario
+eia-open-data,eia-aeo-2022,tableId,string,dimension,,,yes,Table
+eia-open-data,eia-aeo-2022,seriesId,string,dimension,,,yes,Series
+eia-open-data,eia-aeo-2022,regionId,string,dimension,,,yes,Region
+eia-open-data,eia-aeo-2022,value,number,measure,,,no,
+eia-open-data,eia-aeo-2022,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-aeo-2023,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-aeo-2023,history,string,dimension,,,yes,History
+eia-open-data,eia-aeo-2023,scenario,string,dimension,,,yes,Scenario
+eia-open-data,eia-aeo-2023,tableId,string,dimension,,,yes,Table
+eia-open-data,eia-aeo-2023,seriesId,string,dimension,,,yes,Series
+eia-open-data,eia-aeo-2023,regionId,string,dimension,,,yes,Region
+eia-open-data,eia-aeo-2023,value,number,measure,,,no,
+eia-open-data,eia-aeo-2023,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-aeo-2025,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-aeo-2025,history,string,dimension,,,yes,History
+eia-open-data,eia-aeo-2025,scenario,string,dimension,,,yes,Scenario
+eia-open-data,eia-aeo-2025,tableId,string,dimension,,,yes,Table
+eia-open-data,eia-aeo-2025,seriesId,string,dimension,,,yes,Series
+eia-open-data,eia-aeo-2025,regionId,string,dimension,,,yes,Region
+eia-open-data,eia-aeo-2025,value,number,measure,,,no,
+eia-open-data,eia-aeo-2025,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-aeo-2026,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-aeo-2026,history,string,dimension,,,yes,History
+eia-open-data,eia-aeo-2026,scenario,string,dimension,,,yes,Scenario
+eia-open-data,eia-aeo-2026,tableId,string,dimension,,,yes,Table
+eia-open-data,eia-aeo-2026,seriesId,string,dimension,,,yes,Series
+eia-open-data,eia-aeo-2026,regionId,string,dimension,,,yes,Region
+eia-open-data,eia-aeo-2026,value,number,measure,,,no,
+eia-open-data,eia-aeo-2026,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-co2-emissions-co2-emissions-aggregates,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-co2-emissions-co2-emissions-aggregates,sectorId,string,dimension,,,yes,Sector
+eia-open-data,eia-co2-emissions-co2-emissions-aggregates,fuelId,string,dimension,,,yes,Fuel Type
+eia-open-data,eia-co2-emissions-co2-emissions-aggregates,stateId,string,dimension,,,yes,State
+eia-open-data,eia-co2-emissions-co2-emissions-aggregates,value,number,measure,,million metric tons of CO2,no,
+eia-open-data,eia-co2-emissions-co2-emissions-aggregates,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-co2-emissions-co2-emissions-and-carbon-coefficients,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-co2-emissions-co2-emissions-and-carbon-coefficients,seriesId,string,dimension,,,yes,Series
+eia-open-data,eia-co2-emissions-co2-emissions-and-carbon-coefficients,sectorId,string,dimension,,,yes,Sector
+eia-open-data,eia-co2-emissions-co2-emissions-and-carbon-coefficients,fuelId,string,dimension,,,yes,Fuel Type
+eia-open-data,eia-co2-emissions-co2-emissions-and-carbon-coefficients,stateId,string,dimension,,,yes,State
+eia-open-data,eia-co2-emissions-co2-emissions-and-carbon-coefficients,emissions,number,measure,,CO2 metric tons,no,
+eia-open-data,eia-co2-emissions-co2-emissions-and-carbon-coefficients,carbon-coefficient,number,measure,,Kilograms of CO2 per million Btu,no,
+eia-open-data,eia-co2-emissions-co2-emissions-and-carbon-coefficients,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-coal-aggregate-production,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-coal-aggregate-production,stateRegionId,string,dimension,,,yes,State\Region
+eia-open-data,eia-coal-aggregate-production,coalRankId,string,dimension,,,yes,Coal Rank
+eia-open-data,eia-coal-aggregate-production,mineTypeId,string,dimension,,,yes,Mine Type
+eia-open-data,eia-coal-aggregate-production,production,number,measure,,short tons,no,
+eia-open-data,eia-coal-aggregate-production,number-of-mines,number,measure,,number of mines,no,
+eia-open-data,eia-coal-aggregate-production,labor-hours,number,measure,,hours,no,
+eia-open-data,eia-coal-aggregate-production,average-employees,number,measure,,number of employees,no,
+eia-open-data,eia-coal-aggregate-production,productivity,number,measure,,short tons per labor hour,no,
+eia-open-data,eia-coal-aggregate-production,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-coal-consumption-and-quality,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-coal-consumption-and-quality,location,string,dimension,,,yes,"U.S. Total, States, and Census Regions."
+eia-open-data,eia-coal-consumption-and-quality,sector,string,dimension,,,yes,Sector
+eia-open-data,eia-coal-consumption-and-quality,receipts,number,measure,,short tons,no,
+eia-open-data,eia-coal-consumption-and-quality,consumption,number,measure,,short tons,no,
+eia-open-data,eia-coal-consumption-and-quality,stocks,number,measure,,short tons,no,
+eia-open-data,eia-coal-consumption-and-quality,price,number,measure,,dollars per short ton,no,
+eia-open-data,eia-coal-consumption-and-quality,heat-content,number,measure,,average sulfur percent by weight,no,
+eia-open-data,eia-coal-consumption-and-quality,sulfur-content,number,measure,,average sulfur percent by weight,no,
+eia-open-data,eia-coal-consumption-and-quality,ash-content,number,measure,,average ash percent by weight,no,
+eia-open-data,eia-coal-consumption-and-quality,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-coal-exports-imports-quantity-price,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-coal-exports-imports-quantity-price,exportImportType,string,dimension,,,yes,Export\Import Type
+eia-open-data,eia-coal-exports-imports-quantity-price,coalRankId,string,dimension,,,yes,Coal Rank
+eia-open-data,eia-coal-exports-imports-quantity-price,countryId,string,dimension,,,yes,Country
+eia-open-data,eia-coal-exports-imports-quantity-price,customsDistrictId,string,dimension,,,yes,Customs District
+eia-open-data,eia-coal-exports-imports-quantity-price,quantity,number,measure,,short tons,no,
+eia-open-data,eia-coal-exports-imports-quantity-price,price,number,measure,,dollars per short ton,no,
+eia-open-data,eia-coal-exports-imports-quantity-price,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-coal-market-sales-price,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-coal-market-sales-price,stateRegionId,string,dimension,,,yes,State\Region
+eia-open-data,eia-coal-market-sales-price,marketTypeId,string,dimension,,,yes,Market Type
+eia-open-data,eia-coal-market-sales-price,sales,number,measure,,short tons,no,
+eia-open-data,eia-coal-market-sales-price,price,number,measure,,dollars per short ton,no,
+eia-open-data,eia-coal-market-sales-price,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-coal-mine-production,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-coal-mine-production,mineMSHAId,string,dimension,,,yes,Mine
+eia-open-data,eia-coal-mine-production,stateId,string,dimension,,,yes,State
+eia-open-data,eia-coal-mine-production,regionId,string,dimension,,,yes,Region
+eia-open-data,eia-coal-mine-production,supplyRegionId,string,dimension,,,yes,Supply Region
+eia-open-data,eia-coal-mine-production,censusRegionId,string,dimension,,,yes,Census Region
+eia-open-data,eia-coal-mine-production,mississippiRegionId,string,dimension,,,yes,Mississippi Region
+eia-open-data,eia-coal-mine-production,mineCountyId,string,dimension,,,yes,Mine County
+eia-open-data,eia-coal-mine-production,coalRankId,string,dimension,,,yes,Coal Rank
+eia-open-data,eia-coal-mine-production,mineTypeId,string,dimension,,,yes,Mine Type
+eia-open-data,eia-coal-mine-production,mineStatusId,string,dimension,,,yes,Mine Status
+eia-open-data,eia-coal-mine-production,production,number,measure,,short tons,no,
+eia-open-data,eia-coal-mine-production,labor-hours,number,measure,,hours,no,
+eia-open-data,eia-coal-mine-production,average-employees,number,measure,,number of employees,no,
+eia-open-data,eia-coal-mine-production,refuse-flag,number,measure,,,no,
+eia-open-data,eia-coal-mine-production,latitude,number,measure,,,no,
+eia-open-data,eia-coal-mine-production,longitude,number,measure,,,no,
+eia-open-data,eia-coal-mine-production,operating-company,number,measure,,,no,
+eia-open-data,eia-coal-mine-production,operating-company-address,number,measure,,,no,
+eia-open-data,eia-coal-mine-production,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-coal-price-by-rank,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-coal-price-by-rank,stateRegionId,string,dimension,,,yes,State\Region
+eia-open-data,eia-coal-price-by-rank,coalRankId,string,dimension,,,yes,Coal Rank
+eia-open-data,eia-coal-price-by-rank,price,number,measure,,dollars per short ton,no,
+eia-open-data,eia-coal-price-by-rank,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-coal-reserves-capacity,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-coal-reserves-capacity,stateId,string,dimension,,,yes,State\Region
+eia-open-data,eia-coal-reserves-capacity,mineTypeId,string,dimension,,,yes,Mine Type
+eia-open-data,eia-coal-reserves-capacity,productive-capacity,number,measure,,short tons,no,
+eia-open-data,eia-coal-reserves-capacity,recoverable-reserves,number,measure,,short tons,no,
+eia-open-data,eia-coal-reserves-capacity,producer-distributor-stocks,number,measure,,short tons,no,
+eia-open-data,eia-coal-reserves-capacity,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-coal-shipments-by-mine-by-plant,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-coal-shipments-by-mine-by-plant,mineStateId,string,dimension,,,yes,Mine State\Region
+eia-open-data,eia-coal-shipments-by-mine-by-plant,mineMSHAId,string,dimension,,,yes,Mine
+eia-open-data,eia-coal-shipments-by-mine-by-plant,coalSupplier,string,dimension,,,yes,Coal Supplier
+eia-open-data,eia-coal-shipments-by-mine-by-plant,plantStateId,string,dimension,,,yes,Plant State\Region
+eia-open-data,eia-coal-shipments-by-mine-by-plant,plantId,string,dimension,,,yes,Plant
+eia-open-data,eia-coal-shipments-by-mine-by-plant,coalType,string,dimension,,,yes,Coal Type
+eia-open-data,eia-coal-shipments-by-mine-by-plant,quantity,number,measure,,tons,no,
+eia-open-data,eia-coal-shipments-by-mine-by-plant,price,number,measure,,average dollars per ton,no,
+eia-open-data,eia-coal-shipments-by-mine-by-plant,sulfur-content,number,measure,,percent by weight,no,
+eia-open-data,eia-coal-shipments-by-mine-by-plant,ash-content,number,measure,,percent by weight,no,
+eia-open-data,eia-coal-shipments-by-mine-by-plant,heat-content,number,measure,,Btu per pound,no,
+eia-open-data,eia-coal-shipments-by-mine-by-plant,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-coal-shipments-mine-aggregates,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-coal-shipments-mine-aggregates,mineStateId,string,dimension,,,yes,Mine State\Region
+eia-open-data,eia-coal-shipments-mine-aggregates,mineMSHAId,string,dimension,,,yes,Mine
+eia-open-data,eia-coal-shipments-mine-aggregates,coalRankId,string,dimension,,,yes,Coal Rank
+eia-open-data,eia-coal-shipments-mine-aggregates,quantity,number,measure,,tons,no,
+eia-open-data,eia-coal-shipments-mine-aggregates,price,number,measure,,average dollars per ton,no,
+eia-open-data,eia-coal-shipments-mine-aggregates,heat-content,number,measure,,Btu per pound,no,
+eia-open-data,eia-coal-shipments-mine-aggregates,sulfur-content,number,measure,,percent by weight,no,
+eia-open-data,eia-coal-shipments-mine-aggregates,ash-content,number,measure,,percent by weight,no,
+eia-open-data,eia-coal-shipments-mine-aggregates,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-coal-shipments-mine-state-aggregates,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-coal-shipments-mine-state-aggregates,mineStateId,string,dimension,,,yes,Mine State\Region
+eia-open-data,eia-coal-shipments-mine-state-aggregates,coalRankId,string,dimension,,,yes,Coal Rank
+eia-open-data,eia-coal-shipments-mine-state-aggregates,quantity,number,measure,,tons,no,
+eia-open-data,eia-coal-shipments-mine-state-aggregates,price,number,measure,,average dollars per ton,no,
+eia-open-data,eia-coal-shipments-mine-state-aggregates,heat-content,number,measure,,Btu per pound,no,
+eia-open-data,eia-coal-shipments-mine-state-aggregates,sulfur-content,number,measure,,percent by weight,no,
+eia-open-data,eia-coal-shipments-mine-state-aggregates,ash-content,number,measure,,percent by weight,no,
+eia-open-data,eia-coal-shipments-mine-state-aggregates,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-coal-shipments-plant-aggregates,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-coal-shipments-plant-aggregates,location,string,dimension,,,yes,Plant State\Region.
+eia-open-data,eia-coal-shipments-plant-aggregates,plant,string,dimension,,,yes,Plant
+eia-open-data,eia-coal-shipments-plant-aggregates,rank,string,dimension,,,yes,Coal Rank
+eia-open-data,eia-coal-shipments-plant-aggregates,quantity,number,measure,,tons,no,
+eia-open-data,eia-coal-shipments-plant-aggregates,price,number,measure,,average dollars per ton,no,
+eia-open-data,eia-coal-shipments-plant-aggregates,sulfur-content,number,measure,,percent by weight,no,
+eia-open-data,eia-coal-shipments-plant-aggregates,ash-content,number,measure,,percent by weight,no,
+eia-open-data,eia-coal-shipments-plant-aggregates,heat-content,number,measure,,Btu per pound,no,
+eia-open-data,eia-coal-shipments-plant-aggregates,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-coal-shipments-plant-state-aggregates,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-coal-shipments-plant-state-aggregates,plantStateId,string,dimension,,,yes,Plant State\Region
+eia-open-data,eia-coal-shipments-plant-state-aggregates,coalRankId,string,dimension,,,yes,Coal Rank
+eia-open-data,eia-coal-shipments-plant-state-aggregates,quantity,number,measure,,tons,no,
+eia-open-data,eia-coal-shipments-plant-state-aggregates,price,number,measure,,average dollars per ton,no,
+eia-open-data,eia-coal-shipments-plant-state-aggregates,heat-content,number,measure,,Btu per pound,no,
+eia-open-data,eia-coal-shipments-plant-state-aggregates,sulfur-content,number,measure,,percent by weight,no,
+eia-open-data,eia-coal-shipments-plant-state-aggregates,ash-content,number,measure,,percent by weight,no,
+eia-open-data,eia-coal-shipments-plant-state-aggregates,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-coal-shipments-receipts,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-coal-shipments-receipts,plantStateId,string,dimension,,,yes,Plant State\Region
+eia-open-data,eia-coal-shipments-receipts,mineStateId,string,dimension,,,yes,Mine State\Region
+eia-open-data,eia-coal-shipments-receipts,mineTypeId,string,dimension,,,yes,Mine Type
+eia-open-data,eia-coal-shipments-receipts,mineMSHAId,string,dimension,,,yes,Mine
+eia-open-data,eia-coal-shipments-receipts,mineBasinId,string,dimension,,,yes,Mine Basin
+eia-open-data,eia-coal-shipments-receipts,mineCountyId,string,dimension,,,yes,Mine County
+eia-open-data,eia-coal-shipments-receipts,contractType,string,dimension,,,yes,Contract Type
+eia-open-data,eia-coal-shipments-receipts,transportationMode,string,dimension,,,yes,Transportation Mode
+eia-open-data,eia-coal-shipments-receipts,coalSupplier,string,dimension,,,yes,Coal Supplier
+eia-open-data,eia-coal-shipments-receipts,coalRankId,string,dimension,,,yes,Coal Rank
+eia-open-data,eia-coal-shipments-receipts,plantId,string,dimension,,,yes,Plant
+eia-open-data,eia-coal-shipments-receipts,quantity,number,measure,,tons,no,
+eia-open-data,eia-coal-shipments-receipts,price,number,measure,,average dollars per ton,no,
+eia-open-data,eia-coal-shipments-receipts,heat-content,number,measure,,Btu per pound,no,
+eia-open-data,eia-coal-shipments-receipts,sulfur-content,number,measure,,percent by weight,no,
+eia-open-data,eia-coal-shipments-receipts,ash-content,number,measure,,percent by weight,no,
+eia-open-data,eia-coal-shipments-receipts,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-crude-oil-imports,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-crude-oil-imports,originId,string,dimension,,,yes,Origin Id
+eia-open-data,eia-crude-oil-imports,originType,string,dimension,,,yes,Origin Type
+eia-open-data,eia-crude-oil-imports,destinationId,string,dimension,,,yes,Destination Id
+eia-open-data,eia-crude-oil-imports,destinationType,string,dimension,,,yes,Destination Type
+eia-open-data,eia-crude-oil-imports,gradeId,string,dimension,,,yes,Grade Id
+eia-open-data,eia-crude-oil-imports,quantity,number,measure,,thousand barrels,no,
+eia-open-data,eia-crude-oil-imports,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-densified-biomass-capacity-by-region,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-densified-biomass-capacity-by-region,region,string,dimension,,,yes,Region
+eia-open-data,eia-densified-biomass-capacity-by-region,number-of-facilities,number,measure,,number of facilities,no,
+eia-open-data,eia-densified-biomass-capacity-by-region,capacity,number,measure,,tons,no,
+eia-open-data,eia-densified-biomass-capacity-by-region,number-of-fte-employees,number,measure,,number of fte employees,no,
+eia-open-data,eia-densified-biomass-capacity-by-region,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-densified-biomass-characteristics-by-region,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-densified-biomass-characteristics-by-region,fuelTypeId,string,dimension,,,yes,Fuel Type
+eia-open-data,eia-densified-biomass-characteristics-by-region,region,string,dimension,,,yes,Region
+eia-open-data,eia-densified-biomass-characteristics-by-region,average-heat,number,measure,,btu/lb,no,
+eia-open-data,eia-densified-biomass-characteristics-by-region,average-ash,number,measure,,percent by weight,no,
+eia-open-data,eia-densified-biomass-characteristics-by-region,average-moisture,number,measure,,percent by weight,no,
+eia-open-data,eia-densified-biomass-characteristics-by-region,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-densified-biomass-feedstocks-and-cost,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-densified-biomass-feedstocks-and-cost,fuelTypeId,string,dimension,,,yes,Fuel Type
+eia-open-data,eia-densified-biomass-feedstocks-and-cost,quantity,number,measure,,tons,no,
+eia-open-data,eia-densified-biomass-feedstocks-and-cost,cost,number,measure,,USD per ton,no,
+eia-open-data,eia-densified-biomass-feedstocks-and-cost,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-densified-biomass-inventories-by-region,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-densified-biomass-inventories-by-region,fuelTypeId,string,dimension,,,yes,Fuel Type
+eia-open-data,eia-densified-biomass-inventories-by-region,region,string,dimension,,,yes,Region
+eia-open-data,eia-densified-biomass-inventories-by-region,inventory,number,measure,,tons,no,
+eia-open-data,eia-densified-biomass-inventories-by-region,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-densified-biomass-production-by-region,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-densified-biomass-production-by-region,fuelTypeId,string,dimension,,,yes,Fuel Type
+eia-open-data,eia-densified-biomass-production-by-region,region,string,dimension,,,yes,Region
+eia-open-data,eia-densified-biomass-production-by-region,production,number,measure,,tons,no,
+eia-open-data,eia-densified-biomass-production-by-region,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-densified-biomass-sales-and-price-by-region,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-densified-biomass-sales-and-price-by-region,region,string,dimension,,,yes,Region
+eia-open-data,eia-densified-biomass-sales-and-price-by-region,quantity,number,measure,,tons,no,
+eia-open-data,eia-densified-biomass-sales-and-price-by-region,average-price,number,measure,,USD per ton,no,
+eia-open-data,eia-densified-biomass-sales-and-price-by-region,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-densified-biomass-wood-pellet-plants,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-densified-biomass-wood-pellet-plants,region,string,dimension,,,yes,Region
+eia-open-data,eia-densified-biomass-wood-pellet-plants,respondent,string,dimension,,,yes,Respondent
+eia-open-data,eia-densified-biomass-wood-pellet-plants,stateId,string,dimension,,,yes,State
+eia-open-data,eia-densified-biomass-wood-pellet-plants,status,string,dimension,,,yes,Operational Status
+eia-open-data,eia-densified-biomass-wood-pellet-plants,capacity,number,measure,,tons per year,no,
+eia-open-data,eia-densified-biomass-wood-pellet-plants,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-electricity-electric-power-operational-data,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-electricity-electric-power-operational-data,location,string,dimension,,,yes,State / Census Region
+eia-open-data,eia-electricity-electric-power-operational-data,sectorid,string,dimension,,,yes,Sector
+eia-open-data,eia-electricity-electric-power-operational-data,fueltypeid,string,dimension,,,yes,Energy Source
+eia-open-data,eia-electricity-electric-power-operational-data,generation,number,measure,,,no,Utility Scale Electricity Net Generation
+eia-open-data,eia-electricity-electric-power-operational-data,total-consumption,number,measure,,,no,Consumption of Fuels for Electricity Generation and Useful Thermal Output (Physical Units)
+eia-open-data,eia-electricity-electric-power-operational-data,consumption-for-eg,number,measure,,,no,Consumption of Fuels for Electricity Generation (Physical Units)
+eia-open-data,eia-electricity-electric-power-operational-data,consumption-uto,number,measure,,,no,Consumption of Fuels for Useful Thermal Output (Physical Units)
+eia-open-data,eia-electricity-electric-power-operational-data,total-consumption-btu,number,measure,,,no,Consumption of Fuels for Electricity Generation and Useful Thermal Output (BTUs)
+eia-open-data,eia-electricity-electric-power-operational-data,consumption-for-eg-btu,number,measure,,,no,Consumption of Fuels for Electricity Generation (BTUs)
+eia-open-data,eia-electricity-electric-power-operational-data,consumption-uto-btu,number,measure,,,no,Consumption of Fuels for Useful Thermal Output (BTUs)
+eia-open-data,eia-electricity-electric-power-operational-data,stocks,number,measure,,,no,Stocks of Fuel (Physical Units)
+eia-open-data,eia-electricity-electric-power-operational-data,receipts,number,measure,,,no,Receipts of Fuel (Physical Units)
+eia-open-data,eia-electricity-electric-power-operational-data,receipts-btu,number,measure,,,no,Receipts of Fuel (BTUs)
+eia-open-data,eia-electricity-electric-power-operational-data,cost,number,measure,,,no,Average Cost of Fuels (per Physical Unit)
+eia-open-data,eia-electricity-electric-power-operational-data,cost-per-btu,number,measure,,,no,Average Cost of Fuels (per BTU)
+eia-open-data,eia-electricity-electric-power-operational-data,sulfur-content,number,measure,,,no,Average Sulfur Content of Consumed Fuel
+eia-open-data,eia-electricity-electric-power-operational-data,ash-content,number,measure,,,no,Average Ash Content of Consumed Fuel
+eia-open-data,eia-electricity-electric-power-operational-data,heat-content,number,measure,,,no,Average Heat Content of Consumed Fuels
+eia-open-data,eia-electricity-electric-power-operational-data,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-electricity-facility-fuel,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-electricity-facility-fuel,plantCode,string,dimension,,,yes,Plant ID and Name
+eia-open-data,eia-electricity-facility-fuel,fuel2002,string,dimension,,,yes,Energy Source
+eia-open-data,eia-electricity-facility-fuel,state,string,dimension,,,yes,State
+eia-open-data,eia-electricity-facility-fuel,primeMover,string,dimension,,,yes,Prime Mover
+eia-open-data,eia-electricity-facility-fuel,generation,number,measure,,megawatthours,no,Net Generation
+eia-open-data,eia-electricity-facility-fuel,gross-generation,number,measure,,megawatthours,no,Gross Generation
+eia-open-data,eia-electricity-facility-fuel,total-consumption,number,measure,,,no,Consumption of Fuels for Electricity Generation and Useful Thermal Output (Physical Units)
+eia-open-data,eia-electricity-facility-fuel,total-consumption-btu,number,measure,,MMBtu,no,Consumption of Fuels for Electricity Generation and Useful Thermal Output (BTUs)
+eia-open-data,eia-electricity-facility-fuel,consumption-for-eg,number,measure,,,no,Consumption of Fuels for Electricity Generation (Physical Units)
+eia-open-data,eia-electricity-facility-fuel,consumption-for-eg-btu,number,measure,,MMBtu,no,Consumption of Fuels for Electricity Generation (BTUs)
+eia-open-data,eia-electricity-facility-fuel,average-heat-content,number,measure,,,no,Average Heat Content of Consumed Fuels
+eia-open-data,eia-electricity-facility-fuel,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-electricity-operating-generator-capacity,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-electricity-operating-generator-capacity,stateid,string,dimension,US_STATE_CODE,,yes,State
+eia-open-data,eia-electricity-operating-generator-capacity,sector,string,dimension,,,yes,Sector
+eia-open-data,eia-electricity-operating-generator-capacity,entityid,string,dimension,,,yes,Entity ID and Name
+eia-open-data,eia-electricity-operating-generator-capacity,plantid,string,dimension,,,yes,Plant ID and Name
+eia-open-data,eia-electricity-operating-generator-capacity,generatorid,string,dimension,,,yes,Generator ID
+eia-open-data,eia-electricity-operating-generator-capacity,unit,string,dimension,,,yes,Unit Code
+eia-open-data,eia-electricity-operating-generator-capacity,technology,string,dimension,,,yes,Technology
+eia-open-data,eia-electricity-operating-generator-capacity,energy_source_code,string,dimension,,,yes,Primary Energy Source
+eia-open-data,eia-electricity-operating-generator-capacity,prime_mover_code,string,dimension,,,yes,Prime Mover Code
+eia-open-data,eia-electricity-operating-generator-capacity,balancing_authority_code,string,dimension,,,yes,Balancing Authority
+eia-open-data,eia-electricity-operating-generator-capacity,status,string,dimension,,,yes,Operating Status Code
+eia-open-data,eia-electricity-operating-generator-capacity,nameplate-capacity-mw,number,measure,,MW,no,Nameplate Capacity
+eia-open-data,eia-electricity-operating-generator-capacity,net-summer-capacity-mw,number,measure,,MW,no,Net Summer Capacity
+eia-open-data,eia-electricity-operating-generator-capacity,net-winter-capacity-mw,number,measure,,MW,no,Net Winter Capacity
+eia-open-data,eia-electricity-operating-generator-capacity,operating-year-month,number,measure,,,no,Operating Date (Year and Month)
+eia-open-data,eia-electricity-operating-generator-capacity,planned-retirement-year-month,number,measure,,,no,Planned Retirement Date (Year and Month)
+eia-open-data,eia-electricity-operating-generator-capacity,planned-derate-year-month,number,measure,,,no,Planned Derate Date (Year and Month)
+eia-open-data,eia-electricity-operating-generator-capacity,planned-derate-summer-cap-mw,number,measure,,MW,no,Magnitude of Planned Derate (Summer Capacity)
+eia-open-data,eia-electricity-operating-generator-capacity,planned-uprate-year-month,number,measure,,,no,Planned Uprate Date (Year and Month)
+eia-open-data,eia-electricity-operating-generator-capacity,planned-uprate-summer-cap-mw,number,measure,,MW,no,Magnitude of Planned Uprate (Summer Capacity)
+eia-open-data,eia-electricity-operating-generator-capacity,county,number,measure,,,no,County
+eia-open-data,eia-electricity-operating-generator-capacity,longitude,number,measure,,,no,Longitude
+eia-open-data,eia-electricity-operating-generator-capacity,latitude,number,measure,,,no,Latitude
+eia-open-data,eia-electricity-operating-generator-capacity,units,string,metadata,,,no,Unit string returned by the API for this row.
 eia-open-data,eia-electricity-retail-sales,period,string,time_index,DATE,,yes,"Observation period (YYYY-MM for monthly, YYYY-Qn for quarterly, YYYY for annual)."
 eia-open-data,eia-electricity-retail-sales,stateid,string,dimension,US_STATE_CODE,,yes,US state two-letter code or Census region.
 eia-open-data,eia-electricity-retail-sales,stateDescription,string,label,,,no,Human-readable state or region name.
@@ -7,6 +367,182 @@ eia-open-data,eia-electricity-retail-sales,sectorName,string,label,,,no,Human-re
 eia-open-data,eia-electricity-retail-sales,price,number,measure,,cents per kilowatthour,no,Average retail price of electricity.
 eia-open-data,eia-electricity-retail-sales,revenue,number,measure,,million dollars,no,Electricity retail revenue.
 eia-open-data,eia-electricity-retail-sales,sales,number,measure,,million kilowatthours,no,Electricity retail sales volume.
+eia-open-data,eia-electricity-rto-daily-fuel-type-data,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-electricity-rto-daily-fuel-type-data,respondent,string,dimension,,,yes,Balancing Authority / Region
+eia-open-data,eia-electricity-rto-daily-fuel-type-data,fueltype,string,dimension,,,yes,Energy Source
+eia-open-data,eia-electricity-rto-daily-fuel-type-data,timezone,string,dimension,,,yes,Time Zone for Determining Date
+eia-open-data,eia-electricity-rto-daily-fuel-type-data,value,number,measure,,megawatthours,no,Net Generation
+eia-open-data,eia-electricity-rto-daily-fuel-type-data,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-electricity-rto-daily-interchange-data,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-electricity-rto-daily-interchange-data,fromba,string,dimension,,,yes,Balancing Authority / Region
+eia-open-data,eia-electricity-rto-daily-interchange-data,toba,string,dimension,,,yes,Neighboring Balancing Authority / Region
+eia-open-data,eia-electricity-rto-daily-interchange-data,timezone,string,dimension,,,yes,Time Zone for Determining Date
+eia-open-data,eia-electricity-rto-daily-interchange-data,value,number,measure,,megawatthours,no,Interchange
+eia-open-data,eia-electricity-rto-daily-interchange-data,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-electricity-rto-daily-region-data,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-electricity-rto-daily-region-data,respondent,string,dimension,,,yes,Balancing Authority / Region
+eia-open-data,eia-electricity-rto-daily-region-data,type,string,dimension,,,yes,Metric
+eia-open-data,eia-electricity-rto-daily-region-data,timezone,string,dimension,,,yes,Time Zone for Determining Date
+eia-open-data,eia-electricity-rto-daily-region-data,value,number,measure,,megawatthours,no,"Demand, Demand Forecast, Net Generation, or Interchange"
+eia-open-data,eia-electricity-rto-daily-region-data,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-electricity-rto-daily-region-sub-ba-data,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-electricity-rto-daily-region-sub-ba-data,subba,string,dimension,,,yes,Subregion
+eia-open-data,eia-electricity-rto-daily-region-sub-ba-data,parent,string,dimension,,,yes,Balancing Authority
+eia-open-data,eia-electricity-rto-daily-region-sub-ba-data,timezone,string,dimension,,,yes,Time Zone for Determining Date
+eia-open-data,eia-electricity-rto-daily-region-sub-ba-data,value,number,measure,,megawatthours,no,Demand
+eia-open-data,eia-electricity-rto-daily-region-sub-ba-data,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-electricity-rto-fuel-type-data,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-electricity-rto-fuel-type-data,respondent,string,dimension,,,yes,Balancing Authority / Region
+eia-open-data,eia-electricity-rto-fuel-type-data,fueltype,string,dimension,,,yes,Energy Source
+eia-open-data,eia-electricity-rto-fuel-type-data,value,number,measure,,megawatthours,no,Net Generation
+eia-open-data,eia-electricity-rto-fuel-type-data,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-electricity-rto-interchange-data,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-electricity-rto-interchange-data,fromba,string,dimension,,,yes,Balancing Authority / Region
+eia-open-data,eia-electricity-rto-interchange-data,toba,string,dimension,,,yes,Neighboring Balancing Authority / Region
+eia-open-data,eia-electricity-rto-interchange-data,value,number,measure,,megawatthours,no,Interchange
+eia-open-data,eia-electricity-rto-interchange-data,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-electricity-rto-region-data,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-electricity-rto-region-data,respondent,string,dimension,,,yes,Balancing Authority / Region
+eia-open-data,eia-electricity-rto-region-data,type,string,dimension,,,yes,Metric
+eia-open-data,eia-electricity-rto-region-data,value,number,measure,,megawatthours,no,"Demand, Demand Forecast, Net Generation, or Interchange"
+eia-open-data,eia-electricity-rto-region-data,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-electricity-rto-region-sub-ba-data,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-electricity-rto-region-sub-ba-data,subba,string,dimension,,,yes,Subregion
+eia-open-data,eia-electricity-rto-region-sub-ba-data,parent,string,dimension,,,yes,Balancing Authority
+eia-open-data,eia-electricity-rto-region-sub-ba-data,value,number,measure,,megawatthours,no,Demand
+eia-open-data,eia-electricity-rto-region-sub-ba-data,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-electricity-state-electricity-profiles-capability,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-electricity-state-electricity-profiles-capability,stateId,string,dimension,,,yes,State
+eia-open-data,eia-electricity-state-electricity-profiles-capability,producertypeid,string,dimension,,,yes,Sector
+eia-open-data,eia-electricity-state-electricity-profiles-capability,energysourceid,string,dimension,,,yes,Energy Source
+eia-open-data,eia-electricity-state-electricity-profiles-capability,capability,number,measure,,megawatts,no,Net Summer Capacity
+eia-open-data,eia-electricity-state-electricity-profiles-capability,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-electricity-state-electricity-profiles-emissions-by-state-by-fuel,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-electricity-state-electricity-profiles-emissions-by-state-by-fuel,stateid,string,dimension,US_STATE_CODE,,yes,State
+eia-open-data,eia-electricity-state-electricity-profiles-emissions-by-state-by-fuel,fuelid,string,dimension,,,yes,Energy Source
+eia-open-data,eia-electricity-state-electricity-profiles-emissions-by-state-by-fuel,so2-rate-lbs-mwh,number,measure,,pounds per megawatthour,no,SO2 Emissions Rate per MWh
+eia-open-data,eia-electricity-state-electricity-profiles-emissions-by-state-by-fuel,so2-short-tons,number,measure,,short tons,no,SO2 Emissions
+eia-open-data,eia-electricity-state-electricity-profiles-emissions-by-state-by-fuel,nox-rate-lbs-mwh,number,measure,,pounds per megawatthour,no,NOx Emissions Rate per MWh
+eia-open-data,eia-electricity-state-electricity-profiles-emissions-by-state-by-fuel,nox-short-tons,number,measure,,short tons,no,NOx Emissions
+eia-open-data,eia-electricity-state-electricity-profiles-emissions-by-state-by-fuel,co2-rate-lbs-mwh,number,measure,,pounds per megawatthour,no,CO2 Emissions Rate per MWh
+eia-open-data,eia-electricity-state-electricity-profiles-emissions-by-state-by-fuel,co2-thousand-metric-tons,number,measure,,thousand metric tons,no,CO2 Emissions
+eia-open-data,eia-electricity-state-electricity-profiles-emissions-by-state-by-fuel,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-electricity-state-electricity-profiles-energy-efficiency,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-electricity-state-electricity-profiles-energy-efficiency,state,string,dimension,,,yes,State
+eia-open-data,eia-electricity-state-electricity-profiles-energy-efficiency,timePeriod,string,dimension,,,yes,Time Period Included in Costs and Savings
+eia-open-data,eia-electricity-state-electricity-profiles-energy-efficiency,sector,string,dimension,,,yes,Sector
+eia-open-data,eia-electricity-state-electricity-profiles-energy-efficiency,energy-savings,number,measure,,megawatthours,no,Annual Energy Savings
+eia-open-data,eia-electricity-state-electricity-profiles-energy-efficiency,potential-peak-savings,number,measure,,megawatts,no,Peak Demand Savings
+eia-open-data,eia-electricity-state-electricity-profiles-energy-efficiency,customer-incentive,number,measure,,thousand dollars,no,Cost of Customer Incentives
+eia-open-data,eia-electricity-state-electricity-profiles-energy-efficiency,all-other-costs,number,measure,,thousand dollars,no,All Other Costs
+eia-open-data,eia-electricity-state-electricity-profiles-energy-efficiency,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-electricity-state-electricity-profiles-meters,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-electricity-state-electricity-profiles-meters,state,string,dimension,,,yes,State
+eia-open-data,eia-electricity-state-electricity-profiles-meters,technology,string,dimension,,,yes,Meter Technology
+eia-open-data,eia-electricity-state-electricity-profiles-meters,sector,string,dimension,,,yes,sector
+eia-open-data,eia-electricity-state-electricity-profiles-meters,meters,number,measure,,number of meters,no,Meter Count
+eia-open-data,eia-electricity-state-electricity-profiles-meters,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-electricity-state-electricity-profiles-net-metering,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-electricity-state-electricity-profiles-net-metering,state,string,dimension,,,yes,state
+eia-open-data,eia-electricity-state-electricity-profiles-net-metering,technology,string,dimension,,,yes,Technology used to Generate Electricity
+eia-open-data,eia-electricity-state-electricity-profiles-net-metering,sector,string,dimension,,,yes,sector
+eia-open-data,eia-electricity-state-electricity-profiles-net-metering,capacity,number,measure,,megawatts,no,
+eia-open-data,eia-electricity-state-electricity-profiles-net-metering,customers,number,measure,,number of customers,no,Customer Count
+eia-open-data,eia-electricity-state-electricity-profiles-net-metering,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-electricity-state-electricity-profiles-source-disposition,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-electricity-state-electricity-profiles-source-disposition,state,string,dimension,,,yes,State
+eia-open-data,eia-electricity-state-electricity-profiles-source-disposition,electric-utilities,number,measure,,megawatthours,no,Net Generation from Electric Utilities
+eia-open-data,eia-electricity-state-electricity-profiles-source-disposition,independent-power-producers,number,measure,,megawatthours,no,"Net Generation from Independent Power Producers, Non-Combined Heat and Power"
+eia-open-data,eia-electricity-state-electricity-profiles-source-disposition,combined-heat-and-pwr-elect,number,measure,,megawatthours,no,"Net Generation from Independent Power Producers, Combined Heat and Power"
+eia-open-data,eia-electricity-state-electricity-profiles-source-disposition,elect-pwr-sector-gen-subtotal,number,measure,,megawatthours,no,Net Generation from Electric Power Sector
+eia-open-data,eia-electricity-state-electricity-profiles-source-disposition,combined-heat-and-pwr-comm,number,measure,,megawatthours,no,Net Generation from Commercial Sector
+eia-open-data,eia-electricity-state-electricity-profiles-source-disposition,combined-heat-and-pwr-indust,number,measure,,megawatthours,no,Net Generation from Industrial Sector
+eia-open-data,eia-electricity-state-electricity-profiles-source-disposition,indust-and-comm-gen-subtotal,number,measure,,megawatthours,no,Net Generation from Industrial and Commercial Sectors
+eia-open-data,eia-electricity-state-electricity-profiles-source-disposition,total-net-generation,number,measure,,megawatthours,no,Net Generation from All Sectors
+eia-open-data,eia-electricity-state-electricity-profiles-source-disposition,total-international-imports,number,measure,,megawatthours,no,Total International Imports
+eia-open-data,eia-electricity-state-electricity-profiles-source-disposition,total-supply,number,measure,,megawatthours,no,Total Supply
+eia-open-data,eia-electricity-state-electricity-profiles-source-disposition,full-service-providers,number,measure,,megawatthours,no,Retail Sales of Electricity by Full Service Providers
+eia-open-data,eia-electricity-state-electricity-profiles-source-disposition,energy-only-providers,number,measure,,megawatthours,no,Retail Sales of Electrcity by Energy-Only Providers
+eia-open-data,eia-electricity-state-electricity-profiles-source-disposition,facility-direct,number,measure,,megawatthours,no,Retail Sales of Electricity Sold Directly by Commercial and Industrial Facilities
+eia-open-data,eia-electricity-state-electricity-profiles-source-disposition,total-elect-indust,number,measure,,megawatthours,no,"Retail Sales of Electricity, Total Electric Industry"
+eia-open-data,eia-electricity-state-electricity-profiles-source-disposition,direct-use,number,measure,,megawatthours,no,Direct Use of Generation by Commercial and Industrial Facilities
+eia-open-data,eia-electricity-state-electricity-profiles-source-disposition,total-international-exports,number,measure,,megawatthours,no,Total International Exports
+eia-open-data,eia-electricity-state-electricity-profiles-source-disposition,estimated-losses,number,measure,,megawatthours,no,Estimated Losses Incurred in Transmission and Distribution
+eia-open-data,eia-electricity-state-electricity-profiles-source-disposition,net-interstate-trade,number,measure,,megawatthours,no,Net Interstate Imports
+eia-open-data,eia-electricity-state-electricity-profiles-source-disposition,unaccounted,number,measure,,megawatthours,no,Unaccounted Electricity
+eia-open-data,eia-electricity-state-electricity-profiles-source-disposition,total-disposition,number,measure,,megawatthours,no,Total Disposition
+eia-open-data,eia-electricity-state-electricity-profiles-source-disposition,net-trade-index,number,measure,,ratio,no,Net Trade Index Ratio
+eia-open-data,eia-electricity-state-electricity-profiles-source-disposition,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-electricity-state-electricity-profiles-summary,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-electricity-state-electricity-profiles-summary,stateID,string,dimension,,,yes,State
+eia-open-data,eia-electricity-state-electricity-profiles-summary,net-summer-capacity,number,measure,,megawatts,no,"Net Summer Capacity, All Sectors"
+eia-open-data,eia-electricity-state-electricity-profiles-summary,net-summer-capacity-rank,number,measure,,rank,no,"Net Summer Capacity, All Sectors (U.S. Rank)"
+eia-open-data,eia-electricity-state-electricity-profiles-summary,capacity-elec-utilities,number,measure,,megawatts,no,"Net Summer Capacity, Electric Power Sector"
+eia-open-data,eia-electricity-state-electricity-profiles-summary,capacity-elect-utilities-rank,number,measure,,rank,no,Average Retail Price of Electricity (U.S. Rank)
+eia-open-data,eia-electricity-state-electricity-profiles-summary,capacity-ipp,number,measure,,megawatts,no,"Net Summer Capacity, Independent Power Producers and Industrial / Commercial Sectors"
+eia-open-data,eia-electricity-state-electricity-profiles-summary,capacity-ipp-rank,number,measure,,rank,no,"Net Summer Capacity, Independent Power Producers and Industrial / Commercial Sectors (U.S. Rank)"
+eia-open-data,eia-electricity-state-electricity-profiles-summary,net-generation,number,measure,,megawatthours,no,"Net Generation, All Sectors"
+eia-open-data,eia-electricity-state-electricity-profiles-summary,net-generation-rank,number,measure,,rank,no,"Net Generation, All Sectors (U.S. Rank)"
+eia-open-data,eia-electricity-state-electricity-profiles-summary,generation-elect-utils,number,measure,,megawatthours,no,"Net Generation, Electric Power Sector"
+eia-open-data,eia-electricity-state-electricity-profiles-summary,generation-elect-utils-rank,number,measure,,rank,no,"Net Generation, Electric Power Sector (U.S. Rank)"
+eia-open-data,eia-electricity-state-electricity-profiles-summary,generation-ipp,number,measure,,megawatthours,no,"Net Generation, Independent Power Producers and Industrial / Commercial Sectors"
+eia-open-data,eia-electricity-state-electricity-profiles-summary,generation-ipp-rank,number,measure,,rank,no,"Net Generation, Independent Power Producers and Industrial / Commercial Sectors (U.S. Rank)"
+eia-open-data,eia-electricity-state-electricity-profiles-summary,sulfer-dioxide,number,measure,,short tons,no,SO2 Emissions
+eia-open-data,eia-electricity-state-electricity-profiles-summary,sulfer-dioxide-rank,number,measure,,rank,no,SO2 Emissions (U.S. Rank)
+eia-open-data,eia-electricity-state-electricity-profiles-summary,nitrogen-oxide,number,measure,,short tons,no,NOx Emissions
+eia-open-data,eia-electricity-state-electricity-profiles-summary,nitrogen-oxide-rank,number,measure,,rank,no,NOx Emissions (U.S. Rank)
+eia-open-data,eia-electricity-state-electricity-profiles-summary,carbon-dioxide,number,measure,,thousand metric tons,no,CO2 Emissions
+eia-open-data,eia-electricity-state-electricity-profiles-summary,carbon-dioxide-rank,number,measure,,rank,no,CO2 Emissions (U.S. Rank)
+eia-open-data,eia-electricity-state-electricity-profiles-summary,sulfer-dioxide-lbs,number,measure,,pounds per megawatthour,no,SO2 Emissions Rate per MWh
+eia-open-data,eia-electricity-state-electricity-profiles-summary,sulfer-dioxide-rank-lbs,number,measure,,rank,no,SO2 Emissions Rate per MWh (U.S. Rank)
+eia-open-data,eia-electricity-state-electricity-profiles-summary,nitrogen-oxide-lbs,number,measure,,pounds per megawatthour,no,NOx Emissions Rate per MWh
+eia-open-data,eia-electricity-state-electricity-profiles-summary,nitrogen-oxide-rank-lbs,number,measure,,rank,no,NOx Emissions Rate per MWh (U.S. Rank)
+eia-open-data,eia-electricity-state-electricity-profiles-summary,carbon-dioxide-lbs,number,measure,,pounds per megawatthour,no,CO2 Emissions Rate per MWh
+eia-open-data,eia-electricity-state-electricity-profiles-summary,carbon-dioxide-rank-lbs,number,measure,,rank,no,CO2 Emissions Rate per MWh (U.S. Rank)
+eia-open-data,eia-electricity-state-electricity-profiles-summary,total-retail-sales,number,measure,,megawatthours,no,"Retail Sales of Electricity, Total Electric Industry"
+eia-open-data,eia-electricity-state-electricity-profiles-summary,total-retail-sales-rank,number,measure,,rank,no,"Retail Sales of Electricity, Total Electric Industry (U.S. Rank)"
+eia-open-data,eia-electricity-state-electricity-profiles-summary,fsp-service-provider-sales,number,measure,,megawatthours,no,Retail Sales of Electrcity by Full Service Providers and Electricity Sold Directly by Commercial and Industrial  Facilities
+eia-open-data,eia-electricity-state-electricity-profiles-summary,fsp-sales-rank,number,measure,,rank,no,Retail Sales of Electrcity by Full Service Providers and Electricity Sold Directly by Commercial and Industrial Facilities (U.S. Rank)
+eia-open-data,eia-electricity-state-electricity-profiles-summary,eop-sales,number,measure,,megawatthours,no,Retail Sales of Electrcity by Energy-Only Providers
+eia-open-data,eia-electricity-state-electricity-profiles-summary,eop-sales-rank,number,measure,,rank,no,Retail Sales of Electrcity by Energy-Only Providers (U.S. Rank)
+eia-open-data,eia-electricity-state-electricity-profiles-summary,direct-use,number,measure,,megawatthours,no,Direct Use of Generation by Commercial and Industrial Facilities
+eia-open-data,eia-electricity-state-electricity-profiles-summary,direct-use-rank,number,measure,,rank,no,Direct Use of Generation by Commercial and Industrial Facilities (U.S. Rank)
+eia-open-data,eia-electricity-state-electricity-profiles-summary,average-retail-price,number,measure,,cents per kilowatthour,no,Average Retail Price of Electricity
+eia-open-data,eia-electricity-state-electricity-profiles-summary,average-retail-price-rank,number,measure,,rank,no,Average Retail Price of Electricity (U.S. Rank)
+eia-open-data,eia-electricity-state-electricity-profiles-summary,prime-source,number,measure,,,no,Prime Source
+eia-open-data,eia-electricity-state-electricity-profiles-summary,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-ieo-2017,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-ieo-2017,history,string,dimension,,,yes,History
+eia-open-data,eia-ieo-2017,scenario,string,dimension,,,yes,Scenario
+eia-open-data,eia-ieo-2017,tableId,string,dimension,,,yes,Table
+eia-open-data,eia-ieo-2017,seriesId,string,dimension,,,yes,Series
+eia-open-data,eia-ieo-2017,regionId,string,dimension,,,yes,Region
+eia-open-data,eia-ieo-2017,value,number,measure,,,no,
+eia-open-data,eia-ieo-2017,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-ieo-2019,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-ieo-2019,history,string,dimension,,,yes,History
+eia-open-data,eia-ieo-2019,scenario,string,dimension,,,yes,Scenario
+eia-open-data,eia-ieo-2019,tableId,string,dimension,,,yes,Table
+eia-open-data,eia-ieo-2019,seriesId,string,dimension,,,yes,Series
+eia-open-data,eia-ieo-2019,regionId,string,dimension,,,yes,Region
+eia-open-data,eia-ieo-2019,value,number,measure,,,no,
+eia-open-data,eia-ieo-2019,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-ieo-2021,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-ieo-2021,history,string,dimension,,,yes,History
+eia-open-data,eia-ieo-2021,scenario,string,dimension,,,yes,Scenario
+eia-open-data,eia-ieo-2021,tableId,string,dimension,,,yes,Table
+eia-open-data,eia-ieo-2021,seriesId,string,dimension,,,yes,Series
+eia-open-data,eia-ieo-2021,regionId,string,dimension,,,yes,Region
+eia-open-data,eia-ieo-2021,value,number,measure,,,no,
+eia-open-data,eia-ieo-2021,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-ieo-2023,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-ieo-2023,history,string,dimension,,,yes,History
+eia-open-data,eia-ieo-2023,scenario,string,dimension,,,yes,Scenario
+eia-open-data,eia-ieo-2023,tableId,string,dimension,,,yes,Table
+eia-open-data,eia-ieo-2023,seriesId,string,dimension,,,yes,Series
+eia-open-data,eia-ieo-2023,regionId,string,dimension,,,yes,Region
+eia-open-data,eia-ieo-2023,value,number,measure,,,no,
+eia-open-data,eia-ieo-2023,units,string,metadata,,,no,Unit string returned by the API for this row.
 eia-open-data,eia-international-energy,period,string,time_index,DATE,,yes,Observation period.
 eia-open-data,eia-international-energy,countryRegionId,string,dimension,ISO_3,,yes,ISO-3 country code or EIA regional aggregate.
 eia-open-data,eia-international-energy,countryRegionName,string,label,,,no,Human-readable country or region name.
@@ -15,12 +551,1105 @@ eia-open-data,eia-international-energy,productName,string,label,,,no,Human-reada
 eia-open-data,eia-international-energy,activityId,string,dimension,,,yes,"Activity type code (production, consumption, imports, exports, reserves)."
 eia-open-data,eia-international-energy,activityName,string,label,,,no,Human-readable activity name.
 eia-open-data,eia-international-energy,value,number,measure,,"varies (Mb/d for oil, Bcf for gas, Mt for coal, GWh for electricity)",no,Quantity per country-product-activity-period.
+eia-open-data,eia-international,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-international,productId,string,dimension,,,yes,Product
+eia-open-data,eia-international,activityId,string,dimension,,,yes,Activity
+eia-open-data,eia-international,countryRegionId,string,dimension,ISO_3,,yes,Country/Region
+eia-open-data,eia-international,countryRegionTypeId,string,dimension,,,yes,Country/Region Type
+eia-open-data,eia-international,dataFlagId,string,dimension,,,yes,Data flag ID
+eia-open-data,eia-international,unit,string,dimension,,,yes,Unit
+eia-open-data,eia-international,value,number,measure,,,no,
+eia-open-data,eia-international,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-cons-acct,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-cons-acct,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-cons-acct,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-cons-acct,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-cons-acct,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-cons-acct,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-cons-acct,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-cons-heat,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-cons-heat,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-cons-heat,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-cons-heat,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-cons-heat,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-cons-heat,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-cons-heat,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-cons-num,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-cons-num,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-cons-num,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-cons-num,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-cons-num,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-cons-num,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-cons-num,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-cons-pns,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-cons-pns,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-cons-pns,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-cons-pns,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-cons-pns,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-cons-pns,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-cons-pns,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-cons-sum,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-cons-sum,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-cons-sum,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-cons-sum,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-cons-sum,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-cons-sum,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-cons-sum,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-enr-adng,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-enr-adng,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-enr-adng,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-enr-adng,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-enr-adng,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-enr-adng,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-enr-adng,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-enr-coalbed,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-enr-coalbed,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-enr-coalbed,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-enr-coalbed,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-enr-coalbed,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-enr-coalbed,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-enr-coalbed,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-enr-cplc,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-enr-cplc,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-enr-cplc,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-enr-cplc,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-enr-cplc,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-enr-cplc,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-enr-cplc,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-enr-deep,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-enr-deep,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-enr-deep,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-enr-deep,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-enr-deep,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-enr-deep,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-enr-deep,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-enr-drill,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-enr-drill,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-enr-drill,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-enr-drill,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-enr-drill,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-enr-drill,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-enr-drill,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-enr-dry,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-enr-dry,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-enr-dry,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-enr-dry,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-enr-dry,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-enr-dry,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-enr-dry,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-enr-lc,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-enr-lc,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-enr-lc,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-enr-lc,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-enr-lc,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-enr-lc,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-enr-lc,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-enr-nang,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-enr-nang,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-enr-nang,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-enr-nang,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-enr-nang,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-enr-nang,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-enr-nang,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-enr-ngl,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-enr-ngl,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-enr-ngl,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-enr-ngl,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-enr-ngl,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-enr-ngl,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-enr-ngl,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-enr-ngpl,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-enr-ngpl,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-enr-ngpl,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-enr-ngpl,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-enr-ngpl,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-enr-ngpl,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-enr-ngpl,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-enr-nprod,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-enr-nprod,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-enr-nprod,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-enr-nprod,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-enr-nprod,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-enr-nprod,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-enr-nprod,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-enr-seis,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-enr-seis,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-enr-seis,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-enr-seis,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-enr-seis,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-enr-seis,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-enr-seis,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-enr-shalegas,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-enr-shalegas,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-enr-shalegas,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-enr-shalegas,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-enr-shalegas,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-enr-shalegas,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-enr-shalegas,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-enr-sum,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-enr-sum,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-enr-sum,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-enr-sum,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-enr-sum,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-enr-sum,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-enr-sum,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-enr-wals,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-enr-wals,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-enr-wals,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-enr-wals,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-enr-wals,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-enr-wals,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-enr-wals,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-enr-wellcost,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-enr-wellcost,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-enr-wellcost,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-enr-wellcost,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-enr-wellcost,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-enr-wellcost,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-enr-wellcost,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-enr-welldep,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-enr-welldep,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-enr-welldep,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-enr-welldep,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-enr-welldep,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-enr-welldep,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-enr-welldep,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-enr-wellend,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-enr-wellend,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-enr-wellend,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-enr-wellend,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-enr-wellend,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-enr-wellend,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-enr-wellend,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-enr-wellfoot,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-enr-wellfoot,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-enr-wellfoot,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-enr-wellfoot,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-enr-wellfoot,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-enr-wellfoot,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-enr-wellfoot,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-move-expc,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-move-expc,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-move-expc,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-move-expc,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-move-expc,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-move-expc,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-move-expc,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-move-impc,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-move-impc,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-move-impc,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-move-impc,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-move-impc,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-move-impc,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-move-impc,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-move-ist,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-move-ist,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-move-ist,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-move-ist,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-move-ist,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-move-ist,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-move-ist,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-move-poe1,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-move-poe1,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-move-poe1,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-move-poe1,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-move-poe1,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-move-poe1,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-move-poe1,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-move-poe2,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-move-poe2,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-move-poe2,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-move-poe2,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-move-poe2,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-move-poe2,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-move-poe2,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-move-state,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-move-state,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-move-state,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-move-state,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-move-state,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-move-state,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-move-state,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-pri-fut,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-pri-fut,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-pri-fut,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-pri-fut,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-pri-fut,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-pri-fut,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-pri-fut,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-pri-rescom,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-pri-rescom,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-pri-rescom,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-pri-rescom,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-pri-rescom,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-pri-rescom,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-pri-rescom,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-pri-sum,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-pri-sum,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-pri-sum,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-pri-sum,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-pri-sum,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-pri-sum,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-pri-sum,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-prod-coalbed,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-prod-coalbed,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-prod-coalbed,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-prod-coalbed,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-prod-coalbed,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-prod-coalbed,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-prod-coalbed,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-prod-deep,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-prod-deep,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-prod-deep,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-prod-deep,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-prod-deep,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-prod-deep,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-prod-deep,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-prod-lc,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-prod-lc,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-prod-lc,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-prod-lc,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-prod-lc,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-prod-lc,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-prod-lc,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-prod-ngpl,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-prod-ngpl,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-prod-ngpl,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-prod-ngpl,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-prod-ngpl,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-prod-ngpl,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-prod-ngpl,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-prod-off,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-prod-off,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-prod-off,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-prod-off,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-prod-off,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-prod-off,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-prod-off,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-prod-oilwells,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-prod-oilwells,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-prod-oilwells,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-prod-oilwells,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-prod-oilwells,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-prod-oilwells,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-prod-oilwells,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-prod-pp,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-prod-pp,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-prod-pp,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-prod-pp,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-prod-pp,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-prod-pp,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-prod-pp,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-prod-shalegas,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-prod-shalegas,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-prod-shalegas,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-prod-shalegas,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-prod-shalegas,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-prod-shalegas,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-prod-shalegas,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-prod-ss,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-prod-ss,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-prod-ss,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-prod-ss,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-prod-ss,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-prod-ss,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-prod-ss,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-prod-sum,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-prod-sum,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-prod-sum,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-prod-sum,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-prod-sum,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-prod-sum,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-prod-sum,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-prod-wells,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-prod-wells,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-prod-wells,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-prod-wells,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-prod-wells,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-prod-wells,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-prod-wells,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-prod-whv,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-prod-whv,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-prod-whv,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-prod-whv,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-prod-whv,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-prod-whv,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-prod-whv,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-stor-cap,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-stor-cap,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-stor-cap,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-stor-cap,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-stor-cap,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-stor-cap,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-stor-cap,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-stor-lng,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-stor-lng,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-stor-lng,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-stor-lng,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-stor-lng,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-stor-lng,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-stor-lng,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-stor-sum,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-stor-sum,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-stor-sum,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-stor-sum,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-stor-sum,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-stor-sum,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-stor-sum,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-stor-type,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-stor-type,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-stor-type,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-stor-type,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-stor-type,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-stor-type,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-stor-type,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-stor-wkly,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-stor-wkly,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-stor-wkly,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-stor-wkly,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-stor-wkly,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-stor-wkly,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-stor-wkly,units,string,metadata,,,no,Unit string returned by the API for this row.
 eia-open-data,eia-natural-gas-storage,period,string,time_index,DATE,,yes,"Observation period (YYYY-MM-DD for weekly, YYYY-MM for monthly, YYYY for annual)."
 eia-open-data,eia-natural-gas-storage,duoarea,string,dimension,,,yes,Geographic region code.
 eia-open-data,eia-natural-gas-storage,areaName,string,label,,,no,Human-readable region name.
 eia-open-data,eia-natural-gas-storage,process,string,dimension,,,yes,Storage operation type code.
 eia-open-data,eia-natural-gas-storage,processName,string,label,,,no,"Human-readable process name (Working Gas, Base Gas, Total Storage)."
 eia-open-data,eia-natural-gas-storage,value,number,measure,,billion cubic feet,no,Natural gas in storage.
+eia-open-data,eia-natural-gas-sum-lsum,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-sum-lsum,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-sum-lsum,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-sum-lsum,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-sum-lsum,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-sum-lsum,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-sum-lsum,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-sum-snd,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-sum-snd,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-sum-snd,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-sum-snd,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-sum-snd,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-sum-snd,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-sum-snd,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-natural-gas-sum-sndm,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-natural-gas-sum-sndm,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-natural-gas-sum-sndm,product,string,dimension,,,yes,Product
+eia-open-data,eia-natural-gas-sum-sndm,process,string,dimension,,,yes,Process
+eia-open-data,eia-natural-gas-sum-sndm,series,string,dimension,,,yes,Series
+eia-open-data,eia-natural-gas-sum-sndm,value,number,measure,,,no,
+eia-open-data,eia-natural-gas-sum-sndm,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-nuclear-outages-facility-nuclear-outages,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-nuclear-outages-facility-nuclear-outages,facility,string,dimension,,,yes,Plant code
+eia-open-data,eia-nuclear-outages-facility-nuclear-outages,capacity,number,measure,,megawatts,no,
+eia-open-data,eia-nuclear-outages-facility-nuclear-outages,outage,number,measure,,megawatts,no,
+eia-open-data,eia-nuclear-outages-facility-nuclear-outages,percentOutage,number,measure,,percent,no,
+eia-open-data,eia-nuclear-outages-facility-nuclear-outages,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-nuclear-outages-generator-nuclear-outages,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-nuclear-outages-generator-nuclear-outages,facility,string,dimension,,,yes,Plant code
+eia-open-data,eia-nuclear-outages-generator-nuclear-outages,generator,string,dimension,,,yes,Facility's generator ID number
+eia-open-data,eia-nuclear-outages-generator-nuclear-outages,capacity,number,measure,,megawatts,no,
+eia-open-data,eia-nuclear-outages-generator-nuclear-outages,outage,number,measure,,megawatts,no,
+eia-open-data,eia-nuclear-outages-generator-nuclear-outages,percentOutage,number,measure,,percent,no,
+eia-open-data,eia-nuclear-outages-generator-nuclear-outages,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-cons-821dst,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-cons-821dst,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-cons-821dst,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-cons-821dst,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-cons-821dst,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-cons-821dst,value,number,measure,,,no,
+eia-open-data,eia-petroleum-cons-821dst,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-cons-821dsta,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-cons-821dsta,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-cons-821dsta,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-cons-821dsta,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-cons-821dsta,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-cons-821dsta,value,number,measure,,,no,
+eia-open-data,eia-petroleum-cons-821dsta,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-cons-821ker,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-cons-821ker,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-cons-821ker,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-cons-821ker,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-cons-821ker,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-cons-821ker,value,number,measure,,,no,
+eia-open-data,eia-petroleum-cons-821ker,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-cons-821kera,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-cons-821kera,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-cons-821kera,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-cons-821kera,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-cons-821kera,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-cons-821kera,value,number,measure,,,no,
+eia-open-data,eia-petroleum-cons-821kera,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-cons-821rsd,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-cons-821rsd,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-cons-821rsd,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-cons-821rsd,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-cons-821rsd,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-cons-821rsd,value,number,measure,,,no,
+eia-open-data,eia-petroleum-cons-821rsd,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-cons-821rsda,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-cons-821rsda,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-cons-821rsda,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-cons-821rsda,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-cons-821rsda,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-cons-821rsda,value,number,measure,,,no,
+eia-open-data,eia-petroleum-cons-821rsda,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-cons-821use,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-cons-821use,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-cons-821use,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-cons-821use,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-cons-821use,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-cons-821use,value,number,measure,,,no,
+eia-open-data,eia-petroleum-cons-821use,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-cons-821usea,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-cons-821usea,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-cons-821usea,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-cons-821usea,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-cons-821usea,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-cons-821usea,value,number,measure,,,no,
+eia-open-data,eia-petroleum-cons-821usea,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-cons-prim,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-cons-prim,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-cons-prim,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-cons-prim,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-cons-prim,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-cons-prim,value,number,measure,,,no,
+eia-open-data,eia-petroleum-cons-prim,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-cons-psup,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-cons-psup,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-cons-psup,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-cons-psup,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-cons-psup,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-cons-psup,value,number,measure,,,no,
+eia-open-data,eia-petroleum-cons-psup,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-cons-refmg,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-cons-refmg,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-cons-refmg,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-cons-refmg,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-cons-refmg,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-cons-refmg,value,number,measure,,,no,
+eia-open-data,eia-petroleum-cons-refmg,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-cons-refoth,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-cons-refoth,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-cons-refoth,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-cons-refoth,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-cons-refoth,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-cons-refoth,value,number,measure,,,no,
+eia-open-data,eia-petroleum-cons-refoth,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-cons-refres,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-cons-refres,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-cons-refres,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-cons-refres,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-cons-refres,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-cons-refres,value,number,measure,,,no,
+eia-open-data,eia-petroleum-cons-refres,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-cons-wpsup,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-cons-wpsup,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-cons-wpsup,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-cons-wpsup,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-cons-wpsup,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-cons-wpsup,value,number,measure,,,no,
+eia-open-data,eia-petroleum-cons-wpsup,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-crd-api,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-crd-api,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-crd-api,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-crd-api,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-crd-api,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-crd-api,value,number,measure,,,no,
+eia-open-data,eia-petroleum-crd-api,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-crd-cplc,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-crd-cplc,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-crd-cplc,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-crd-cplc,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-crd-cplc,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-crd-cplc,value,number,measure,,,no,
+eia-open-data,eia-petroleum-crd-cplc,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-crd-crpdn,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-crd-crpdn,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-crd-crpdn,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-crd-crpdn,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-crd-crpdn,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-crd-crpdn,value,number,measure,,,no,
+eia-open-data,eia-petroleum-crd-crpdn,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-crd-drill,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-crd-drill,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-crd-drill,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-crd-drill,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-crd-drill,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-crd-drill,value,number,measure,,,no,
+eia-open-data,eia-petroleum-crd-drill,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-crd-gom,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-crd-gom,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-crd-gom,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-crd-gom,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-crd-gom,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-crd-gom,value,number,measure,,,no,
+eia-open-data,eia-petroleum-crd-gom,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-crd-nprod,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-crd-nprod,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-crd-nprod,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-crd-nprod,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-crd-nprod,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-crd-nprod,value,number,measure,,,no,
+eia-open-data,eia-petroleum-crd-nprod,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-crd-pres,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-crd-pres,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-crd-pres,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-crd-pres,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-crd-pres,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-crd-pres,value,number,measure,,,no,
+eia-open-data,eia-petroleum-crd-pres,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-crd-seis,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-crd-seis,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-crd-seis,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-crd-seis,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-crd-seis,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-crd-seis,value,number,measure,,,no,
+eia-open-data,eia-petroleum-crd-seis,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-crd-wellcost,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-crd-wellcost,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-crd-wellcost,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-crd-wellcost,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-crd-wellcost,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-crd-wellcost,value,number,measure,,,no,
+eia-open-data,eia-petroleum-crd-wellcost,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-crd-welldep,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-crd-welldep,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-crd-welldep,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-crd-welldep,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-crd-welldep,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-crd-welldep,value,number,measure,,,no,
+eia-open-data,eia-petroleum-crd-welldep,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-crd-wellend,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-crd-wellend,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-crd-wellend,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-crd-wellend,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-crd-wellend,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-crd-wellend,value,number,measure,,,no,
+eia-open-data,eia-petroleum-crd-wellend,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-crd-wellfoot,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-crd-wellfoot,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-crd-wellfoot,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-crd-wellfoot,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-crd-wellfoot,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-crd-wellfoot,value,number,measure,,,no,
+eia-open-data,eia-petroleum-crd-wellfoot,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-move-exp,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-move-exp,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-move-exp,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-move-exp,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-move-exp,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-move-exp,value,number,measure,,,no,
+eia-open-data,eia-petroleum-move-exp,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-move-expc,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-move-expc,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-move-expc,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-move-expc,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-move-expc,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-move-expc,value,number,measure,,,no,
+eia-open-data,eia-petroleum-move-expc,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-move-expcp,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-move-expcp,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-move-expcp,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-move-expcp,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-move-expcp,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-move-expcp,value,number,measure,,,no,
+eia-open-data,eia-petroleum-move-expcp,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-move-imc1,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-move-imc1,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-move-imc1,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-move-imc1,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-move-imc1,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-move-imc1,value,number,measure,,,no,
+eia-open-data,eia-petroleum-move-imc1,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-move-imc2,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-move-imc2,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-move-imc2,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-move-imc2,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-move-imc2,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-move-imc2,value,number,measure,,,no,
+eia-open-data,eia-petroleum-move-imc2,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-move-imc3,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-move-imc3,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-move-imc3,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-move-imc3,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-move-imc3,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-move-imc3,value,number,measure,,,no,
+eia-open-data,eia-petroleum-move-imc3,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-move-imp,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-move-imp,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-move-imp,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-move-imp,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-move-imp,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-move-imp,value,number,measure,,,no,
+eia-open-data,eia-petroleum-move-imp,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-move-imp2,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-move-imp2,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-move-imp2,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-move-imp2,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-move-imp2,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-move-imp2,value,number,measure,,,no,
+eia-open-data,eia-petroleum-move-imp2,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-move-impcp,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-move-impcp,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-move-impcp,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-move-impcp,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-move-impcp,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-move-impcp,value,number,measure,,,no,
+eia-open-data,eia-petroleum-move-impcp,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-move-impcus,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-move-impcus,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-move-impcus,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-move-impcus,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-move-impcus,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-move-impcus,value,number,measure,,,no,
+eia-open-data,eia-petroleum-move-impcus,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-move-ipct,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-move-ipct,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-move-ipct,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-move-ipct,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-move-ipct,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-move-ipct,value,number,measure,,,no,
+eia-open-data,eia-petroleum-move-ipct,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-move-land1,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-move-land1,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-move-land1,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-move-land1,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-move-land1,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-move-land1,value,number,measure,,,no,
+eia-open-data,eia-petroleum-move-land1,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-move-land2,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-move-land2,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-move-land2,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-move-land2,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-move-land2,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-move-land2,value,number,measure,,,no,
+eia-open-data,eia-petroleum-move-land2,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-move-land3,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-move-land3,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-move-land3,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-move-land3,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-move-land3,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-move-land3,value,number,measure,,,no,
+eia-open-data,eia-petroleum-move-land3,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-move-neti,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-move-neti,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-move-neti,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-move-neti,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-move-neti,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-move-neti,value,number,measure,,,no,
+eia-open-data,eia-petroleum-move-neti,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-move-netr,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-move-netr,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-move-netr,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-move-netr,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-move-netr,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-move-netr,value,number,measure,,,no,
+eia-open-data,eia-petroleum-move-netr,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-move-pipe,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-move-pipe,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-move-pipe,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-move-pipe,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-move-pipe,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-move-pipe,value,number,measure,,,no,
+eia-open-data,eia-petroleum-move-pipe,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-move-ptb,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-move-ptb,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-move-ptb,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-move-ptb,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-move-ptb,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-move-ptb,value,number,measure,,,no,
+eia-open-data,eia-petroleum-move-ptb,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-move-rail,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-move-rail,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-move-rail,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-move-rail,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-move-rail,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-move-rail,value,number,measure,,,no,
+eia-open-data,eia-petroleum-move-rail,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-move-railna,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-move-railna,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-move-railna,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-move-railna,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-move-railna,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-move-railna,value,number,measure,,,no,
+eia-open-data,eia-petroleum-move-railna,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-move-res,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-move-res,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-move-res,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-move-res,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-move-res,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-move-res,value,number,measure,,,no,
+eia-open-data,eia-petroleum-move-res,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-move-tb,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-move-tb,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-move-tb,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-move-tb,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-move-tb,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-move-tb,value,number,measure,,,no,
+eia-open-data,eia-petroleum-move-tb,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-move-wimpc,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-move-wimpc,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-move-wimpc,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-move-wimpc,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-move-wimpc,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-move-wimpc,value,number,measure,,,no,
+eia-open-data,eia-petroleum-move-wimpc,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-move-wkly,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-move-wkly,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-move-wkly,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-move-wkly,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-move-wkly,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-move-wkly,value,number,measure,,,no,
+eia-open-data,eia-petroleum-move-wkly,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pnp-bioplfuel,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pnp-bioplfuel,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pnp-bioplfuel,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pnp-bioplfuel,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pnp-bioplfuel,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pnp-bioplfuel,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pnp-bioplfuel,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pnp-cap1,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pnp-cap1,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pnp-cap1,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pnp-cap1,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pnp-cap1,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pnp-cap1,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pnp-cap1,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pnp-capbio,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pnp-capbio,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pnp-capbio,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pnp-capbio,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pnp-capbio,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pnp-capbio,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pnp-capbio,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pnp-capchg,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pnp-capchg,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pnp-capchg,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pnp-capchg,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pnp-capchg,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pnp-capchg,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pnp-capchg,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pnp-capfuel,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pnp-capfuel,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pnp-capfuel,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pnp-capfuel,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pnp-capfuel,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pnp-capfuel,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pnp-capfuel,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pnp-capprod,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pnp-capprod,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pnp-capprod,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pnp-capprod,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pnp-capprod,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pnp-capprod,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pnp-capprod,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pnp-caprec,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pnp-caprec,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pnp-caprec,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pnp-caprec,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pnp-caprec,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pnp-caprec,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pnp-caprec,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pnp-capshell,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pnp-capshell,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pnp-capshell,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pnp-capshell,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pnp-capshell,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pnp-capshell,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pnp-capshell,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pnp-capwork,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pnp-capwork,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pnp-capwork,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pnp-capwork,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pnp-capwork,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pnp-capwork,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pnp-capwork,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pnp-crq,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pnp-crq,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pnp-crq,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pnp-crq,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pnp-crq,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pnp-crq,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pnp-crq,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pnp-dwns,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pnp-dwns,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pnp-dwns,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pnp-dwns,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pnp-dwns,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pnp-dwns,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pnp-dwns,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pnp-feedbiofuel,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pnp-feedbiofuel,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pnp-feedbiofuel,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pnp-feedbiofuel,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pnp-feedbiofuel,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pnp-feedbiofuel,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pnp-feedbiofuel,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pnp-feedng,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pnp-feedng,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pnp-feedng,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pnp-feedng,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pnp-feedng,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pnp-feedng,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pnp-feedng,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pnp-gp,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pnp-gp,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pnp-gp,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pnp-gp,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pnp-gp,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pnp-gp,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pnp-gp,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pnp-inpt,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pnp-inpt,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pnp-inpt,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pnp-inpt,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pnp-inpt,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pnp-inpt,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pnp-inpt,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pnp-inpt2,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pnp-inpt2,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pnp-inpt2,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pnp-inpt2,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pnp-inpt2,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pnp-inpt2,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pnp-inpt2,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pnp-inpt3,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pnp-inpt3,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pnp-inpt3,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pnp-inpt3,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pnp-inpt3,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pnp-inpt3,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pnp-inpt3,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pnp-oxy,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pnp-oxy,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pnp-oxy,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pnp-oxy,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pnp-oxy,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pnp-oxy,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pnp-oxy,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pnp-pct,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pnp-pct,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pnp-pct,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pnp-pct,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pnp-pct,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pnp-pct,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pnp-pct,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pnp-refp,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pnp-refp,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pnp-refp,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pnp-refp,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pnp-refp,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pnp-refp,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pnp-refp,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pnp-refp2,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pnp-refp2,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pnp-refp2,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pnp-refp2,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pnp-refp2,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pnp-refp2,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pnp-refp2,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pnp-refp3,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pnp-refp3,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pnp-refp3,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pnp-refp3,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pnp-refp3,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pnp-refp3,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pnp-refp3,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pnp-unc,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pnp-unc,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pnp-unc,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pnp-unc,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pnp-unc,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pnp-unc,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pnp-unc,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pnp-wiup,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pnp-wiup,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pnp-wiup,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pnp-wiup,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pnp-wiup,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pnp-wiup,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pnp-wiup,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pnp-wprodb,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pnp-wprodb,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pnp-wprodb,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pnp-wprodb,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pnp-wprodb,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pnp-wprodb,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pnp-wprodb,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pnp-wprode,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pnp-wprode,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pnp-wprode,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pnp-wprode,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pnp-wprode,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pnp-wprode,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pnp-wprode,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pnp-wprodr,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pnp-wprodr,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pnp-wprodr,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pnp-wprodr,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pnp-wprodr,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pnp-wprodr,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pnp-wprodr,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pnp-wprodrb,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pnp-wprodrb,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pnp-wprodrb,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pnp-wprodrb,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pnp-wprodrb,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pnp-wprodrb,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pnp-wprodrb,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pri-allmg,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pri-allmg,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pri-allmg,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pri-allmg,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pri-allmg,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pri-allmg,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pri-allmg,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pri-dfp1,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pri-dfp1,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pri-dfp1,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pri-dfp1,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pri-dfp1,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pri-dfp1,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pri-dfp1,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pri-dfp2,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pri-dfp2,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pri-dfp2,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pri-dfp2,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pri-dfp2,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pri-dfp2,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pri-dfp2,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pri-dfp3,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pri-dfp3,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pri-dfp3,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pri-dfp3,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pri-dfp3,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pri-dfp3,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pri-dfp3,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pri-dist,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pri-dist,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pri-dist,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pri-dist,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pri-dist,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pri-dist,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pri-dist,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pri-fut,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pri-fut,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pri-fut,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pri-fut,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pri-fut,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pri-fut,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pri-fut,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pri-gnd,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pri-gnd,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pri-gnd,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pri-gnd,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pri-gnd,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pri-gnd,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pri-gnd,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pri-imc1,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pri-imc1,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pri-imc1,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pri-imc1,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pri-imc1,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pri-imc1,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pri-imc1,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pri-imc2,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pri-imc2,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pri-imc2,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pri-imc2,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pri-imc2,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pri-imc2,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pri-imc2,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pri-imc3,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pri-imc3,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pri-imc3,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pri-imc3,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pri-imc3,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pri-imc3,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pri-imc3,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pri-ipct,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pri-ipct,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pri-ipct,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pri-ipct,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pri-ipct,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pri-ipct,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pri-ipct,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pri-land1,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pri-land1,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pri-land1,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pri-land1,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pri-land1,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pri-land1,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pri-land1,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pri-land2,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pri-land2,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pri-land2,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pri-land2,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pri-land2,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pri-land2,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pri-land2,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pri-land3,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pri-land3,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pri-land3,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pri-land3,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pri-land3,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pri-land3,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pri-land3,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pri-prop,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pri-prop,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pri-prop,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pri-prop,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pri-prop,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pri-prop,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pri-prop,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pri-rac2,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pri-rac2,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pri-rac2,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pri-rac2,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pri-rac2,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pri-rac2,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pri-rac2,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pri-refmg,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pri-refmg,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pri-refmg,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pri-refmg,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pri-refmg,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pri-refmg,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pri-refmg,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pri-refmg2,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pri-refmg2,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pri-refmg2,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pri-refmg2,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pri-refmg2,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pri-refmg2,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pri-refmg2,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pri-refoth,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pri-refoth,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pri-refoth,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pri-refoth,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pri-refoth,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pri-refoth,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pri-refoth,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pri-resid,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pri-resid,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pri-resid,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pri-resid,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pri-resid,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pri-resid,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pri-resid,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pri-spt,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pri-spt,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pri-spt,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pri-spt,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pri-spt,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pri-spt,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pri-spt,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-pri-wfr,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-pri-wfr,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-pri-wfr,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-pri-wfr,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-pri-wfr,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-pri-wfr,value,number,measure,,,no,
+eia-open-data,eia-petroleum-pri-wfr,units,string,metadata,,,no,Unit string returned by the API for this row.
 eia-open-data,eia-petroleum-spot-prices,period,string,time_index,DATE,,yes,Observation period.
 eia-open-data,eia-petroleum-spot-prices,series,string,dimension,,,yes,EIA series code identifying the price series.
 eia-open-data,eia-petroleum-spot-prices,seriesDescription,string,label,,,no,Human-readable series name.
@@ -28,8 +1657,101 @@ eia-open-data,eia-petroleum-spot-prices,duoarea,string,dimension,,,no,Geographic
 eia-open-data,eia-petroleum-spot-prices,product,string,dimension,,,no,"Product code (CL crude, GA gasoline, HO heating oil, etc.)."
 eia-open-data,eia-petroleum-spot-prices,value,number,measure,,dollars per barrel (crude); cents per gallon (refined products),no,Spot price (units depend on series).
 eia-open-data,eia-petroleum-spot-prices,units,string,metadata,,,no,Unit string as returned by the API for this series row.
+eia-open-data,eia-petroleum-stoc-cu,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-stoc-cu,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-stoc-cu,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-stoc-cu,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-stoc-cu,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-stoc-cu,value,number,measure,,,no,
+eia-open-data,eia-petroleum-stoc-cu,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-stoc-gp,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-stoc-gp,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-stoc-gp,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-stoc-gp,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-stoc-gp,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-stoc-gp,value,number,measure,,,no,
+eia-open-data,eia-petroleum-stoc-gp,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-stoc-ref,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-stoc-ref,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-stoc-ref,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-stoc-ref,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-stoc-ref,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-stoc-ref,value,number,measure,,,no,
+eia-open-data,eia-petroleum-stoc-ref,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-stoc-st,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-stoc-st,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-stoc-st,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-stoc-st,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-stoc-st,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-stoc-st,value,number,measure,,,no,
+eia-open-data,eia-petroleum-stoc-st,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-stoc-ts,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-stoc-ts,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-stoc-ts,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-stoc-ts,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-stoc-ts,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-stoc-ts,value,number,measure,,,no,
+eia-open-data,eia-petroleum-stoc-ts,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-stoc-typ,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-stoc-typ,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-stoc-typ,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-stoc-typ,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-stoc-typ,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-stoc-typ,value,number,measure,,,no,
+eia-open-data,eia-petroleum-stoc-typ,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-stoc-wstk,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-stoc-wstk,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-stoc-wstk,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-stoc-wstk,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-stoc-wstk,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-stoc-wstk,value,number,measure,,,no,
+eia-open-data,eia-petroleum-stoc-wstk,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-sum-b100,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-sum-b100,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-sum-b100,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-sum-b100,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-sum-b100,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-sum-b100,value,number,measure,,,no,
+eia-open-data,eia-petroleum-sum-b100,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-sum-crdsnd,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-sum-crdsnd,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-sum-crdsnd,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-sum-crdsnd,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-sum-crdsnd,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-sum-crdsnd,value,number,measure,,,no,
+eia-open-data,eia-petroleum-sum-crdsnd,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-sum-mkt,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-sum-mkt,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-sum-mkt,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-sum-mkt,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-sum-mkt,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-sum-mkt,value,number,measure,,,no,
+eia-open-data,eia-petroleum-sum-mkt,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-sum-snd,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-sum-snd,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-sum-snd,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-sum-snd,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-sum-snd,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-sum-snd,value,number,measure,,,no,
+eia-open-data,eia-petroleum-sum-snd,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-petroleum-sum-sndw,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-petroleum-sum-sndw,duoarea,string,dimension,,,yes,DuoArea
+eia-open-data,eia-petroleum-sum-sndw,product,string,dimension,,,yes,Product
+eia-open-data,eia-petroleum-sum-sndw,process,string,dimension,,,yes,Process
+eia-open-data,eia-petroleum-sum-sndw,series,string,dimension,,,yes,Series
+eia-open-data,eia-petroleum-sum-sndw,value,number,measure,,,no,
+eia-open-data,eia-petroleum-sum-sndw,units,string,metadata,,,no,Unit string returned by the API for this row.
+eia-open-data,eia-seds,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-seds,seriesId,string,dimension,,,yes,Unique series identifier
+eia-open-data,eia-seds,stateId,string,dimension,,,yes,State name
+eia-open-data,eia-seds,value,number,measure,,,no,
+eia-open-data,eia-seds,units,string,metadata,,,no,Unit string returned by the API for this row.
 eia-open-data,eia-steo,period,string,time_index,DATE,,yes,Observation period (mixes historical and forecast months).
 eia-open-data,eia-steo,seriesId,string,dimension,,,yes,STEO series identifier.
 eia-open-data,eia-steo,seriesDescription,string,label,,,no,Human-readable series name.
 eia-open-data,eia-steo,value,number,measure,,varies by series (consult metadata endpoint),no,Forecast or historical value depending on period.
 eia-open-data,eia-steo,units,string,metadata,,,no,Unit string for this series.
+eia-open-data,eia-total-energy,period,string,time_index,DATE,,yes,Observation period.
+eia-open-data,eia-total-energy,msn,string,dimension,,,yes,Unique series identifier
+eia-open-data,eia-total-energy,value,number,measure,,,no,
+eia-open-data,eia-total-energy,units,string,metadata,,,no,Unit string returned by the API for this row.

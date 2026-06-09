@@ -1,0 +1,42 @@
+id: eia-coal-shipments-plant-state-aggregates
+source_id: eia-open-data
+name: EIA Plant State Aggregates
+entry_level: dataset
+entry_kind: panel
+api:
+  route: /coal/shipments/plant-state-aggregates
+  data_endpoint: /coal/shipments/plant-state-aggregates/data
+  metadata_endpoint: /coal/shipments/plant-state-aggregates
+time_index: period
+time_grain:
+- quarterly
+- annual
+primary_keys:
+- EIA_ROUTE_PERIOD_PLANTSTATEID_COALRANKID
+join_keys:
+- DATE
+field_schema: catalog/eia-open-data/schemas/coal-shipments-plant-state-aggregates.schema.yaml
+facets:
+- name: plantStateId
+  description: Plant State\Region
+- name: coalRankId
+  description: Coal Rank
+measures:
+- name: quantity
+  unit: tons
+  description: ''
+- name: price
+  unit: average dollars per ton
+  description: ''
+- name: heat-content
+  unit: Btu per pound
+  description: ''
+- name: sulfur-content
+  unit: percent by weight
+  description: ''
+- name: ash-content
+  unit: percent by weight
+  description: ''
+notes: "Coal reciepts aggregated at state-level data, including price, \r\n      \
+  \  quantity, quality, and rank.  Source: EIA Form 7A and MSHA Form 7000-2.  Interactive\
+  \ \r\n        browser:  https://www.eia.gov/coal/data/browser/"

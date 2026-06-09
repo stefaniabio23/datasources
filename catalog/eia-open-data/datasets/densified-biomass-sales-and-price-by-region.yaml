@@ -1,0 +1,29 @@
+id: eia-densified-biomass-sales-and-price-by-region
+source_id: eia-open-data
+name: EIA Sales and Price by Region
+entry_level: dataset
+entry_kind: time-series
+api:
+  route: /densified-biomass/sales-and-price-by-region
+  data_endpoint: /densified-biomass/sales-and-price-by-region/data
+  metadata_endpoint: /densified-biomass/sales-and-price-by-region
+time_index: period
+time_grain:
+- monthly
+primary_keys:
+- EIA_ROUTE_PERIOD_REGION
+join_keys:
+- DATE
+field_schema: catalog/eia-open-data/schemas/densified-biomass-sales-and-price-by-region.schema.yaml
+facets:
+- name: region
+  description: Region
+measures:
+- name: quantity
+  unit: tons
+  description: ''
+- name: average-price
+  unit: USD per ton
+  description: ''
+notes: "Densified biomass sales and average price by region.  \r\n        Source:\
+  \ EIA-63C  Report:  www.eia.gov/biomass/"

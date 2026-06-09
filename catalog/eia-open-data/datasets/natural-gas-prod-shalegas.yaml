@@ -1,0 +1,30 @@
+id: eia-natural-gas-prod-shalegas
+source_id: eia-open-data
+name: EIA natural gas survey data
+entry_level: dataset
+entry_kind: panel
+api:
+  route: /natural-gas/prod/shalegas
+  data_endpoint: /natural-gas/prod/shalegas/data
+  metadata_endpoint: /natural-gas/prod/shalegas
+time_index: period
+time_grain:
+- annual
+primary_keys:
+- EIA_ROUTE_PERIOD_DUOAREA_PRODUCT_PROCESS_SERIES
+join_keys:
+- DATE
+field_schema: catalog/eia-open-data/schemas/natural-gas-prod-shalegas.schema.yaml
+facets:
+- name: duoarea
+  description: DuoArea
+- name: product
+  description: Product
+- name: process
+  description: Process
+- name: series
+  description: Series
+measures:
+- name: value
+  unit: ''
+  description: ''

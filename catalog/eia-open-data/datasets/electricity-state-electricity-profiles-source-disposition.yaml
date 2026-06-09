@@ -1,0 +1,89 @@
+id: eia-electricity-state-electricity-profiles-source-disposition
+source_id: eia-open-data
+name: EIA Supply and disposition of electricity
+entry_level: dataset
+entry_kind: time-series
+api:
+  route: /electricity/state-electricity-profiles/source-disposition
+  data_endpoint: /electricity/state-electricity-profiles/source-disposition/data
+  metadata_endpoint: /electricity/state-electricity-profiles/source-disposition
+time_index: period
+time_grain:
+- annual
+primary_keys:
+- EIA_ROUTE_PERIOD_STATE
+join_keys:
+- DATE
+field_schema: catalog/eia-open-data/schemas/electricity-state-electricity-profiles-source-disposition.schema.yaml
+facets:
+- name: state
+  description: State
+measures:
+- name: electric-utilities
+  unit: megawatthours
+  description: Net Generation from Electric Utilities
+- name: independent-power-producers
+  unit: megawatthours
+  description: Net Generation from Independent Power Producers, Non-Combined Heat
+    and Power
+- name: combined-heat-and-pwr-elect
+  unit: megawatthours
+  description: Net Generation from Independent Power Producers, Combined Heat and
+    Power
+- name: elect-pwr-sector-gen-subtotal
+  unit: megawatthours
+  description: Net Generation from Electric Power Sector
+- name: combined-heat-and-pwr-comm
+  unit: megawatthours
+  description: Net Generation from Commercial Sector
+- name: combined-heat-and-pwr-indust
+  unit: megawatthours
+  description: Net Generation from Industrial Sector
+- name: indust-and-comm-gen-subtotal
+  unit: megawatthours
+  description: Net Generation from Industrial and Commercial Sectors
+- name: total-net-generation
+  unit: megawatthours
+  description: Net Generation from All Sectors
+- name: total-international-imports
+  unit: megawatthours
+  description: Total International Imports
+- name: total-supply
+  unit: megawatthours
+  description: Total Supply
+- name: full-service-providers
+  unit: megawatthours
+  description: Retail Sales of Electricity by Full Service Providers
+- name: energy-only-providers
+  unit: megawatthours
+  description: Retail Sales of Electrcity by Energy-Only Providers
+- name: facility-direct
+  unit: megawatthours
+  description: Retail Sales of Electricity Sold Directly by Commercial and Industrial
+    Facilities
+- name: total-elect-indust
+  unit: megawatthours
+  description: Retail Sales of Electricity, Total Electric Industry
+- name: direct-use
+  unit: megawatthours
+  description: Direct Use of Generation by Commercial and Industrial Facilities
+- name: total-international-exports
+  unit: megawatthours
+  description: Total International Exports
+- name: estimated-losses
+  unit: megawatthours
+  description: Estimated Losses Incurred in Transmission and Distribution
+- name: net-interstate-trade
+  unit: megawatthours
+  description: Net Interstate Imports
+- name: unaccounted
+  unit: megawatthours
+  description: Unaccounted Electricity
+- name: total-disposition
+  unit: megawatthours
+  description: Total Disposition
+- name: net-trade-index
+  unit: ratio
+  description: Net Trade Index Ratio
+notes: "Supply and disposition of electricity by state.\n    Sources: Forms EIA-860,\
+  \ EIA-861, and EIA-923\n    Product: State Electricity Profiles, Table 10"

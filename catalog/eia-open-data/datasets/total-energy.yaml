@@ -1,0 +1,31 @@
+id: eia-total-energy
+source_id: eia-open-data
+name: EIA Total Energy
+entry_level: dataset
+entry_kind: time-series
+api:
+  route: /total-energy
+  data_endpoint: /total-energy/data
+  metadata_endpoint: /total-energy
+time_index: period
+time_grain:
+- annual
+- monthly
+primary_keys:
+- EIA_ROUTE_PERIOD_MSN
+join_keys:
+- DATE
+field_schema: catalog/eia-open-data/schemas/total-energy.schema.yaml
+facets:
+- name: msn
+  description: Unique series identifier
+measures:
+- name: value
+  unit: ''
+  description: ''
+notes: 'These data represent the most recent comprehensive energy statistics integrated
+  across all energy sources.  The data includes total energy production, consumption,
+  stocks, and trade; energy prices; overviews of petroleum, natural gas, coal, electricity,
+  nuclear energy, renewable energy, and carbon dioxide emissions; and data unit conversions
+  values.  Source: https://www.eia.gov/totalenergy/data/monthly/pdf/mer_a_doc.pdf  Report:  MER
+  (https://www.eia.gov/totalenergy/data/monthly/)'

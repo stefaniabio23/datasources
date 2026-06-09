@@ -1,0 +1,49 @@
+id: eia-coal-shipments-by-mine-by-plant
+source_id: eia-open-data
+name: EIA By Mine, By Plant
+entry_level: dataset
+entry_kind: panel
+api:
+  route: /coal/shipments/by-mine-by-plant
+  data_endpoint: /coal/shipments/by-mine-by-plant/data
+  metadata_endpoint: /coal/shipments/by-mine-by-plant
+time_index: period
+time_grain:
+- quarterly
+- annual
+primary_keys:
+- EIA_ROUTE_PERIOD_MINESTATEID_MINEMSHAID_COALSUPPLIER_PLANTSTATEID_PLANTID_COA
+join_keys:
+- DATE
+field_schema: catalog/eia-open-data/schemas/coal-shipments-by-mine-by-plant.schema.yaml
+facets:
+- name: mineStateId
+  description: Mine State\Region
+- name: mineMSHAId
+  description: Mine
+- name: coalSupplier
+  description: Coal Supplier
+- name: plantStateId
+  description: Plant State\Region
+- name: plantId
+  description: Plant
+- name: coalType
+  description: Coal Type
+measures:
+- name: quantity
+  unit: tons
+  description: ''
+- name: price
+  unit: average dollars per ton
+  description: ''
+- name: sulfur-content
+  unit: percent by weight
+  description: ''
+- name: ash-content
+  unit: percent by weight
+  description: ''
+- name: heat-content
+  unit: Btu per pound
+  description: ''
+notes: 'Coal shipments from mine- to plant-level data, including price, quantity,
+  quality, and rank.  Source: EIA Form 7A and MSHA Form 7000-2.  Interactive browser:  https://www.eia.gov/coal/data/browser/'

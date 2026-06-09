@@ -1,0 +1,30 @@
+dataset_id: eia-coal-price-by-rank
+source_id: eia-open-data
+fields:
+- name: period
+  type: string
+  description: Observation period.
+  role: time_index
+  join_key: DATE
+  required: true
+- name: stateRegionId
+  type: string
+  description: State\Region
+  role: dimension
+  required: true
+- name: coalRankId
+  type: string
+  description: Coal Rank
+  role: dimension
+  required: true
+- name: price
+  type: number
+  description: ''
+  role: measure
+  unit: dollars per short ton
+  required: false
+- name: units
+  type: string
+  description: Unit string returned by the API for this row.
+  role: metadata
+  required: false

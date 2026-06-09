@@ -1,0 +1,34 @@
+id: eia-electricity-state-electricity-profiles-net-metering
+source_id: eia-open-data
+name: 'EIA Electricity Net Metering: Customers and Capacity'
+entry_level: dataset
+entry_kind: panel
+api:
+  route: /electricity/state-electricity-profiles/net-metering
+  data_endpoint: /electricity/state-electricity-profiles/net-metering/data
+  metadata_endpoint: /electricity/state-electricity-profiles/net-metering
+time_index: period
+time_grain:
+- annual
+primary_keys:
+- EIA_ROUTE_PERIOD_STATE_TECHNOLOGY_SECTOR
+join_keys:
+- DATE
+field_schema: catalog/eia-open-data/schemas/electricity-state-electricity-profiles-net-metering.schema.yaml
+facets:
+- name: state
+  description: state
+- name: technology
+  description: Technology used to Generate Electricity
+- name: sector
+  description: sector
+measures:
+- name: capacity
+  unit: megawatts
+  description: ''
+- name: customers
+  unit: number of customers
+  description: Customer Count
+notes: "Electricity net metering customer counts and capacity by state, sector, and\
+  \ generating technology.\n    Source: Form EIA-861\n    Product: State Electricity\
+  \ Profiles, Table 11"

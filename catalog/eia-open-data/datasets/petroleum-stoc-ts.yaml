@@ -1,0 +1,31 @@
+id: eia-petroleum-stoc-ts
+source_id: eia-open-data
+name: EIA petroleum gas survey data
+entry_level: dataset
+entry_kind: panel
+api:
+  route: /petroleum/stoc/ts
+  data_endpoint: /petroleum/stoc/ts/data
+  metadata_endpoint: /petroleum/stoc/ts
+time_index: period
+time_grain:
+- monthly
+- annual
+primary_keys:
+- EIA_ROUTE_PERIOD_DUOAREA_PRODUCT_PROCESS_SERIES
+join_keys:
+- DATE
+field_schema: catalog/eia-open-data/schemas/petroleum-stoc-ts.schema.yaml
+facets:
+- name: duoarea
+  description: DuoArea
+- name: product
+  description: Product
+- name: process
+  description: Process
+- name: series
+  description: Series
+measures:
+- name: value
+  unit: ''
+  description: ''

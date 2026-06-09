@@ -1,0 +1,35 @@
+dataset_id: eia-electricity-state-electricity-profiles-meters
+source_id: eia-open-data
+fields:
+- name: period
+  type: string
+  description: Observation period.
+  role: time_index
+  join_key: DATE
+  required: true
+- name: state
+  type: string
+  description: State
+  role: dimension
+  required: true
+- name: technology
+  type: string
+  description: Meter Technology
+  role: dimension
+  required: true
+- name: sector
+  type: string
+  description: sector
+  role: dimension
+  required: true
+- name: meters
+  type: number
+  description: Meter Count
+  role: measure
+  unit: number of meters
+  required: false
+- name: units
+  type: string
+  description: Unit string returned by the API for this row.
+  role: metadata
+  required: false

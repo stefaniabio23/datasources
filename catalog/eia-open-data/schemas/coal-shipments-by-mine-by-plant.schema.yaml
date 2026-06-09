@@ -1,0 +1,74 @@
+dataset_id: eia-coal-shipments-by-mine-by-plant
+source_id: eia-open-data
+fields:
+- name: period
+  type: string
+  description: Observation period.
+  role: time_index
+  join_key: DATE
+  required: true
+- name: mineStateId
+  type: string
+  description: Mine State\Region
+  role: dimension
+  required: true
+- name: mineMSHAId
+  type: string
+  description: Mine
+  role: dimension
+  required: true
+- name: coalSupplier
+  type: string
+  description: Coal Supplier
+  role: dimension
+  required: true
+- name: plantStateId
+  type: string
+  description: Plant State\Region
+  role: dimension
+  required: true
+- name: plantId
+  type: string
+  description: Plant
+  role: dimension
+  required: true
+- name: coalType
+  type: string
+  description: Coal Type
+  role: dimension
+  required: true
+- name: quantity
+  type: number
+  description: ''
+  role: measure
+  unit: tons
+  required: false
+- name: price
+  type: number
+  description: ''
+  role: measure
+  unit: average dollars per ton
+  required: false
+- name: sulfur-content
+  type: number
+  description: ''
+  role: measure
+  unit: percent by weight
+  required: false
+- name: ash-content
+  type: number
+  description: ''
+  role: measure
+  unit: percent by weight
+  required: false
+- name: heat-content
+  type: number
+  description: ''
+  role: measure
+  unit: Btu per pound
+  required: false
+- name: units
+  type: string
+  description: Unit string returned by the API for this row.
+  role: metadata
+  required: false

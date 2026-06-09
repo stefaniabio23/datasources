@@ -1,0 +1,37 @@
+id: eia-co2-emissions-co2-emissions-and-carbon-coefficients
+source_id: eia-open-data
+name: 'EIA CO2 Emissions and Carbon Coefficients by Product - deprecated: see SEDS'
+entry_level: dataset
+entry_kind: panel
+api:
+  route: /co2-emissions/co2-emissions-and-carbon-coefficients
+  data_endpoint: /co2-emissions/co2-emissions-and-carbon-coefficients/data
+  metadata_endpoint: /co2-emissions/co2-emissions-and-carbon-coefficients
+time_index: period
+time_grain:
+- annual
+primary_keys:
+- EIA_ROUTE_PERIOD_SERIESID_SECTORID_FUELID_STATEID
+join_keys:
+- DATE
+field_schema: catalog/eia-open-data/schemas/co2-emissions-co2-emissions-and-carbon-coefficients.schema.yaml
+facets:
+- name: seriesId
+  description: Series
+- name: sectorId
+  description: Sector
+- name: fuelId
+  description: Fuel Type
+- name: stateId
+  description: State
+measures:
+- name: emissions
+  unit: CO2 metric tons
+  description: ''
+- name: carbon-coefficient
+  unit: Kilograms of CO2 per million Btu
+  description: ''
+notes: "CO2 emissions and carbon coefficients by fuel, state, and sector. Report and\
+  \ documentation: https://www.eia.gov/environment/emissions/state/.\n    \"This route\
+  \ is deprecated and no longer receiving fresh data. For state-level CO2 emissions\
+  \ data, please use the /v2/seds/ API route."

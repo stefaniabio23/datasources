@@ -1,0 +1,35 @@
+dataset_id: eia-electricity-state-electricity-profiles-capability
+source_id: eia-open-data
+fields:
+- name: period
+  type: string
+  description: Observation period.
+  role: time_index
+  join_key: DATE
+  required: true
+- name: stateId
+  type: string
+  description: State
+  role: dimension
+  required: true
+- name: producertypeid
+  type: string
+  description: Sector
+  role: dimension
+  required: true
+- name: energysourceid
+  type: string
+  description: Energy Source
+  role: dimension
+  required: true
+- name: capability
+  type: number
+  description: Net Summer Capacity
+  role: measure
+  unit: megawatts
+  required: false
+- name: units
+  type: string
+  description: Unit string returned by the API for this row.
+  role: metadata
+  required: false

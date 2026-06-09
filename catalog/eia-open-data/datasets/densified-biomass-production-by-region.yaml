@@ -1,0 +1,28 @@
+id: eia-densified-biomass-production-by-region
+source_id: eia-open-data
+name: EIA Production by Region
+entry_level: dataset
+entry_kind: panel
+api:
+  route: /densified-biomass/production-by-region
+  data_endpoint: /densified-biomass/production-by-region/data
+  metadata_endpoint: /densified-biomass/production-by-region
+time_index: period
+time_grain:
+- monthly
+primary_keys:
+- EIA_ROUTE_PERIOD_FUELTYPEID_REGION
+join_keys:
+- DATE
+field_schema: catalog/eia-open-data/schemas/densified-biomass-production-by-region.schema.yaml
+facets:
+- name: fuelTypeId
+  description: Fuel Type
+- name: region
+  description: Region
+measures:
+- name: production
+  unit: tons
+  description: ''
+notes: "Densified biomass production by region and fuel type.  \r\n        Source:\
+  \ EIA-63C  Report:  www.eia.gov/biomass/"

@@ -1,0 +1,32 @@
+id: eia-densified-biomass-capacity-by-region
+source_id: eia-open-data
+name: EIA Capacity by Region
+entry_level: dataset
+entry_kind: time-series
+api:
+  route: /densified-biomass/capacity-by-region
+  data_endpoint: /densified-biomass/capacity-by-region/data
+  metadata_endpoint: /densified-biomass/capacity-by-region
+time_index: period
+time_grain:
+- monthly
+primary_keys:
+- EIA_ROUTE_PERIOD_REGION
+join_keys:
+- DATE
+field_schema: catalog/eia-open-data/schemas/densified-biomass-capacity-by-region.schema.yaml
+facets:
+- name: region
+  description: Region
+measures:
+- name: number-of-facilities
+  unit: number of facilities
+  description: ''
+- name: capacity
+  unit: tons
+  description: ''
+- name: number-of-fte-employees
+  unit: number of fte employees
+  description: ''
+notes: "Densified biomass capacity includes number of facilities \r\n        and number\
+  \ of employees.  Source: EIA-63C  Report:  www.eia.gov/biomass/"

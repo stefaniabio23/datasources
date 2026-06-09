@@ -1,0 +1,59 @@
+dataset_id: eia-coal-aggregate-production
+source_id: eia-open-data
+fields:
+- name: period
+  type: string
+  description: Observation period.
+  role: time_index
+  join_key: DATE
+  required: true
+- name: stateRegionId
+  type: string
+  description: State\Region
+  role: dimension
+  required: true
+- name: coalRankId
+  type: string
+  description: Coal Rank
+  role: dimension
+  required: true
+- name: mineTypeId
+  type: string
+  description: Mine Type
+  role: dimension
+  required: true
+- name: production
+  type: number
+  description: ''
+  role: measure
+  unit: short tons
+  required: false
+- name: number-of-mines
+  type: number
+  description: ''
+  role: measure
+  unit: number of mines
+  required: false
+- name: labor-hours
+  type: number
+  description: ''
+  role: measure
+  unit: hours
+  required: false
+- name: average-employees
+  type: number
+  description: ''
+  role: measure
+  unit: number of employees
+  required: false
+- name: productivity
+  type: number
+  description: ''
+  role: measure
+  unit: short tons per labor hour
+  required: false
+- name: units
+  type: string
+  description: Unit string returned by the API for this row.
+  role: metadata
+  required: false

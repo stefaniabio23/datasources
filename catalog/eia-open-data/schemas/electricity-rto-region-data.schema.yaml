@@ -1,0 +1,30 @@
+dataset_id: eia-electricity-rto-region-data
+source_id: eia-open-data
+fields:
+- name: period
+  type: string
+  description: Observation period.
+  role: time_index
+  join_key: DATE
+  required: true
+- name: respondent
+  type: string
+  description: Balancing Authority / Region
+  role: dimension
+  required: true
+- name: type
+  type: string
+  description: Metric
+  role: dimension
+  required: true
+- name: value
+  type: number
+  description: Demand, Demand Forecast, Net Generation, or Interchange
+  role: measure
+  unit: megawatthours
+  required: false
+- name: units
+  type: string
+  description: Unit string returned by the API for this row.
+  role: metadata
+  required: false

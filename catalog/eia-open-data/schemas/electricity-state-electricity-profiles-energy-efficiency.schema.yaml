@@ -1,0 +1,53 @@
+dataset_id: eia-electricity-state-electricity-profiles-energy-efficiency
+source_id: eia-open-data
+fields:
+- name: period
+  type: string
+  description: Observation period.
+  role: time_index
+  join_key: DATE
+  required: true
+- name: state
+  type: string
+  description: State
+  role: dimension
+  required: true
+- name: timePeriod
+  type: string
+  description: Time Period Included in Costs and Savings
+  role: dimension
+  required: true
+- name: sector
+  type: string
+  description: Sector
+  role: dimension
+  required: true
+- name: energy-savings
+  type: number
+  description: Annual Energy Savings
+  role: measure
+  unit: megawatthours
+  required: false
+- name: potential-peak-savings
+  type: number
+  description: Peak Demand Savings
+  role: measure
+  unit: megawatts
+  required: false
+- name: customer-incentive
+  type: number
+  description: Cost of Customer Incentives
+  role: measure
+  unit: thousand dollars
+  required: false
+- name: all-other-costs
+  type: number
+  description: All Other Costs
+  role: measure
+  unit: thousand dollars
+  required: false
+- name: units
+  type: string
+  description: Unit string returned by the API for this row.
+  role: metadata
+  required: false

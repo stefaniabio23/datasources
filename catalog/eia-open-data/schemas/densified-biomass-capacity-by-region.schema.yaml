@@ -1,0 +1,37 @@
+dataset_id: eia-densified-biomass-capacity-by-region
+source_id: eia-open-data
+fields:
+- name: period
+  type: string
+  description: Observation period.
+  role: time_index
+  join_key: DATE
+  required: true
+- name: region
+  type: string
+  description: Region
+  role: dimension
+  required: true
+- name: number-of-facilities
+  type: number
+  description: ''
+  role: measure
+  unit: number of facilities
+  required: false
+- name: capacity
+  type: number
+  description: ''
+  role: measure
+  unit: tons
+  required: false
+- name: number-of-fte-employees
+  type: number
+  description: ''
+  role: measure
+  unit: number of fte employees
+  required: false
+- name: units
+  type: string
+  description: Unit string returned by the API for this row.
+  role: metadata
+  required: false

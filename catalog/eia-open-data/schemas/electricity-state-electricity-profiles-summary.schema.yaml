@@ -1,0 +1,236 @@
+dataset_id: eia-electricity-state-electricity-profiles-summary
+source_id: eia-open-data
+fields:
+- name: period
+  type: string
+  description: Observation period.
+  role: time_index
+  join_key: DATE
+  required: true
+- name: stateID
+  type: string
+  description: State
+  role: dimension
+  required: true
+- name: net-summer-capacity
+  type: number
+  description: Net Summer Capacity, All Sectors
+  role: measure
+  unit: megawatts
+  required: false
+- name: net-summer-capacity-rank
+  type: number
+  description: Net Summer Capacity, All Sectors (U.S. Rank)
+  role: measure
+  unit: rank
+  required: false
+- name: capacity-elec-utilities
+  type: number
+  description: Net Summer Capacity, Electric Power Sector
+  role: measure
+  unit: megawatts
+  required: false
+- name: capacity-elect-utilities-rank
+  type: number
+  description: Average Retail Price of Electricity (U.S. Rank)
+  role: measure
+  unit: rank
+  required: false
+- name: capacity-ipp
+  type: number
+  description: Net Summer Capacity, Independent Power Producers and Industrial / Commercial
+    Sectors
+  role: measure
+  unit: megawatts
+  required: false
+- name: capacity-ipp-rank
+  type: number
+  description: Net Summer Capacity, Independent Power Producers and Industrial / Commercial
+    Sectors (U.S. Rank)
+  role: measure
+  unit: rank
+  required: false
+- name: net-generation
+  type: number
+  description: Net Generation, All Sectors
+  role: measure
+  unit: megawatthours
+  required: false
+- name: net-generation-rank
+  type: number
+  description: Net Generation, All Sectors (U.S. Rank)
+  role: measure
+  unit: rank
+  required: false
+- name: generation-elect-utils
+  type: number
+  description: Net Generation, Electric Power Sector
+  role: measure
+  unit: megawatthours
+  required: false
+- name: generation-elect-utils-rank
+  type: number
+  description: Net Generation, Electric Power Sector (U.S. Rank)
+  role: measure
+  unit: rank
+  required: false
+- name: generation-ipp
+  type: number
+  description: Net Generation, Independent Power Producers and Industrial / Commercial
+    Sectors
+  role: measure
+  unit: megawatthours
+  required: false
+- name: generation-ipp-rank
+  type: number
+  description: Net Generation, Independent Power Producers and Industrial / Commercial
+    Sectors (U.S. Rank)
+  role: measure
+  unit: rank
+  required: false
+- name: sulfer-dioxide
+  type: number
+  description: SO2 Emissions
+  role: measure
+  unit: short tons
+  required: false
+- name: sulfer-dioxide-rank
+  type: number
+  description: SO2 Emissions (U.S. Rank)
+  role: measure
+  unit: rank
+  required: false
+- name: nitrogen-oxide
+  type: number
+  description: NOx Emissions
+  role: measure
+  unit: short tons
+  required: false
+- name: nitrogen-oxide-rank
+  type: number
+  description: NOx Emissions (U.S. Rank)
+  role: measure
+  unit: rank
+  required: false
+- name: carbon-dioxide
+  type: number
+  description: CO2 Emissions
+  role: measure
+  unit: thousand metric tons
+  required: false
+- name: carbon-dioxide-rank
+  type: number
+  description: CO2 Emissions (U.S. Rank)
+  role: measure
+  unit: rank
+  required: false
+- name: sulfer-dioxide-lbs
+  type: number
+  description: SO2 Emissions Rate per MWh
+  role: measure
+  unit: pounds per megawatthour
+  required: false
+- name: sulfer-dioxide-rank-lbs
+  type: number
+  description: SO2 Emissions Rate per MWh (U.S. Rank)
+  role: measure
+  unit: rank
+  required: false
+- name: nitrogen-oxide-lbs
+  type: number
+  description: NOx Emissions Rate per MWh
+  role: measure
+  unit: pounds per megawatthour
+  required: false
+- name: nitrogen-oxide-rank-lbs
+  type: number
+  description: NOx Emissions Rate per MWh (U.S. Rank)
+  role: measure
+  unit: rank
+  required: false
+- name: carbon-dioxide-lbs
+  type: number
+  description: CO2 Emissions Rate per MWh
+  role: measure
+  unit: pounds per megawatthour
+  required: false
+- name: carbon-dioxide-rank-lbs
+  type: number
+  description: CO2 Emissions Rate per MWh (U.S. Rank)
+  role: measure
+  unit: rank
+  required: false
+- name: total-retail-sales
+  type: number
+  description: Retail Sales of Electricity, Total Electric Industry
+  role: measure
+  unit: megawatthours
+  required: false
+- name: total-retail-sales-rank
+  type: number
+  description: Retail Sales of Electricity, Total Electric Industry (U.S. Rank)
+  role: measure
+  unit: rank
+  required: false
+- name: fsp-service-provider-sales
+  type: number
+  description: Retail Sales of Electrcity by Full Service Providers and Electricity
+    Sold Directly by Commercial and Industrial  Facilities
+  role: measure
+  unit: megawatthours
+  required: false
+- name: fsp-sales-rank
+  type: number
+  description: Retail Sales of Electrcity by Full Service Providers and Electricity
+    Sold Directly by Commercial and Industrial Facilities (U.S. Rank)
+  role: measure
+  unit: rank
+  required: false
+- name: eop-sales
+  type: number
+  description: Retail Sales of Electrcity by Energy-Only Providers
+  role: measure
+  unit: megawatthours
+  required: false
+- name: eop-sales-rank
+  type: number
+  description: Retail Sales of Electrcity by Energy-Only Providers (U.S. Rank)
+  role: measure
+  unit: rank
+  required: false
+- name: direct-use
+  type: number
+  description: Direct Use of Generation by Commercial and Industrial Facilities
+  role: measure
+  unit: megawatthours
+  required: false
+- name: direct-use-rank
+  type: number
+  description: Direct Use of Generation by Commercial and Industrial Facilities (U.S.
+    Rank)
+  role: measure
+  unit: rank
+  required: false
+- name: average-retail-price
+  type: number
+  description: Average Retail Price of Electricity
+  role: measure
+  unit: cents per kilowatthour
+  required: false
+- name: average-retail-price-rank
+  type: number
+  description: Average Retail Price of Electricity (U.S. Rank)
+  role: measure
+  unit: rank
+  required: false
+- name: prime-source
+  type: number
+  description: Prime Source
+  role: measure
+  unit: ''
+  required: false
+- name: units
+  type: string
+  description: Unit string returned by the API for this row.
+  role: metadata
+  required: false

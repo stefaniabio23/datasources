@@ -1,0 +1,32 @@
+id: eia-co2-emissions-co2-emissions-aggregates
+source_id: eia-open-data
+name: 'EIA Total CO2 Emissions by Sector and Fuel - deprecated: see SEDS'
+entry_level: dataset
+entry_kind: panel
+api:
+  route: /co2-emissions/co2-emissions-aggregates
+  data_endpoint: /co2-emissions/co2-emissions-aggregates/data
+  metadata_endpoint: /co2-emissions/co2-emissions-aggregates
+time_index: period
+time_grain:
+- annual
+primary_keys:
+- EIA_ROUTE_PERIOD_SECTORID_FUELID_STATEID
+join_keys:
+- DATE
+field_schema: catalog/eia-open-data/schemas/co2-emissions-co2-emissions-aggregates.schema.yaml
+facets:
+- name: sectorId
+  description: Sector
+- name: fuelId
+  description: Fuel Type
+- name: stateId
+  description: State
+measures:
+- name: value
+  unit: million metric tons of CO2
+  description: ''
+notes: "CO2 emission aggregates by fuel, state, and sector.  Report and documentation:\
+  \ https://www.eia.gov/environment/emissions/state/. \"This route is deprecated and\
+  \ no longer receiving fresh data.\n     For state-level CO2 emissions data, please\
+  \ use the /v2/seds/ API route."

@@ -1,0 +1,29 @@
+id: eia-electricity-rto-region-data
+source_id: eia-open-data
+name: EIA Hourly Demand, Demand Forecast, Generation, and Interchange
+entry_level: dataset
+entry_kind: panel
+api:
+  route: /electricity/rto/region-data
+  data_endpoint: /electricity/rto/region-data/data
+  metadata_endpoint: /electricity/rto/region-data
+time_index: period
+time_grain:
+- hourly
+primary_keys:
+- EIA_ROUTE_PERIOD_RESPONDENT_TYPE
+join_keys:
+- DATE
+field_schema: catalog/eia-open-data/schemas/electricity-rto-region-data.schema.yaml
+facets:
+- name: respondent
+  description: Balancing Authority / Region
+- name: type
+  description: Metric
+measures:
+- name: value
+  unit: megawatthours
+  description: Demand, Demand Forecast, Net Generation, or Interchange
+notes: "Hourly demand, day-ahead demand forecast, net generation, and interchange\
+  \ by balancing authority.  \n    Source: Form EIA-930\n    Product: Hourly Electric\
+  \ Grid Monitor"

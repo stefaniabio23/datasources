@@ -1,0 +1,41 @@
+id: eia-international
+source_id: eia-open-data
+name: EIA International
+entry_level: dataset
+entry_kind: panel
+api:
+  route: /international
+  data_endpoint: /international/data
+  metadata_endpoint: /international
+time_index: period
+time_grain:
+- monthly
+- quarterly
+- annual
+primary_keys:
+- EIA_ROUTE_PERIOD_PRODUCTID_ACTIVITYID_COUNTRYREGIONID_COUNTRYREGIONTYPEID_DAT
+join_keys:
+- DATE
+- ISO_3
+field_schema: catalog/eia-open-data/schemas/international.schema.yaml
+facets:
+- name: productId
+  description: Product
+- name: activityId
+  description: Activity
+- name: countryRegionId
+  description: Country/Region
+  join_key: ISO_3
+- name: countryRegionTypeId
+  description: Country/Region Type
+- name: dataFlagId
+  description: Data flag ID
+- name: unit
+  description: Unit
+measures:
+- name: value
+  unit: ''
+  description: ''
+notes: "Country level production, consumption, imports, exports by energy source (petroleum,\
+  \ natural gas, electricity, renewable, etc.)  \r\n        Interactive product: \
+  \ https://www.eia.gov/international/data/world"

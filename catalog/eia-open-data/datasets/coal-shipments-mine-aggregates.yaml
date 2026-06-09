@@ -1,0 +1,44 @@
+id: eia-coal-shipments-mine-aggregates
+source_id: eia-open-data
+name: EIA Mine Aggregates
+entry_level: dataset
+entry_kind: panel
+api:
+  route: /coal/shipments/mine-aggregates
+  data_endpoint: /coal/shipments/mine-aggregates/data
+  metadata_endpoint: /coal/shipments/mine-aggregates
+time_index: period
+time_grain:
+- quarterly
+- annual
+primary_keys:
+- EIA_ROUTE_PERIOD_MINESTATEID_MINEMSHAID_COALRANKID
+join_keys:
+- DATE
+field_schema: catalog/eia-open-data/schemas/coal-shipments-mine-aggregates.schema.yaml
+facets:
+- name: mineStateId
+  description: Mine State\Region
+- name: mineMSHAId
+  description: Mine
+- name: coalRankId
+  description: Coal Rank
+measures:
+- name: quantity
+  unit: tons
+  description: ''
+- name: price
+  unit: average dollars per ton
+  description: ''
+- name: heat-content
+  unit: Btu per pound
+  description: ''
+- name: sulfur-content
+  unit: percent by weight
+  description: ''
+- name: ash-content
+  unit: percent by weight
+  description: ''
+notes: "Coal shipments aggregated at mine-level data, \r\n        including price,\
+  \ quantity, quality, and rank.  Source: EIA Form 7A and \r\n        MSHA Form 7000-2.\
+  \  Interactive browser:  https://www.eia.gov/coal/data/browser/"

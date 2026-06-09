@@ -1,0 +1,135 @@
+id: eia-electricity-state-electricity-profiles-summary
+source_id: eia-open-data
+name: EIA State Rankings for Key Statistics
+entry_level: dataset
+entry_kind: time-series
+api:
+  route: /electricity/state-electricity-profiles/summary
+  data_endpoint: /electricity/state-electricity-profiles/summary/data
+  metadata_endpoint: /electricity/state-electricity-profiles/summary
+time_index: period
+time_grain:
+- annual
+primary_keys:
+- EIA_ROUTE_PERIOD_STATEID
+join_keys:
+- DATE
+field_schema: catalog/eia-open-data/schemas/electricity-state-electricity-profiles-summary.schema.yaml
+facets:
+- name: stateID
+  description: State
+measures:
+- name: net-summer-capacity
+  unit: megawatts
+  description: Net Summer Capacity, All Sectors
+- name: net-summer-capacity-rank
+  unit: rank
+  description: Net Summer Capacity, All Sectors (U.S. Rank)
+- name: capacity-elec-utilities
+  unit: megawatts
+  description: Net Summer Capacity, Electric Power Sector
+- name: capacity-elect-utilities-rank
+  unit: rank
+  description: Average Retail Price of Electricity (U.S. Rank)
+- name: capacity-ipp
+  unit: megawatts
+  description: Net Summer Capacity, Independent Power Producers and Industrial / Commercial
+    Sectors
+- name: capacity-ipp-rank
+  unit: rank
+  description: Net Summer Capacity, Independent Power Producers and Industrial / Commercial
+    Sectors (U.S. Rank)
+- name: net-generation
+  unit: megawatthours
+  description: Net Generation, All Sectors
+- name: net-generation-rank
+  unit: rank
+  description: Net Generation, All Sectors (U.S. Rank)
+- name: generation-elect-utils
+  unit: megawatthours
+  description: Net Generation, Electric Power Sector
+- name: generation-elect-utils-rank
+  unit: rank
+  description: Net Generation, Electric Power Sector (U.S. Rank)
+- name: generation-ipp
+  unit: megawatthours
+  description: Net Generation, Independent Power Producers and Industrial / Commercial
+    Sectors
+- name: generation-ipp-rank
+  unit: rank
+  description: Net Generation, Independent Power Producers and Industrial / Commercial
+    Sectors (U.S. Rank)
+- name: sulfer-dioxide
+  unit: short tons
+  description: SO2 Emissions
+- name: sulfer-dioxide-rank
+  unit: rank
+  description: SO2 Emissions (U.S. Rank)
+- name: nitrogen-oxide
+  unit: short tons
+  description: NOx Emissions
+- name: nitrogen-oxide-rank
+  unit: rank
+  description: NOx Emissions (U.S. Rank)
+- name: carbon-dioxide
+  unit: thousand metric tons
+  description: CO2 Emissions
+- name: carbon-dioxide-rank
+  unit: rank
+  description: CO2 Emissions (U.S. Rank)
+- name: sulfer-dioxide-lbs
+  unit: pounds per megawatthour
+  description: SO2 Emissions Rate per MWh
+- name: sulfer-dioxide-rank-lbs
+  unit: rank
+  description: SO2 Emissions Rate per MWh (U.S. Rank)
+- name: nitrogen-oxide-lbs
+  unit: pounds per megawatthour
+  description: NOx Emissions Rate per MWh
+- name: nitrogen-oxide-rank-lbs
+  unit: rank
+  description: NOx Emissions Rate per MWh (U.S. Rank)
+- name: carbon-dioxide-lbs
+  unit: pounds per megawatthour
+  description: CO2 Emissions Rate per MWh
+- name: carbon-dioxide-rank-lbs
+  unit: rank
+  description: CO2 Emissions Rate per MWh (U.S. Rank)
+- name: total-retail-sales
+  unit: megawatthours
+  description: Retail Sales of Electricity, Total Electric Industry
+- name: total-retail-sales-rank
+  unit: rank
+  description: Retail Sales of Electricity, Total Electric Industry (U.S. Rank)
+- name: fsp-service-provider-sales
+  unit: megawatthours
+  description: Retail Sales of Electrcity by Full Service Providers and Electricity
+    Sold Directly by Commercial and Industrial  Facilities
+- name: fsp-sales-rank
+  unit: rank
+  description: Retail Sales of Electrcity by Full Service Providers and Electricity
+    Sold Directly by Commercial and Industrial Facilities (U.S. Rank)
+- name: eop-sales
+  unit: megawatthours
+  description: Retail Sales of Electrcity by Energy-Only Providers
+- name: eop-sales-rank
+  unit: rank
+  description: Retail Sales of Electrcity by Energy-Only Providers (U.S. Rank)
+- name: direct-use
+  unit: megawatthours
+  description: Direct Use of Generation by Commercial and Industrial Facilities
+- name: direct-use-rank
+  unit: rank
+  description: Direct Use of Generation by Commercial and Industrial Facilities (U.S.
+    Rank)
+- name: average-retail-price
+  unit: cents per kilowatthour
+  description: Average Retail Price of Electricity
+- name: average-retail-price-rank
+  unit: rank
+  description: Average Retail Price of Electricity (U.S. Rank)
+- name: prime-source
+  unit: ''
+  description: Prime Source
+notes: "State rankings for key electricity statistics by state\n    Source: Forms\
+  \ EIA-860, EIA-861, EIA-923\n    Product: State Electricity Profiles, Table 1"

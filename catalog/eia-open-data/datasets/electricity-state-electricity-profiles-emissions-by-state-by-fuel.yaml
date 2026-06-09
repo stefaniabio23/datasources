@@ -1,0 +1,50 @@
+id: eia-electricity-state-electricity-profiles-emissions-by-state-by-fuel
+source_id: eia-open-data
+name: EIA Emissions from Energy Consumption at Conventional Power Plants and Combined-Heat-and-Power
+  Plants
+entry_level: dataset
+entry_kind: panel
+api:
+  route: /electricity/state-electricity-profiles/emissions-by-state-by-fuel
+  data_endpoint: /electricity/state-electricity-profiles/emissions-by-state-by-fuel/data
+  metadata_endpoint: /electricity/state-electricity-profiles/emissions-by-state-by-fuel
+time_index: period
+time_grain:
+- annual
+primary_keys:
+- EIA_ROUTE_PERIOD_STATEID_FUELID
+join_keys:
+- DATE
+- US_STATE_CODE
+field_schema: catalog/eia-open-data/schemas/electricity-state-electricity-profiles-emissions-by-state-by-fuel.schema.yaml
+facets:
+- name: stateid
+  description: State
+  join_key: US_STATE_CODE
+- name: fuelid
+  description: Energy Source
+measures:
+- name: so2-rate-lbs-mwh
+  unit: pounds per megawatthour
+  description: SO2 Emissions Rate per MWh
+- name: so2-short-tons
+  unit: short tons
+  description: SO2 Emissions
+- name: nox-rate-lbs-mwh
+  unit: pounds per megawatthour
+  description: NOx Emissions Rate per MWh
+- name: nox-short-tons
+  unit: short tons
+  description: NOx Emissions
+- name: co2-rate-lbs-mwh
+  unit: pounds per megawatthour
+  description: CO2 Emissions Rate per MWh
+- name: co2-thousand-metric-tons
+  unit: thousand metric tons
+  description: CO2 Emissions
+notes: "Emissions from electricity generation and the production of useful thermal\
+  \ output at conventional power plants and combined-heat-and-power plants.\n    See\
+  \ Electric Power Annual, Technical Notes for a description of the sources and methodology\
+  \ used to develop the emissions estimates.\n    Sources: Forms EIA-860, EIA-923,\
+  \ and calculations made by the Office of  Energy Production, Conversion & Delivery\
+  \ (EPCD)\n    Product: State Electricity Profiles, Table 7"

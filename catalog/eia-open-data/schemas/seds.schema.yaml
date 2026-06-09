@@ -1,0 +1,30 @@
+dataset_id: eia-seds
+source_id: eia-open-data
+fields:
+- name: period
+  type: string
+  description: Observation period.
+  role: time_index
+  join_key: DATE
+  required: true
+- name: seriesId
+  type: string
+  description: Unique series identifier
+  role: dimension
+  required: true
+- name: stateId
+  type: string
+  description: State name
+  role: dimension
+  required: true
+- name: value
+  type: number
+  description: ''
+  role: measure
+  unit: ''
+  required: false
+- name: units
+  type: string
+  description: Unit string returned by the API for this row.
+  role: metadata
+  required: false

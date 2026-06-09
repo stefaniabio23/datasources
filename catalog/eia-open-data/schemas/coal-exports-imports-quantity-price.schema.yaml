@@ -1,0 +1,46 @@
+dataset_id: eia-coal-exports-imports-quantity-price
+source_id: eia-open-data
+fields:
+- name: period
+  type: string
+  description: Observation period.
+  role: time_index
+  join_key: DATE
+  required: true
+- name: exportImportType
+  type: string
+  description: Export\Import Type
+  role: dimension
+  required: true
+- name: coalRankId
+  type: string
+  description: Coal Rank
+  role: dimension
+  required: true
+- name: countryId
+  type: string
+  description: Country
+  role: dimension
+  required: true
+- name: customsDistrictId
+  type: string
+  description: Customs District
+  role: dimension
+  required: true
+- name: quantity
+  type: number
+  description: ''
+  role: measure
+  unit: short tons
+  required: false
+- name: price
+  type: number
+  description: ''
+  role: measure
+  unit: dollars per short ton
+  required: false
+- name: units
+  type: string
+  description: Unit string returned by the API for this row.
+  role: metadata
+  required: false

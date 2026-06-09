@@ -1,0 +1,61 @@
+dataset_id: eia-electricity-state-electricity-profiles-emissions-by-state-by-fuel
+source_id: eia-open-data
+fields:
+- name: period
+  type: string
+  description: Observation period.
+  role: time_index
+  join_key: DATE
+  required: true
+- name: stateid
+  type: string
+  description: State
+  role: dimension
+  required: true
+  join_key: US_STATE_CODE
+- name: fuelid
+  type: string
+  description: Energy Source
+  role: dimension
+  required: true
+- name: so2-rate-lbs-mwh
+  type: number
+  description: SO2 Emissions Rate per MWh
+  role: measure
+  unit: pounds per megawatthour
+  required: false
+- name: so2-short-tons
+  type: number
+  description: SO2 Emissions
+  role: measure
+  unit: short tons
+  required: false
+- name: nox-rate-lbs-mwh
+  type: number
+  description: NOx Emissions Rate per MWh
+  role: measure
+  unit: pounds per megawatthour
+  required: false
+- name: nox-short-tons
+  type: number
+  description: NOx Emissions
+  role: measure
+  unit: short tons
+  required: false
+- name: co2-rate-lbs-mwh
+  type: number
+  description: CO2 Emissions Rate per MWh
+  role: measure
+  unit: pounds per megawatthour
+  required: false
+- name: co2-thousand-metric-tons
+  type: number
+  description: CO2 Emissions
+  role: measure
+  unit: thousand metric tons
+  required: false
+- name: units
+  type: string
+  description: Unit string returned by the API for this row.
+  role: metadata
+  required: false

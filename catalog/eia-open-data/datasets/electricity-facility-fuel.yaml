@@ -1,0 +1,54 @@
+id: eia-electricity-facility-fuel
+source_id: eia-open-data
+name: EIA Electric Power Operations for Individual Power Plants (Annual and Monthly)
+entry_level: dataset
+entry_kind: panel
+api:
+  route: /electricity/facility-fuel
+  data_endpoint: /electricity/facility-fuel/data
+  metadata_endpoint: /electricity/facility-fuel
+time_index: period
+time_grain:
+- monthly
+- quarterly
+- annual
+primary_keys:
+- EIA_ROUTE_PERIOD_PLANTCODE_FUEL2002_STATE_PRIMEMOVER
+join_keys:
+- DATE
+field_schema: catalog/eia-open-data/schemas/electricity-facility-fuel.schema.yaml
+facets:
+- name: plantCode
+  description: Plant ID and Name
+- name: fuel2002
+  description: Energy Source
+- name: state
+  description: State
+- name: primeMover
+  description: Prime Mover
+measures:
+- name: generation
+  unit: megawatthours
+  description: Net Generation
+- name: gross-generation
+  unit: megawatthours
+  description: Gross Generation
+- name: total-consumption
+  unit: ''
+  description: Consumption of Fuels for Electricity Generation and Useful Thermal
+    Output (Physical Units)
+- name: total-consumption-btu
+  unit: MMBtu
+  description: Consumption of Fuels for Electricity Generation and Useful Thermal
+    Output (BTUs)
+- name: consumption-for-eg
+  unit: ''
+  description: Consumption of Fuels for Electricity Generation (Physical Units)
+- name: consumption-for-eg-btu
+  unit: MMBtu
+  description: Consumption of Fuels for Electricity Generation (BTUs)
+- name: average-heat-content
+  unit: ''
+  description: Average Heat Content of Consumed Fuels
+notes: "Annual and monthly electric power operations for individual power plants,\
+  \ by energy source and prime mover\n    Source: Form EIA-923"

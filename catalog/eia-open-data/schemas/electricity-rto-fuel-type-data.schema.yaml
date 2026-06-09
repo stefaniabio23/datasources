@@ -1,0 +1,30 @@
+dataset_id: eia-electricity-rto-fuel-type-data
+source_id: eia-open-data
+fields:
+- name: period
+  type: string
+  description: Observation period.
+  role: time_index
+  join_key: DATE
+  required: true
+- name: respondent
+  type: string
+  description: Balancing Authority / Region
+  role: dimension
+  required: true
+- name: fueltype
+  type: string
+  description: Energy Source
+  role: dimension
+  required: true
+- name: value
+  type: number
+  description: Net Generation
+  role: measure
+  unit: megawatthours
+  required: false
+- name: units
+  type: string
+  description: Unit string returned by the API for this row.
+  role: metadata
+  required: false

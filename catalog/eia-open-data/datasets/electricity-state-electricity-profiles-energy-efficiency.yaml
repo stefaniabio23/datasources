@@ -1,0 +1,39 @@
+id: eia-electricity-state-electricity-profiles-energy-efficiency
+source_id: eia-open-data
+name: EIA Costs and Savings from Energy Efficiency Programs
+entry_level: dataset
+entry_kind: panel
+api:
+  route: /electricity/state-electricity-profiles/energy-efficiency
+  data_endpoint: /electricity/state-electricity-profiles/energy-efficiency/data
+  metadata_endpoint: /electricity/state-electricity-profiles/energy-efficiency
+time_index: period
+time_grain:
+- annual
+primary_keys:
+- EIA_ROUTE_PERIOD_STATE_TIMEPERIOD_SECTOR
+join_keys:
+- DATE
+field_schema: catalog/eia-open-data/schemas/electricity-state-electricity-profiles-energy-efficiency.schema.yaml
+facets:
+- name: state
+  description: State
+- name: timePeriod
+  description: Time Period Included in Costs and Savings
+- name: sector
+  description: Sector
+measures:
+- name: energy-savings
+  unit: megawatthours
+  description: Annual Energy Savings
+- name: potential-peak-savings
+  unit: megawatts
+  description: Peak Demand Savings
+- name: customer-incentive
+  unit: thousand dollars
+  description: Cost of Customer Incentives
+- name: all-other-costs
+  unit: thousand dollars
+  description: All Other Costs
+notes: "Costs and savings from energy efficiency programs by state and sector\n  \
+  \  Source: Form EIA-861\n    Product: State Electricity Profiles, Table 13"

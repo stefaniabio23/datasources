@@ -1,0 +1,30 @@
+dataset_id: eia-electricity-rto-interchange-data
+source_id: eia-open-data
+fields:
+- name: period
+  type: string
+  description: Observation period.
+  role: time_index
+  join_key: DATE
+  required: true
+- name: fromba
+  type: string
+  description: Balancing Authority / Region
+  role: dimension
+  required: true
+- name: toba
+  type: string
+  description: Neighboring Balancing Authority / Region
+  role: dimension
+  required: true
+- name: value
+  type: number
+  description: Interchange
+  role: measure
+  unit: megawatthours
+  required: false
+- name: units
+  type: string
+  description: Unit string returned by the API for this row.
+  role: metadata
+  required: false

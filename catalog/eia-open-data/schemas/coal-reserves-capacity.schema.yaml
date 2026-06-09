@@ -1,0 +1,42 @@
+dataset_id: eia-coal-reserves-capacity
+source_id: eia-open-data
+fields:
+- name: period
+  type: string
+  description: Observation period.
+  role: time_index
+  join_key: DATE
+  required: true
+- name: stateId
+  type: string
+  description: State\Region
+  role: dimension
+  required: true
+- name: mineTypeId
+  type: string
+  description: Mine Type
+  role: dimension
+  required: true
+- name: productive-capacity
+  type: number
+  description: ''
+  role: measure
+  unit: short tons
+  required: false
+- name: recoverable-reserves
+  type: number
+  description: ''
+  role: measure
+  unit: short tons
+  required: false
+- name: producer-distributor-stocks
+  type: number
+  description: ''
+  role: measure
+  unit: short tons
+  required: false
+- name: units
+  type: string
+  description: Unit string returned by the API for this row.
+  role: metadata
+  required: false

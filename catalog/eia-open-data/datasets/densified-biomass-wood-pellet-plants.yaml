@@ -1,0 +1,32 @@
+id: eia-densified-biomass-wood-pellet-plants
+source_id: eia-open-data
+name: EIA Wood Pellet Plant Capacity
+entry_level: dataset
+entry_kind: panel
+api:
+  route: /densified-biomass/wood-pellet-plants
+  data_endpoint: /densified-biomass/wood-pellet-plants/data
+  metadata_endpoint: /densified-biomass/wood-pellet-plants
+time_index: period
+time_grain:
+- annual
+primary_keys:
+- EIA_ROUTE_PERIOD_REGION_RESPONDENT_STATEID_STATUS
+join_keys:
+- DATE
+field_schema: catalog/eia-open-data/schemas/densified-biomass-wood-pellet-plants.schema.yaml
+facets:
+- name: region
+  description: Region
+- name: respondent
+  description: Respondent
+- name: stateId
+  description: State
+- name: status
+  description: Operational Status
+measures:
+- name: capacity
+  unit: tons per year
+  description: ''
+notes: "Details on wood pellet plants includes region, respondent, \r\n    capacity,\
+  \ and status.  Source: EIA-63C  Report:  www.eia.gov/biomass/"

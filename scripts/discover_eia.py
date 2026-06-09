@@ -43,10 +43,11 @@ except ImportError:
 
 SOURCE_ID = "eia-open-data"
 API_BASE = "https://api.eia.gov/v2"
-SLEEP_SECONDS = 0.4  # be polite to the API
+SLEEP_SECONDS = 0.8       # polite default between calls
+MAX_RETRIES = 4           # for 429 / transient errors
+RETRY_BACKOFF = 2.0       # base delay; doubled per attempt
 
 # EIA facet id -> canonical join_key from schema/join-keys.yaml.
-# Add to this map as more registry-resolvable facets are identified.
 FACET_JOIN_KEYS = {
     "stateid": "US_STATE_CODE",
     "countryRegionId": "ISO_3",
@@ -65,18 +66,69 @@ FREQ_MAP = {
 
 
 def fetch_route(api_key: str, route: str) -> dict:
+    """GET a route with retry on 429 / transient HTTP errors."""
     url = f"{API_BASE}{route}"
-    r = requests.get(url, params={"api_key": api_key}, timeout=20)
-    r.raise_for_status()
-    return r.json().get("response", {})
+    last_exc = None
+    for attempt in range(MAX_RETRIES):
+        try:
+            r = requests.get(url, params={"api_key": api_key}, timeout=30)
+            if r.status_code == 429:
+                wait = RETRY_BACKOFF * (2 ** attempt)
+                print(f"  429 at {route}; sleeping {wait}s before retry", file=sys.stderr)
+                time.sleep(wait)
+                continue
+            r.raise_for_status()
+            return r.json().get("response", {})
+        except requests.RequestException as e:
+            last_exc = e
+            time.sleep(RETRY_BACKOFF * (2 ** attempt))
+    raise RuntimeError(f"max retries exceeded for {route}: {last_exc}")
 
 
 def route_to_slug(route: str) -> str:
-    return route.strip("/").replace("/", "-") or SOURCE_ID
+    # EIA uses some camelCase routes (e.g. /petroleum/move/railNA).
+    # Lowercase here so the slug satisfies our kebab-case id pattern;
+    # the original route is preserved separately in api.route.
+    return (route.strip("/").replace("/", "-") or SOURCE_ID).lower()
 
 
 def dataset_id_for(route: str) -> str:
     return f"eia-{route_to_slug(route)}"
+
+
+def normalize_items(raw) -> list[dict]:
+    """
+    Accept any of:
+      - dict mapping id -> meta dict / None / string
+      - list of dicts
+      - list of strings (ids only)
+    Return a list of dicts, each with at least an 'id' key when possible.
+    """
+    if isinstance(raw, dict):
+        out = []
+        for k, v in raw.items():
+            if isinstance(v, dict):
+                out.append({"id": k, **v})
+            else:
+                out.append({"id": k})
+        return out
+    if isinstance(raw, list):
+        out = []
+        for item in raw:
+            if isinstance(item, dict):
+                out.append(item)
+            elif isinstance(item, str):
+                out.append({"id": item})
+        return out
+    return []
+
+
+def get_field(item: dict, *keys: str) -> str:
+    for k in keys:
+        v = item.get(k)
+        if v:
+            return str(v).strip()
+    return ""
 
 
 def is_leaf(response: dict) -> bool:
@@ -85,16 +137,19 @@ def is_leaf(response: dict) -> bool:
 
 def normalize_frequencies(freqs) -> list[str]:
     out = []
-    for f in freqs or []:
-        fid = f.get("id") or f.get("frequency")
+    for f in (freqs or []):
+        if isinstance(f, dict):
+            fid = f.get("id") or f.get("frequency")
+        else:
+            fid = f
         if fid in FREQ_MAP:
             out.append(FREQ_MAP[fid])
     return out
 
 
 def build_dataset_yaml(route: str, response: dict, schema_rel: str) -> dict:
-    facets = response.get("facets") or []
-    data_cols = response.get("data") or []
+    facets = normalize_items(response.get("facets"))
+    data_cols = normalize_items(response.get("data"))
     freqs = normalize_frequencies(response.get("frequency"))
 
     join_keys = ["DATE"]
@@ -114,7 +169,7 @@ def build_dataset_yaml(route: str, response: dict, schema_rel: str) -> dict:
         fid = f.get("id")
         entry = {
             "name": fid,
-            "description": (f.get("description") or "").strip(),
+            "description": get_field(f, "description", "name"),
         }
         if fid in FACET_JOIN_KEYS:
             entry["join_key"] = FACET_JOIN_KEYS[fid]
@@ -123,18 +178,18 @@ def build_dataset_yaml(route: str, response: dict, schema_rel: str) -> dict:
     measure_entries = []
     for c in data_cols:
         measure_entries.append({
-            "name": c.get("id") or c.get("alias"),
-            "unit": c.get("units") or "",
-            "description": (c.get("description") or "").strip(),
+            "name": get_field(c, "id", "alias"),
+            "unit": get_field(c, "units", "unit"),
+            "description": get_field(c, "description", "alias", "name"),
         })
 
-    name = response.get("name") or response.get("description") or route_to_slug(route)
-    description = (response.get("description") or "").strip()
+    name = get_field(response, "name", "description") or route_to_slug(route)
+    description = get_field(response, "description")
 
     out = {
         "id": dataset_id_for(route),
         "source_id": SOURCE_ID,
-        "name": f"EIA {name}" if not str(name).lower().startswith("eia") else name,
+        "name": name if str(name).lower().startswith("eia") else f"EIA {name}",
         "entry_level": "dataset",
         "entry_kind": entry_kind,
         "api": {
@@ -156,8 +211,8 @@ def build_dataset_yaml(route: str, response: dict, schema_rel: str) -> dict:
 
 
 def build_schema_yaml(route: str, response: dict) -> dict:
-    facets = response.get("facets") or []
-    data_cols = response.get("data") or []
+    facets = normalize_items(response.get("facets"))
+    data_cols = normalize_items(response.get("data"))
 
     fields = [{
         "name": "period",
@@ -173,7 +228,7 @@ def build_schema_yaml(route: str, response: dict) -> dict:
         field = {
             "name": fid,
             "type": "string",
-            "description": (f.get("description") or "").strip(),
+            "description": get_field(f, "description", "name"),
             "role": "dimension",
             "required": True,
         }
@@ -183,11 +238,11 @@ def build_schema_yaml(route: str, response: dict) -> dict:
 
     for c in data_cols:
         fields.append({
-            "name": c.get("id") or c.get("alias"),
+            "name": get_field(c, "id", "alias"),
             "type": "number",
-            "description": (c.get("description") or "").strip(),
+            "description": get_field(c, "description", "alias", "name"),
             "role": "measure",
-            "unit": c.get("units") or "",
+            "unit": get_field(c, "units", "unit"),
             "required": False,
         })
 
@@ -216,10 +271,9 @@ def walk(api_key: str, route: str, leaves: list[tuple[str, dict]]) -> None:
 
     if is_leaf(response):
         leaves.append((route, response))
-        # A route can have both data AND child routes; keep walking the children too.
 
     for child in response.get("routes") or []:
-        cid = child.get("id")
+        cid = child.get("id") if isinstance(child, dict) else child
         if not cid:
             continue
         next_route = f"{route}/{cid}" if route else f"/{cid}"
@@ -230,31 +284,18 @@ def main():
     parser = argparse.ArgumentParser(
         description="Walk the EIA v2 API metadata tree and write dataset + schema manifests."
     )
-    parser.add_argument(
-        "--dry-run",
-        action="store_true",
-        help="Walk the tree, print what would be written, but write nothing.",
-    )
-    parser.add_argument(
-        "--limit",
-        type=int,
-        default=0,
-        help="Stop after this many leaves (0 = no limit). Useful for testing.",
-    )
-    parser.add_argument(
-        "--root",
-        type=str,
-        default="",
-        help="Start route (e.g. /electricity). Defaults to the API root.",
-    )
+    parser.add_argument("--dry-run", action="store_true",
+                        help="Walk the tree and print what would be written; write nothing.")
+    parser.add_argument("--limit", type=int, default=0,
+                        help="Stop after this many leaves (0 = no limit). Useful for testing.")
+    parser.add_argument("--root", type=str, default="",
+                        help="Start route (e.g. /electricity). Defaults to the API root.")
     args = parser.parse_args()
 
     api_key = os.environ.get("EIA_API_KEY")
     if not api_key:
-        print(
-            "Set EIA_API_KEY. Register free at https://www.eia.gov/opendata/register.php",
-            file=sys.stderr,
-        )
+        print("Set EIA_API_KEY. Register free at https://www.eia.gov/opendata/register.php",
+              file=sys.stderr)
         return 2
 
     project_root = Path(__file__).resolve().parent.parent
@@ -277,29 +318,33 @@ def main():
 
     written = 0
     skipped = 0
+    errors = 0
     for route, response in leaves:
         slug = route_to_slug(route)
         if slug in existing:
             skipped += 1
             continue
 
-        ds_path = datasets_dir / f"{slug}.yaml"
-        sc_path = schemas_dir / f"{slug}.schema.yaml"
-        schema_rel = f"catalog/{SOURCE_ID}/schemas/{slug}.schema.yaml"
-
-        dataset_yaml = build_dataset_yaml(route, response, schema_rel)
-        schema_yaml = build_schema_yaml(route, response)
-
-        if args.dry_run:
-            print(f"  would write {ds_path.relative_to(project_root)}")
+        try:
+            dataset_yaml = build_dataset_yaml(route, response, f"catalog/{SOURCE_ID}/schemas/{slug}.schema.yaml")
+            schema_yaml = build_schema_yaml(route, response)
+        except Exception as e:
+            errors += 1
+            print(f"  build failed at {route}: {e}", file=sys.stderr)
             continue
 
+        if args.dry_run:
+            print(f"  would write catalog/{SOURCE_ID}/datasets/{slug}.yaml")
+            continue
+
+        ds_path = datasets_dir / f"{slug}.yaml"
+        sc_path = schemas_dir / f"{slug}.schema.yaml"
         ds_path.write_text(yaml.safe_dump(dataset_yaml, sort_keys=False, allow_unicode=True))
         sc_path.write_text(yaml.safe_dump(schema_yaml, sort_keys=False, allow_unicode=True))
         written += 1
         print(f"  wrote {slug}")
 
-    print(f"\nDone. {written} datasets written, {skipped} skipped (already hand-curated).")
+    print(f"\nDone. {written} written, {skipped} skipped (hand-curated), {errors} build errors.")
     print("Next: python3 scripts/validate_entries.py && python3 scripts/generate.py")
     return 0
 

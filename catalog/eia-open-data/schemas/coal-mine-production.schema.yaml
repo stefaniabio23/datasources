@@ -1,0 +1,112 @@
+dataset_id: eia-coal-mine-production
+source_id: eia-open-data
+fields:
+- name: period
+  type: string
+  description: Observation period.
+  role: time_index
+  join_key: DATE
+  required: true
+- name: mineMSHAId
+  type: string
+  description: Mine
+  role: dimension
+  required: true
+- name: stateId
+  type: string
+  description: State
+  role: dimension
+  required: true
+- name: regionId
+  type: string
+  description: Region
+  role: dimension
+  required: true
+- name: supplyRegionId
+  type: string
+  description: Supply Region
+  role: dimension
+  required: true
+- name: censusRegionId
+  type: string
+  description: Census Region
+  role: dimension
+  required: true
+- name: mississippiRegionId
+  type: string
+  description: Mississippi Region
+  role: dimension
+  required: true
+- name: mineCountyId
+  type: string
+  description: Mine County
+  role: dimension
+  required: true
+- name: coalRankId
+  type: string
+  description: Coal Rank
+  role: dimension
+  required: true
+- name: mineTypeId
+  type: string
+  description: Mine Type
+  role: dimension
+  required: true
+- name: mineStatusId
+  type: string
+  description: Mine Status
+  role: dimension
+  required: true
+- name: production
+  type: number
+  description: ''
+  role: measure
+  unit: short tons
+  required: false
+- name: labor-hours
+  type: number
+  description: ''
+  role: measure
+  unit: hours
+  required: false
+- name: average-employees
+  type: number
+  description: ''
+  role: measure
+  unit: number of employees
+  required: false
+- name: refuse-flag
+  type: number
+  description: ''
+  role: measure
+  unit: ''
+  required: false
+- name: latitude
+  type: number
+  description: ''
+  role: measure
+  unit: ''
+  required: false
+- name: longitude
+  type: number
+  description: ''
+  role: measure
+  unit: ''
+  required: false
+- name: operating-company
+  type: number
+  description: ''
+  role: measure
+  unit: ''
+  required: false
+- name: operating-company-address
+  type: number
+  description: ''
+  role: measure
+  unit: ''
+  required: false
+- name: units
+  type: string
+  description: Unit string returned by the API for this row.
+  role: metadata
+  required: false

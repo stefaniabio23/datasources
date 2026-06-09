@@ -1,0 +1,32 @@
+id: eia-aeo-2018
+source_id: eia-open-data
+name: EIA Annual Energy Outlook 2018
+entry_level: dataset
+entry_kind: panel
+api:
+  route: /aeo/2018
+  data_endpoint: /aeo/2018/data
+  metadata_endpoint: /aeo/2018
+time_index: period
+time_grain:
+- annual
+primary_keys:
+- EIA_ROUTE_PERIOD_HISTORY_SCENARIO_TABLEID_SERIESID_REGIONID
+join_keys:
+- DATE
+field_schema: catalog/eia-open-data/schemas/aeo-2018.schema.yaml
+facets:
+- name: history
+  description: History
+- name: scenario
+  description: Scenario
+- name: tableId
+  description: Table
+- name: seriesId
+  description: Series
+- name: regionId
+  description: Region
+measures:
+- name: value
+  unit: ''
+  description: ''

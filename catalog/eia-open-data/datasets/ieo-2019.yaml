@@ -1,0 +1,32 @@
+id: eia-ieo-2019
+source_id: eia-open-data
+name: EIA International Energy Outlook 2019
+entry_level: dataset
+entry_kind: panel
+api:
+  route: /ieo/2019
+  data_endpoint: /ieo/2019/data
+  metadata_endpoint: /ieo/2019
+time_index: period
+time_grain:
+- annual
+primary_keys:
+- EIA_ROUTE_PERIOD_HISTORY_SCENARIO_TABLEID_SERIESID_REGIONID
+join_keys:
+- DATE
+field_schema: catalog/eia-open-data/schemas/ieo-2019.schema.yaml
+facets:
+- name: history
+  description: History
+- name: scenario
+  description: Scenario
+- name: tableId
+  description: Table
+- name: seriesId
+  description: Series
+- name: regionId
+  description: Region
+measures:
+- name: value
+  unit: ''
+  description: ''
