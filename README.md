@@ -1,14 +1,10 @@
 # datasources
 
-An agent-readable registry of APIs, datasets, and databases.
-
-## What this is, in one sentence
-
-A GitHub-hosted registry of 50+ structured API/dataset/database entries with canonical join keys, published as a live Google Sheet for browsing and sharing.
+An agent-readable registry of APIs, datasets, and databases with canonical join keys, published as a live Google Sheet for browsing and sharing.
 
 ## Why this exists
 
-Existing public-data directories (`awesome-public-datasets`, `data.gov`, Kaggle) are topic-centric human indexes. They answer "what datasets exist in this category?" but not "given a research question, which dataset should an agent reach for, how does it authenticate, what can it join on?"
+Existing public-data directories are topic-centric human indexes. They answer "what datasets exist in this category?" but not "given a research question, which dataset should an agent reach for, how does it authenticate, what can it join on?"
 
 This directory answers the agent question. The structural piece nobody else has is **`generated/join-key-index.md`**, a reverse index of canonical identifiers (`NCT_ID`, `DOI`, `CIK`, `ROR`, etc.) mapped to the datasets that expose them. Cross-source joins become planable.
 
