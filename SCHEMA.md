@@ -59,6 +59,35 @@ Every entry is one file at `entries/<domain>/<slug>.md` with two parts:
 - `primary_keys` — list of source-native identifiers the source mints (e.g. `[OPENALEX_WORK_ID, OPENALEX_AUTHOR_ID]`). Free-form; not required to be in `schema/join-keys.yaml`.
 - `join_key_fields` — list of `{join_key, fields[]}` objects mapping each canonical join_key to the source-side field paths that carry it (e.g. `{join_key: DOI, fields: [doi, ids.doi]}`).
 
+### v3 additions (2026-06-10)
+
+Added to support consumer-side reasoning about provenance and point-in-time
+reconstruction. All optional; existing entries remain valid without them.
+
+- `is_directory` — boolean. True when this entry is a source-discovery
+  directory (data.gov, FRED's catalog, Nasdaq Data Link, etc.) rather
+  than a primary data source. Lets consumers treat directories without
+  building a separate provenance layer.
+- `discovered_via` — id of the directory or upstream source that
+  surfaced this entry. Gives provenance for free: "which discovery
+  channels yield signals that survive out-of-sample?"
+- `structure` — enum, orthogonal to `entry_kind`: `panel | time-series
+  | cross-section | event-log | registry-snapshot`. Captures what the
+  data PERMITS for analysis. The binary "time-series vs registry" leaks
+  at the edges (a registry kept as snapshots is an event-log when
+  queried with vintage history); this is tighter.
+- `pit_reconstructable` — boolean. True when the source supports
+  point-in-time reconstruction (vintage data retrievable for any past
+  date). False is the conservative default and forces analysts to
+  curate vintage handling explicitly.
+- `revisions_possible` — boolean. True when values get restated after
+  first publication. A backtest against a revisions-possible target
+  without vintage handling may be optimistic relative to what was
+  observable in real time.
+- `release_lag_days` — integer days from observation to publication.
+  Distinct from the free-form `lag` (prose); when both are present,
+  `release_lag_days` is the operational value the pipeline uses.
+
 ## Entry kinds
 
 Closed enum classifying what kind of source each entry is. Required field. Lets agents filter by query shape.

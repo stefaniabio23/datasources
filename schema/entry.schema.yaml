@@ -203,3 +203,66 @@ properties:
 
   notes:
     type: string
+
+  # ---------------------------------------------------------------- v3 additions
+  # Optional fields added 2026-06-10 to support consumer-side reasoning about
+  # provenance and point-in-time reconstruction. None are required; existing
+  # entries remain valid without them.
+
+  is_directory:
+    type: boolean
+    description: |
+      True when this entry is a source-discovery directory (data.gov, FRED's
+      catalog, Nasdaq Data Link, etc.) rather than a primary data source.
+      A directory is just a source with is_directory: true; consumers can
+      use it to find further sources and to attribute discovered_via on
+      those downstream entries.
+
+  discovered_via:
+    type: string
+    description: |
+      The id of the directory or upstream source that surfaced this entry.
+      Lets consumers ask "which discovery channels yield signals that
+      survive out-of-sample?" without building a separate provenance layer.
+
+  structure:
+    type: string
+    enum:
+      - panel
+      - time-series
+      - cross-section
+      - event-log
+      - registry-snapshot
+    description: |
+      Data-shape classification orthogonal to entry_kind (which describes
+      source kind). structure captures what the data PERMITS for analysis:
+      a registry kept as snapshots becomes a registry-snapshot; the same
+      registry queried with vintage history becomes an event-log; etc.
+      The binary "time-series vs registry" leaks at the edges; this is
+      tighter. Optional; consumers fall back to entry_kind when absent.
+
+  pit_reconstructable:
+    type: boolean
+    description: |
+      True when the source supports point-in-time reconstruction (vintage
+      data retrievable for any past date). False is the conservative
+      default and forces analysts to curate vintage handling explicitly
+      rather than assuming it. Distinct from point_in_time_safe, which is
+      about per-observation observability at T + release_lag_days.
+
+  revisions_possible:
+    type: boolean
+    description: |
+      True when values get restated after first publication (most macro
+      series, retail sales, employment data). A backtest against a
+      revisions-possible target without vintage reconstruction may be
+      optimistic relative to what the analyst would have seen in real time.
+
+  release_lag_days:
+    type: integer
+    minimum: 0
+    description: |
+      Integer days from observation to publication. Distinct from the
+      free-form `lag` field, which describes the lag in prose. When both
+      are present, release_lag_days is the operational value the pipeline
+      uses; `lag` is human-readable context.
