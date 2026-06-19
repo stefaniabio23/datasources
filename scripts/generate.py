@@ -17,6 +17,7 @@ Dependencies:
 
 import csv
 import json
+import subprocess
 import sys
 from collections import defaultdict
 from datetime import date
@@ -164,8 +165,21 @@ def main():
     generated_root = project_root / "generated"
     generated_root.mkdir(exist_ok=True)
 
+    def first_commit_time(path):
+        try:
+            result = subprocess.run(
+                ["git", "log", "--follow", "--format=%at", "--reverse", "--", str(path)],
+                cwd=project_root, capture_output=True, text=True
+            )
+            lines = [l for l in result.stdout.strip().splitlines() if l]
+            return int(lines[0]) if lines else 0
+        except Exception:
+            return 0
+
+    all_paths = sorted(entries_root.rglob("*.md"), key=first_commit_time)
+
     entries = []
-    for path in sorted(entries_root.rglob("*.md")):
+    for path in all_paths:
         fm = parse_entry(path)
         if fm is None:
             print(f"  skipped (no parseable frontmatter): {path.relative_to(project_root)}",
