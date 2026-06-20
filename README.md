@@ -93,7 +93,7 @@ One-time service-account setup: Google Cloud Console → IAM & Admin → Service
 
 ## Status
 
-MVP. 56 entries, schema locked, validator green, publish step ready.
+MVP. Schema locked, validator green, publish step ready.
 
 ## Future plans
 
