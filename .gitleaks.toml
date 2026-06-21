@@ -1,0 +1,15 @@
+title = "gitleaks config for datasources"
+
+# Extend the default gitleaks ruleset; only add allowlists below.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Registry-doc false positives: public Power BI embed tokens and shell env-var references in example curl commands. Neither is a secret."
+# Match on the surrounding line so the allowlist is surgical, not a blanket
+# suppression of the underlying token shapes.
+regexTarget = "line"
+regexes = [
+  '''powerbi\.com/view\?r=''',
+  '''-u "\$\{[A-Z0-9_]+\}''',
+]
