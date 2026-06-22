@@ -55,13 +55,18 @@ agent_use_cases:
   - user reputation and expertise lookup
   - longitudinal Q-and-A volume tracking
   - language and framework adoption signals
-last_verified: 2026-06-08
+last_verified: 2026-06-22
 build_priority: medium
 notes: >
-  SEDE itself has no documented machine-readable API; saved queries can be fetched as CSV
-  via /query/csv/<query_id> but the run flow requires CSRF tokens, so it is not safe to
-  treat as a stable programmatic surface. For agent automation, prefer the related
+  SEDE has no stable machine-readable API; saved queries fetch as CSV via
+  /query/csv/<id> but the run flow needs CSRF tokens. For automation prefer the
   api.stackexchange.com REST API (separate entry) or the Internet Archive XML dumps.
+  The access_test targets that REST counterpart, not SEDE: /2.3/info is callable
+  no-auth and returns gzip JSON, so --compressed is required.
+access_test:
+  command: "curl -sf --compressed 'https://api.stackexchange.com/2.3/info?site=stackoverflow'"
+  expected_status: 200
+  expected_fields: [items, has_more, quota_max, quota_remaining]
 ---
 
 # Stack Exchange Data Explorer
@@ -125,4 +130,4 @@ Stack Exchange API (`api.stackexchange.com`) is a closely related but distinct s
 
 No new canonical join keys proposed. The internal `Posts.Id`, `Users.Id`, `Tags.Id` are SEDE-local and intentionally not promoted.
 
-`access_test` is omitted because SEDE has no stable unauthenticated API; freshness should be verified by loading the homepage and checking the "Database last updated" banner, or by checking the latest snapshot date on `https://archive.org/details/stackexchange`.
+`access_test` targets the related `api.stackexchange.com` REST API (`/2.3/info`), not SEDE itself, because SEDE has no stable unauthenticated machine-readable API. SEDE-specific freshness should still be verified by loading the homepage and checking the "Database last updated" banner, or by checking the latest snapshot date on `https://archive.org/details/stackexchange`.

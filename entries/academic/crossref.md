@@ -22,6 +22,18 @@ join_keys:
   - ISSN
   - ORCID
   - ROR
+primary_keys:
+  - DOI
+  - CROSSREF_MEMBER_ID
+join_key_fields:
+  - join_key: DOI
+    fields: ["DOI"]
+  - join_key: ISSN
+    fields: ["ISSN", "issn-type", "container-title"]
+  - join_key: ORCID
+    fields: ["author.ORCID"]
+  - join_key: ROR
+    fields: ["author.affiliation.id", "institution.id"]
 mcp_status: mcp-exists
 mcp_maturity: community
 mcp_package:
@@ -43,7 +55,7 @@ access_test:
   command: "curl -sf -H 'User-Agent: datasources/0.1 (mailto:${CROSSREF_MAILTO})' 'https://api.crossref.org/works/10.1038/s41586-020-2649-2'"
   expected_status: 200
   expected_fields: [status, message-type, message]
-last_verified: 2026-06-08
+last_verified: 2026-06-22
 build_priority: medium
 ---
 

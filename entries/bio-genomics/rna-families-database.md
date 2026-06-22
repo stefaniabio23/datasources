@@ -14,7 +14,7 @@ type:
 auth_required: none
 cost: free
 license: CC0
-rate_limit: unknown
+rate_limit: "unpublished; polite use expected (push heavy work to FTP or the public MySQL mirror)"
 bulk_available: true
 frequency: "annual or semi-annual major releases"
 lag: "months between sequence-database freezes and the next Rfam release"
@@ -41,6 +41,7 @@ join_key_fields:
   - join_key: PMID
     fields: [curation.seed_source, curation.structure_source, literature_reference.pmid]
 mcp_status: mcp-needed-low-value
+mcp_maturity: none
 agent_use_cases:
   - non-coding RNA family lookup
   - genome annotation with covariance models

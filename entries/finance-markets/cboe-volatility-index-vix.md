@@ -25,6 +25,7 @@ join_key_fields:
 primary_keys:
   - DATE
 mcp_status: api-direct-sufficient
+mcp_maturity: none
 mcp_notes: >
   Two CSV files at stable URLs (DataHub mirror + GitHub raw + upstream CBOE),
   no auth, no rate limit. curl plus a CSV parser covers the whole surface;

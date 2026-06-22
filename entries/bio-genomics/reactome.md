@@ -13,7 +13,7 @@ type:
 auth_required: none
 cost: free
 license: CC0
-rate_limit: unknown
+rate_limit: "unpublished; polite use expected"
 bulk_available: true
 frequency: quarterly
 lag: months
@@ -62,7 +62,7 @@ access_test:
   command: "curl -sf 'https://reactome.org/ContentService/data/query/R-HSA-1640170' -H 'Accept: application/json'"
   expected_status: 200
   expected_fields: [dbId, stId, displayName, speciesName, schemaClass]
-last_verified: 2026-06-08
+last_verified: 2026-06-22
 build_priority: medium
 ---
 

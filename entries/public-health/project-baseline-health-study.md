@@ -5,13 +5,14 @@ domain: public-health
 entry_kind: panel
 description: Deep-phenotyped longitudinal cohort of ~2,500 US adults followed 2017-2023 with annual clinical assessments, multi-organ imaging, continuous Verily Study Watch wearable data, labs, functional tests, and participant-reported outcomes. Access is request-gated through Verily's platform.
 homepage_url: https://verily.com/solutions/pre-platform/data-partners/project-baseline
+docs_url: https://workbench.verily.com/data-collections/project-baseline-health-study/
 type:
   - database
   - web-ui
 auth_required: account-required
 cost: free-with-registration
-license: unknown
-notes: "cost enum set to free-with-registration to satisfy the schema; the actual fee model for researcher data access is not published and may involve a partnership or data-access agreement. license not stated on public pages (recorded as unknown)."
+rate_limit: "not applicable (controlled-access cohort)"
+license: controlled-access-data-use-agreement
 bulk_available: false
 frequency: "closed cohort; enrolment and active follow-up ran 2017-2023, no new participant data added"
 lag: "not applicable; the study has completed its active follow-up window"
@@ -24,6 +25,7 @@ join_key_fields:
   - join_key: NCT_ID
     fields: ["study-level registration identifier NCT03154346"]
 mcp_status: requires-scraping
+mcp_maturity: none
 agent_use_cases:
   - deep-phenotyping cohort reference
   - wearable-derived activity / sleep / heart-rate phenotypes
@@ -31,7 +33,7 @@ agent_use_cases:
   - functional-test and patient-reported-outcome lookup
 last_verified: 2026-06-22
 build_priority: low
-notes: "Substantive participant-level data is request-gated through Verily's workbench platform and is not openly downloadable. auth_required, cost, and license could not be confirmed from public pages; cost and license recorded as unknown rather than guessed. access_test omitted: no public programmatic endpoint."
+notes: "Participant-level data is request-gated through Verily's workbench and is not openly downloadable. cost (free-with-registration) and license (controlled-access-data-use-agreement) are recorded to satisfy the schema; the real fee model and data-use terms are not published. access_test omitted: no public programmatic endpoint."
 ---
 
 # Project Baseline Health Study

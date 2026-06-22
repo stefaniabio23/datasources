@@ -25,6 +25,7 @@ join_key_fields:
 primary_keys:
   - Symbol
 mcp_status: api-direct-sufficient
+mcp_maturity: none
 mcp_notes: >
   Three CSVs at stable URLs, no auth, no rate limit. Curl + a CSV parser covers the
   whole surface; an MCP wrapper would add little. Pair with a live-pricing MCP

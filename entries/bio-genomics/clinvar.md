@@ -39,6 +39,7 @@ join_key_fields:
   - join_key: MESH_TERM
     fields: [trait_set.trait.xref.mesh]
 mcp_status: api-direct-sufficient
+mcp_maturity: none
 agent_use_cases:
   - variant pathogenicity lookup
   - gene-to-variant retrieval

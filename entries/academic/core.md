@@ -12,7 +12,7 @@ type:
   - dataset-dump
 auth_required: api-key-free
 cost: freemium
-license: unknown
+license: ODC-BY
 rate_limit: "10 req per short window anonymous; higher tiered limits with registered API key; institutional members get further uplift"
 bulk_available: true
 frequency: continuous
@@ -60,7 +60,7 @@ access_test:
   expected_fields: [totalHits, results, limit, offset]
 last_verified: 2026-06-08
 build_priority: medium
-notes: "Anonymous access works for search but full-text and some metadata are gated behind an API key (register at core.ac.uk/services/api). License of harvested content is heterogeneous; CORE itself is reviewing its data-licensing framework (factual metadata likely CC0/ODC-0, expressive content conditional)."
+notes: "Anonymous access works for search but full-text and some metadata are gated behind an API key (register at core.ac.uk/services/api). CORE's aggregated metadata + full-text dump is ODC-BY; harvested per-record content licences are heterogeneous, and CORE is reviewing its framework (factual metadata may move to CC0/ODC-0)."
 ---
 
 # CORE
@@ -104,7 +104,7 @@ No known MCP. Stable v3 REST API and clear endpoint structure make it a clean bu
 
 ## Review notes
 
-- `license` set to `unknown`. CORE is actively reviewing its data-licensing framework, splitting factual metadata (likely `CC0` or `ODC-0`) from expressive content (conditional access for TDM). Until they publish a single canonical license string, hard-coding one would misrepresent. Worth revisiting on next verification pass.
+- `license` set to `ODC-BY`. The CORE Dataset documentation distributes the aggregated metadata and full-text dump under the Open Data Commons Attribution (ODC-BY) licence (commercial and non-commercial use permitted with attribution to CORE). CORE is separately reviewing its data-licensing framework and has signalled future versions may split factual metadata to a more permissive licence (`CC0` or `ODC-0`); revisit if that lands. Note also that per-record content licences are heterogeneous (the harvested PDFs carry their own upstream terms), so `ODC-BY` governs CORE's aggregation, not necessarily every underlying work.
 - Potential new join key for review: `OAI_ID`
   Entity type: harvested_repository_record
   Pattern: `^oai:[a-zA-Z0-9._-]+:[a-zA-Z0-9._/-]+$`

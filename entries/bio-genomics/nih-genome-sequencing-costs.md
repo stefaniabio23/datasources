@@ -12,6 +12,7 @@ type:
 auth_required: none
 cost: free
 license: US-Government-Public-Domain
+rate_limit: "not applicable (bulk file download)"
 bulk_available: true
 frequency: "irregular; NHGRI states plans to update on a regular basis. Most recent table dated May 2022, page last updated May 2023."
 lag: "approximately 12 months between cost-measurement date and table publication"
@@ -24,6 +25,7 @@ join_key_fields:
   - join_key: DATE
     fields: [Date]
 mcp_status: api-direct-sufficient
+mcp_maturity: none
 mcp_notes: >
   Single small spreadsheet, two metrics, one time axis. No API needed.
   Agents should fetch the XLS directly and parse two columns

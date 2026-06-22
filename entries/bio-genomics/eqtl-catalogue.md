@@ -40,6 +40,7 @@ join_key_fields:
   - join_key: EFO_ID
     fields: [tissue_id]
 mcp_status: mcp-needed-low-value
+mcp_maturity: none
 agent_use_cases:
   - cis-eqtl lookup for a gene
   - variant-to-molecular-trait association retrieval

@@ -12,6 +12,7 @@ type:
 auth_required: none
 cost: free
 license: BSD-3-Clause
+rate_limit: "not applicable (bulk file download)"
 bulk_available: true
 frequency: irregular
 lag: "GitHub snapshot frozen at May 2015; FTP mirror periodically refreshed; ENA accession ERP012803 updated when new submissions are deposited"

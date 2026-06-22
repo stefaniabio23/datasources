@@ -36,6 +36,7 @@ join_key_fields:
     fields:
       - "peggedAssets[].pegType"
 mcp_status: mcp-needed-high-value
+mcp_maturity: none
 mcp_notes: >
   No widely adopted MCP server as of last verify. Suggested surface: list_stablecoins,
   get_stablecoin(asset_id), get_stablecoin_chain_history(chain), get_stablecoinchains_snapshot,
@@ -125,4 +126,4 @@ Things the connector must abstract: the host split (api/stablecoins/coins/yields
     - Other datasets that would use it: DefiLlama TVL, Yields, Fees, Volumes.
 - Domain placement: filed under `finance-markets` since stablecoin float is a market-structure signal. Could equally argue for a new `crypto-onchain` domain once more crypto sources land. Not adding new domain values per the schema-immutable rule; flag for consideration if 3+ crypto sources arrive.
 - `access_test` executed: `curl -sf 'https://stablecoins.llama.fi/stablecoins?includePrices=true'` returned HTTP 200 with full `peggedAssets[]` payload (USDT id=1 first, ~187B USD circulating).
-- `mcp_status: mcp-needed-high-value` set without `mcp_maturity` or `mcp_package` (those are required only when `mcp_status: mcp-exists`). Re-check on next pass; the DefiLlama ecosystem is active enough that a community MCP may land soon.
+- `mcp_status: mcp-needed-high-value` with `mcp_maturity: none` (no MCP exists yet; `mcp_package` is omitted since it is required only when `mcp_status: mcp-exists`). Re-check on next pass; the DefiLlama ecosystem is active enough that a community MCP may land soon, at which point flip to `mcp-exists` and record the package.

@@ -13,6 +13,7 @@ type:
 auth_required: none
 cost: free
 license: varies-per-study
+rate_limit: "unpublished; polite use expected"
 bulk_available: true
 frequency: "continuous on submission; no fixed release cycle"
 lag: "study appears at submitter-set release date; embargo until associated publication is common"

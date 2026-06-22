@@ -54,9 +54,13 @@ agent_use_cases:
   - expression and copy-number profiling for target validation
   - CRISPR essentiality scoring for dependency mapping
   - tissue-of-origin and lineage annotation for in vitro models
-last_verified: 2026-06-09
+access_test:
+  command: "curl -sf 'https://depmap.org/portal/download/api/downloads'"
+  expected_status: 200
+  expected_fields: ["table[].fileName", "table[].releaseName", "table[].downloadUrl", "table[].fileType", "releaseData[].releaseName"]
+last_verified: 2026-06-22
 build_priority: medium
-notes: "no programmatic API for CCLE bulk files; access_test omitted. Freshness check: list https://depmap.org/portal/data_page/?tab=allData and confirm the latest release tag (e.g. 26Q1)."
+notes: "Access test executed 2026-06-22: GET https://depmap.org/portal/download/api/downloads returned 200 with a JSON manifest (table[], releaseData[]) of all release files; latest release DepMap Public 26Q1. Per-file downloadUrl values are time-limited GCS signed URLs, so this endpoint is a queryable file index rather than a data API. Freshness check: read releaseData[].releaseName (isLatest: true) or the release tag at https://depmap.org/portal/data_page/?tab=allData."
 ---
 
 # Cancer Cell Line Encyclopedia (CCLE)
@@ -83,14 +87,14 @@ See Review notes for `ENTREZ_GENE_ID`, `DEPMAP_ID`, `CCLE_NAME`, and `SANGER_MOD
 
 ## Access notes
 
-There is no public REST API. The two practical paths are:
+There is no query/analytics REST API for the data matrices themselves, but DepMap does expose a callable, no-auth file-manifest endpoint at `https://depmap.org/portal/download/api/downloads` (JSON: `table[]` of every release file with `fileName`, `releaseName`, `fileType`, and a `downloadUrl`; `releaseData[]` of release metadata). The `downloadUrl` values are time-limited Google Cloud Storage signed URLs, so this is a queryable index over the bulk files rather than a programmatic data API. The two practical paths for the data are:
 
 1. **DepMap Portal downloads.** Bulk CSV/TSV (sometimes Parquet for large matrices) at `https://depmap.org/portal/data_page/?tab=allData`. Files are versioned per release (`release_25q4/`, `release_26q1/`); always download the `Model.csv` metadata table to resolve `DEPMAP_ID` to lineage, primary disease, and `SANGER_MODEL_ID`. Releases land bi-annually (recent: 26Q1).
 2. **Legacy CCLE bulk archive.** Phase I files (2012 SNP arrays, expression arrays, MAF, drug response) are pinned at the broad-institute.org CCLE site and on the Broad's legacy data portal. Phase II and Phase III files (RNA-seq, proteomics, metabolomics) are hosted on Figshare and the DepMap portal under each release.
 
 License is the **DepMap Terms of Use**: free for academic and non-commercial research, with explicit restrictions on commercial productisation and on training or fine-tuning ML or AI models with the data outside internal research use. Citation is required (per the `how-to-cite` panel on each release page). When redistributing, the same terms must propagate downstream; rehosting agents must enforce them. Acknowledge the Broad Institute and cite the relevant Nature 2012, Nature 2019, and Cell 2020 publications depending on which data type is used.
 
-Freshness check: hit `https://depmap.org/portal/data_page/?tab=allData` and read the release tag at the top of the page. No `access_test` populated because the download endpoints are page-scraped and not a stable JSON API.
+Freshness check: GET `https://depmap.org/portal/download/api/downloads` and read `releaseData[]` for the entry with `isLatest: true`, or hit `https://depmap.org/portal/data_page/?tab=allData` and read the release tag at the top of the page. `access_test` populated against the JSON manifest endpoint (verified 200, 2026-06-22).
 
 ## MCP / connector notes
 
@@ -119,4 +123,4 @@ Three community MCP servers exist: `openpharma-org/depmap-mcp-server` (JavaScrip
     - Other datasets that would use it: NCBI Gene, GTEx, HPA, OpenAlex MeSH expansions, most biomedical cross-references. Already flagged in `human-protein-atlas.md`; consolidating the proposal here.
 - Cellosaurus accession (`CVCL_*`) is the de facto international cell line registry identifier and CCLE rows can be mapped to it through the model metadata table; worth a separate proposal alongside any other cell-line-keyed dataset.
 - `entry_kind` choice: `mixed` over `panel`, because CCLE spans genomics, transcriptomics, proteomics, metabolomics, and pharmacology rather than a single multi-dimensional measurement.
-- No `access_test` populated: bulk files are served from versioned paths surfaced through HTML pages, not a stable REST endpoint. Freshness check documented in Access notes.
+- `access_test` populated against `https://depmap.org/portal/download/api/downloads` (no-auth JSON file manifest, verified 200 on 2026-06-22). The data matrices themselves are served from versioned GCS paths via time-limited signed URLs rather than a query API, but the manifest endpoint is a stable callable surface, so it carries the access test. Freshness check documented in Access notes.

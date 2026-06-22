@@ -53,6 +53,10 @@ agent_use_cases:
   - candidate-gene expression profiling
   - cross-species expression comparison
   - single-cell expression context
+access_test:
+  command: "curl -sf 'https://www.ebi.ac.uk/gxa/json/experiments'"
+  expected_status: 200
+  expected_fields: ["experiments[].experimentAccession", "experiments[].experimentType", "experiments[].species", "experiments[].experimentDescription", "experiments[].lastUpdate"]
 last_verified: 2026-06-22
 build_priority: low
 ---
@@ -79,13 +83,13 @@ The reused experiment accessions (`E-MTAB-...`, `E-GEOD-...`) are source-native 
 
 ## Access notes
 
-No auth, free, CC-BY-4.0 content (Apache-2.0 for the code). Start at a single experiment page and use its per-experiment downloads: baseline experiments ship a TSV of expression (TPM) by gene x condition; differential experiments ship analytics TSVs of log2 fold-change and FDR-adjusted p-values per contrast, plus sample annotations and protocol files. Programmatic pulls go through the Bioconductor `ExpressionAtlas` R package (raw counts for RNA-seq, normalized intensities for microarray) or the EBI FTP bulk mirror; the web UI is for browsing, not matrix-scale retrieval. There is no documented general REST query API, so `access_test` is omitted; verify freshness by checking the latest experiment release date and the pinned Ensembl/EFO version on the homepage.
+No auth, free, CC-BY-4.0 content (Apache-2.0 for the code). Start at a single experiment page and use its per-experiment downloads: baseline experiments ship a TSV of expression (TPM) by gene x condition; differential experiments ship analytics TSVs of log2 fold-change and FDR-adjusted p-values per contrast, plus sample annotations and protocol files. Programmatic pulls of the expression matrices go through the Bioconductor `ExpressionAtlas` R package (raw counts for RNA-seq, normalized intensities for microarray) or the EBI FTP bulk mirror; the web UI is for browsing, not matrix-scale retrieval. There is no documented general REST query API for the per-gene expression values themselves, but Expression Atlas does serve an undocumented but stable experiment-catalogue JSON endpoint at `https://www.ebi.ac.uk/gxa/json/experiments` (and the Single Cell equivalent at `https://www.ebi.ac.uk/gxa/sc/json/experiments`), returning every experiment with `experimentAccession`, `experimentType`, `species`, `experimentDescription`, `experimentalFactors`, and `lastUpdate`. `access_test` is populated against that catalogue endpoint (verified 200 with 4,562 experiments on 2026-06-22); it lists and filters experiments but does not return expression values, so per-gene retrieval still routes through the Bioconductor package or FTP. Verify freshness via `experiments[].lastUpdate` or the pinned Ensembl/EFO version on the homepage.
 
 Two structural gotchas. First, this is a *derived* curated layer: data is uniformly re-quantified against fixed reference versions per release, the opposite of pulling raw reads straight from GEO/SRA, so values are comparable across experiments but lag the raw deposition and follow the E-MTAB/E-GEOD accession back to ENA/SRA/ArrayExpress for raw reads. Second, Bulk and Single Cell are separate resources with separate UIs and download shapes; pick the right one before querying (bulk for TPM-by-tissue and differential contrasts, single cell for per-cell-type expression).
 
 ## MCP / connector notes
 
-No MCP exists. Audience is genomics-literate and overlaps with GTEx and Ensembl users, so build priority is low. Suggested surface: `search_experiments` (by gene, organism, condition), `get_baseline_expression` (gene by tissue/condition, returns TPM), `get_differential_expression` (gene by contrast, returns log2FC + FDR), `list_tissues`, `resolve_gene`. The connector must abstract over (a) the Bulk vs Single Cell Atlas split behind one interface, (b) baseline vs differential experiment types (different payload shapes), (c) per-release Ensembl/Ensembl Genomes/EFO version pinning for reproducibility, and (d) the lack of a clean REST query layer by wrapping the Bioconductor package or FTP mirror rather than scraping the UI.
+No MCP exists. Audience is genomics-literate and overlaps with GTEx and Ensembl users, so build priority is low. Suggested surface: `search_experiments` (by gene, organism, condition), `get_baseline_expression` (gene by tissue/condition, returns TPM), `get_differential_expression` (gene by contrast, returns log2FC + FDR), `list_tissues`, `resolve_gene`. The connector must abstract over (a) the Bulk vs Single Cell Atlas split behind one interface, (b) baseline vs differential experiment types (different payload shapes), (c) per-release Ensembl/Ensembl Genomes/EFO version pinning for reproducibility, and (d) the gap between the `json/experiments` catalogue endpoint (good for search/list/filter) and per-gene expression values, which still require the Bioconductor package or FTP mirror rather than a query API or UI scrape.
 
 ## Review notes
 

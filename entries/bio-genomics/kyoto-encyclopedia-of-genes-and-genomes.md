@@ -13,7 +13,7 @@ type:
 auth_required: none
 cost: freemium
 license: KEGG-Custom
-rate_limit: unknown
+rate_limit: "3 requests per second (documented; exceeding it blocks access)"
 bulk_available: true
 frequency: monthly
 lag: weeks
@@ -86,7 +86,7 @@ access_test:
   command: "curl -sf 'https://rest.kegg.jp/info/kegg'"
   expected_status: 200
   expected_fields: [kegg, pathway, orthology, genes, compound, reaction, disease, drug]
-last_verified: 2026-06-09
+last_verified: 2026-06-22
 build_priority: medium
 notes: "License is custom (not SPDX). Website and REST API are free for academic users; commercial use, FTP bulk downloads, and KEGG-backed services require a paid subscription via Pathway Solutions or an academic FTP subscription. See Review notes for license short-name proposal."
 ---
@@ -117,7 +117,7 @@ Potential new canonical join keys flagged in Review notes: `KEGG_PATHWAY_ID`, `K
 
 ## Access notes
 
-**Primary entry point:** REST API at `https://rest.kegg.jp/`. No authentication, no documented rate limit. Seven operations cover most use cases: `info` (release statistics), `list` (entry IDs and names), `find` (keyword search), `get` (full entry retrieval), `conv` (KEGG to outside identifier mapping), `link` (related-entry traversal), `ddi` (drug-drug interaction check). Default `get` response is KEGG flat-file format; append `/json` to a `get` URL for structured output where supported, `/kgml` for pathway XML, `/image` for PNG pathway maps.
+**Primary entry point:** REST API at `https://rest.kegg.jp/`. No authentication. KEGG documents a limit of 3 API calls per second; exceeding it blocks access. Seven operations cover most use cases: `info` (release statistics), `list` (entry IDs and names), `find` (keyword search), `get` (full entry retrieval), `conv` (KEGG to outside identifier mapping), `link` (related-entry traversal), `ddi` (drug-drug interaction check). Default `get` response is KEGG flat-file format; append `/json` to a `get` URL for structured output where supported, `/kgml` for pathway XML, `/image` for PNG pathway maps.
 
 **Identifier patterns to know:** organism-prefixed genes (`hsa:10458` for human, `eco:b0001` for E. coli, `sce:` for budding yeast), reference pathway maps (`map00010`), organism-specific pathway maps (`hsa00010`), KO groups (`K00500`), compounds (`C01290`), reactions (`R00100`), drugs (`D00564`).
 
@@ -126,7 +126,7 @@ Potential new canonical join keys flagged in Review notes: `KEGG_PATHWAY_ID`, `K
 **License nuance:** Custom license. The KEGG website and REST API are free for individual academic users. Anyone providing services on top of KEGG (including hosted MCPs, downstream redistribution, or commercial products) needs a license: academic service providers get one bundled with the KEGG FTP academic subscription; commercial entities license through Pathway Solutions. Database content is explicitly described as "not a public database, nor a publicly funded database." Cite the standard Kanehisa et al. KEGG paper in publications.
 
 **Known gotchas:**
-- No documented rate limit, but the API is shared infrastructure; behave politely, cache aggressively.
+- Documented limit of 3 API calls per second; exceeding it blocks access. The API is shared infrastructure, so behave politely and cache aggressively.
 - Flat-file is the default response format; JSON is only supported on a subset of `get` endpoints. Parsers must handle the section-header flat format (`ENTRY`, `NAME`, `DEFINITION`, `DBLINKS`, etc.).
 - Pathway map identifiers come in reference (`map`) and organism-specific (`hsa`, `eco`, etc.) flavours; agents pivoting between species need to translate the organism prefix.
 - DBLINKS cross-references in flat-file entries are the primary join surface but are unevenly populated across databases.
@@ -179,6 +179,6 @@ Potential new join keys for review (KEGG mints many cross-source-useful identifi
   Pattern: `^[0-9]+(\.[0-9-]+){3}$`
   Other datasets that would use it: UniProt, BRENDA, ExplorEnz, Rhea, ChEMBL, Reactome (extremely widely cited)
 
-Rate-limit guidance is not documented; entry marks `rate_limit: unknown`. Worth empirically probing or asking Kanehisa Laboratories before treating the REST endpoint as a high-throughput surface.
+Rate limit is documented at 3 API calls per second on https://www.kegg.jp/kegg/rest/ ; exceeding it blocks access. Entry now records `rate_limit: "3 requests per second (documented; exceeding it blocks access)"`.
 
 `access_test` was executed: `curl -sf 'https://rest.kegg.jp/info/kegg'` returned 200 with the expected release/statistics block (Release 118.0+, June 2026, including pathway, orthology, genes, compound, reaction, disease, drug counts).

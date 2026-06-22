@@ -30,6 +30,7 @@ join_key_fields:
   - join_key: NDC
     fields: [openfda.product_ndc, openfda.package_ndc, products.openfda.product_ndc, products.openfda.package_ndc]
 mcp_status: mcp-needed-high-value
+mcp_maturity: none
 mcp_notes: >
   No dedicated Orange Book MCP. Patent and exclusivity tables are the canonical source for
   generic launch timing and IP analysis; not exposed by existing openFDA MCPs. Suggested surface:

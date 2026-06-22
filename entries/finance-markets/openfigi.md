@@ -14,6 +14,7 @@ license: Public-Domain-Dedication
 rate_limit: "anon: 25 mapping req/min, 10 jobs/req, 5 search-or-filter req/min. With API key: 25 mapping req/6s, 100 jobs/req, 20 search-or-filter req/min."
 bulk_available: false
 frequency: continuous
+lag: "near-real-time for lookups (live API); underlying FIGI reference data refreshes on issuance, with new-listing coverage typically landing within ~1 month"
 geography: [global]
 join_keys:
   - FIGI

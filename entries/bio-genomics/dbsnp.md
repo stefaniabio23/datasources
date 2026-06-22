@@ -33,6 +33,7 @@ join_key_fields:
   - join_key: ENTREZ_GENE_ID
     fields: [primary_snapshot_data.allele_annotations.assembly_annotation.genes.id, "VCF:INFO.GENEINFO"]
 mcp_status: api-direct-sufficient
+mcp_maturity: none
 agent_use_cases:
   - rsID to coordinate resolution
   - variant allele-frequency lookup

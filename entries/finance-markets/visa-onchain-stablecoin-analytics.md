@@ -10,7 +10,7 @@ type:
   - web-ui
 auth_required: none
 cost: free
-license: unknown
+license: visa-onchain-dashboard-proprietary-display-only
 rate_limit: "no documented quota; static dashboard, charts render from pre-aggregated Allium tables"
 bulk_available: false
 frequency: "daily (per Allium upstream aggregation; not stated on dashboard itself)"
@@ -28,6 +28,7 @@ join_key_fields:
   - join_key: ISO_4217
     fields: [currency]
 mcp_status: requires-scraping
+mcp_maturity: none
 mcp_notes: >
   No API. All data is rendered client-side on the visaonchainanalytics.com SPA from
   pre-computed Allium aggregates. An MCP would need browser automation or HTML / chart-JSON
@@ -87,7 +88,7 @@ No MCP found in `modelcontextprotocol/servers`, npm, or PyPI as of last verify. 
 
 ## Review notes
 
-- License field is `unknown`; the dashboard publishes no data-licence string. Visa's general legal links are present but do not commit to a redistribution licence for the chart data. Flagging for human review.
+- License set to `visa-onchain-dashboard-proprietary-display-only`: the dashboard publishes no machine-readable data-licence string. Visa's footer carries Legal / Privacy / IP-Rights links and retains brand and IP rights, with no redistribution grant. The kebab short-form records the proprietary display-only status (chart extraction / redistribution restricted, attribute "Visa Onchain Analytics Dashboard, powered by Allium"). Raw data licensing is governed by Allium's paid terms upstream. Flagging for human confirmation of the short-form token.
 - Cadence and lag are not stated on the dashboard. The Allium upstream is documented as daily aggregation; I recorded `frequency: daily` on that basis and left `lag` as `unknown`. Worth confirming.
 - `entry_kind: panel` chosen because the dashboard is a multi-dimensional time-series view (chain x stablecoin x metric x time). Could also be argued as `mixed` if the Lending tab is treated as a distinct sub-dataset.
 - Primary domain: `finance-markets`. Secondary: `consumer-signal` (stablecoin adoption sits next to other crypto-attention series). Mentioned in the body, not duplicated in YAML.

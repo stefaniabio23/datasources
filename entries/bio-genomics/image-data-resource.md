@@ -39,6 +39,7 @@ join_key_fields:
   - join_key: PDB_ID
     fields: ["map-annotation.PDB", "annotations.values"]
 mcp_status: mcp-needed-low-value
+mcp_maturity: none
 mcp_notes: >
   No official or community MCP. OMERO.web is session-backed (cookie from a GET index call must be
   carried before API calls), the data model is a deep study>screen>plate>well>image hierarchy, and
@@ -56,6 +57,7 @@ access_test:
   expected_status: 200
   expected_fields: [data, meta]
 last_verified: 2026-06-22
+build_priority: low
 notes: "access_test constructed (session-cookie two-step), not executed in this environment"
 ---
 

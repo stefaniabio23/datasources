@@ -14,7 +14,7 @@ type:
 auth_required: none
 cost: free
 license: CC-BY-4.0
-rate_limit: unknown
+rate_limit: "unpublished; polite use expected"
 bulk_available: true
 frequency: monthly
 lag: weeks
@@ -73,7 +73,7 @@ access_test:
   command: "curl -sf 'https://api.geneontology.org/api/bioentity/gene/UniProtKB:P04637/function?rows=2' -H 'Accept: application/json'"
   expected_status: 200
   expected_fields: [associations, subject.id, object.id, evidence_type]
-last_verified: 2026-06-09
+last_verified: 2026-06-22
 build_priority: high
 ---
 

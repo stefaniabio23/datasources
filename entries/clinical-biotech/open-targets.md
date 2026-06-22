@@ -12,7 +12,7 @@ type:
 auth_required: none
 cost: free
 license: CC0-1.0
-rate_limit: unknown
+rate_limit: "unpublished; polite use expected (docs discourage repeatedly querying one entity at a time, recommend bulk Parquet for systematic pulls)"
 bulk_available: true
 frequency: quarterly
 lag: "data refresh follows quarterly release cadence; underlying sources lag per their own schedules"
@@ -65,7 +65,7 @@ access_test:
   command: "curl -sf -X POST 'https://api.platform.opentargets.org/api/v4/graphql' -H 'Content-Type: application/json' -d '{\"query\":\"{ target(ensemblId: \\\"ENSG00000169083\\\") { id approvedSymbol biotype } }\"}'"
   expected_status: 200
   expected_fields: [data, target, id, approvedSymbol]
-last_verified: 2026-06-08
+last_verified: 2026-06-22
 build_priority: medium
 ---
 

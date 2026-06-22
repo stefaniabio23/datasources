@@ -33,6 +33,7 @@ join_key_fields:
       - "section.subsections.attributes[name=PubMed ID]"
       - "section.attributes[name=PubMed ID]"
 mcp_status: mcp-needed-low-value
+mcp_maturity: none
 agent_use_cases:
   - find functional-genomics experiments by organism or disease
   - retrieve sample-to-run mapping from SDRF

@@ -22,6 +22,15 @@ join_keys:
   - DATE
   - ISO_3
   - WIKIDATA_QID
+primary_keys:
+  - WIKIPEDIA_ARTICLE
+join_key_fields:
+  - join_key: URL
+    fields: ["article", "project"]
+  - join_key: DATE
+    fields: ["timestamp"]
+  - join_key: ISO_3
+    fields: ["country"]
 mcp_status: mcp-needed-high-value
 mcp_maturity: none
 mcp_notes: >
@@ -39,7 +48,7 @@ access_test:
   command: "curl -sf -A 'api-dataset-directory (contact@example.org)' 'https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia.org/all-access/all-agents/Albert_Einstein/daily/20240101/20240107'"
   expected_status: 200
   expected_fields: [project, article, granularity, timestamp, access, agent, views]
-last_verified: 2026-06-08
+last_verified: 2026-06-22
 build_priority: medium
 ---
 

@@ -24,6 +24,19 @@ join_keys:
   - EU_CT_NUMBER
   - PMID
   - MESH_TERM
+primary_keys:
+  - NCT_ID
+join_key_fields:
+  - join_key: NCT_ID
+    fields: [protocolSection.identificationModule.nctId]
+  - join_key: EUDRACT_NUMBER
+    fields: ["protocolSection.identificationModule.secondaryIdInfos[].id"]
+  - join_key: EU_CT_NUMBER
+    fields: ["protocolSection.identificationModule.secondaryIdInfos[].id"]
+  - join_key: PMID
+    fields: ["protocolSection.referencesModule.references[].pmid"]
+  - join_key: MESH_TERM
+    fields: ["derivedSection.conditionBrowseModule.meshes[].term", "protocolSection.conditionsModule.conditions"]
 mcp_status: mcp-exists
 mcp_maturity: community
 mcp_package:
@@ -43,7 +56,7 @@ access_test:
   command: "curl -sf 'https://clinicaltrials.gov/api/v2/studies/NCT04280705?format=json'"
   expected_status: 200
   expected_fields: [protocolSection, resultsSection, derivedSection, hasResults]
-last_verified: 2026-06-08
+last_verified: 2026-06-22
 build_priority: medium
 ---
 

@@ -13,7 +13,7 @@ type:
 auth_required: account-required
 cost: free-non-commercial
 license: DrugBank-Custom-License
-rate_limit: unknown
+rate_limit: "no public fixed cap; per-contract quota negotiated separately for free academic and paid commercial API tiers; polite use expected"
 bulk_available: true
 frequency: "minor releases every few months; major versions ~yearly"
 lag: "weeks to months between FDA approval and DrugBank entry"

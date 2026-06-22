@@ -28,6 +28,7 @@ join_key_fields:
   - join_key: ISIN
     fields: [isin]
 mcp_status: fragile-unofficial
+mcp_maturity: none
 mcp_notes: >
   No official MCP. yfinance itself is a fragile wrapper around undocumented Yahoo
   endpoints that break every few months. A connector should expose narrow surfaces

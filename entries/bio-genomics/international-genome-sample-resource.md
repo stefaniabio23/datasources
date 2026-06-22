@@ -27,7 +27,11 @@ primary_keys:
   - IGSR_POPULATION_CODE
   - IGSR_SUPERPOPULATION_CODE
   - IGSR_DATA_COLLECTION_TITLE
-join_key_fields: []
+join_key_fields:
+  - join_key: DOI
+    fields: [publication-citation]
+  - join_key: PMID
+    fields: [publication-citation]
 mcp_status: mcp-exists
 mcp_maturity: community
 mcp_package:

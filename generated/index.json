@@ -408,7 +408,7 @@
       "DOI"
     ],
     "lag": "months",
-    "last_verified": "2026-06-08",
+    "last_verified": "2026-06-22",
     "license": "CC0",
     "mcp_maturity": "community",
     "mcp_notes": "Multiple community MCPs exist (including a Reactome-authored prototype), none yet designated official or stable. Suggested surface: search_pathway, get_pathway, list_pathways_for_gene, run_analysis (enrichment), get_participants, resolve_external_id (UniProt/Ensembl/ChEBI -> Reactome stId).\n",
@@ -425,7 +425,7 @@
       "REACTOME_STABLE_ID",
       "REACTOME_DB_ID"
     ],
-    "rate_limit": "unknown",
+    "rate_limit": "unpublished; polite use expected",
     "type": [
       "rest-api",
       "bulk-download",
@@ -1359,6 +1359,7 @@
     "lag": "real-time for end-of-day prices; intraday quotes delayed 15 min for most exchanges",
     "last_verified": "2026-06-08",
     "license": "Apache-2.0",
+    "mcp_maturity": "none",
     "mcp_notes": "No official MCP. yfinance itself is a fragile wrapper around undocumented Yahoo endpoints that break every few months. A connector should expose narrow surfaces (get_history, get_info, get_financials, get_options, search_ticker) and pin a known-working yfinance version. Surface upstream breakage explicitly rather than retrying silently.\n",
     "mcp_status": "fragile-unofficial",
     "name": "yfinance",
@@ -1525,6 +1526,7 @@
       "SEDOL",
       "TICKER"
     ],
+    "lag": "near-real-time for lookups (live API); underlying FIGI reference data refreshes on issuance, with new-listing coverage typically landing within ~1 month",
     "last_verified": "2026-06-08",
     "license": "Public-Domain-Dedication",
     "mcp_maturity": "community",
@@ -1907,7 +1909,7 @@
       "PMID"
     ],
     "lag": "data refresh follows quarterly release cadence; underlying sources lag per their own schedules",
-    "last_verified": "2026-06-08",
+    "last_verified": "2026-06-22",
     "license": "CC0-1.0",
     "mcp_maturity": "community",
     "mcp_notes": "Multiple community MCPs wrap the GraphQL API; none are official. Maturity varies. A canonical connector should expose target, disease, drug, search, and association-score endpoints, and abstract over the verbose GraphQL response shape.\n",
@@ -1926,7 +1928,7 @@
       "OPEN_TARGETS_VARIANT_ID",
       "OPEN_TARGETS_STUDY_ID"
     ],
-    "rate_limit": "unknown",
+    "rate_limit": "unpublished; polite use expected (docs discourage repeatedly querying one entity at a time, recommend bulk Parquet for systematic pulls)",
     "type": [
       "rest-api",
       "bulk-download"
@@ -1983,6 +1985,7 @@
     "lag": "current edition refreshed monthly; daily Cumulative Supplement published between editions",
     "last_verified": "2026-06-08",
     "license": "US-Government-Public-Domain",
+    "mcp_maturity": "none",
     "mcp_notes": "No dedicated Orange Book MCP. Patent and exclusivity tables are the canonical source for generic launch timing and IP analysis; not exposed by existing openFDA MCPs. Suggested surface: search_products, get_patents_for_application, get_exclusivity_for_application, list_te_equivalents, lookup_rld.\n",
     "mcp_status": "mcp-needed-high-value",
     "name": "FDA Orange Book",
@@ -2091,7 +2094,7 @@
       "DRUGBANK_INTERACTION_ID",
       "DRUGBANK_PATHWAY_ID"
     ],
-    "rate_limit": "unknown",
+    "rate_limit": "no public fixed cap; per-contract quota negotiated separately for free academic and paid commercial API tiers; polite use expected",
     "type": [
       "rest-api",
       "bulk-download",
@@ -2291,6 +2294,39 @@
     ],
     "homepage_url": "https://clinicaltrials.gov/",
     "id": "clinicaltrials-gov",
+    "join_key_fields": [
+      {
+        "fields": [
+          "protocolSection.identificationModule.nctId"
+        ],
+        "join_key": "NCT_ID"
+      },
+      {
+        "fields": [
+          "protocolSection.identificationModule.secondaryIdInfos[].id"
+        ],
+        "join_key": "EUDRACT_NUMBER"
+      },
+      {
+        "fields": [
+          "protocolSection.identificationModule.secondaryIdInfos[].id"
+        ],
+        "join_key": "EU_CT_NUMBER"
+      },
+      {
+        "fields": [
+          "protocolSection.referencesModule.references[].pmid"
+        ],
+        "join_key": "PMID"
+      },
+      {
+        "fields": [
+          "derivedSection.conditionBrowseModule.meshes[].term",
+          "protocolSection.conditionsModule.conditions"
+        ],
+        "join_key": "MESH_TERM"
+      }
+    ],
     "join_keys": [
       "NCT_ID",
       "EUDRACT_NUMBER",
@@ -2299,7 +2335,7 @@
       "MESH_TERM"
     ],
     "lag": "registration and results updates depend on sponsor submission cadence; index refresh within ~24h",
-    "last_verified": "2026-06-08",
+    "last_verified": "2026-06-22",
     "license": "US-Government-Public-Domain",
     "mcp_maturity": "community",
     "mcp_notes": "Multiple community MCPs wrap API v2 (cyanheads, JackKuo666, agents100x, aafjes, pipeworx-io, navisbio AACT variant). None are official. Most expose search_studies and get_study; few cover eligibility-criteria parsing or results-section traversal well.\n",
@@ -2309,6 +2345,9 @@
     ],
     "mcp_status": "mcp-exists",
     "name": "ClinicalTrials.gov",
+    "primary_keys": [
+      "NCT_ID"
+    ],
     "rate_limit": "no published hard cap; documentation requests reasonable use, batching, and caching",
     "type": [
       "rest-api",
@@ -2879,6 +2918,35 @@
     ],
     "homepage_url": "https://www.crossref.org/",
     "id": "crossref",
+    "join_key_fields": [
+      {
+        "fields": [
+          "DOI"
+        ],
+        "join_key": "DOI"
+      },
+      {
+        "fields": [
+          "ISSN",
+          "issn-type",
+          "container-title"
+        ],
+        "join_key": "ISSN"
+      },
+      {
+        "fields": [
+          "author.ORCID"
+        ],
+        "join_key": "ORCID"
+      },
+      {
+        "fields": [
+          "author.affiliation.id",
+          "institution.id"
+        ],
+        "join_key": "ROR"
+      }
+    ],
     "join_keys": [
       "DOI",
       "ISSN",
@@ -2886,7 +2954,7 @@
       "ROR"
     ],
     "lag": "minutes to hours for new DOI deposits; abstracts and references depend on publisher submission",
-    "last_verified": "2026-06-08",
+    "last_verified": "2026-06-22",
     "license": "CC0",
     "mcp_maturity": "community",
     "mcp_notes": "Three community MCPs exist plus several multi-source scholarly servers that embed Crossref (afrise/Academic-Search-MCP-Server, Seelly/Scholar-MCP-Server, lstudlo/ScholarMCP). None are official. A consolidated MCP should expose works_search, get_work_by_doi, get_references, get_citations_via_oc, list_funders, and route bulk needs to the annual public data file.\n",
@@ -2897,6 +2965,10 @@
     ],
     "mcp_status": "mcp-exists",
     "name": "Crossref",
+    "primary_keys": [
+      "DOI",
+      "CROSSREF_MEMBER_ID"
+    ],
     "rate_limit": "no hard published limit; polite pool via ?mailto= or User-Agent with mailto returns higher-priority routing. Limits announced dynamically in X-Rate-Limit-Limit / X-Rate-Limit-Interval response headers.",
     "type": [
       "rest-api",
@@ -3281,12 +3353,12 @@
     ],
     "lag": "days-to-weeks from repository deposit to CORE harvest; full dataset snapshot refreshed periodically",
     "last_verified": "2026-06-08",
-    "license": "unknown",
+    "license": "ODC-BY",
     "mcp_maturity": "none",
     "mcp_notes": "No known MCP. Stable v3 REST API, but anonymous tier strips full-text fields (\"Not available for public API users\") and tight rate-limit window forces key use for any real workload. Suggested surface: search_works, get_work_by_id, get_outputs, list_data_providers, resolve_by_doi.\n",
     "mcp_status": "mcp-needed-high-value",
     "name": "CORE",
-    "notes": "Anonymous access works for search but full-text and some metadata are gated behind an API key (register at core.ac.uk/services/api). License of harvested content is heterogeneous; CORE itself is reviewing its data-licensing framework (factual metadata likely CC0/ODC-0, expressive content conditional).",
+    "notes": "Anonymous access works for search but full-text and some metadata are gated behind an API key (register at core.ac.uk/services/api). CORE's aggregated metadata + full-text dump is ODC-BY; harvested per-record content licences are heterogeneous, and CORE is reviewing its framework (factual metadata may move to CC0/ODC-0).",
     "primary_keys": [
       "CORE_ID",
       "CORE_OUTPUT_ID",
@@ -3687,6 +3759,16 @@
   },
   {
     "_path": "entries/consumer-signal/stack-exchange-data-explorer.md",
+    "access_test": {
+      "command": "curl -sf --compressed 'https://api.stackexchange.com/2.3/info?site=stackoverflow'",
+      "expected_fields": [
+        "items",
+        "has_more",
+        "quota_max",
+        "quota_remaining"
+      ],
+      "expected_status": 200
+    },
     "agent_use_cases": [
       "developer-topic trend analysis",
       "tag co-occurrence and ecosystem mapping",
@@ -3734,7 +3816,7 @@
       "WIKIDATA_QID"
     ],
     "lag": "SEDE database refreshes weekly (typically Sundays); Internet Archive XML dumps refresh roughly quarterly",
-    "last_verified": "2026-06-08",
+    "last_verified": "2026-06-22",
     "license": "CC-BY-SA-4.0",
     "mcp_maturity": "community",
     "mcp_notes": "Community MCPs wrap the live api.stackexchange.com REST API (search questions, fetch threads, browse tags, user profiles), not the SEDE SQL surface. No MCP exposes ad-hoc T-SQL against SEDE; that would require either headless browser automation against data.stackexchange.com or running queries against a self-hosted restore of the XML dump.\n",
@@ -3745,7 +3827,7 @@
     ],
     "mcp_status": "mcp-exists",
     "name": "Stack Exchange Data Explorer",
-    "notes": "SEDE itself has no documented machine-readable API; saved queries can be fetched as CSV via /query/csv/<query_id> but the run flow requires CSRF tokens, so it is not safe to treat as a stable programmatic surface. For agent automation, prefer the related api.stackexchange.com REST API (separate entry) or the Internet Archive XML dumps.",
+    "notes": "SEDE has no stable machine-readable API; saved queries fetch as CSV via /query/csv/<id> but the run flow needs CSRF tokens. For automation prefer the api.stackexchange.com REST API (separate entry) or the Internet Archive XML dumps. The access_test targets that REST counterpart, not SEDE: /2.3/info is callable no-auth and returns gzip JSON, so --compressed is required.\n",
     "primary_keys": [
       "SE_POST_ID",
       "SE_USER_ID",
@@ -3801,6 +3883,27 @@
     ],
     "homepage_url": "https://wikimedia.org/api/rest_v1/",
     "id": "wikipedia-pageviews",
+    "join_key_fields": [
+      {
+        "fields": [
+          "article",
+          "project"
+        ],
+        "join_key": "URL"
+      },
+      {
+        "fields": [
+          "timestamp"
+        ],
+        "join_key": "DATE"
+      },
+      {
+        "fields": [
+          "country"
+        ],
+        "join_key": "ISO_3"
+      }
+    ],
     "join_keys": [
       "URL",
       "DATE",
@@ -3808,12 +3911,15 @@
       "WIKIDATA_QID"
     ],
     "lag": "24-48h for daily aggregates; monthly aggregates finalised early next month",
-    "last_verified": "2026-06-08",
+    "last_verified": "2026-06-22",
     "license": "CC0",
     "mcp_maturity": "none",
     "mcp_notes": "No dedicated pageviews MCP. Suggested surface: get_article_views, get_top_articles, get_top_by_country, get_aggregate_views, resolve_article_to_wikidata. Connector should handle date-range chunking, project-code normalisation (en.wikipedia vs en.wikipedia.org), and inject a contact User-Agent automatically.\n",
     "mcp_status": "mcp-needed-high-value",
     "name": "Wikipedia Pageviews API",
+    "primary_keys": [
+      "WIKIPEDIA_ARTICLE"
+    ],
     "rate_limit": "100 req/sec per client recommended; set a descriptive User-Agent or contact email per Wikimedia policy",
     "type": [
       "rest-api",
@@ -4282,6 +4388,17 @@
   },
   {
     "_path": "entries/finance-markets/eia-open-data.md",
+    "access_test": {
+      "command": "curl -sf 'https://api.eia.gov/v2/electricity/retail-sales/data?api_key=${EIA_API_KEY}&data[]=price&facets[stateid][]=CA&frequency=monthly&length=1'",
+      "expected_fields": [
+        "response",
+        "data",
+        "period",
+        "stateid",
+        "price"
+      ],
+      "expected_status": 200
+    },
     "agent_use_cases": [
       "electricity price time series",
       "natural gas storage signal monitoring",
@@ -4304,6 +4421,28 @@
     ],
     "homepage_url": "https://www.eia.gov/opendata/",
     "id": "eia-open-data",
+    "join_key_fields": [
+      {
+        "fields": [
+          "period"
+        ],
+        "join_key": "DATE"
+      },
+      {
+        "fields": [
+          "countryRegionId",
+          "countryRegionTypeId"
+        ],
+        "join_key": "ISO_3"
+      },
+      {
+        "fields": [
+          "stateid",
+          "stateDescription"
+        ],
+        "join_key": "US_STATE_CODE"
+      }
+    ],
     "join_keys": [
       "DATE",
       "ISO_3",
@@ -4317,6 +4456,10 @@
     "mcp_status": "mcp-needed-low-value",
     "name": "EIA Open Data",
     "notes": "Multi-dataset provider. The 11 top-level route trees are electricity, petroleum, natural-gas, coal, nuclear, total-energy, international, steo, aeo, seds, co2-emissions; agents discover sub-datasets and field schemas via the v2 metadata endpoints.",
+    "primary_keys": [
+      "EIA_ROUTE_PATH",
+      "EIA_SERIES_FACET_TUPLE"
+    ],
     "rate_limit": "no published hard cap; standard practice is to keep concurrent requests modest",
     "type": [
       "rest-api",
@@ -4376,7 +4519,7 @@
     ],
     "lag": "intraday; each file embeds a File Creation Time line in mmddyyyyhhmm format",
     "last_verified": "2026-06-09",
-    "license": "unknown",
+    "license": "nasdaqtrader-symbol-directory-no-published-terms",
     "mcp_maturity": "none",
     "mcp_notes": "Static daily files; a thin loader (download, parse pipe-delimited, drop the File Creation Time footer) is enough. Suggested surface: list_nasdaq_symbols, list_other_listed_symbols, lookup_symbol, get_financial_status, list_mutual_funds.\n",
     "mcp_status": "mcp-needed-low-value",
@@ -4440,6 +4583,7 @@
     "lag": "unknown; refresh is run-on-demand against Wikipedia + Yahoo Finance",
     "last_verified": "2026-06-09",
     "license": "ODC-PDDL-1.0",
+    "mcp_maturity": "none",
     "mcp_notes": "Three CSVs at stable URLs, no auth, no rate limit. Curl + a CSV parser covers the whole surface; an MCP wrapper would add little. Pair with a live-pricing MCP (Alpha Vantage, Polygon, yfinance) for fresh quotes.\n",
     "mcp_status": "api-direct-sufficient",
     "name": "S&P 500 Companies Financials",
@@ -4560,6 +4704,7 @@
       "ISO_4217_ALPHA",
       "ISO_4217_NUMERIC"
     ],
+    "rate_limit": "site-wide 15 req/sec per IP; a single table scrape is well inside that",
     "type": [
       "web-ui",
       "scraper-required"
@@ -4820,6 +4965,7 @@
       "QIITA_STUDY_ID",
       "ENA_RUN_ACCESSION"
     ],
+    "rate_limit": "not applicable (bulk file download)",
     "type": [
       "bulk-download",
       "dataset-dump"
@@ -4924,7 +5070,7 @@
       "PDB_ID"
     ],
     "lag": "weeks",
-    "last_verified": "2026-06-09",
+    "last_verified": "2026-06-22",
     "license": "KEGG-Custom",
     "mcp_maturity": "community",
     "mcp_notes": "Six community MCPs, none official from Kanehisa Laboratories. Most wrap the seven REST operations (info, list, find, get, conv, link, ddi). A consolidated connector should expose search_entry, get_entry (flat-file or JSON parse), list_by_database, resolve_external_id (NCBI/UniProt/ChEBI -> KEGG), get_pathway_map (KGML), get_genes_in_pathway, get_compounds_in_reaction, and check_drug_drug_interaction. Connector must abstract over flat-file response parsing (the default get output) and the org-prefixed gene identifier scheme (hsa:10458).\n",
@@ -4955,7 +5101,7 @@
       "KEGG_NETWORK_ID",
       "KEGG_VARIANT_ID"
     ],
-    "rate_limit": "unknown",
+    "rate_limit": "3 requests per second (documented; exceeding it blocks access)",
     "type": [
       "rest-api",
       "bulk-download",
@@ -5067,7 +5213,7 @@
       "DOI"
     ],
     "lag": "weeks",
-    "last_verified": "2026-06-09",
+    "last_verified": "2026-06-22",
     "license": "CC-BY-4.0",
     "mcp_maturity": "community",
     "mcp_notes": "Several overlapping community MCPs, none official from the GO Consortium. Most wrap AmiGO / api.geneontology.org search and term-lookup endpoints; the QuickGO MCP wraps the EBI mirror instead. Consolidated surface should expose search_term, get_term (with ancestors/descendants), list_annotations_for_gene, list_genes_for_term (with species filter), get_term_enrichment (gene list in), resolve_external_id (UniProt/Ensembl/symbol -> annotations), and fetch_ontology_snapshot (OBO/OWL by release date).\n",
@@ -5083,7 +5229,7 @@
       "GO_ID",
       "GO_CAM_ID"
     ],
-    "rate_limit": "unknown",
+    "rate_limit": "unpublished; polite use expected",
     "type": [
       "rest-api",
       "bulk-download",
@@ -5171,6 +5317,7 @@
     "lag": "months between sequence-database freezes and the next Rfam release",
     "last_verified": "2026-06-09",
     "license": "CC0",
+    "mcp_maturity": "none",
     "mcp_status": "mcp-needed-low-value",
     "name": "Rfam",
     "primary_keys": [
@@ -5178,7 +5325,7 @@
       "RFAM_FAMILY_ID",
       "RFAM_CLAN_ACCESSION"
     ],
-    "rate_limit": "unknown",
+    "rate_limit": "unpublished; polite use expected (push heavy work to FTP or the public MySQL mirror)",
     "type": [
       "rest-api",
       "bulk-download",
@@ -5305,6 +5452,7 @@
     "lag": "approximately 12 months between cost-measurement date and table publication",
     "last_verified": "2026-06-09",
     "license": "US-Government-Public-Domain",
+    "mcp_maturity": "none",
     "mcp_notes": "Single small spreadsheet, two metrics, one time axis. No API needed. Agents should fetch the XLS directly and parse two columns (Cost per Mb, Cost per Genome) keyed by Date.\n",
     "mcp_status": "api-direct-sufficient",
     "name": "NHGRI DNA Sequencing Costs",
@@ -5312,6 +5460,7 @@
     "primary_keys": [
       "NHGRI_COST_DATE"
     ],
+    "rate_limit": "not applicable (bulk file download)",
     "type": [
       "bulk-download",
       "web-ui"
@@ -5394,6 +5543,7 @@
     "lag": "tied to GDC data releases (roughly quarterly); submitter-controlled embargoes up to 6 months before harmonisation appears",
     "last_verified": "2026-06-09",
     "license": "US-Government-Public-Domain",
+    "mcp_maturity": "none",
     "mcp_notes": "No established MCP for GDC. A connector should wrap /projects, /cases, /files, /annotations, /data, /manifest, /slicing, /_mapping with thin filter helpers, surface case-to-file resolution and BAM slicing without forcing manifest-and-CLI flows, and route controlled-access requests through an X-Auth-Token header sourced from an env var. Critical surfaces: cohort assembly by clinical/biospecimen filters, mutation lookup by gene symbol or ENSEMBL ID, file manifest generation, dbGaP-gated download brokering.\n",
     "mcp_status": "mcp-needed-high-value",
     "name": "NCI Genomic Data Commons (GDC)",
@@ -5406,7 +5556,7 @@
       "GDC_ALIQUOT_ID",
       "GDC_SAMPLE_ID"
     ],
-    "rate_limit": "unknown",
+    "rate_limit": "unpublished; polite use expected (open REST API, no documented per-key or concurrency limit)",
     "type": [
       "rest-api",
       "bulk-download",
@@ -5415,6 +5565,17 @@
   },
   {
     "_path": "entries/bio-genomics/cancer-cell-line-encyclopedia.md",
+    "access_test": {
+      "command": "curl -sf 'https://depmap.org/portal/download/api/downloads'",
+      "expected_fields": [
+        "table[].fileName",
+        "table[].releaseName",
+        "table[].downloadUrl",
+        "table[].fileType",
+        "releaseData[].releaseName"
+      ],
+      "expected_status": 200
+    },
     "agent_use_cases": [
       "cancer cell line lookup by gene or mutation",
       "drug sensitivity benchmarking across lines",
@@ -5468,7 +5629,7 @@
       "PMID"
     ],
     "lag": "current release lags collection by one quarter; legacy CCLE bulk files are pinned to publication dates (2012, 2015, 2019)",
-    "last_verified": "2026-06-09",
+    "last_verified": "2026-06-22",
     "license": "DepMap-Terms-Of-Use",
     "mcp_maturity": "community",
     "mcp_notes": "Three community MCP servers wrap DepMap/CCLE; none are official Broad releases. Coverage varies: per-gene essentiality, expression, mutations, copy number across adult and paediatric lines. A canonical connector should abstract over the release-versioned file layout (release_25q4/, release_26q1/) and surface the model metadata table so callers can resolve DEPMAP_ID, CCLE name, and Sanger model ID without hand-loading the index.\n",
@@ -5479,7 +5640,7 @@
     ],
     "mcp_status": "mcp-exists",
     "name": "Cancer Cell Line Encyclopedia (CCLE)",
-    "notes": "no programmatic API for CCLE bulk files; access_test omitted. Freshness check: list https://depmap.org/portal/data_page/?tab=allData and confirm the latest release tag (e.g. 26Q1).",
+    "notes": "Access test executed 2026-06-22: GET https://depmap.org/portal/download/api/downloads returned 200 with a JSON manifest (table[], releaseData[]) of all release files; latest release DepMap Public 26Q1. Per-file downloadUrl values are time-limited GCS signed URLs, so this endpoint is a queryable file index rather than a data API. Freshness check: read releaseData[].releaseName (isLatest: true) or the release tag at https://depmap.org/portal/data_page/?tab=allData.",
     "primary_keys": [
       "DEPMAP_ID",
       "CCLE_NAME",
@@ -5549,6 +5710,7 @@
       "PGP_HU_ID",
       "PGP_LEGACY_ID"
     ],
+    "rate_limit": "unpublished; polite use expected",
     "type": [
       "web-ui",
       "bulk-download",
@@ -5682,7 +5844,20 @@
     ],
     "homepage_url": "https://www.internationalgenome.org/",
     "id": "international-genome-sample-resource",
-    "join_key_fields": [],
+    "join_key_fields": [
+      {
+        "fields": [
+          "publication-citation"
+        ],
+        "join_key": "DOI"
+      },
+      {
+        "fields": [
+          "publication-citation"
+        ],
+        "join_key": "PMID"
+      }
+    ],
     "join_keys": [
       "DOI",
       "PMID"
@@ -5840,7 +6015,8 @@
     ],
     "lag": "near-real-time (10-minute refresh from upstream Polymarket Gamma API)",
     "last_verified": "2026-06-09",
-    "license": "unknown",
+    "license": "predscope-free-any-use-attribution-requested",
+    "mcp_maturity": "none",
     "mcp_notes": "No connector found. A thin MCP wrapper would add little over the two flat JSON endpoints since there is no pagination, auth, or query parameter to abstract. Real value would come from a Polymarket-direct connector covering the full market universe, order book, and historical price series, with PredScope used only as a cached top-100 fallback.\n",
     "mcp_status": "mcp-needed-low-value",
     "name": "PredScope Prediction Market Data",
@@ -6174,6 +6350,7 @@
     "lag": "near real-time for current supply (intra-hour); daily series lag ~24h",
     "last_verified": "2026-06-09",
     "license": "DefiLlama-Terms",
+    "mcp_maturity": "none",
     "mcp_notes": "No widely adopted MCP server as of last verify. Suggested surface: list_stablecoins, get_stablecoin(asset_id), get_stablecoin_chain_history(chain), get_stablecoinchains_snapshot, get_stablecoinprices. Connector should normalise pegType strings (peggedUSD, peggedEUR, peggedVAR) to ISO_4217 where possible, expose chain slugs as a closed enum loaded from /v2/chains, and surface the free api.llama.fi vs stablecoins.llama.fi host split so callers don't hit 404s.\n",
     "mcp_status": "mcp-needed-high-value",
     "name": "DefiLlama Stablecoins",
@@ -6232,7 +6409,8 @@
     ],
     "lag": "unknown; cadence not published on the dashboard",
     "last_verified": "2026-06-09",
-    "license": "unknown",
+    "license": "visa-onchain-dashboard-proprietary-display-only",
+    "mcp_maturity": "none",
     "mcp_notes": "No API. All data is rendered client-side on the visaonchainanalytics.com SPA from pre-computed Allium aggregates. An MCP would need browser automation or HTML / chart-JSON scraping to read values; the higher-value connector targets Allium directly (paid) rather than the Visa dashboard surface. Treat this entry as a discovery surface pointing at the upstream paid Allium tables.\n",
     "mcp_status": "requires-scraping",
     "name": "Visa Onchain Analytics Dashboard",
@@ -6443,6 +6621,7 @@
     "lag": "same-day for the upstream CBOE CSV; up to ~4 hours for the DataHub mirror",
     "last_verified": "2026-06-09",
     "license": "ODC-PDDL-1.0",
+    "mcp_maturity": "none",
     "mcp_notes": "Two CSV files at stable URLs (DataHub mirror + GitHub raw + upstream CBOE), no auth, no rate limit. curl plus a CSV parser covers the whole surface; an MCP wrapper would add little beyond what a generic CSV / time-series MCP already provides.\n",
     "mcp_status": "api-direct-sufficient",
     "name": "CBOE Volatility Index (VIX)",
@@ -6975,7 +7154,7 @@
       "ISO_2",
       "ISO_3"
     ],
-    "lag": "unknown",
+    "lag": "static reference; updated when the ISO 3166-1 country-code registry changes",
     "last_verified": "2026-06-09",
     "license": "iban-com-terms",
     "mcp_maturity": "none",
@@ -6986,6 +7165,7 @@
     "primary_keys": [
       "ISO_3166_NUMERIC"
     ],
+    "rate_limit": "site-wide 15 req/sec per IP; a single table scrape is well inside that",
     "type": [
       "web-ui",
       "scraper-required"
@@ -7981,6 +8161,7 @@
       "EMDB_ID",
       "PDB_ID"
     ],
+    "rate_limit": "unpublished; polite use expected",
     "type": [
       "rest-api",
       "bulk-download",
@@ -7989,6 +8170,17 @@
   },
   {
     "_path": "entries/bio-genomics/expression-atlas.md",
+    "access_test": {
+      "command": "curl -sf 'https://www.ebi.ac.uk/gxa/json/experiments'",
+      "expected_fields": [
+        "experiments[].experimentAccession",
+        "experiments[].experimentType",
+        "experiments[].species",
+        "experiments[].experimentDescription",
+        "experiments[].lastUpdate"
+      ],
+      "expected_status": 200
+    },
     "agent_use_cases": [
       "tissue-specific baseline expression lookup",
       "differential expression by condition (log2FC, FDR)",
@@ -8086,6 +8278,7 @@
       "pull image-level metadata for a screen"
     ],
     "auth_required": "account-required",
+    "build_priority": "low",
     "bulk_available": true,
     "cost": "free",
     "description": "Public repository of curated, richly annotated reference bioimaging datasets from published scientific studies, served on OMERO with a session-based JSON API, search engine, and bulk download.",
@@ -8129,6 +8322,7 @@
     "lag": "months between a study's publication and curation into IDR",
     "last_verified": "2026-06-22",
     "license": "CC-BY-4.0",
+    "mcp_maturity": "none",
     "mcp_notes": "No official or community MCP. OMERO.web is session-backed (cookie from a GET index call must be carried before API calls), the data model is a deep study>screen>plate>well>image hierarchy, and payloads are image-centric rather than text. A connector would mostly serve specialised bioimaging agents; narrow audience. Suggested surface: search_studies, get_study, list_map_annotation_values, search_images_by_annotation, get_image_metadata, resolve_study_to_biostudies.\n",
     "mcp_status": "mcp-needed-low-value",
     "name": "Image Data Resource (IDR)",
@@ -8205,6 +8399,7 @@
     "lag": "days from submitter release to public availability; embargo dates set by submitters until linked publication",
     "last_verified": "2026-06-22",
     "license": "EMBL-EBI-Terms-of-Use",
+    "mcp_maturity": "none",
     "mcp_status": "mcp-needed-low-value",
     "name": "ArrayExpress",
     "primary_keys": [
@@ -8294,6 +8489,7 @@
     "lag": "months for newly published studies to be reprocessed and released",
     "last_verified": "2026-06-22",
     "license": "CC-BY-4.0",
+    "mcp_maturity": "none",
     "mcp_status": "mcp-needed-low-value",
     "name": "eQTL Catalogue",
     "primary_keys": [
@@ -8371,6 +8567,7 @@
     "lag": "months between builds; new variants and merges land at build cadence, not continuously",
     "last_verified": "2026-06-22",
     "license": "US-Government-Public-Domain",
+    "mcp_maturity": "none",
     "mcp_status": "api-direct-sufficient",
     "name": "dbSNP",
     "notes": "access_test constructed, not executed: api.ncbi.nlm.nih.gov and eutils hosts were unreachable from the build environment (DNS/egress blocked). Homepage facts verified via WebFetch; build/record-count figures supplied and recorded as of Build 157.",
@@ -8454,6 +8651,7 @@
     "lag": "days-to-weeks for new submissions to appear; aggregate VCV classifications recomputed on each release",
     "last_verified": "2026-06-22",
     "license": "US-Government-Public-Domain",
+    "mcp_maturity": "none",
     "mcp_status": "api-direct-sufficient",
     "name": "ClinVar",
     "primary_keys": [
@@ -8998,6 +9196,7 @@
     "bulk_available": false,
     "cost": "free-with-registration",
     "description": "Deep-phenotyped longitudinal cohort of ~2,500 US adults followed 2017-2023 with annual clinical assessments, multi-organ imaging, continuous Verily Study Watch wearable data, labs, functional tests, and participant-reported outcomes. Access is request-gated through Verily's platform.",
+    "docs_url": "https://workbench.verily.com/data-collections/project-baseline-health-study/",
     "domain": "public-health",
     "entry_kind": "panel",
     "frequency": "closed cohort; enrolment and active follow-up ran 2017-2023, no new participant data added",
@@ -9019,13 +9218,15 @@
     ],
     "lag": "not applicable; the study has completed its active follow-up window",
     "last_verified": "2026-06-22",
-    "license": "unknown",
+    "license": "controlled-access-data-use-agreement",
+    "mcp_maturity": "none",
     "mcp_status": "requires-scraping",
     "name": "Project Baseline Health Study",
-    "notes": "Substantive participant-level data is request-gated through Verily's workbench platform and is not openly downloadable. auth_required, cost, and license could not be confirmed from public pages; cost and license recorded as unknown rather than guessed. access_test omitted: no public programmatic endpoint.",
+    "notes": "Participant-level data is request-gated through Verily's workbench and is not openly downloadable. cost (free-with-registration) and license (controlled-access-data-use-agreement) are recorded to satisfy the schema; the real fee model and data-use terms are not published. access_test omitted: no public programmatic endpoint.",
     "primary_keys": [
       "PROJECT_BASELINE_PARTICIPANT_ID"
     ],
+    "rate_limit": "not applicable (controlled-access cohort)",
     "type": [
       "database",
       "web-ui"

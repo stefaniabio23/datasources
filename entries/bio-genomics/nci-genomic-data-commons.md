@@ -13,7 +13,7 @@ type:
 auth_required: dars-or-equivalent
 cost: free
 license: US-Government-Public-Domain
-rate_limit: unknown
+rate_limit: "unpublished; polite use expected (open REST API, no documented per-key or concurrency limit)"
 bulk_available: true
 frequency: continuous
 lag: "tied to GDC data releases (roughly quarterly); submitter-controlled embargoes up to 6 months before harmonisation appears"
@@ -43,6 +43,7 @@ join_key_fields:
   - join_key: DOI
     fields: [references.doi]
 mcp_status: mcp-needed-high-value
+mcp_maturity: none
 mcp_notes: >
   No established MCP for GDC. A connector should wrap /projects, /cases, /files,
   /annotations, /data, /manifest, /slicing, /_mapping with thin filter helpers,

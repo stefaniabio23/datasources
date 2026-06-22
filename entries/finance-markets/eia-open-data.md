@@ -21,6 +21,20 @@ join_keys:
   - DATE
   - ISO_3
   - US_STATE_CODE
+primary_keys:
+  - EIA_ROUTE_PATH
+  - EIA_SERIES_FACET_TUPLE
+join_key_fields:
+  - join_key: DATE
+    fields: [period]
+  - join_key: ISO_3
+    fields: [countryRegionId, countryRegionTypeId]
+  - join_key: US_STATE_CODE
+    fields: [stateid, stateDescription]
+access_test:
+  command: "curl -sf 'https://api.eia.gov/v2/electricity/retail-sales/data?api_key=${EIA_API_KEY}&data[]=price&facets[stateid][]=CA&frequency=monthly&length=1'"
+  expected_status: 200
+  expected_fields: [response, data, period, stateid, price]
 mcp_status: mcp-needed-low-value
 mcp_maturity: none
 mcp_notes: >
@@ -59,6 +73,8 @@ EIA's open data API and bulk files cover energy production, consumption, prices,
 `DATE` (period) is universal across all sub-datasets. `ISO_3` is the country dimension on international routes. `US_STATE_CODE` (two-letter USPS code) is the state granularity on electricity/SEDS routes.
 
 EIA-internal codes for sectors (RES, COM, IND, TRA), products (CL, GA, HO), and series IDs (RWTC, WTIPUUS, COPRPUS) are not in the canonical registry; agents fetch their definitions per-route from the v2 metadata response.
+
+The v2 API has no single `seriesId` field the way legacy v1 did. A unique series is identified by its route path plus the facet tuple selected on that route, so `primary_keys` records the synthetic pair `EIA_ROUTE_PATH` (e.g. `/electricity/retail-sales`) and `EIA_SERIES_FACET_TUPLE` (the resolved `stateid` / `sectorid` / `duoarea` / `product` facet values for the row). Together with `period` these uniquely address an observation.
 
 Common pairings: FRED (cross-validate WTI spot, retail electricity), World Bank Open Data (international cross-country at lower cadence), Alpha Vantage / Polygon (real-time prices against EIA spot benchmarks).
 

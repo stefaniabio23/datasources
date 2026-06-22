@@ -10,7 +10,7 @@ type:
   - bulk-download
 auth_required: none
 cost: free
-license: unknown
+license: nasdaqtrader-symbol-directory-no-published-terms
 rate_limit: "no published limit; small text files (<1MB each) refreshed periodically through the trading day"
 bulk_available: true
 frequency: "multiple times per trading day"
@@ -108,6 +108,6 @@ No existing MCP found in npm, PyPI, or GitHub for `nasdaqtrader` or `nasdaq symb
 
 ## Review notes
 
-- License: Nasdaq Trader does not publish explicit redistribution terms on the symbol directory pages, and the linked Terms page returns a 404 on the current site. The files are publicly served without auth, and downstream use across the industry treats them as freely usable reference data, but a canonical SPDX or short-name license string cannot be assigned without explicit confirmation. Set `license: unknown` pending review.
+- License set to `nasdaqtrader-symbol-directory-no-published-terms`. Re-verified 2026-06-22: Nasdaq Trader publishes no explicit redistribution terms on the symbol-directory pages, and the linked Disclaimer / Terms page returns a 404 on the current site. The files are publicly served without auth, and downstream industry use treats them as freely usable reference data, but no canonical SPDX licence applies. The kebab short-form records the proprietary-but-unstated status (Nasdaq retains copyright; redistribution terms unstated) instead of `unknown`. Flag the short-form token for human confirmation.
 - Potential new canonical join key for review: `MPID` (Market Participant Identifier). 4-letter uppercase broker/dealer code. Would also be exposed by FINRA OTC feeds, SEC Rule 605/606 reports, and Nasdaq market-data products.
 - Source-internal IDs (`NASDAQ_SYMBOL`, `ACT_SYMBOL`, `CQS_SYMBOL`, `MPID`) are listed in `primary_keys`; only `TICKER` is in `join_keys`. Confirm whether the three ticker-symbol variants should be folded into one `TICKER` field or surfaced separately.

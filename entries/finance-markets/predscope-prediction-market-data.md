@@ -10,7 +10,7 @@ type:
   - rest-api
 auth_required: none
 cost: free
-license: unknown
+license: predscope-free-any-use-attribution-requested
 rate_limit: "no documented quota; CORS open from any domain"
 bulk_available: false
 frequency: "10 minutes"
@@ -27,6 +27,7 @@ join_key_fields:
   - join_key: URL
     fields: [markets.url, events.url]
 mcp_status: mcp-needed-low-value
+mcp_maturity: none
 mcp_notes: >
   No connector found. A thin MCP wrapper would add little over the two flat JSON
   endpoints since there is no pagination, auth, or query parameter to abstract.
@@ -86,7 +87,7 @@ The Polymarket market slug is a strong candidate for cross-source joining once a
 
 **Coverage gotcha:** The live endpoint returns only the top 100 markets by activity. For the long tail of the ~thousands of active Polymarket markets, hit the upstream Gamma API directly (`https://gamma-api.polymarket.com/markets`).
 
-**License nuance:** No explicit licence published. The docs ask users to credit PredScope when publishing analysis. Underlying data is sourced from Polymarket and any redistribution should respect Polymarket's own terms. Treat as `unknown` until clarified.
+**License nuance:** The API docs state "Free for any use, commercial, academic, personal" with no API key, and ask users to credit PredScope when publishing analysis. There is no formal SPDX licence (MIT / Apache / CC) and no comprehensive terms-of-service document, so this is recorded as the kebab short-form `predscope-free-any-use-attribution-requested`. The underlying data is sourced from Polymarket, so any redistribution of the raw event data should still respect Polymarket's own terms regardless of PredScope's permissive grant.
 
 **Freshness check:** `meta.generated_at` in the response payload, or the "Updated [timestamp] UTC" footer on the homepage.
 
@@ -98,7 +99,7 @@ The high-value connector in this space targets Polymarket directly, exposing the
 
 ## Review notes
 
-- License field is `unknown`; site publishes no explicit licence string, only an attribution ask. Flagging for human review and possible follow-up with the operator.
+- License set to `predscope-free-any-use-attribution-requested` from the API docs ("Free for any use, commercial, academic, personal", plus an attribution courtesy request). No formal SPDX licence or full terms-of-service document is published, so the kebab short-form captures the stated grant. Note the upstream Polymarket terms still bind redistribution of the raw event data. Flag the short-form token for human confirmation.
 - Owner and legal entity for PredScope are not disclosed on the homepage, about page, or API docs. Flagging in case Stephanie wants to drop the entry if provenance can't be confirmed.
 - This entry covers a third-party reseller of Polymarket data. A direct `polymarket-gamma-api` entry would be higher-value and would let this entry be downgraded to a cache fallback note. Suggested as the next entry to add.
 - Potential new join key for review: `POLYMARKET_MARKET_SLUG`

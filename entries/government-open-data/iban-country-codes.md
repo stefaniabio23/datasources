@@ -14,7 +14,8 @@ cost: free
 license: iban-com-terms
 bulk_available: false
 frequency: irregular
-lag: unknown
+rate_limit: "site-wide 15 req/sec per IP; a single table scrape is well inside that"
+lag: "static reference; updated when the ISO 3166-1 country-code registry changes"
 geography: [global]
 join_keys:
   - ISO_2

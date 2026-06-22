@@ -13,6 +13,7 @@ type:
 auth_required: none
 cost: free
 license: CC0-1.0
+rate_limit: "unpublished; polite use expected"
 bulk_available: true
 frequency: irregular
 lag: "Updated when new participants enrol or upload data; no fixed cadence"
