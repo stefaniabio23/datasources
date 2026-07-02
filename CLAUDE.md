@@ -23,7 +23,7 @@ datasources/
 │   ├── validate_entries.py         # validates entries/
 │   ├── generate.py                 # rebuild generated/ outputs from entries/
 │   ├── publish_to_sheet.py         # Google Sheet push (Sources + JoinKeys tabs)
-│   └── publish_to_airtable.py      # Airtable push (Sources + JoinKeys, linked relation)
+│   └── publish_to_airtable.py      # Airtable push (one flat Datasets table, join_keys inline)
 ├── generated/                      # sources.csv, join-keys.csv, index.json, join-key-index.md
 └── .github/workflows/
     └── publish.yml                 # CI: validate, generate, publish to Sheet
@@ -47,7 +47,7 @@ Add entry: invoke the Skill in chat ("add a dataset entry for [URL]") or `/add-d
 - **License field uses SPDX where possible**, otherwise canonical kebab-case short names (`US-Government-Public-Domain`, `GDELT-Open-Data`, `OGL-3.0`, `Crown-Copyright`, `ECDC-Public-Data`). See SCHEMA.md § License conventions.
 - **Body has 6 required H2 headings in canonical order:** Why this source matters / Agent use cases / Join strategy / Access notes / MCP / connector notes / Review notes. The validator soft-checks this; warnings do not block.
 - **`mcp_package` is an array of strings**, not a single string. Use a list even when only one MCP exists.
-- **GitHub is canonical.** The Google Sheet and Airtable base are downstream render targets overwritten on each publish run (upsert on key + prune for Airtable). No bidirectional sync. Airtable adds a real linked-record relation on `join_keys`; the Sheet keeps it as a delimited cell.
+- **GitHub is canonical.** The Google Sheet and Airtable base are downstream render targets overwritten on each publish run (upsert on `id` + prune for Airtable). No bidirectional sync. Airtable is one flat `Datasets` table (one row per dataset, `join_keys` inline as a multi-select); the Sheet keeps it as a delimited cell.
 
 ## Skills and agents
 

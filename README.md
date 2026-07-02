@@ -27,7 +27,7 @@ datasources/
     validate_entries.py       # validate entries/
     generate.py               # rebuild generated/ outputs
     publish_to_sheet.py       # Google Sheet push (Sources + JoinKeys tabs)
-    publish_to_airtable.py    # Airtable push (Sources + JoinKeys, linked relation)
+    publish_to_airtable.py    # Airtable push (one flat Datasets table, join_keys inline)
   generated/
     index.json                # all entries flattened, machine-readable
     sources.csv               # one row per source → Sources tab
@@ -92,9 +92,9 @@ python3 scripts/publish_to_sheet.py
 
 One-time service-account setup: Google Cloud Console → IAM & Admin → Service Accounts → create account → enable Sheets API on the project → generate JSON key → share the target Sheet with the service-account email as Editor.
 
-### Airtable (relational mirror)
+### Airtable (flat single-table mirror)
 
-The same two tables also publish to Airtable, where `join_keys` is a true linked-record relation instead of a delimited cell: open a source to see its keys as chips, open a key to see every source that exposes it. GitHub stays canonical; Airtable is an overwrite mirror (upsert on `id` / `join_key`, prune records no longer in the repo). Closed enums (`domain`, `entry_kind`, `mcp_status`, `cost`, `auth_required`, ...) become single-select fields. Tables and the relation field are auto-created on first run.
+The registry also publishes to Airtable as one flat table (default name `Datasets`): one row per dataset, all source fields plus `join_keys` inline as a multiple-select (colored chips in the same row). Self-contained, no second table or linked relation. GitHub stays canonical; Airtable is an overwrite mirror (upsert on `id`, prune rows no longer in the repo). Closed enums (`domain`, `entry_kind`, `mcp_status`, `cost`, `auth_required`, ...) become single-select fields. The table and its fields are auto-created on first run.
 
 **Local:**
 
@@ -103,10 +103,11 @@ pip install pyairtable
 python3 scripts/generate.py
 AIRTABLE_TOKEN=$(security find-generic-password -s AIRTABLE_TOKEN -w) \
 AIRTABLE_BASE_ID=<the base id from the Airtable URL, app...> \
+AIRTABLE_SOURCES_TABLE=Datasets \
 python3 scripts/publish_to_airtable.py
 ```
 
-The token is read from the macOS Keychain at runtime and never written to disk. `--dry-run` validates the data mapping offline (no network). Required env: `AIRTABLE_TOKEN` (a `pat...` personal access token with `data.records:read/write` + `schema.bases:read/write` on the base) and `AIRTABLE_BASE_ID`. To run in CI, add both as GitHub Actions secrets and a publish step mirroring the Sheet one.
+The token is read from the macOS Keychain at runtime and never written to disk. `--dry-run` validates the data mapping offline (no network). Required env: `AIRTABLE_TOKEN` (a `pat...` personal access token with `data.records:read/write` + `schema.bases:read/write` on the base) and `AIRTABLE_BASE_ID`; optional `AIRTABLE_SOURCES_TABLE` (default `Sources`). Airtable's API cannot delete tables or change a field's type, so if a table already exists with `join_keys` as a linked-record field (from an earlier layout), delete it in the UI first. To run in CI, add the two required env vars as GitHub Actions secrets and a publish step mirroring the Sheet one.
 
 ## Status
 
