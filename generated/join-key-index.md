@@ -3,7 +3,7 @@
 Reverse index of canonical join keys mapped to the datasets that expose them.
 Generated from `entries/**/*.md`. Do not hand-edit.
 
-**111 datasets, 60 distinct canonical keys, 416 key→source links.**
+**113 datasets, 60 distinct canonical keys, 420 key→source links.**
 
 ## ARXIV_ID
 
@@ -79,7 +79,7 @@ _4 dataset(s)._
 
 ## DATE
 
-_31 dataset(s)._
+_32 dataset(s)._
 
 - [Alpha Vantage](../entries/finance-markets/alpha-vantage.md) — `finance-markets`
 - [Bureau of Labor Statistics (BLS) Public Data API](../entries/government-open-data/bureau-of-labour-statistics.md) — `government-open-data`
@@ -88,6 +88,7 @@ _31 dataset(s)._
 - [Common Crawl](../entries/news-events/common-crawl.md) — `news-events`
 - [Companies House (UK)](../entries/corporate-registry/companies-house.md) — `corporate-registry`
 - [DefiLlama Stablecoins](../entries/finance-markets/defillama-stablecoins.md) — `finance-markets`
+- [ECMWF (European Centre for Medium-Range Weather Forecasts)](../entries/geospatial/ecmwf.md) — `geospatial`
 - [EIA Open Data](../entries/finance-markets/eia-open-data.md) — `finance-markets`
 - [Event Registry](../entries/news-events/event-registry.md) — `news-events`
 - [FRED (Federal Reserve Economic Data)](../entries/finance-markets/fred.md) — `finance-markets`
@@ -164,7 +165,7 @@ _5 dataset(s)._
 
 ## ENSEMBL_ID
 
-_21 dataset(s)._
+_22 dataset(s)._
 
 - [Cancer Cell Line Encyclopedia (CCLE)](../entries/bio-genomics/cancer-cell-line-encyclopedia.md) — `bio-genomics`
 - [Ensembl](../entries/bio-genomics/ensembl.md) — `bio-genomics`
@@ -178,6 +179,7 @@ _21 dataset(s)._
 - [NCBI Gene](../entries/bio-genomics/ncbi-gene.md) — `bio-genomics`
 - [NCI Genomic Data Commons (GDC)](../entries/bio-genomics/nci-genomic-data-commons.md) — `bio-genomics`
 - [Open Targets](../entries/clinical-biotech/open-targets.md) — `clinical-biotech`
+- [PeptideAtlas](../entries/bio-genomics/peptideatlas.md) — `bio-genomics`
 - [Reactome](../entries/bio-genomics/reactome.md) — `bio-genomics`
 - [STRING](../entries/bio-genomics/string-db.md) — `bio-genomics`
 - [The Cancer Genome Atlas (TCGA, via Broad GDAC Firehose)](../entries/bio-genomics/the-cancer-genome-atlas.md) — `bio-genomics`
@@ -248,7 +250,7 @@ _1 dataset(s)._
 
 ## GENE_SYMBOL
 
-_26 dataset(s)._
+_27 dataset(s)._
 
 - [Cancer Cell Line Encyclopedia (CCLE)](../entries/bio-genomics/cancer-cell-line-encyclopedia.md) — `bio-genomics`
 - [ClinGen (Clinical Genome Resource)](../entries/bio-genomics/clingen.md) — `bio-genomics`
@@ -266,6 +268,7 @@ _26 dataset(s)._
 - [NCBI Gene](../entries/bio-genomics/ncbi-gene.md) — `bio-genomics`
 - [NCI Genomic Data Commons (GDC)](../entries/bio-genomics/nci-genomic-data-commons.md) — `bio-genomics`
 - [Open Targets](../entries/clinical-biotech/open-targets.md) — `clinical-biotech`
+- [PeptideAtlas](../entries/bio-genomics/peptideatlas.md) — `bio-genomics`
 - [PubChem](../entries/clinical-biotech/pub-chem.md) — `clinical-biotech`
 - [Reactome](../entries/bio-genomics/reactome.md) — `bio-genomics`
 - [STRING](../entries/bio-genomics/string-db.md) — `bio-genomics`
@@ -635,7 +638,7 @@ _3 dataset(s)._
 
 ## UNIPROT_ACCESSION
 
-_18 dataset(s)._
+_19 dataset(s)._
 
 - [AlphaFold Protein Structure Database](../entries/bio-genomics/alphafold.md) — `bio-genomics`
 - [BindingDB](../entries/clinical-biotech/bindingdb.md) — `clinical-biotech`
@@ -649,6 +652,7 @@ _18 dataset(s)._
 - [KEGG (Kyoto Encyclopedia of Genes and Genomes)](../entries/bio-genomics/kyoto-encyclopedia-of-genes-and-genomes.md) — `bio-genomics`
 - [NCBI Protein](../entries/bio-genomics/ncbi-proteins.md) — `bio-genomics`
 - [Open Targets](../entries/clinical-biotech/open-targets.md) — `clinical-biotech`
+- [PeptideAtlas](../entries/bio-genomics/peptideatlas.md) — `bio-genomics`
 - [PubChem](../entries/clinical-biotech/pub-chem.md) — `clinical-biotech`
 - [RCSB Protein Data Bank](../entries/bio-genomics/protein-data-bank.md) — `bio-genomics`
 - [Reactome](../entries/bio-genomics/reactome.md) — `bio-genomics`

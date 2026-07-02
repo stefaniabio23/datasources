@@ -1,57 +1,98 @@
 [
   {
-    "_path": "entries/academic/pmlr.md",
+    "_path": "entries/bio-genomics/peptideatlas.md",
     "access_test": {
-      "command": "curl -sf 'https://proceedings.mlr.press/feed.xml' -o /dev/null",
+      "command": "curl -sf 'https://peptideatlas.org/builds/human/' -o /dev/null",
       "expected_status": 200
     },
     "agent_use_cases": [
-      "machine-learning literature corpus building",
-      "title and abstract text mining",
-      "conference and topic trend analysis",
-      "metadata harvesting for ML papers",
-      "reproducibility and citation tracing"
+      "protein-existence evidence lookup",
+      "mass-spec proteomics evidence mining",
+      "peptide-to-protein and peptide-to-genome mapping",
+      "Human Proteome Project coverage checks",
+      "cross-referencing UniProt / Ensembl / neXtProt"
     ],
     "auth_required": "none",
     "build_priority": "low",
     "bulk_available": true,
     "cost": "free",
-    "description": "Open-access proceedings of machine learning conferences and workshops (ICML, AISTATS, CoRL, UAI, and many workshops), published as per-volume PDFs plus openly available BibTeX metadata without a conventional publisher.",
-    "docs_url": "https://github.com/mlresearch",
-    "domain": "academic",
-    "entry_kind": "corpus",
-    "frequency": "rolling; a new volume is posted as each conference or workshop completes",
+    "description": "Compendium of peptides and proteins identified from uniformly reprocessed public mass-spectrometry proteomics data, with protein-existence evidence and genome mappings; the Human build is the flagship.",
+    "docs_url": "https://peptideatlas.org/builds/human/",
+    "domain": "bio-genomics",
+    "entry_kind": "knowledge-graph",
+    "frequency": "annual builds per organism",
     "geography": [
       "global"
     ],
-    "homepage_url": "https://proceedings.mlr.press/",
-    "id": "pmlr",
-    "join_key_fields": [
-      {
-        "fields": [
-          "url"
-        ],
-        "join_key": "URL"
-      }
-    ],
+    "homepage_url": "https://peptideatlas.org/",
+    "id": "peptideatlas",
     "join_keys": [
-      "URL",
-      "ISSN"
+      "UNIPROT_ACCESSION",
+      "ENSEMBL_ID",
+      "GENE_SYMBOL"
     ],
-    "lag": "weeks-to-months between a conference and its volume going live",
+    "lag": "reprocessed data lags original ProteomeXchange deposition by months to years",
     "last_verified": "2026-07-02",
-    "license": "PMLR-Author-Copyright",
+    "license": "ISB-PeptideAtlas-Terms",
     "mcp_status": "mcp-needed-low-value",
-    "name": "Proceedings of Machine Learning Research (PMLR)",
-    "notes": "access_test executed 2026-07-02 (feed.xml \u2192 200). PMLR papers generally have no DOIs; resolve cross-source via OpenAlex / Semantic Scholar / DBLP, which index PMLR and mint their own ids. Per-volume BibTeX files live in the github.com/mlresearch/<vNNN> repos; exact raw path varies by volume (flagged in Review notes).",
+    "name": "PeptideAtlas",
+    "notes": "access_test executed 2026-07-02 (build page \u2192 200). Data processed by the Trans-Proteomic Pipeline (TPP, tppms.org), which is analysis software, not a dataset, so it is not a separate registry entry. Underlying spectra come from ProteomeXchange (PXD ids). License is non-SPDX; flagged in Review notes.",
     "primary_keys": [
-      "PMLR_VOLUME",
-      "PMLR_PAPER_ID"
+      "PEPTIDEATLAS_PEPTIDE_ACCESSION",
+      "PEPTIDEATLAS_BUILD",
+      "PXD_IDENTIFIER"
     ],
-    "rate_limit": "none; static GitHub Pages site + per-volume GitHub repos",
+    "rate_limit": "none; static bulk files + query interface",
     "type": [
+      "web-ui",
+      "bulk-download"
+    ]
+  },
+  {
+    "_path": "entries/geospatial/ecmwf.md",
+    "access_test": {
+      "command": "curl -sf 'https://www.ecmwf.int/en/forecasts/datasets/open-data' -o /dev/null",
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "medium-range weather forecast retrieval",
+      "ERA5 climate reanalysis for backtesting",
+      "historical weather for energy and agriculture models",
+      "extreme-event and seasonal analysis",
+      "gridded weather inputs for downstream simulation"
+    ],
+    "auth_required": "api-key-free",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "cost": "freemium",
+    "description": "Global numerical weather forecasts, ensemble products, and the ERA5 climate reanalysis from ECMWF, distributed via the free ECMWF Open Data feed, the Copernicus Climate Data Store API, and the licensed MARS archive.",
+    "docs_url": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
+    "domain": "geospatial",
+    "entry_kind": "mixed",
+    "frequency": "operational forecasts run 2-4x daily; ERA5 updated ~daily with lag; monthly and seasonal products",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://www.ecmwf.int/en/forecasts/datasets",
+    "id": "ecmwf",
+    "join_keys": [
+      "DATE"
+    ],
+    "lag": "Open Data forecasts: hours after model run; ERA5: ~5 days preliminary, ~2-3 months quality-controlled",
+    "last_verified": "2026-07-02",
+    "license": "CC-BY-4.0",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "ECMWF (European Centre for Medium-Range Weather Forecasts)",
+    "notes": "access_test executed 2026-07-02 (open-data page \u2192 200); the CDS API path (cds.climate.copernicus.eu) requires a free account + key and was not executed. One provider entry (ERA5 + operational/open forecasts + CAMS + seasonal); sub-datasets are discovered via the CDS catalogue and the ECMWF parameter database. License CC-BY-4.0 applies to the open layer; real-time operational forecasts and MARS require a separate ECMWF licence (flagged in Review notes).",
+    "primary_keys": [
+      "ECMWF_PARAM_ID",
+      "MARS_KEYWORDS"
+    ],
+    "rate_limit": "CDS API: queued fair-use request system; ECMWF Open Data: none (static object storage)",
+    "type": [
+      "rest-api",
       "bulk-download",
-      "web-ui"
+      "database"
     ]
   },
   {
@@ -9404,6 +9445,61 @@
     "rate_limit": "Pay-per-use: $0.005 per post read (2M reads/month cap), $0.001 per owned read, $0.010 per user read; per-endpoint rate limits still apply; writes stricter, expect 429s",
     "type": [
       "rest-api"
+    ]
+  },
+  {
+    "_path": "entries/academic/pmlr.md",
+    "access_test": {
+      "command": "curl -sf 'https://proceedings.mlr.press/feed.xml' -o /dev/null",
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "machine-learning literature corpus building",
+      "title and abstract text mining",
+      "conference and topic trend analysis",
+      "metadata harvesting for ML papers",
+      "reproducibility and citation tracing"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "Open-access proceedings of machine learning conferences and workshops (ICML, AISTATS, CoRL, UAI, and many workshops), published as per-volume PDFs plus openly available BibTeX metadata without a conventional publisher.",
+    "docs_url": "https://github.com/mlresearch",
+    "domain": "academic",
+    "entry_kind": "corpus",
+    "frequency": "rolling; a new volume is posted as each conference or workshop completes",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://proceedings.mlr.press/",
+    "id": "pmlr",
+    "join_key_fields": [
+      {
+        "fields": [
+          "url"
+        ],
+        "join_key": "URL"
+      }
+    ],
+    "join_keys": [
+      "URL",
+      "ISSN"
+    ],
+    "lag": "weeks-to-months between a conference and its volume going live",
+    "last_verified": "2026-07-02",
+    "license": "PMLR-Author-Copyright",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "Proceedings of Machine Learning Research (PMLR)",
+    "notes": "access_test executed 2026-07-02 (feed.xml \u2192 200). PMLR papers generally have no DOIs; resolve cross-source via OpenAlex / Semantic Scholar / DBLP, which index PMLR and mint their own ids. Per-volume BibTeX files live in the github.com/mlresearch/<vNNN> repos; exact raw path varies by volume (flagged in Review notes).",
+    "primary_keys": [
+      "PMLR_VOLUME",
+      "PMLR_PAPER_ID"
+    ],
+    "rate_limit": "none; static GitHub Pages site + per-volume GitHub repos",
+    "type": [
+      "bulk-download",
+      "web-ui"
     ]
   }
 ]
