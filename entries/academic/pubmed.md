@@ -58,6 +58,11 @@ mcp_package:
   - github.com/gradusnikov/pubmed-search-mcp-server
   - github.com/JackKuo666/PubMed-MCP-Server
   - github.com/rikab/PubMed-MCP
+  - github.com/genomoncology/biomcp
+  - "@futurelab-studio/latest-science-mcp (npm)"
+mcp_command:
+  - "uvx --from biomcp-python biomcp run"
+  - "npx -y @futurelab-studio/latest-science-mcp@latest"
 mcp_notes: >
   Multiple community MCPs wrap esearch/efetch for PubMed only. None abstract over the full
   E-utilities surface (ELink for cross-database citation walks, EPost for batched UID workflows,

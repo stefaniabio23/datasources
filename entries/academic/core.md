@@ -41,8 +41,12 @@ join_key_fields:
     fields: [journals.identifiers]
   - join_key: URL
     fields: [downloadUrl, sourceFulltextUrls]
-mcp_status: mcp-needed-high-value
-mcp_maturity: none
+mcp_status: mcp-exists
+mcp_maturity: community
+mcp_package:
+  - "@futurelab-studio/latest-science-mcp (npm)"
+mcp_command:
+  - "npx -y @futurelab-studio/latest-science-mcp@latest"
 mcp_notes: >
   No known MCP. Stable v3 REST API, but anonymous tier strips full-text fields
   ("Not available for public API users") and tight rate-limit window forces key use

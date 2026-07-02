@@ -178,6 +178,11 @@ properties:
   mcp_notes:
     type: string
 
+  mcp_command:
+    type: array
+    items: { type: string }
+    description: Run command(s) for MCP server(s) that expose this source (e.g. "uvx --from biomcp-python biomcp run"). Multi-source MCP servers appear on every source they cover; note required env in the string (e.g. "set OPENALEX_EMAIL").
+
   agent_use_cases:
     type: array
     items: { type: string }

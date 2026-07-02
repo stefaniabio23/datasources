@@ -48,6 +48,7 @@ SOURCES_COLUMNS = [
     "mcp_status",
     "mcp_maturity",
     "mcp_package",
+    "mcp_command",
     "join_keys",
     "primary_keys",
     "agent_use_cases",

@@ -51,8 +51,12 @@ join_key_fields:
     fields: [annotations.tags.uri]
   - join_key: ENSEMBL_ID
     fields: [annotations.tags.uri]
-mcp_status: mcp-needed-high-value
-mcp_maturity: none
+mcp_status: mcp-exists
+mcp_maturity: community
+mcp_package:
+  - "@futurelab-studio/latest-science-mcp (npm)"
+mcp_command:
+  - "npx -y @futurelab-studio/latest-science-mcp@latest"
 mcp_notes: >
   No official MCP. Stable, well-documented REST API. Suggested surface: search_articles,
   get_article, get_full_text, get_citations, get_references, get_annotations,

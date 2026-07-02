@@ -51,8 +51,14 @@ join_key_fields:
     fields: [ids.wikidata]
   - join_key: MAG_ID
     fields: [ids.mag]
-mcp_status: mcp-needed-high-value
-mcp_maturity: none
+mcp_status: mcp-exists
+mcp_maturity: community
+mcp_package:
+  - "openalex-research-mcp (npm)"
+  - "@futurelab-studio/latest-science-mcp (npm)"
+mcp_command:
+  - "npx -y openalex-research-mcp (set OPENALEX_EMAIL)"
+  - "npx -y @futurelab-studio/latest-science-mcp@latest"
 mcp_notes: >
   Broad use case, stable API, verbose response shape. Suggested surface: search_works,
   get_work, get_citations, disambiguate_author, get_concepts_for_topic.

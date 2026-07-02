@@ -42,6 +42,9 @@ mcp_maturity: community
 mcp_package:
   - github.com/cyanheads/clinicaltrialsgov-mcp-server
   - github.com/navisbio/AACT_clinicaltrials_MCP
+  - github.com/genomoncology/biomcp
+mcp_command:
+  - "uvx --from biomcp-python biomcp run"
 mcp_notes: >
   Multiple community MCPs wrap API v2 (cyanheads, JackKuo666, agents100x, aafjes, pipeworx-io,
   navisbio AACT variant). None are official. Most expose search_studies and get_study; few

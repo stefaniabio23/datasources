@@ -1,101 +1,5 @@
 [
   {
-    "_path": "entries/bio-genomics/peptideatlas.md",
-    "access_test": {
-      "command": "curl -sf 'https://peptideatlas.org/builds/human/' -o /dev/null",
-      "expected_status": 200
-    },
-    "agent_use_cases": [
-      "protein-existence evidence lookup",
-      "mass-spec proteomics evidence mining",
-      "peptide-to-protein and peptide-to-genome mapping",
-      "Human Proteome Project coverage checks",
-      "cross-referencing UniProt / Ensembl / neXtProt"
-    ],
-    "auth_required": "none",
-    "build_priority": "low",
-    "bulk_available": true,
-    "cost": "free",
-    "description": "Compendium of peptides and proteins identified from uniformly reprocessed public mass-spectrometry proteomics data, with protein-existence evidence and genome mappings; the Human build is the flagship.",
-    "docs_url": "https://peptideatlas.org/builds/human/",
-    "domain": "bio-genomics",
-    "entry_kind": "knowledge-graph",
-    "frequency": "annual builds per organism",
-    "geography": [
-      "global"
-    ],
-    "homepage_url": "https://peptideatlas.org/",
-    "id": "peptideatlas",
-    "join_keys": [
-      "UNIPROT_ACCESSION",
-      "ENSEMBL_ID",
-      "GENE_SYMBOL"
-    ],
-    "lag": "reprocessed data lags original ProteomeXchange deposition by months to years",
-    "last_verified": "2026-07-02",
-    "license": "ISB-PeptideAtlas-Terms",
-    "mcp_status": "mcp-needed-low-value",
-    "name": "PeptideAtlas",
-    "notes": "access_test executed 2026-07-02 (build page \u2192 200). Data processed by the Trans-Proteomic Pipeline (TPP, tppms.org), which is analysis software, not a dataset, so it is not a separate registry entry. Underlying spectra come from ProteomeXchange (PXD ids). License is non-SPDX; flagged in Review notes.",
-    "primary_keys": [
-      "PEPTIDEATLAS_PEPTIDE_ACCESSION",
-      "PEPTIDEATLAS_BUILD",
-      "PXD_IDENTIFIER"
-    ],
-    "rate_limit": "none; static bulk files + query interface",
-    "type": [
-      "web-ui",
-      "bulk-download"
-    ]
-  },
-  {
-    "_path": "entries/geospatial/ecmwf.md",
-    "access_test": {
-      "command": "curl -sf 'https://www.ecmwf.int/en/forecasts/datasets/open-data' -o /dev/null",
-      "expected_status": 200
-    },
-    "agent_use_cases": [
-      "medium-range weather forecast retrieval",
-      "ERA5 climate reanalysis for backtesting",
-      "historical weather for energy and agriculture models",
-      "extreme-event and seasonal analysis",
-      "gridded weather inputs for downstream simulation"
-    ],
-    "auth_required": "api-key-free",
-    "build_priority": "medium",
-    "bulk_available": true,
-    "cost": "freemium",
-    "description": "Global numerical weather forecasts, ensemble products, and the ERA5 climate reanalysis from ECMWF, distributed via the free ECMWF Open Data feed, the Copernicus Climate Data Store API, and the licensed MARS archive.",
-    "docs_url": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
-    "domain": "geospatial",
-    "entry_kind": "mixed",
-    "frequency": "operational forecasts run 2-4x daily; ERA5 updated ~daily with lag; monthly and seasonal products",
-    "geography": [
-      "global"
-    ],
-    "homepage_url": "https://www.ecmwf.int/en/forecasts/datasets",
-    "id": "ecmwf",
-    "join_keys": [
-      "DATE"
-    ],
-    "lag": "Open Data forecasts: hours after model run; ERA5: ~5 days preliminary, ~2-3 months quality-controlled",
-    "last_verified": "2026-07-02",
-    "license": "CC-BY-4.0",
-    "mcp_status": "mcp-needed-low-value",
-    "name": "ECMWF (European Centre for Medium-Range Weather Forecasts)",
-    "notes": "access_test executed 2026-07-02 (open-data page \u2192 200); the CDS API path (cds.climate.copernicus.eu) requires a free account + key and was not executed. One provider entry (ERA5 + operational/open forecasts + CAMS + seasonal); sub-datasets are discovered via the CDS catalogue and the ECMWF parameter database. License CC-BY-4.0 applies to the open layer; real-time operational forecasts and MARS require a separate ECMWF licence (flagged in Review notes).",
-    "primary_keys": [
-      "ECMWF_PARAM_ID",
-      "MARS_KEYWORDS"
-    ],
-    "rate_limit": "CDS API: queued fair-use request system; ECMWF Open Data: none (static object storage)",
-    "type": [
-      "rest-api",
-      "bulk-download",
-      "database"
-    ]
-  },
-  {
     "_path": "entries/bio-genomics/gtex.md",
     "access_test": {
       "command": "curl -sf 'https://gtexportal.org/api/v2/reference/gene?geneId=BRCA1'",
@@ -2433,11 +2337,15 @@
     "lag": "registration and results updates depend on sponsor submission cadence; index refresh within ~24h",
     "last_verified": "2026-06-22",
     "license": "US-Government-Public-Domain",
+    "mcp_command": [
+      "uvx --from biomcp-python biomcp run"
+    ],
     "mcp_maturity": "community",
     "mcp_notes": "Multiple community MCPs wrap API v2 (cyanheads, JackKuo666, agents100x, aafjes, pipeworx-io, navisbio AACT variant). None are official. Most expose search_studies and get_study; few cover eligibility-criteria parsing or results-section traversal well.\n",
     "mcp_package": [
       "github.com/cyanheads/clinicaltrialsgov-mcp-server",
-      "github.com/navisbio/AACT_clinicaltrials_MCP"
+      "github.com/navisbio/AACT_clinicaltrials_MCP",
+      "github.com/genomoncology/biomcp"
     ],
     "mcp_status": "mcp-exists",
     "name": "ClinicalTrials.gov",
@@ -2873,9 +2781,17 @@
     "lag": "days-to-weeks for newly published works to be indexed",
     "last_verified": "2026-06-08",
     "license": "CC0",
-    "mcp_maturity": "none",
+    "mcp_command": [
+      "npx -y openalex-research-mcp (set OPENALEX_EMAIL)",
+      "npx -y @futurelab-studio/latest-science-mcp@latest"
+    ],
+    "mcp_maturity": "community",
     "mcp_notes": "Broad use case, stable API, verbose response shape. Suggested surface: search_works, get_work, get_citations, disambiguate_author, get_concepts_for_topic.\n",
-    "mcp_status": "mcp-needed-high-value",
+    "mcp_package": [
+      "openalex-research-mcp (npm)",
+      "@futurelab-studio/latest-science-mcp (npm)"
+    ],
+    "mcp_status": "mcp-exists",
     "name": "OpenAlex",
     "primary_keys": [
       "OPENALEX_WORK_ID",
@@ -3153,12 +3069,18 @@
     "lag": "1-2 days for new citations to appear via E-utilities; annual baseline released at year-end with daily update XML files",
     "last_verified": "2026-06-08",
     "license": "US-Government-Public-Domain",
+    "mcp_command": [
+      "uvx --from biomcp-python biomcp run",
+      "npx -y @futurelab-studio/latest-science-mcp@latest"
+    ],
     "mcp_maturity": "community",
     "mcp_notes": "Multiple community MCPs wrap esearch/efetch for PubMed only. None abstract over the full E-utilities surface (ELink for cross-database citation walks, EPost for batched UID workflows, ECitMatch for free-text citation resolution). A higher-value connector would expose search_pubmed, fetch_records, link_to_pmc, link_to_clinical_trials, resolve_citation, with built-in api_key + tool/email handling and XML-to-clean-JSON normalisation.\n",
     "mcp_package": [
       "github.com/gradusnikov/pubmed-search-mcp-server",
       "github.com/JackKuo666/PubMed-MCP-Server",
-      "github.com/rikab/PubMed-MCP"
+      "github.com/rikab/PubMed-MCP",
+      "github.com/genomoncology/biomcp",
+      "@futurelab-studio/latest-science-mcp (npm)"
     ],
     "mcp_status": "mcp-exists",
     "name": "PubMed (NCBI E-utilities)",
@@ -3282,9 +3204,15 @@
     "lag": "days for new PubMed records; weeks-to-months for full-text deposits",
     "last_verified": "2026-06-08",
     "license": "CC-BY-4.0",
-    "mcp_maturity": "none",
+    "mcp_command": [
+      "npx -y @futurelab-studio/latest-science-mcp@latest"
+    ],
+    "mcp_maturity": "community",
     "mcp_notes": "No official MCP. Stable, well-documented REST API. Suggested surface: search_articles, get_article, get_full_text, get_citations, get_references, get_annotations, resolve_id (DOI/PMID/PMCID mapping).\n",
-    "mcp_status": "mcp-needed-high-value",
+    "mcp_package": [
+      "@futurelab-studio/latest-science-mcp (npm)"
+    ],
+    "mcp_status": "mcp-exists",
     "name": "Europe PMC",
     "primary_keys": [
       "EUROPE_PMC_ARTICLE_ID",
@@ -3352,13 +3280,17 @@
     "lag": "hours to ~1 day from submission to indexing; OAI-PMH and S3 mirrors lag 1-2 days",
     "last_verified": "2026-06-08",
     "license": "CC0",
+    "mcp_command": [
+      "npx -y @futurelab-studio/latest-science-mcp@latest"
+    ],
     "mcp_maturity": "community",
     "mcp_notes": "Multiple community MCPs; blazickjp/arxiv-mcp-server (~2.8k stars) is the most mature general server. Pick by need: blazickjp for search + download, openags/paper-search-mcp for multi-source (arXiv + PubMed + bioRxiv), takashiishida for LaTeX-source extraction.\n",
     "mcp_package": [
       "github.com/blazickjp/arxiv-mcp-server",
       "github.com/openags/paper-search-mcp",
       "github.com/andybrandt/mcp-simple-arxiv",
-      "github.com/takashiishida/arxiv-latex-mcp"
+      "github.com/takashiishida/arxiv-latex-mcp",
+      "@futurelab-studio/latest-science-mcp (npm)"
     ],
     "mcp_status": "mcp-exists",
     "name": "arXiv",
@@ -3450,9 +3382,15 @@
     "lag": "days-to-weeks from repository deposit to CORE harvest; full dataset snapshot refreshed periodically",
     "last_verified": "2026-06-08",
     "license": "ODC-BY",
-    "mcp_maturity": "none",
+    "mcp_command": [
+      "npx -y @futurelab-studio/latest-science-mcp@latest"
+    ],
+    "mcp_maturity": "community",
     "mcp_notes": "No known MCP. Stable v3 REST API, but anonymous tier strips full-text fields (\"Not available for public API users\") and tight rate-limit window forces key use for any real workload. Suggested surface: search_works, get_work_by_id, get_outputs, list_data_providers, resolve_by_doi.\n",
-    "mcp_status": "mcp-needed-high-value",
+    "mcp_package": [
+      "@futurelab-studio/latest-science-mcp (npm)"
+    ],
+    "mcp_status": "mcp-exists",
     "name": "CORE",
     "notes": "Anonymous access works for search but full-text and some metadata are gated behind an API key (register at core.ac.uk/services/api). CORE's aggregated metadata + full-text dump is ODC-BY; harvested per-record content licences are heterogeneous, and CORE is reviewing its framework (factual metadata may move to CC0/ODC-0).",
     "primary_keys": [
@@ -9500,6 +9438,102 @@
     "type": [
       "bulk-download",
       "web-ui"
+    ]
+  },
+  {
+    "_path": "entries/bio-genomics/peptideatlas.md",
+    "access_test": {
+      "command": "curl -sf 'https://peptideatlas.org/builds/human/' -o /dev/null",
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "protein-existence evidence lookup",
+      "mass-spec proteomics evidence mining",
+      "peptide-to-protein and peptide-to-genome mapping",
+      "Human Proteome Project coverage checks",
+      "cross-referencing UniProt / Ensembl / neXtProt"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "Compendium of peptides and proteins identified from uniformly reprocessed public mass-spectrometry proteomics data, with protein-existence evidence and genome mappings; the Human build is the flagship.",
+    "docs_url": "https://peptideatlas.org/builds/human/",
+    "domain": "bio-genomics",
+    "entry_kind": "knowledge-graph",
+    "frequency": "annual builds per organism",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://peptideatlas.org/",
+    "id": "peptideatlas",
+    "join_keys": [
+      "UNIPROT_ACCESSION",
+      "ENSEMBL_ID",
+      "GENE_SYMBOL"
+    ],
+    "lag": "reprocessed data lags original ProteomeXchange deposition by months to years",
+    "last_verified": "2026-07-02",
+    "license": "ISB-PeptideAtlas-Terms",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "PeptideAtlas",
+    "notes": "access_test executed 2026-07-02 (build page \u2192 200). Data processed by the Trans-Proteomic Pipeline (TPP, tppms.org), which is analysis software, not a dataset, so it is not a separate registry entry. Underlying spectra come from ProteomeXchange (PXD ids). License is non-SPDX; flagged in Review notes.",
+    "primary_keys": [
+      "PEPTIDEATLAS_PEPTIDE_ACCESSION",
+      "PEPTIDEATLAS_BUILD",
+      "PXD_IDENTIFIER"
+    ],
+    "rate_limit": "none; static bulk files + query interface",
+    "type": [
+      "web-ui",
+      "bulk-download"
+    ]
+  },
+  {
+    "_path": "entries/geospatial/ecmwf.md",
+    "access_test": {
+      "command": "curl -sf 'https://www.ecmwf.int/en/forecasts/datasets/open-data' -o /dev/null",
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "medium-range weather forecast retrieval",
+      "ERA5 climate reanalysis for backtesting",
+      "historical weather for energy and agriculture models",
+      "extreme-event and seasonal analysis",
+      "gridded weather inputs for downstream simulation"
+    ],
+    "auth_required": "api-key-free",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "cost": "freemium",
+    "description": "Global numerical weather forecasts, ensemble products, and the ERA5 climate reanalysis from ECMWF, distributed via the free ECMWF Open Data feed, the Copernicus Climate Data Store API, and the licensed MARS archive.",
+    "docs_url": "https://www.ecmwf.int/en/forecasts/datasets/open-data",
+    "domain": "geospatial",
+    "entry_kind": "mixed",
+    "frequency": "operational forecasts run 2-4x daily; ERA5 updated ~daily with lag; monthly and seasonal products",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://www.ecmwf.int/en/forecasts/datasets",
+    "id": "ecmwf",
+    "join_keys": [
+      "DATE"
+    ],
+    "lag": "Open Data forecasts: hours after model run; ERA5: ~5 days preliminary, ~2-3 months quality-controlled",
+    "last_verified": "2026-07-02",
+    "license": "CC-BY-4.0",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "ECMWF (European Centre for Medium-Range Weather Forecasts)",
+    "notes": "access_test executed 2026-07-02 (open-data page \u2192 200); the CDS API path (cds.climate.copernicus.eu) requires a free account + key and was not executed. One provider entry (ERA5 + operational/open forecasts + CAMS + seasonal); sub-datasets are discovered via the CDS catalogue and the ECMWF parameter database. License CC-BY-4.0 applies to the open layer; real-time operational forecasts and MARS require a separate ECMWF licence (flagged in Review notes).",
+    "primary_keys": [
+      "ECMWF_PARAM_ID",
+      "MARS_KEYWORDS"
+    ],
+    "rate_limit": "CDS API: queued fair-use request system; ECMWF Open Data: none (static object storage)",
+    "type": [
+      "rest-api",
+      "bulk-download",
+      "database"
     ]
   }
 ]

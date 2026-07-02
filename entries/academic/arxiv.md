@@ -35,6 +35,9 @@ mcp_package:
   - github.com/openags/paper-search-mcp
   - github.com/andybrandt/mcp-simple-arxiv
   - github.com/takashiishida/arxiv-latex-mcp
+  - "@futurelab-studio/latest-science-mcp (npm)"
+mcp_command:
+  - "npx -y @futurelab-studio/latest-science-mcp@latest"
 mcp_notes: >
   Multiple community MCPs; blazickjp/arxiv-mcp-server (~2.8k stars) is the most mature general
   server. Pick by need: blazickjp for search + download, openags/paper-search-mcp for multi-source
