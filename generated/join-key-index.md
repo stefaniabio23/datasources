@@ -3,7 +3,7 @@
 Reverse index of canonical join keys mapped to the datasets that expose them.
 Generated from `entries/**/*.md`. Do not hand-edit.
 
-**113 datasets, 60 distinct canonical keys, 420 key→source links.**
+**116 datasets, 60 distinct canonical keys, 426 key→source links.**
 
 ## ARXIV_ID
 
@@ -116,7 +116,7 @@ _32 dataset(s)._
 
 ## DOI
 
-_27 dataset(s)._
+_28 dataset(s)._
 
 - [American Gut Project](../entries/bio-genomics/american-gut-project.md) — `bio-genomics`
 - [CORE](../entries/academic/core.md) — `academic`
@@ -145,6 +145,7 @@ _27 dataset(s)._
 - [Unpaywall](../entries/academic/unpaywall.md) — `academic`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
 - [arXiv](../entries/academic/arxiv.md) — `academic`
+- [bioRxiv / medRxiv](../entries/academic/biorxiv-medrxiv.md) — `academic`
 
 ## DRUGBANK_ID
 
@@ -192,13 +193,14 @@ _22 dataset(s)._
 
 ## ENTREZ_GENE_ID
 
-_11 dataset(s)._
+_12 dataset(s)._
 
 - [Cancer Cell Line Encyclopedia (CCLE)](../entries/bio-genomics/cancer-cell-line-encyclopedia.md) — `bio-genomics`
 - [ClinGen (Clinical Genome Resource)](../entries/bio-genomics/clingen.md) — `bio-genomics`
 - [ClinVar](../entries/bio-genomics/clinvar.md) — `bio-genomics`
 - [Gene Ontology](../entries/bio-genomics/gene-ontology.md) — `bio-genomics`
 - [KEGG (Kyoto Encyclopedia of Genes and Genomes)](../entries/bio-genomics/kyoto-encyclopedia-of-genes-and-genomes.md) — `bio-genomics`
+- [MyVariant.info](../entries/bio-genomics/myvariant.md) — `bio-genomics`
 - [NCI Genomic Data Commons (GDC)](../entries/bio-genomics/nci-genomic-data-commons.md) — `bio-genomics`
 - [PubChem](../entries/clinical-biotech/pub-chem.md) — `clinical-biotech`
 - [The Cancer Genome Atlas (TCGA, via Broad GDAC Firehose)](../entries/bio-genomics/the-cancer-genome-atlas.md) — `bio-genomics`
@@ -250,7 +252,7 @@ _1 dataset(s)._
 
 ## GENE_SYMBOL
 
-_27 dataset(s)._
+_29 dataset(s)._
 
 - [Cancer Cell Line Encyclopedia (CCLE)](../entries/bio-genomics/cancer-cell-line-encyclopedia.md) — `bio-genomics`
 - [ClinGen (Clinical Genome Resource)](../entries/bio-genomics/clingen.md) — `bio-genomics`
@@ -264,9 +266,11 @@ _27 dataset(s)._
 - [Human Protein Atlas](../entries/bio-genomics/human-protein-atlas.md) — `bio-genomics`
 - [Image Data Resource (IDR)](../entries/bio-genomics/image-data-resource.md) — `bio-genomics`
 - [KEGG (Kyoto Encyclopedia of Genes and Genomes)](../entries/bio-genomics/kyoto-encyclopedia-of-genes-and-genomes.md) — `bio-genomics`
+- [MyVariant.info](../entries/bio-genomics/myvariant.md) — `bio-genomics`
 - [NCBI GEO](../entries/bio-genomics/ncbi-geo.md) — `bio-genomics`
 - [NCBI Gene](../entries/bio-genomics/ncbi-gene.md) — `bio-genomics`
 - [NCI Genomic Data Commons (GDC)](../entries/bio-genomics/nci-genomic-data-commons.md) — `bio-genomics`
+- [OncoKB](../entries/clinical-biotech/oncokb.md) — `clinical-biotech`
 - [Open Targets](../entries/clinical-biotech/open-targets.md) — `clinical-biotech`
 - [PeptideAtlas](../entries/bio-genomics/peptideatlas.md) — `bio-genomics`
 - [PubChem](../entries/clinical-biotech/pub-chem.md) — `clinical-biotech`
@@ -572,7 +576,7 @@ _30 dataset(s)._
 
 ## ROR
 
-_6 dataset(s)._
+_7 dataset(s)._
 
 - [Crossref](../entries/academic/crossref.md) — `academic`
 - [DataCite](../entries/academic/datacite.md) — `academic`
@@ -580,13 +584,15 @@ _6 dataset(s)._
 - [ORCID](../entries/academic/orcid.md) — `academic`
 - [OpenAlex](../entries/academic/openalex.md) — `academic`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
+- [bioRxiv / medRxiv](../entries/academic/biorxiv-medrxiv.md) — `academic`
 
 ## RSID
 
-_7 dataset(s)._
+_8 dataset(s)._
 
 - [ClinGen (Clinical Genome Resource)](../entries/bio-genomics/clingen.md) — `bio-genomics`
 - [ClinVar](../entries/bio-genomics/clinvar.md) — `bio-genomics`
+- [MyVariant.info](../entries/bio-genomics/myvariant.md) — `bio-genomics`
 - [UCSC Genome Browser](../entries/bio-genomics/ucsc-genome-browser.md) — `bio-genomics`
 - [UK Biobank](../entries/public-health/uk-biobank.md) — `public-health`
 - [dbSNP](../entries/bio-genomics/dbsnp.md) — `bio-genomics`
