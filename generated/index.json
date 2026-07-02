@@ -1,76 +1,57 @@
 [
   {
-    "_path": "entries/consumer-signal/x-api.md",
+    "_path": "entries/academic/pmlr.md",
     "access_test": {
-      "command": "curl -sf -H \"Authorization: Bearer ${X_BEARER_TOKEN}\" 'https://api.x.com/2/tweets/counts/recent?query=nvidia'",
-      "expected_fields": [
-        "data",
-        "meta"
-      ],
+      "command": "curl -sf 'https://proceedings.mlr.press/feed.xml' -o /dev/null",
       "expected_status": 200
     },
     "agent_use_cases": [
-      "topic and keyword post monitoring",
-      "real-time sentiment mining on brands, tickers, and events",
-      "post-volume time-series for a query via the counts endpoints",
-      "trend and news-story tracking by location",
-      "account timeline and mention tracking"
+      "machine-learning literature corpus building",
+      "title and abstract text mining",
+      "conference and topic trend analysis",
+      "metadata harvesting for ML papers",
+      "reproducibility and citation tracing"
     ],
-    "auth_required": "oauth",
-    "build_priority": "medium",
-    "bulk_available": false,
-    "cost": "paid",
-    "description": "Real-time and full-archive access to X (Twitter) posts, users, search, trends, and news stories via the v2 REST API, exposed to agents through X's official hosted MCP server.",
-    "docs_url": "https://docs.x.com/tools/mcp",
-    "domain": "consumer-signal",
-    "entry_kind": "event-stream",
-    "frequency": "real-time",
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "Open-access proceedings of machine learning conferences and workshops (ICML, AISTATS, CoRL, UAI, and many workshops), published as per-volume PDFs plus openly available BibTeX metadata without a conventional publisher.",
+    "docs_url": "https://github.com/mlresearch",
+    "domain": "academic",
+    "entry_kind": "corpus",
+    "frequency": "rolling; a new volume is posted as each conference or workshop completes",
     "geography": [
       "global"
     ],
-    "homepage_url": "https://docs.x.com/x-api",
-    "id": "x-api",
+    "homepage_url": "https://proceedings.mlr.press/",
+    "id": "pmlr",
     "join_key_fields": [
       {
         "fields": [
-          "entities.urls.expanded_url",
-          "entities.urls.unwound_url"
+          "url"
         ],
         "join_key": "URL"
-      },
-      {
-        "fields": [
-          "lang"
-        ],
-        "join_key": "ISO_639_1"
       }
     ],
     "join_keys": [
       "URL",
-      "ISO_639_1"
+      "ISSN"
     ],
-    "lag": "seconds for new posts",
-    "last_verified": "2026-07-01",
-    "license": "X-Developer-Agreement",
-    "mcp_maturity": "official",
-    "mcp_notes": "Official X-hosted Streamable HTTP MCP at https://api.x.com/mcp, plus a self-hostable FastMCP server (xdevplatform/xmcp, Python 3.9+) and the xurl CLI/OAuth bridge (xdevplatform/xurl). Covers the full read surface (search, counts, timelines, mentions, trends, news) and writes (post, like, repost, bookmark). Streaming and webhooks are excluded. No native sentiment tool; sentiment is a downstream agent/LLM step on retrieved post text.\n",
-    "mcp_package": [
-      "github.com/xdevplatform/xmcp",
-      "github.com/xdevplatform/xurl",
-      "https://api.x.com/mcp"
-    ],
-    "mcp_status": "mcp-exists",
-    "name": "X (Twitter) API",
-    "notes": "access_test constructed, not executed; requires paid X API credentials (pay-per-use, ~$0.005 per post read) and an OAuth2 app. No free tier for new signups as of 2026-02-06; legacy Basic ($200/mo) and Pro ($5,000/mo) remain only for existing subscribers.",
+    "lag": "weeks-to-months between a conference and its volume going live",
+    "last_verified": "2026-07-02",
+    "license": "PMLR-Author-Copyright",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "Proceedings of Machine Learning Research (PMLR)",
+    "notes": "access_test executed 2026-07-02 (feed.xml \u2192 200). PMLR papers generally have no DOIs; resolve cross-source via OpenAlex / Semantic Scholar / DBLP, which index PMLR and mint their own ids. Per-volume BibTeX files live in the github.com/mlresearch/<vNNN> repos; exact raw path varies by volume (flagged in Review notes).",
     "primary_keys": [
-      "TWEET_ID",
-      "X_USER_ID",
-      "X_HANDLE",
-      "WOEID"
+      "PMLR_VOLUME",
+      "PMLR_PAPER_ID"
     ],
-    "rate_limit": "Pay-per-use: $0.005 per post read (2M reads/month cap), $0.001 per owned read, $0.010 per user read; per-endpoint rate limits still apply; writes stricter, expect 429s",
+    "rate_limit": "none; static GitHub Pages site + per-volume GitHub repos",
     "type": [
-      "rest-api"
+      "bulk-download",
+      "web-ui"
     ]
   },
   {
@@ -9349,6 +9330,80 @@
       "rest-api",
       "bulk-download",
       "web-ui"
+    ]
+  },
+  {
+    "_path": "entries/consumer-signal/x-api.md",
+    "access_test": {
+      "command": "curl -sf -H \"Authorization: Bearer ${X_BEARER_TOKEN}\" 'https://api.x.com/2/tweets/counts/recent?query=nvidia'",
+      "expected_fields": [
+        "data",
+        "meta"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "topic and keyword post monitoring",
+      "real-time sentiment mining on brands, tickers, and events",
+      "post-volume time-series for a query via the counts endpoints",
+      "trend and news-story tracking by location",
+      "account timeline and mention tracking"
+    ],
+    "auth_required": "oauth",
+    "build_priority": "medium",
+    "bulk_available": false,
+    "cost": "paid",
+    "description": "Real-time and full-archive access to X (Twitter) posts, users, search, trends, and news stories via the v2 REST API, exposed to agents through X's official hosted MCP server.",
+    "docs_url": "https://docs.x.com/tools/mcp",
+    "domain": "consumer-signal",
+    "entry_kind": "event-stream",
+    "frequency": "real-time",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://docs.x.com/x-api",
+    "id": "x-api",
+    "join_key_fields": [
+      {
+        "fields": [
+          "entities.urls.expanded_url",
+          "entities.urls.unwound_url"
+        ],
+        "join_key": "URL"
+      },
+      {
+        "fields": [
+          "lang"
+        ],
+        "join_key": "ISO_639_1"
+      }
+    ],
+    "join_keys": [
+      "URL",
+      "ISO_639_1"
+    ],
+    "lag": "seconds for new posts",
+    "last_verified": "2026-07-01",
+    "license": "X-Developer-Agreement",
+    "mcp_maturity": "official",
+    "mcp_notes": "Official X-hosted Streamable HTTP MCP at https://api.x.com/mcp, plus a self-hostable FastMCP server (xdevplatform/xmcp, Python 3.9+) and the xurl CLI/OAuth bridge (xdevplatform/xurl). Covers the full read surface (search, counts, timelines, mentions, trends, news) and writes (post, like, repost, bookmark). Streaming and webhooks are excluded. No native sentiment tool; sentiment is a downstream agent/LLM step on retrieved post text.\n",
+    "mcp_package": [
+      "github.com/xdevplatform/xmcp",
+      "github.com/xdevplatform/xurl",
+      "https://api.x.com/mcp"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "X (Twitter) API",
+    "notes": "access_test constructed, not executed; requires paid X API credentials (pay-per-use, ~$0.005 per post read) and an OAuth2 app. No free tier for new signups as of 2026-02-06; legacy Basic ($200/mo) and Pro ($5,000/mo) remain only for existing subscribers.",
+    "primary_keys": [
+      "TWEET_ID",
+      "X_USER_ID",
+      "X_HANDLE",
+      "WOEID"
+    ],
+    "rate_limit": "Pay-per-use: $0.005 per post read (2M reads/month cap), $0.001 per owned read, $0.010 per user read; per-endpoint rate limits still apply; writes stricter, expect 429s",
+    "type": [
+      "rest-api"
     ]
   }
 ]

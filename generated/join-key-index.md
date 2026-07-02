@@ -3,7 +3,7 @@
 Reverse index of canonical join keys mapped to the datasets that expose them.
 Generated from `entries/**/*.md`. Do not hand-edit.
 
-**110 datasets, 60 distinct canonical keys, 414 key→source links.**
+**111 datasets, 60 distinct canonical keys, 416 key→source links.**
 
 ## ARXIV_ID
 
@@ -389,12 +389,13 @@ _1 dataset(s)._
 
 ## ISSN
 
-_7 dataset(s)._
+_8 dataset(s)._
 
 - [CORE](../entries/academic/core.md) — `academic`
 - [Crossref](../entries/academic/crossref.md) — `academic`
 - [Europe PMC](../entries/academic/europe-pmc.md) — `academic`
 - [OpenAlex](../entries/academic/openalex.md) — `academic`
+- [Proceedings of Machine Learning Research (PMLR)](../entries/academic/pmlr.md) — `academic`
 - [PubMed (NCBI E-utilities)](../entries/academic/pubmed.md) — `academic`
 - [Unpaywall](../entries/academic/unpaywall.md) — `academic`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
@@ -657,7 +658,7 @@ _18 dataset(s)._
 
 ## URL
 
-_18 dataset(s)._
+_19 dataset(s)._
 
 - [CORE](../entries/academic/core.md) — `academic`
 - [Common Crawl](../entries/news-events/common-crawl.md) — `news-events`
@@ -671,6 +672,7 @@ _18 dataset(s)._
 - [OpenCorporates](../entries/corporate-registry/opencorporates.md) — `corporate-registry`
 - [Personal Genome Project](../entries/bio-genomics/personal-genome-project.md) — `bio-genomics`
 - [PredScope Prediction Market Data](../entries/finance-markets/predscope-prediction-market-data.md) — `finance-markets`
+- [Proceedings of Machine Learning Research (PMLR)](../entries/academic/pmlr.md) — `academic`
 - [Reddit Data API](../entries/consumer-signal/reddit.md) — `consumer-signal`
 - [SEC EDGAR](../entries/corporate-registry/sec-edgar.md) — `corporate-registry`
 - [Smithsonian Open Access](../entries/government-open-data/smithsonian-open-access.md) — `government-open-data`
