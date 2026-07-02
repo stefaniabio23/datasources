@@ -1,175 +1,49 @@
 [
   {
-    "_path": "entries/bio-genomics/myvariant.md",
+    "_path": "entries/bio-genomics/proteomexchange.md",
     "access_test": {
-      "command": "curl -sf 'https://myvariant.info/v1/query?q=rs58991260' -o /dev/null",
+      "command": "curl -sf 'https://proteomecentral.proteomexchange.org/cgi/GetDataset?ID=PXD000001&outputMode=JSON' -o /dev/null",
       "expected_status": 200
     },
     "agent_use_cases": [
-      "variant annotation lookup",
-      "rsID to clinical-significance resolution",
-      "pharmacogenomic and functional annotation",
-      "batch variant enrichment",
-      "cross-source variant harmonisation"
+      "proteomics dataset discovery",
+      "finding raw mass-spec data by publication or keyword",
+      "publication-to-dataset linking",
+      "dataset provenance and cross-repository search"
     ],
     "auth_required": "none",
     "build_priority": "low",
     "bulk_available": true,
     "cost": "free",
-    "description": "BioThings API aggregating genetic-variant annotations from dozens of sources (dbSNP, ClinVar, dbNSFP, CADD, and more) behind one fast REST query interface keyed on variants.",
-    "docs_url": "https://docs.myvariant.info/",
+    "description": "Consortium and central index coordinating proteomics data deposition across the main repositories, minting PXD dataset accessions and exposing dataset metadata through ProteomeCentral.",
+    "docs_url": "https://proteomecentral.proteomexchange.org/",
     "domain": "bio-genomics",
-    "entry_kind": "knowledge-graph",
-    "frequency": "weekly annotation refresh",
+    "entry_kind": "registry",
+    "frequency": "continuous; new datasets announced as they are made public",
     "geography": [
       "global"
     ],
-    "homepage_url": "https://myvariant.info/",
-    "id": "myvariant",
+    "homepage_url": "https://www.proteomexchange.org/",
+    "id": "proteomexchange",
+    "is_directory": true,
     "join_keys": [
-      "RSID",
-      "GENE_SYMBOL",
-      "ENTREZ_GENE_ID"
+      "PMID",
+      "DOI"
     ],
-    "lag": "days-to-weeks behind upstream source releases",
+    "lag": "days; datasets go public on associated publication",
     "last_verified": "2026-07-02",
-    "license": "BioThings-Aggregate-Terms",
-    "mcp_command": [
-      "uvx --from biomcp-python biomcp run"
-    ],
-    "mcp_maturity": "community",
-    "mcp_package": [
-      "github.com/genomoncology/biomcp"
-    ],
-    "mcp_status": "mcp-exists",
-    "name": "MyVariant.info",
-    "notes": "access_test executed 2026-07-02 (query \u2192 200). Covered by the biomcp MCP (MyVariant is one of its sources). License is aggregate: MyVariant is free for research but each annotation carries its upstream source's license; flagged in Review notes.",
+    "license": "ProteomeXchange-Open-Data",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "ProteomeXchange",
+    "notes": "access_test executed 2026-07-02 (GetDataset JSON \u2192 200). ProteomeXchange federates PRIDE (EBI), PeptideAtlas (ISB), MassIVE (UCSD), jPOST, iProX, and Panorama Public; it is the discovery layer over those repositories (is_directory: true). PXD accessions are the canonical proteomics dataset id; now exposed by two entries (this and peptideatlas), so PXD_IDENTIFIER is worth promoting to the canonical join-key registry (Review notes).",
     "primary_keys": [
-      "HGVS_VARIANT_ID"
+      "PXD_IDENTIFIER",
+      "PRIDE_PROJECT_ID"
     ],
-    "rate_limit": "fair-use; batch POST up to 1000 ids per request",
+    "rate_limit": "fair-use; ProteomeCentral GET/PROXI API",
     "type": [
       "rest-api",
-      "bulk-download"
-    ]
-  },
-  {
-    "_path": "entries/clinical-biotech/oncokb.md",
-    "access_test": {
-      "command": "curl -sf -H \"Authorization: Bearer ${ONCOKB_TOKEN}\" 'https://www.oncokb.org/api/v1/utils/allCuratedGenes' -o /dev/null",
-      "expected_status": 200
-    },
-    "agent_use_cases": [
-      "oncogenic-effect annotation of variants",
-      "therapy actionability and evidence-level lookup",
-      "tumor-type matching via OncoTree",
-      "precision-oncology decision support"
-    ],
-    "auth_required": "api-key-free",
-    "build_priority": "low",
-    "bulk_available": true,
-    "cost": "free-non-commercial",
-    "description": "MSK's precision-oncology knowledge base of the clinical actionability of cancer gene alterations, mapping variants to oncogenic effect and FDA/guideline therapy levels.",
-    "docs_url": "https://www.oncokb.org/api-access",
-    "domain": "clinical-biotech",
-    "entry_kind": "knowledge-graph",
-    "frequency": "rolling curation updates, versioned releases",
-    "geography": [
-      "global"
-    ],
-    "homepage_url": "https://www.oncokb.org/",
-    "id": "oncokb",
-    "join_keys": [
-      "GENE_SYMBOL"
-    ],
-    "lag": "curation lag behind new approvals and publications",
-    "last_verified": "2026-07-02",
-    "license": "OncoKB-Terms",
-    "mcp_command": [
-      "uvx --from biomcp-python biomcp run"
-    ],
-    "mcp_maturity": "community",
-    "mcp_package": [
-      "github.com/genomoncology/biomcp"
-    ],
-    "mcp_status": "mcp-exists",
-    "name": "OncoKB",
-    "notes": "access_test constructed not executed; requires a free ${ONCOKB_TOKEN} (register at oncokb.org). Free for academic/research use; commercial and clinical use require a paid licence. Covered by the biomcp MCP. License is non-SPDX (flagged). OncoKB homepage is JS-heavy and did not render via WebFetch; fields drawn from prior knowledge and should be re-verified.",
-    "primary_keys": [
-      "ONCOTREE_CODE",
-      "HGVS_PROTEIN_CHANGE"
-    ],
-    "rate_limit": "per-token fair-use limits",
-    "type": [
-      "rest-api",
-      "bulk-download"
-    ]
-  },
-  {
-    "_path": "entries/academic/biorxiv-medrxiv.md",
-    "access_test": {
-      "command": "curl -sf 'https://api.biorxiv.org/details/biorxiv/2024-01-01/2024-01-02/0' -o /dev/null",
-      "expected_status": 200
-    },
-    "agent_use_cases": [
-      "preprint monitoring by date and category",
-      "early research-signal detection",
-      "abstract and metadata text mining",
-      "preprint-to-publication tracking",
-      "funder analysis via ROR"
-    ],
-    "auth_required": "none",
-    "build_priority": "low",
-    "bulk_available": true,
-    "cost": "free",
-    "description": "Preprint servers for the life sciences (bioRxiv) and health sciences (medRxiv), exposing preprint metadata (DOI, title, authors, abstract, license, funding) and preprint-to-publication status via a free REST API.",
-    "docs_url": "https://api.biorxiv.org/",
-    "domain": "academic",
-    "entry_kind": "corpus",
-    "frequency": "continuous; new preprints posted daily",
-    "geography": [
-      "global"
-    ],
-    "homepage_url": "https://www.biorxiv.org/",
-    "id": "biorxiv-medrxiv",
-    "join_key_fields": [
-      {
-        "fields": [
-          "doi",
-          "published"
-        ],
-        "join_key": "DOI"
-      },
-      {
-        "fields": [
-          "funder.ror"
-        ],
-        "join_key": "ROR"
-      }
-    ],
-    "join_keys": [
-      "DOI",
-      "ROR"
-    ],
-    "lag": "hours-to-days from submission to posting",
-    "last_verified": "2026-07-02",
-    "license": "Author-Selected-CC",
-    "mcp_command": [
-      "uvx --from biomcp-python biomcp run",
-      "npx -y @futurelab-studio/latest-science-mcp@latest"
-    ],
-    "mcp_maturity": "community",
-    "mcp_package": [
-      "github.com/genomoncology/biomcp",
-      "@futurelab-studio/latest-science-mcp (npm)"
-    ],
-    "mcp_status": "mcp-exists",
-    "name": "bioRxiv / medRxiv",
-    "notes": "access_test executed 2026-07-02 (details endpoint \u2192 200). One entry covers both bioRxiv and medRxiv (shared api.biorxiv.org). Covered by biomcp and scientific-papers MCPs. Preprint license varies per author (the API's per-record `license` field carries the specific CC licence); headline short name is a placeholder, flagged.",
-    "rate_limit": "fair-use; 30 preprints per details call, cursor-paginated",
-    "type": [
-      "rest-api",
-      "bulk-download"
+      "web-ui"
     ]
   },
   {
@@ -9707,6 +9581,179 @@
       "rest-api",
       "bulk-download",
       "database"
+    ]
+  },
+  {
+    "_path": "entries/bio-genomics/myvariant.md",
+    "access_test": {
+      "command": "curl -sf 'https://myvariant.info/v1/query?q=rs58991260' -o /dev/null",
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "variant annotation lookup",
+      "rsID to clinical-significance resolution",
+      "pharmacogenomic and functional annotation",
+      "batch variant enrichment",
+      "cross-source variant harmonisation"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "BioThings API aggregating genetic-variant annotations from dozens of sources (dbSNP, ClinVar, dbNSFP, CADD, and more) behind one fast REST query interface keyed on variants.",
+    "docs_url": "https://docs.myvariant.info/",
+    "domain": "bio-genomics",
+    "entry_kind": "knowledge-graph",
+    "frequency": "weekly annotation refresh",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://myvariant.info/",
+    "id": "myvariant",
+    "join_keys": [
+      "RSID",
+      "GENE_SYMBOL",
+      "ENTREZ_GENE_ID"
+    ],
+    "lag": "days-to-weeks behind upstream source releases",
+    "last_verified": "2026-07-02",
+    "license": "BioThings-Aggregate-Terms",
+    "mcp_command": [
+      "uvx --from biomcp-python biomcp run"
+    ],
+    "mcp_maturity": "community",
+    "mcp_package": [
+      "github.com/genomoncology/biomcp"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "MyVariant.info",
+    "notes": "access_test executed 2026-07-02 (query \u2192 200). Covered by the biomcp MCP (MyVariant is one of its sources). License is aggregate: MyVariant is free for research but each annotation carries its upstream source's license; flagged in Review notes.",
+    "primary_keys": [
+      "HGVS_VARIANT_ID"
+    ],
+    "rate_limit": "fair-use; batch POST up to 1000 ids per request",
+    "type": [
+      "rest-api",
+      "bulk-download"
+    ]
+  },
+  {
+    "_path": "entries/clinical-biotech/oncokb.md",
+    "access_test": {
+      "command": "curl -sf -H \"Authorization: Bearer ${ONCOKB_TOKEN}\" 'https://www.oncokb.org/api/v1/utils/allCuratedGenes' -o /dev/null",
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "oncogenic-effect annotation of variants",
+      "therapy actionability and evidence-level lookup",
+      "tumor-type matching via OncoTree",
+      "precision-oncology decision support"
+    ],
+    "auth_required": "api-key-free",
+    "build_priority": "low",
+    "bulk_available": true,
+    "cost": "free-non-commercial",
+    "description": "MSK's precision-oncology knowledge base of the clinical actionability of cancer gene alterations, mapping variants to oncogenic effect and FDA/guideline therapy levels.",
+    "docs_url": "https://www.oncokb.org/api-access",
+    "domain": "clinical-biotech",
+    "entry_kind": "knowledge-graph",
+    "frequency": "rolling curation updates, versioned releases",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://www.oncokb.org/",
+    "id": "oncokb",
+    "join_keys": [
+      "GENE_SYMBOL"
+    ],
+    "lag": "curation lag behind new approvals and publications",
+    "last_verified": "2026-07-02",
+    "license": "OncoKB-Terms",
+    "mcp_command": [
+      "uvx --from biomcp-python biomcp run"
+    ],
+    "mcp_maturity": "community",
+    "mcp_package": [
+      "github.com/genomoncology/biomcp"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "OncoKB",
+    "notes": "access_test constructed not executed; requires a free ${ONCOKB_TOKEN} (register at oncokb.org). Free for academic/research use; commercial and clinical use require a paid licence. Covered by the biomcp MCP. License is non-SPDX (flagged). OncoKB homepage is JS-heavy and did not render via WebFetch; fields drawn from prior knowledge and should be re-verified.",
+    "primary_keys": [
+      "ONCOTREE_CODE",
+      "HGVS_PROTEIN_CHANGE"
+    ],
+    "rate_limit": "per-token fair-use limits",
+    "type": [
+      "rest-api",
+      "bulk-download"
+    ]
+  },
+  {
+    "_path": "entries/academic/biorxiv-medrxiv.md",
+    "access_test": {
+      "command": "curl -sf 'https://api.biorxiv.org/details/biorxiv/2024-01-01/2024-01-02/0' -o /dev/null",
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "preprint monitoring by date and category",
+      "early research-signal detection",
+      "abstract and metadata text mining",
+      "preprint-to-publication tracking",
+      "funder analysis via ROR"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "Preprint servers for the life sciences (bioRxiv) and health sciences (medRxiv), exposing preprint metadata (DOI, title, authors, abstract, license, funding) and preprint-to-publication status via a free REST API.",
+    "docs_url": "https://api.biorxiv.org/",
+    "domain": "academic",
+    "entry_kind": "corpus",
+    "frequency": "continuous; new preprints posted daily",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://www.biorxiv.org/",
+    "id": "biorxiv-medrxiv",
+    "join_key_fields": [
+      {
+        "fields": [
+          "doi",
+          "published"
+        ],
+        "join_key": "DOI"
+      },
+      {
+        "fields": [
+          "funder.ror"
+        ],
+        "join_key": "ROR"
+      }
+    ],
+    "join_keys": [
+      "DOI",
+      "ROR"
+    ],
+    "lag": "hours-to-days from submission to posting",
+    "last_verified": "2026-07-02",
+    "license": "Author-Selected-CC",
+    "mcp_command": [
+      "uvx --from biomcp-python biomcp run",
+      "npx -y @futurelab-studio/latest-science-mcp@latest"
+    ],
+    "mcp_maturity": "community",
+    "mcp_package": [
+      "github.com/genomoncology/biomcp",
+      "@futurelab-studio/latest-science-mcp (npm)"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "bioRxiv / medRxiv",
+    "notes": "access_test executed 2026-07-02 (details endpoint \u2192 200). One entry covers both bioRxiv and medRxiv (shared api.biorxiv.org). Covered by biomcp and scientific-papers MCPs. Preprint license varies per author (the API's per-record `license` field carries the specific CC licence); headline short name is a placeholder, flagged.",
+    "rate_limit": "fair-use; 30 preprints per details call, cursor-paginated",
+    "type": [
+      "rest-api",
+      "bulk-download"
     ]
   }
 ]

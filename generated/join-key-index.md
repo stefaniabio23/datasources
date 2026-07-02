@@ -3,7 +3,7 @@
 Reverse index of canonical join keys mapped to the datasets that expose them.
 Generated from `entries/**/*.md`. Do not hand-edit.
 
-**116 datasets, 60 distinct canonical keys, 426 key→source links.**
+**117 datasets, 60 distinct canonical keys, 428 key→source links.**
 
 ## ARXIV_ID
 
@@ -116,7 +116,7 @@ _32 dataset(s)._
 
 ## DOI
 
-_28 dataset(s)._
+_29 dataset(s)._
 
 - [American Gut Project](../entries/bio-genomics/american-gut-project.md) — `bio-genomics`
 - [CORE](../entries/academic/core.md) — `academic`
@@ -134,6 +134,7 @@ _28 dataset(s)._
 - [ORCID](../entries/academic/orcid.md) — `academic`
 - [Open Targets](../entries/clinical-biotech/open-targets.md) — `clinical-biotech`
 - [OpenAlex](../entries/academic/openalex.md) — `academic`
+- [ProteomeXchange](../entries/bio-genomics/proteomexchange.md) — `bio-genomics`
 - [PubChem](../entries/clinical-biotech/pub-chem.md) — `clinical-biotech`
 - [PubMed (NCBI E-utilities)](../entries/academic/pubmed.md) — `academic`
 - [RCSB Protein Data Bank](../entries/bio-genomics/protein-data-bank.md) — `bio-genomics`
@@ -541,7 +542,7 @@ _6 dataset(s)._
 
 ## PMID
 
-_30 dataset(s)._
+_31 dataset(s)._
 
 - [AACT (Aggregate Analysis of ClinicalTrials.gov)](../entries/clinical-biotech/aact.md) — `clinical-biotech`
 - [American Gut Project](../entries/bio-genomics/american-gut-project.md) — `bio-genomics`
@@ -564,6 +565,7 @@ _30 dataset(s)._
 - [NCBI Taxonomy](../entries/bio-genomics/ncbi-taxonomy.md) — `bio-genomics`
 - [Open Targets](../entries/clinical-biotech/open-targets.md) — `clinical-biotech`
 - [OpenAlex](../entries/academic/openalex.md) — `academic`
+- [ProteomeXchange](../entries/bio-genomics/proteomexchange.md) — `bio-genomics`
 - [PubChem](../entries/clinical-biotech/pub-chem.md) — `clinical-biotech`
 - [PubMed (NCBI E-utilities)](../entries/academic/pubmed.md) — `academic`
 - [RCSB Protein Data Bank](../entries/bio-genomics/protein-data-bank.md) — `bio-genomics`
