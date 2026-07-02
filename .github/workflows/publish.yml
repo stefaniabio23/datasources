@@ -34,3 +34,17 @@ jobs:
           GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
           GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
         run: python3 scripts/publish_to_sheet.py
+
+      # Rebuild the stephanierebecca.com site so its /datasets page re-fetches
+      # this registry (the page pulls generated/index.json at build time). A
+      # Cloudflare Pages deploy hook rebuilds the whole site; only the datasets
+      # page's output changes. No-op until CLOUDFLARE_DEPLOY_HOOK is set.
+      - name: Refresh website datasets page
+        env:
+          HOOK: ${{ secrets.CLOUDFLARE_DEPLOY_HOOK }}
+        run: |
+          if [ -n "$HOOK" ]; then
+            curl -fsS -X POST "$HOOK" -o /dev/null && echo "triggered website rebuild"
+          else
+            echo "CLOUDFLARE_DEPLOY_HOOK not set; skipping website rebuild"
+          fi
