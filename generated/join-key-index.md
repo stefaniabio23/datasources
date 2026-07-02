@@ -3,7 +3,7 @@
 Reverse index of canonical join keys mapped to the datasets that expose them.
 Generated from `entries/**/*.md`. Do not hand-edit.
 
-**109 datasets, 59 distinct canonical keys, 412 key→source links.**
+**110 datasets, 60 distinct canonical keys, 414 key→source links.**
 
 ## ARXIV_ID
 
@@ -381,6 +381,12 @@ _8 dataset(s)._
 - [Visa Onchain Analytics Dashboard](../entries/finance-markets/visa-onchain-stablecoin-analytics.md) — `finance-markets`
 - [World Bank Commodity Prices (Pink Sheet)](../entries/finance-markets/world-bank-commodity-prices.md) — `finance-markets`
 
+## ISO_639_1
+
+_1 dataset(s)._
+
+- [X (Twitter) API](../entries/consumer-signal/x-api.md) — `consumer-signal`
+
 ## ISSN
 
 _7 dataset(s)._
@@ -651,7 +657,7 @@ _18 dataset(s)._
 
 ## URL
 
-_17 dataset(s)._
+_18 dataset(s)._
 
 - [CORE](../entries/academic/core.md) — `academic`
 - [Common Crawl](../entries/news-events/common-crawl.md) — `news-events`
@@ -670,6 +676,7 @@ _17 dataset(s)._
 - [Smithsonian Open Access](../entries/government-open-data/smithsonian-open-access.md) — `government-open-data`
 - [Stack Exchange Data Explorer](../entries/consumer-signal/stack-exchange-data-explorer.md) — `consumer-signal`
 - [Wikipedia Pageviews API](../entries/consumer-signal/wikipedia-pageviews.md) — `consumer-signal`
+- [X (Twitter) API](../entries/consumer-signal/x-api.md) — `consumer-signal`
 
 ## US_STATE_CODE
 
