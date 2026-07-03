@@ -3,21 +3,22 @@
 Reverse index of canonical join keys mapped to the datasets that expose them.
 Generated from `entries/**/*.md`. Do not hand-edit.
 
-**154 datasets, 65 distinct canonical keys, 570 key→source links.**
+**182 datasets, 65 distinct canonical keys, 650 key→source links.**
 
 ## ARXIV_ID
 
-_5 dataset(s)._
+_6 dataset(s)._
 
 - [CORE](../entries/academic/core.md) — `academic`
 - [OpenAlex](../entries/academic/openalex.md) — `academic`
+- [PubPeer](../entries/academic/pubpeer.md) — `academic`
 - [Semantic Scholar](../entries/academic/semantic-scholar.md) — `academic`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
 - [arXiv](../entries/academic/arxiv.md) — `academic`
 
 ## ATC_CODE
 
-_8 dataset(s)._
+_9 dataset(s)._
 
 - [DrugCentral](../entries/clinical-biotech/drugcentral.md) — `clinical-biotech`
 - [EMA EPAR / Medicines](../entries/clinical-biotech/ema-epar.md) — `clinical-biotech`
@@ -25,6 +26,7 @@ _8 dataset(s)._
 - [PharmGKB](../entries/bio-genomics/pharmgkb.md) — `bio-genomics`
 - [PubChem](../entries/clinical-biotech/pub-chem.md) — `clinical-biotech`
 - [RxNorm](../entries/clinical-biotech/rxnorm.md) — `clinical-biotech`
+- [Therapeutic Target Database (TTD)](../entries/clinical-biotech/ttd.md) — `clinical-biotech`
 - [UMLS Metathesaurus](../entries/clinical-biotech/umls.md) — `clinical-biotech`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
 
@@ -38,7 +40,7 @@ _3 dataset(s)._
 
 ## CHEBI_ID
 
-_7 dataset(s)._
+_8 dataset(s)._
 
 - [DrugCentral](../entries/clinical-biotech/drugcentral.md) — `clinical-biotech`
 - [HMDB (Human Metabolome Database)](../entries/bio-genomics/hmdb.md) — `bio-genomics`
@@ -47,15 +49,17 @@ _7 dataset(s)._
 - [MetaboLights](../entries/bio-genomics/metabolights.md) — `bio-genomics`
 - [PharmGKB](../entries/bio-genomics/pharmgkb.md) — `bio-genomics`
 - [PubChem](../entries/clinical-biotech/pub-chem.md) — `clinical-biotech`
+- [Therapeutic Target Database (TTD)](../entries/clinical-biotech/ttd.md) — `clinical-biotech`
 
 ## CHEMBL_ID
 
-_12 dataset(s)._
+_13 dataset(s)._
 
 - [BindingDB](../entries/clinical-biotech/bindingdb.md) — `clinical-biotech`
 - [ChEMBL](../entries/clinical-biotech/chembl.md) — `clinical-biotech`
 - [DrugBank](../entries/clinical-biotech/drugbank.md) — `clinical-biotech`
 - [DrugCentral](../entries/clinical-biotech/drugcentral.md) — `clinical-biotech`
+- [DrugComb](../entries/clinical-biotech/drugcomb.md) — `clinical-biotech`
 - [Europe PMC](../entries/academic/europe-pmc.md) — `academic`
 - [GDSC (Genomics of Drug Sensitivity in Cancer)](../entries/clinical-biotech/gdsc.md) — `clinical-biotech`
 - [IUPHAR/BPS Guide to PHARMACOLOGY](../entries/clinical-biotech/guide-to-pharmacology.md) — `clinical-biotech`
@@ -67,12 +71,18 @@ _12 dataset(s)._
 
 ## CIK
 
-_5 dataset(s)._
+_11 dataset(s)._
 
+- [Financial Modeling Prep](../entries/finance-markets/financial-modeling-prep.md) — `finance-markets`
 - [Finnhub Stock API](../entries/finance-markets/finnhub-stock-api.md) — `finance-markets`
 - [OpenCorporates](../entries/corporate-registry/opencorporates.md) — `corporate-registry`
 - [Polygon.io](../entries/finance-markets/polygon-io.md) — `finance-markets`
 - [SEC EDGAR](../entries/corporate-registry/sec-edgar.md) — `corporate-registry`
+- [SEC EDGAR Company Facts (XBRL)](../entries/finance-markets/sec-companyfacts.md) — `finance-markets`
+- [SEC Form 13F Holdings](../entries/finance-markets/sec-13f.md) — `finance-markets`
+- [SEC Form 4 Insider Transactions (EDGAR)](../entries/finance-markets/sec-form4.md) — `finance-markets`
+- [SEC Form N-CEN Fund Census](../entries/finance-markets/sec-ncen.md) — `finance-markets`
+- [SEC Form N-PORT Fund Holdings](../entries/finance-markets/sec-nport.md) — `finance-markets`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
 
 ## COMPANIES_HOUSE_NUMBER
@@ -91,44 +101,68 @@ _2 dataset(s)._
 
 ## CUSIP
 
-_4 dataset(s)._
+_12 dataset(s)._
 
+- [FINRA TRACE (Trade Reporting and Compliance Engine)](../entries/finance-markets/finra-trace.md) — `finance-markets`
+- [FactSet Fundamentals API](../entries/finance-markets/factset-fundamentals.md) — `finance-markets`
+- [Financial Modeling Prep](../entries/finance-markets/financial-modeling-prep.md) — `finance-markets`
 - [Finnhub Stock API](../entries/finance-markets/finnhub-stock-api.md) — `finance-markets`
 - [Nasdaq Data Link](../entries/finance-markets/nasdaq-data-link.md) — `finance-markets`
 - [OpenFIGI](../entries/finance-markets/openfigi.md) — `finance-markets`
 - [Polygon.io](../entries/finance-markets/polygon-io.md) — `finance-markets`
+- [SEC Fails-to-Deliver Data](../entries/finance-markets/sec-ftd.md) — `finance-markets`
+- [SEC Form 13F Holdings](../entries/finance-markets/sec-13f.md) — `finance-markets`
+- [SEC Form N-PORT Fund Holdings](../entries/finance-markets/sec-nport.md) — `finance-markets`
+- [Twelve Data](../entries/finance-markets/twelve-data.md) — `finance-markets`
+- [US Treasury Fiscal Data](../entries/finance-markets/treasury-fiscal-data.md) — `finance-markets`
 
 ## DATE
 
-_32 dataset(s)._
+_48 dataset(s)._
 
 - [Alpha Vantage](../entries/finance-markets/alpha-vantage.md) — `finance-markets`
+- [BEA Data API (Bureau of Economic Analysis)](../entries/government-open-data/bea.md) — `government-open-data`
 - [Bureau of Labor Statistics (BLS) Public Data API](../entries/government-open-data/bureau-of-labour-statistics.md) — `government-open-data`
 - [CBOE Volatility Index (VIX)](../entries/finance-markets/cboe-volatility-index-vix.md) — `finance-markets`
+- [CFTC Commitments of Traders](../entries/finance-markets/cftc-cot.md) — `finance-markets`
+- [Cboe DataShop](../entries/finance-markets/cboe-datashop.md) — `finance-markets`
 - [CommodityPriceAPI](../entries/finance-markets/commodity-price-api.md) — `finance-markets`
 - [Common Crawl](../entries/news-events/common-crawl.md) — `news-events`
 - [Companies House (UK)](../entries/corporate-registry/companies-house.md) — `corporate-registry`
 - [DefiLlama Stablecoins](../entries/finance-markets/defillama-stablecoins.md) — `finance-markets`
+- [ECB Data Portal (SDMX API)](../entries/finance-markets/ecb-data.md) — `finance-markets`
 - [ECMWF (European Centre for Medium-Range Weather Forecasts)](../entries/geospatial/ecmwf.md) — `geospatial`
 - [EIA Open Data](../entries/finance-markets/eia-open-data.md) — `finance-markets`
 - [Event Registry](../entries/news-events/event-registry.md) — `news-events`
+- [FINRA Equity Short Interest](../entries/finance-markets/finra-short-interest.md) — `finance-markets`
+- [FINRA TRACE (Trade Reporting and Compliance Engine)](../entries/finance-markets/finra-trace.md) — `finance-markets`
 - [FRED (Federal Reserve Economic Data)](../entries/finance-markets/fred.md) — `finance-markets`
+- [Financial Modeling Prep](../entries/finance-markets/financial-modeling-prep.md) — `finance-markets`
 - [Finnhub Stock API](../entries/finance-markets/finnhub-stock-api.md) — `finance-markets`
 - [GDELT (Global Database of Events, Language, and Tone)](../entries/news-events/gdelt.md) — `news-events`
+- [GLEIF LEI](../entries/corporate-registry/gleif-lei.md) — `corporate-registry`
 - [Global Biodiversity Information Facility (GBIF)](../entries/geospatial/global-biodiversity-information-facility.md) — `geospatial`
 - [Google Trends](../entries/consumer-signal/google-trends.md) — `consumer-signal`
 - [Hacker News API](../entries/consumer-signal/hacker-news.md) — `consumer-signal`
+- [ICI Fund Flows](../entries/finance-markets/ici-fund-flows.md) — `finance-markets`
+- [IMF Data](../entries/government-open-data/imf-data.md) — `government-open-data`
 - [NHGRI DNA Sequencing Costs](../entries/bio-genomics/nih-genome-sequencing-costs.md) — `bio-genomics`
 - [NHS Prescription Cost Analysis (PCA)](../entries/healthcare-claims/nhs-prescription-cost-analysis.md) — `healthcare-claims`
 - [Nasdaq Data Link](../entries/finance-markets/nasdaq-data-link.md) — `finance-markets`
 - [NewsAPI](../entries/news-events/newsapi.md) — `news-events`
+- [OCC Options Volume & Open Interest](../entries/finance-markets/occ-options.md) — `finance-markets`
 - [Open-Meteo](../entries/geospatial/open-meteo.md) — `geospatial`
 - [OpenCorporates](../entries/corporate-registry/opencorporates.md) — `corporate-registry`
 - [Polygon.io](../entries/finance-markets/polygon-io.md) — `finance-markets`
 - [PredScope Prediction Market Data](../entries/finance-markets/predscope-prediction-market-data.md) — `finance-markets`
 - [SEC EDGAR](../entries/corporate-registry/sec-edgar.md) — `corporate-registry`
+- [SEC EDGAR Company Facts (XBRL)](../entries/finance-markets/sec-companyfacts.md) — `finance-markets`
+- [SEC Fails-to-Deliver Data](../entries/finance-markets/sec-ftd.md) — `finance-markets`
+- [SimFin](../entries/finance-markets/simfin.md) — `finance-markets`
 - [Stack Exchange Data Explorer](../entries/consumer-signal/stack-exchange-data-explorer.md) — `consumer-signal`
 - [Trading Economics Commodities](../entries/finance-markets/trading-economics-commodities.md) — `finance-markets`
+- [Twelve Data](../entries/finance-markets/twelve-data.md) — `finance-markets`
+- [US Treasury Fiscal Data](../entries/finance-markets/treasury-fiscal-data.md) — `finance-markets`
 - [VC Deal Flow Signal](../entries/finance-markets/vc-deal-flow-signal.md) — `finance-markets`
 - [Visa Onchain Analytics Dashboard](../entries/finance-markets/visa-onchain-stablecoin-analytics.md) — `finance-markets`
 - [WHO FluNet](../entries/public-health/who-flunet.md) — `public-health`
@@ -137,7 +171,7 @@ _32 dataset(s)._
 
 ## DOI
 
-_40 dataset(s)._
+_41 dataset(s)._
 
 - [American Gut Project](../entries/bio-genomics/american-gut-project.md) — `bio-genomics`
 - [CORE](../entries/academic/core.md) — `academic`
@@ -167,6 +201,7 @@ _40 dataset(s)._
 - [PubChem](../entries/clinical-biotech/pub-chem.md) — `clinical-biotech`
 - [PubMed (NCBI E-utilities)](../entries/academic/pubmed.md) — `academic`
 - [PubMed Central Open Access Subset](../entries/academic/pmc.md) — `academic`
+- [PubPeer](../entries/academic/pubpeer.md) — `academic`
 - [RCSB Protein Data Bank](../entries/bio-genomics/protein-data-bank.md) — `bio-genomics`
 - [Reactome](../entries/bio-genomics/reactome.md) — `bio-genomics`
 - [Retraction Watch Database](../entries/academic/retraction-watch.md) — `academic`
@@ -182,9 +217,10 @@ _40 dataset(s)._
 
 ## DRUGBANK_ID
 
-_7 dataset(s)._
+_8 dataset(s)._
 
 - [DrugCentral](../entries/clinical-biotech/drugcentral.md) — `clinical-biotech`
+- [DrugComb](../entries/clinical-biotech/drugcomb.md) — `clinical-biotech`
 - [HMDB (Human Metabolome Database)](../entries/bio-genomics/hmdb.md) — `bio-genomics`
 - [IUPHAR/BPS Guide to PHARMACOLOGY](../entries/clinical-biotech/guide-to-pharmacology.md) — `clinical-biotech`
 - [PharmGKB](../entries/bio-genomics/pharmgkb.md) — `bio-genomics`
@@ -288,28 +324,33 @@ _3 dataset(s)._
 
 ## FIGI
 
-_3 dataset(s)._
+_6 dataset(s)._
 
+- [FINRA TRACE (Trade Reporting and Compliance Engine)](../entries/finance-markets/finra-trace.md) — `finance-markets`
+- [FactSet Fundamentals API](../entries/finance-markets/factset-fundamentals.md) — `finance-markets`
 - [Finnhub Stock API](../entries/finance-markets/finnhub-stock-api.md) — `finance-markets`
 - [OpenFIGI](../entries/finance-markets/openfigi.md) — `finance-markets`
 - [Polygon.io](../entries/finance-markets/polygon-io.md) — `finance-markets`
+- [Twelve Data](../entries/finance-markets/twelve-data.md) — `finance-markets`
 
 ## FIPS
 
-_2 dataset(s)._
+_3 dataset(s)._
 
+- [BEA Data API (Bureau of Economic Analysis)](../entries/government-open-data/bea.md) — `government-open-data`
 - [Bureau of Labor Statistics (BLS) Public Data API](../entries/government-open-data/bureau-of-labour-statistics.md) — `government-open-data`
 - [CMS Medicare Part D Prescribers](../entries/healthcare-claims/cms-medicare-part-d.md) — `healthcare-claims`
 
 ## FUNDER_DOI
 
-_1 dataset(s)._
+_2 dataset(s)._
 
 - [DataCite](../entries/academic/datacite.md) — `academic`
+- [The Lens](../entries/academic/the-lens.md) — `academic`
 
 ## GENE_SYMBOL
 
-_38 dataset(s)._
+_39 dataset(s)._
 
 - [Cancer Cell Line Encyclopedia (CCLE)](../entries/bio-genomics/cancer-cell-line-encyclopedia.md) — `bio-genomics`
 - [Cancer Therapeutics Response Portal (CTRP)](../entries/bio-genomics/ctrp.md) — `bio-genomics`
@@ -343,6 +384,7 @@ _38 dataset(s)._
 - [Reactome](../entries/bio-genomics/reactome.md) — `bio-genomics`
 - [STRING](../entries/bio-genomics/string-db.md) — `bio-genomics`
 - [The Cancer Genome Atlas (TCGA, via Broad GDAC Firehose)](../entries/bio-genomics/the-cancer-genome-atlas.md) — `bio-genomics`
+- [Therapeutic Target Database (TTD)](../entries/clinical-biotech/ttd.md) — `clinical-biotech`
 - [UCSC Genome Browser](../entries/bio-genomics/ucsc-genome-browser.md) — `bio-genomics`
 - [UK Biobank](../entries/public-health/uk-biobank.md) — `public-health`
 - [UniProt](../entries/bio-genomics/uniprot.md) — `bio-genomics`
@@ -380,11 +422,12 @@ _7 dataset(s)._
 
 ## INCHI_KEY
 
-_8 dataset(s)._
+_9 dataset(s)._
 
 - [BindingDB](../entries/clinical-biotech/bindingdb.md) — `clinical-biotech`
 - [Cancer Therapeutics Response Portal (CTRP)](../entries/bio-genomics/ctrp.md) — `bio-genomics`
 - [DrugCentral](../entries/clinical-biotech/drugcentral.md) — `clinical-biotech`
+- [DrugComb](../entries/clinical-biotech/drugcomb.md) — `clinical-biotech`
 - [GNPS](../entries/bio-genomics/gnps.md) — `bio-genomics`
 - [HMDB (Human Metabolome Database)](../entries/bio-genomics/hmdb.md) — `bio-genomics`
 - [IUPHAR/BPS Guide to PHARMACOLOGY](../entries/clinical-biotech/guide-to-pharmacology.md) — `clinical-biotech`
@@ -406,29 +449,38 @@ _2 dataset(s)._
 
 ## ISIN
 
-_5 dataset(s)._
+_10 dataset(s)._
 
+- [FactSet Fundamentals API](../entries/finance-markets/factset-fundamentals.md) — `finance-markets`
+- [Financial Modeling Prep](../entries/finance-markets/financial-modeling-prep.md) — `finance-markets`
 - [Finnhub Stock API](../entries/finance-markets/finnhub-stock-api.md) — `finance-markets`
+- [GLEIF LEI](../entries/corporate-registry/gleif-lei.md) — `corporate-registry`
 - [Nasdaq Data Link](../entries/finance-markets/nasdaq-data-link.md) — `finance-markets`
 - [OpenFIGI](../entries/finance-markets/openfigi.md) — `finance-markets`
 - [Polygon.io](../entries/finance-markets/polygon-io.md) — `finance-markets`
+- [SEC Form N-PORT Fund Holdings](../entries/finance-markets/sec-nport.md) — `finance-markets`
+- [Twelve Data](../entries/finance-markets/twelve-data.md) — `finance-markets`
 - [yfinance](../entries/finance-markets/yfinance.md) — `finance-markets`
 
 ## ISNI
 
-_2 dataset(s)._
+_3 dataset(s)._
 
 - [MusicBrainz API](../entries/consumer-signal/music-brainz-api.md) — `consumer-signal`
+- [The Lens](../entries/academic/the-lens.md) — `academic`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
 
 ## ISO_2
 
-_12 dataset(s)._
+_15 dataset(s)._
 
+- [ECB Data Portal (SDMX API)](../entries/finance-markets/ecb-data.md) — `finance-markets`
 - [Event Registry](../entries/news-events/event-registry.md) — `news-events`
+- [GLEIF LEI](../entries/corporate-registry/gleif-lei.md) — `corporate-registry`
 - [Global Biodiversity Information Facility (GBIF)](../entries/geospatial/global-biodiversity-information-facility.md) — `geospatial`
 - [Google Trends](../entries/consumer-signal/google-trends.md) — `consumer-signal`
 - [IBAN Country Codes](../entries/government-open-data/iban-country-codes.md) — `government-open-data`
+- [IMF Data](../entries/government-open-data/imf-data.md) — `government-open-data`
 - [MusicBrainz API](../entries/consumer-signal/music-brainz-api.md) — `consumer-signal`
 - [OECD Data Explorer](../entries/government-open-data/oecd-data.md) — `government-open-data`
 - [Open-Meteo](../entries/geospatial/open-meteo.md) — `geospatial`
@@ -440,7 +492,7 @@ _12 dataset(s)._
 
 ## ISO_3
 
-_18 dataset(s)._
+_19 dataset(s)._
 
 - [Alpha Vantage](../entries/finance-markets/alpha-vantage.md) — `finance-markets`
 - [Companies House (UK)](../entries/corporate-registry/companies-house.md) — `corporate-registry`
@@ -451,6 +503,7 @@ _18 dataset(s)._
 - [Global Biodiversity Information Facility (GBIF)](../entries/geospatial/global-biodiversity-information-facility.md) — `geospatial`
 - [Google Trends](../entries/consumer-signal/google-trends.md) — `consumer-signal`
 - [IBAN Country Codes](../entries/government-open-data/iban-country-codes.md) — `government-open-data`
+- [IMF Data](../entries/government-open-data/imf-data.md) — `government-open-data`
 - [Nasdaq Data Link](../entries/finance-markets/nasdaq-data-link.md) — `finance-markets`
 - [OECD Data Explorer](../entries/government-open-data/oecd-data.md) — `government-open-data`
 - [OpenCorporates](../entries/corporate-registry/opencorporates.md) — `corporate-registry`
@@ -463,14 +516,18 @@ _18 dataset(s)._
 
 ## ISO_4217
 
-_8 dataset(s)._
+_12 dataset(s)._
 
 - [CommodityPriceAPI](../entries/finance-markets/commodity-price-api.md) — `finance-markets`
 - [DefiLlama Stablecoins](../entries/finance-markets/defillama-stablecoins.md) — `finance-markets`
+- [ECB Data Portal (SDMX API)](../entries/finance-markets/ecb-data.md) — `finance-markets`
+- [Financial Modeling Prep](../entries/finance-markets/financial-modeling-prep.md) — `finance-markets`
 - [Finnhub Stock API](../entries/finance-markets/finnhub-stock-api.md) — `finance-markets`
 - [IBAN Currency Codes](../entries/government-open-data/iban-currency-codes.md) — `government-open-data`
+- [IMF Data](../entries/government-open-data/imf-data.md) — `government-open-data`
 - [OECD Data Explorer](../entries/government-open-data/oecd-data.md) — `government-open-data`
 - [Trading Economics Commodities](../entries/finance-markets/trading-economics-commodities.md) — `finance-markets`
+- [Twelve Data](../entries/finance-markets/twelve-data.md) — `finance-markets`
 - [Visa Onchain Analytics Dashboard](../entries/finance-markets/visa-onchain-stablecoin-analytics.md) — `finance-markets`
 - [World Bank Commodity Prices (Pink Sheet)](../entries/finance-markets/world-bank-commodity-prices.md) — `finance-markets`
 
@@ -497,9 +554,13 @@ _10 dataset(s)._
 
 ## LEI
 
-_2 dataset(s)._
+_6 dataset(s)._
 
 - [Finnhub Stock API](../entries/finance-markets/finnhub-stock-api.md) — `finance-markets`
+- [GLEIF LEI](../entries/corporate-registry/gleif-lei.md) — `corporate-registry`
+- [SEC Form ADV / IAPD](../entries/corporate-registry/form-adv-iapd.md) — `corporate-registry`
+- [SEC Form N-CEN Fund Census](../entries/finance-markets/sec-ncen.md) — `finance-markets`
+- [SEC Form N-PORT Fund Holdings](../entries/finance-markets/sec-nport.md) — `finance-markets`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
 
 ## MAG_ID
@@ -511,8 +572,9 @@ _2 dataset(s)._
 
 ## MEDDRA_TERM
 
-_6 dataset(s)._
+_7 dataset(s)._
 
+- [DrugCentral](../entries/clinical-biotech/drugcentral.md) — `clinical-biotech`
 - [FDA Adverse Event Reporting System (FAERS)](../entries/clinical-biotech/fda-faers.md) — `clinical-biotech`
 - [Mondo Disease Ontology](../entries/bio-genomics/mondo.md) — `bio-genomics`
 - [OMOP / OHDSI Athena](../entries/clinical-biotech/ohdsi-athena.md) — `clinical-biotech`
@@ -522,14 +584,13 @@ _6 dataset(s)._
 
 ## MESH_TERM
 
-_20 dataset(s)._
+_19 dataset(s)._
 
 - [AACT (Aggregate Analysis of ClinicalTrials.gov)](../entries/clinical-biotech/aact.md) — `clinical-biotech`
 - [ChEMBL](../entries/clinical-biotech/chembl.md) — `clinical-biotech`
 - [ClinVar](../entries/bio-genomics/clinvar.md) — `bio-genomics`
 - [ClinicalTrials.gov](../entries/clinical-biotech/clinicaltrials-gov.md) — `clinical-biotech`
 - [DrugBank](../entries/clinical-biotech/drugbank.md) — `clinical-biotech`
-- [DrugCentral](../entries/clinical-biotech/drugcentral.md) — `clinical-biotech`
 - [EMA EPAR / Medicines](../entries/clinical-biotech/ema-epar.md) — `clinical-biotech`
 - [Europe PMC](../entries/academic/europe-pmc.md) — `academic`
 - [MeSH (Medical Subject Headings)](../entries/academic/mesh.md) — `academic`
@@ -588,10 +649,11 @@ _8 dataset(s)._
 
 ## NDC
 
-_10 dataset(s)._
+_11 dataset(s)._
 
 - [CMS Open Payments](../entries/healthcare-claims/cms-open-payments.md) — `healthcare-claims`
 - [DailyMed](../entries/clinical-biotech/dailymed.md) — `clinical-biotech`
+- [DrugCentral](../entries/clinical-biotech/drugcentral.md) — `clinical-biotech`
 - [Drugs@FDA](../entries/clinical-biotech/drugs-at-fda.md) — `clinical-biotech`
 - [FDA Orange Book](../entries/clinical-biotech/fda-orange-book.md) — `clinical-biotech`
 - [OMOP / OHDSI Athena](../entries/clinical-biotech/ohdsi-athena.md) — `clinical-biotech`
@@ -639,7 +701,7 @@ _2 dataset(s)._
 
 ## PDB_ID
 
-_8 dataset(s)._
+_9 dataset(s)._
 
 - [AlphaFold Protein Structure Database](../entries/bio-genomics/alphafold.md) — `bio-genomics`
 - [EMPIAR](../entries/bio-genomics/empiar.md) — `bio-genomics`
@@ -649,6 +711,7 @@ _8 dataset(s)._
 - [NCBI Protein](../entries/bio-genomics/ncbi-proteins.md) — `bio-genomics`
 - [RCSB Protein Data Bank](../entries/bio-genomics/protein-data-bank.md) — `bio-genomics`
 - [Rfam](../entries/bio-genomics/rna-families-database.md) — `bio-genomics`
+- [Therapeutic Target Database (TTD)](../entries/clinical-biotech/ttd.md) — `clinical-biotech`
 
 ## PMCID
 
@@ -666,7 +729,7 @@ _9 dataset(s)._
 
 ## PMID
 
-_39 dataset(s)._
+_40 dataset(s)._
 
 - [AACT (Aggregate Analysis of ClinicalTrials.gov)](../entries/clinical-biotech/aact.md) — `clinical-biotech`
 - [American Gut Project](../entries/bio-genomics/american-gut-project.md) — `bio-genomics`
@@ -698,6 +761,7 @@ _39 dataset(s)._
 - [PubChem](../entries/clinical-biotech/pub-chem.md) — `clinical-biotech`
 - [PubMed (NCBI E-utilities)](../entries/academic/pubmed.md) — `academic`
 - [PubMed Central Open Access Subset](../entries/academic/pmc.md) — `academic`
+- [PubPeer](../entries/academic/pubpeer.md) — `academic`
 - [RCSB Protein Data Bank](../entries/bio-genomics/protein-data-bank.md) — `bio-genomics`
 - [Reactome](../entries/bio-genomics/reactome.md) — `bio-genomics`
 - [Retraction Watch Database](../entries/academic/retraction-watch.md) — `academic`
@@ -710,13 +774,14 @@ _39 dataset(s)._
 
 ## ROR
 
-_7 dataset(s)._
+_8 dataset(s)._
 
 - [Crossref](../entries/academic/crossref.md) — `academic`
 - [DataCite](../entries/academic/datacite.md) — `academic`
 - [Europe PMC](../entries/academic/europe-pmc.md) — `academic`
 - [ORCID](../entries/academic/orcid.md) — `academic`
 - [OpenAlex](../entries/academic/openalex.md) — `academic`
+- [The Lens](../entries/academic/the-lens.md) — `academic`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
 - [bioRxiv / medRxiv](../entries/academic/biorxiv-medrxiv.md) — `academic`
 
@@ -750,8 +815,9 @@ _9 dataset(s)._
 
 ## SEDOL
 
-_1 dataset(s)._
+_2 dataset(s)._
 
+- [FactSet Fundamentals API](../entries/finance-markets/factset-fundamentals.md) — `finance-markets`
 - [OpenFIGI](../entries/finance-markets/openfigi.md) — `finance-markets`
 
 ## SETID
@@ -762,16 +828,28 @@ _1 dataset(s)._
 
 ## TICKER
 
-_9 dataset(s)._
+_21 dataset(s)._
 
 - [Alpha Vantage](../entries/finance-markets/alpha-vantage.md) — `finance-markets`
+- [Cboe DataShop](../entries/finance-markets/cboe-datashop.md) — `finance-markets`
+- [FINRA Equity Short Interest](../entries/finance-markets/finra-short-interest.md) — `finance-markets`
+- [FactSet Fundamentals API](../entries/finance-markets/factset-fundamentals.md) — `finance-markets`
+- [Financial Modeling Prep](../entries/finance-markets/financial-modeling-prep.md) — `finance-markets`
 - [Finnhub Stock API](../entries/finance-markets/finnhub-stock-api.md) — `finance-markets`
 - [Nasdaq Data Link](../entries/finance-markets/nasdaq-data-link.md) — `finance-markets`
 - [Nasdaq Trader Symbol Directory](../entries/finance-markets/nasdaq-listings.md) — `finance-markets`
+- [OCC Options Volume & Open Interest](../entries/finance-markets/occ-options.md) — `finance-markets`
+- [OPRA Options Feed](../entries/finance-markets/opra.md) — `finance-markets`
 - [OpenFIGI](../entries/finance-markets/openfigi.md) — `finance-markets`
 - [Polygon.io](../entries/finance-markets/polygon-io.md) — `finance-markets`
 - [S&P 500 Companies Financials](../entries/finance-markets/sp500-companies-financials.md) — `finance-markets`
 - [SEC EDGAR](../entries/corporate-registry/sec-edgar.md) — `corporate-registry`
+- [SEC EDGAR Company Facts (XBRL)](../entries/finance-markets/sec-companyfacts.md) — `finance-markets`
+- [SEC Fails-to-Deliver Data](../entries/finance-markets/sec-ftd.md) — `finance-markets`
+- [SEC Form 4 Insider Transactions (EDGAR)](../entries/finance-markets/sec-form4.md) — `finance-markets`
+- [SEC Form N-PORT Fund Holdings](../entries/finance-markets/sec-nport.md) — `finance-markets`
+- [SimFin](../entries/finance-markets/simfin.md) — `finance-markets`
+- [Twelve Data](../entries/finance-markets/twelve-data.md) — `finance-markets`
 - [yfinance](../entries/finance-markets/yfinance.md) — `finance-markets`
 
 ## UBERON_ID
@@ -796,7 +874,7 @@ _5 dataset(s)._
 
 ## UNIPROT_ACCESSION
 
-_25 dataset(s)._
+_26 dataset(s)._
 
 - [AlphaFold Protein Structure Database](../entries/bio-genomics/alphafold.md) — `bio-genomics`
 - [BindingDB](../entries/clinical-biotech/bindingdb.md) — `clinical-biotech`
@@ -821,6 +899,7 @@ _25 dataset(s)._
 - [RCSB Protein Data Bank](../entries/bio-genomics/protein-data-bank.md) — `bio-genomics`
 - [Reactome](../entries/bio-genomics/reactome.md) — `bio-genomics`
 - [STRING](../entries/bio-genomics/string-db.md) — `bio-genomics`
+- [Therapeutic Target Database (TTD)](../entries/clinical-biotech/ttd.md) — `clinical-biotech`
 - [UniProt](../entries/bio-genomics/uniprot.md) — `bio-genomics`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
 
@@ -868,7 +947,7 @@ _3 dataset(s)._
 
 ## WIKIDATA_QID
 
-_16 dataset(s)._
+_17 dataset(s)._
 
 - [DrugBank](../entries/clinical-biotech/drugbank.md) — `clinical-biotech`
 - [Event Registry](../entries/news-events/event-registry.md) — `news-events`
@@ -884,6 +963,7 @@ _16 dataset(s)._
 - [Reddit Data API](../entries/consumer-signal/reddit.md) — `consumer-signal`
 - [Smithsonian Open Access](../entries/government-open-data/smithsonian-open-access.md) — `government-open-data`
 - [Stack Exchange Data Explorer](../entries/consumer-signal/stack-exchange-data-explorer.md) — `consumer-signal`
+- [The Lens](../entries/academic/the-lens.md) — `academic`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
 - [Wikipedia Pageviews API](../entries/consumer-signal/wikipedia-pageviews.md) — `consumer-signal`
 

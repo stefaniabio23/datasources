@@ -23,6 +23,10 @@ join_keys:
   - MAG_ID
   - ORCID
   - ISSN
+  - ROR
+  - ISNI
+  - WIKIDATA_QID
+  - FUNDER_DOI
 primary_keys:
   - LENS_ID
 join_key_fields:
@@ -44,6 +48,18 @@ join_key_fields:
   - join_key: ISSN
     fields:
       - "source.issn.value"
+  - join_key: ROR
+    fields:
+      - "authors.affiliations.ids[type=ror].value"
+  - join_key: ISNI
+    fields:
+      - "authors.affiliations.ids[type=isni].value"
+  - join_key: WIKIDATA_QID
+    fields:
+      - "authors.affiliations.ids[type=wikidata].value"
+  - join_key: FUNDER_DOI
+    fields:
+      - "authors.affiliations.ids[type=fundref].value"
 mcp_status: mcp-needed-high-value
 agent_use_cases:
   - patent search
@@ -76,7 +92,7 @@ The Lens (operated by Cambia, a non-profit) serves an integrated scholarly-and-p
 
 ## Join strategy
 
-Scholarly records normalise external identifiers into a typed `external_ids` array exposing `DOI`, `PMID`, `PMCID`, and `MAG_ID`, with `ORCID` on authors and `ISSN` on the source venue. These make The Lens joinable against OpenAlex, Crossref, Europe PMC, and PubMed on the same canonical keys.
+Scholarly records normalise external identifiers into a typed `external_ids` array exposing `DOI`, `PMID`, `PMCID`, and `MAG_ID`, with `ORCID` on authors, `ISSN` on the source venue, and institution-level `ROR`, `ISNI`, `WIKIDATA_QID`, and `FUNDER_DOI` (fundref) under `authors[].affiliations[].ids`. These make The Lens joinable against OpenAlex, Crossref, Europe PMC, ROR, and PubMed on the same canonical keys.
 
 The Lens mints its own `LENS_ID` (e.g. `100-004-910-081-14X`) as the stable primary key for every scholarly work AND every patent document; it is source-internal (like OpenAlex's work IDs) and kept out of the canonical registry, so use it for direct Lens lookups rather than cross-source joins.
 

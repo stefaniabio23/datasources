@@ -37,7 +37,7 @@ join_key_fields:
 mcp_status: mcp-exists
 mcp_maturity: experimental
 mcp_package:
-  - "retractionwatch-mcp (Zenodo 20023896)"
+  - "github.com/OpenCodice-Research/retractionwatch-mcp (pip install retractionwatch-mcp)"
   - "github.com/JackKuo666/Crossref-MCP-Server"
 mcp_notes: >
   retractionwatch-mcp wraps Crossref's redistribution of the database and exposes single-DOI
@@ -83,7 +83,7 @@ Two access paths, both no-auth. Fastest for status lookups: the Crossref REST AP
 
 ## MCP / connector notes
 
-A dedicated `retractionwatch-mcp` server (2026, academic preprint on Zenodo) exposes six tools: single-DOI check, batch screening, search, recent-retraction feed, and author-level integrity checks, over Crossref's redistribution. Maturity is experimental (single-author, recent). Generic Crossref MCPs (e.g. `JackKuo666/Crossref-MCP-Server`) also reach the data through the `update-type:retraction` filter but do not specialise in retraction semantics. A production connector should abstract over both access paths (REST filter for lookups, CSV for bulk), normalise the `Unavailable`/`0`/blank sentinels in the DOI and PubMed columns, and split original-paper versus notice identifiers so a caller can resolve both directions.
+A dedicated `retractionwatch-mcp` server (2026, `pip install retractionwatch-mcp`, `github.com/OpenCodice-Research/retractionwatch-mcp`, technical report on Zenodo record 20023896) exposes six tools: single-DOI check, batch screening, search, recent-retraction feed, and author-level integrity checks, over Crossref's redistribution. Maturity is experimental (recent, single project). Generic Crossref MCPs (e.g. `JackKuo666/Crossref-MCP-Server`) also reach the data through the `update-type:retraction` filter but do not specialise in retraction semantics. A production connector should abstract over both access paths (REST filter for lookups, CSV for bulk), normalise the `Unavailable`/`0`/blank sentinels in the DOI and PubMed columns, and split original-paper versus notice identifiers so a caller can resolve both directions.
 
 ## Review notes
 
