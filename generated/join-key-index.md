@@ -3,7 +3,7 @@
 Reverse index of canonical join keys mapped to the datasets that expose them.
 Generated from `entries/**/*.md`. Do not hand-edit.
 
-**117 datasets, 60 distinct canonical keys, 428 key→source links.**
+**154 datasets, 65 distinct canonical keys, 570 key→source links.**
 
 ## ARXIV_ID
 
@@ -17,9 +17,15 @@ _5 dataset(s)._
 
 ## ATC_CODE
 
-_2 dataset(s)._
+_8 dataset(s)._
 
+- [DrugCentral](../entries/clinical-biotech/drugcentral.md) — `clinical-biotech`
+- [EMA EPAR / Medicines](../entries/clinical-biotech/ema-epar.md) — `clinical-biotech`
+- [OMOP / OHDSI Athena](../entries/clinical-biotech/ohdsi-athena.md) — `clinical-biotech`
+- [PharmGKB](../entries/bio-genomics/pharmgkb.md) — `bio-genomics`
 - [PubChem](../entries/clinical-biotech/pub-chem.md) — `clinical-biotech`
+- [RxNorm](../entries/clinical-biotech/rxnorm.md) — `clinical-biotech`
+- [UMLS Metathesaurus](../entries/clinical-biotech/umls.md) — `clinical-biotech`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
 
 ## BNF_CODE
@@ -32,19 +38,27 @@ _3 dataset(s)._
 
 ## CHEBI_ID
 
-_2 dataset(s)._
+_7 dataset(s)._
 
+- [DrugCentral](../entries/clinical-biotech/drugcentral.md) — `clinical-biotech`
+- [HMDB (Human Metabolome Database)](../entries/bio-genomics/hmdb.md) — `bio-genomics`
+- [IUPHAR/BPS Guide to PHARMACOLOGY](../entries/clinical-biotech/guide-to-pharmacology.md) — `clinical-biotech`
 - [KEGG (Kyoto Encyclopedia of Genes and Genomes)](../entries/bio-genomics/kyoto-encyclopedia-of-genes-and-genomes.md) — `bio-genomics`
+- [MetaboLights](../entries/bio-genomics/metabolights.md) — `bio-genomics`
+- [PharmGKB](../entries/bio-genomics/pharmgkb.md) — `bio-genomics`
 - [PubChem](../entries/clinical-biotech/pub-chem.md) — `clinical-biotech`
 
 ## CHEMBL_ID
 
-_9 dataset(s)._
+_12 dataset(s)._
 
 - [BindingDB](../entries/clinical-biotech/bindingdb.md) — `clinical-biotech`
 - [ChEMBL](../entries/clinical-biotech/chembl.md) — `clinical-biotech`
 - [DrugBank](../entries/clinical-biotech/drugbank.md) — `clinical-biotech`
+- [DrugCentral](../entries/clinical-biotech/drugcentral.md) — `clinical-biotech`
 - [Europe PMC](../entries/academic/europe-pmc.md) — `academic`
+- [GDSC (Genomics of Drug Sensitivity in Cancer)](../entries/clinical-biotech/gdsc.md) — `clinical-biotech`
+- [IUPHAR/BPS Guide to PHARMACOLOGY](../entries/clinical-biotech/guide-to-pharmacology.md) — `clinical-biotech`
 - [Open Targets](../entries/clinical-biotech/open-targets.md) — `clinical-biotech`
 - [PubChem](../entries/clinical-biotech/pub-chem.md) — `clinical-biotech`
 - [Reactome](../entries/bio-genomics/reactome.md) — `bio-genomics`
@@ -67,6 +81,13 @@ _2 dataset(s)._
 
 - [Companies House (UK)](../entries/corporate-registry/companies-house.md) — `corporate-registry`
 - [OpenCorporates](../entries/corporate-registry/opencorporates.md) — `corporate-registry`
+
+## CPT
+
+_2 dataset(s)._
+
+- [OMOP / OHDSI Athena](../entries/clinical-biotech/ohdsi-athena.md) — `clinical-biotech`
+- [UMLS Metathesaurus](../entries/clinical-biotech/umls.md) — `clinical-biotech`
 
 ## CUSIP
 
@@ -116,31 +137,42 @@ _32 dataset(s)._
 
 ## DOI
 
-_29 dataset(s)._
+_40 dataset(s)._
 
 - [American Gut Project](../entries/bio-genomics/american-gut-project.md) — `bio-genomics`
 - [CORE](../entries/academic/core.md) — `academic`
+- [CZ CELLxGENE Discover](../entries/bio-genomics/cellxgene.md) — `bio-genomics`
 - [Cancer Cell Line Encyclopedia (CCLE)](../entries/bio-genomics/cancer-cell-line-encyclopedia.md) — `bio-genomics`
 - [ChEMBL](../entries/clinical-biotech/chembl.md) — `clinical-biotech`
 - [Crossref](../entries/academic/crossref.md) — `academic`
 - [DataCite](../entries/academic/datacite.md) — `academic`
+- [ENCODE](../entries/bio-genomics/encode.md) — `bio-genomics`
 - [Europe PMC](../entries/academic/europe-pmc.md) — `academic`
 - [GWAS Catalog](../entries/bio-genomics/gwas-catalog.md) — `bio-genomics`
 - [Gene Ontology](../entries/bio-genomics/gene-ontology.md) — `bio-genomics`
 - [Global Biodiversity Information Facility (GBIF)](../entries/geospatial/global-biodiversity-information-facility.md) — `geospatial`
+- [HuBMAP Data Portal](../entries/bio-genomics/hubmap.md) — `bio-genomics`
 - [IGSR (International Genome Sample Resource)](../entries/bio-genomics/international-genome-sample-resource.md) — `bio-genomics`
+- [ISRCTN Registry](../entries/clinical-biotech/isrctn.md) — `clinical-biotech`
+- [MetaboLights](../entries/bio-genomics/metabolights.md) — `bio-genomics`
 - [NCBI SRA (Sequence Read Archive)](../entries/bio-genomics/ncbi-sra.md) — `bio-genomics`
 - [NCI Genomic Data Commons (GDC)](../entries/bio-genomics/nci-genomic-data-commons.md) — `bio-genomics`
 - [ORCID](../entries/academic/orcid.md) — `academic`
 - [Open Targets](../entries/clinical-biotech/open-targets.md) — `clinical-biotech`
 - [OpenAlex](../entries/academic/openalex.md) — `academic`
+- [OpenCitations](../entries/academic/opencitations.md) — `academic`
+- [PRIDE Archive](../entries/bio-genomics/pride.md) — `bio-genomics`
+- [PharmGKB](../entries/bio-genomics/pharmgkb.md) — `bio-genomics`
 - [ProteomeXchange](../entries/bio-genomics/proteomexchange.md) — `bio-genomics`
 - [PubChem](../entries/clinical-biotech/pub-chem.md) — `clinical-biotech`
 - [PubMed (NCBI E-utilities)](../entries/academic/pubmed.md) — `academic`
+- [PubMed Central Open Access Subset](../entries/academic/pmc.md) — `academic`
 - [RCSB Protein Data Bank](../entries/bio-genomics/protein-data-bank.md) — `bio-genomics`
 - [Reactome](../entries/bio-genomics/reactome.md) — `bio-genomics`
+- [Retraction Watch Database](../entries/academic/retraction-watch.md) — `academic`
 - [Semantic Scholar](../entries/academic/semantic-scholar.md) — `academic`
 - [The Cancer Genome Atlas (TCGA, via Broad GDAC Firehose)](../entries/bio-genomics/the-cancer-genome-atlas.md) — `bio-genomics`
+- [The Lens](../entries/academic/the-lens.md) — `academic`
 - [UCSC Genome Browser](../entries/bio-genomics/ucsc-genome-browser.md) — `bio-genomics`
 - [UniProt](../entries/bio-genomics/uniprot.md) — `bio-genomics`
 - [Unpaywall](../entries/academic/unpaywall.md) — `academic`
@@ -150,38 +182,52 @@ _29 dataset(s)._
 
 ## DRUGBANK_ID
 
-_2 dataset(s)._
+_7 dataset(s)._
 
+- [DrugCentral](../entries/clinical-biotech/drugcentral.md) — `clinical-biotech`
+- [HMDB (Human Metabolome Database)](../entries/bio-genomics/hmdb.md) — `bio-genomics`
+- [IUPHAR/BPS Guide to PHARMACOLOGY](../entries/clinical-biotech/guide-to-pharmacology.md) — `clinical-biotech`
+- [PharmGKB](../entries/bio-genomics/pharmgkb.md) — `bio-genomics`
 - [PubChem](../entries/clinical-biotech/pub-chem.md) — `clinical-biotech`
+- [RxNorm](../entries/clinical-biotech/rxnorm.md) — `clinical-biotech`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
 
 ## EFO_ID
 
-_5 dataset(s)._
+_7 dataset(s)._
 
+- [CZ CELLxGENE Discover](../entries/bio-genomics/cellxgene.md) — `bio-genomics`
 - [ClinGen (Clinical Genome Resource)](../entries/bio-genomics/clingen.md) — `bio-genomics`
 - [Expression Atlas (EMBL-EBI)](../entries/bio-genomics/expression-atlas.md) — `bio-genomics`
 - [GWAS Catalog](../entries/bio-genomics/gwas-catalog.md) — `bio-genomics`
+- [Mondo Disease Ontology](../entries/bio-genomics/mondo.md) — `bio-genomics`
 - [Open Targets](../entries/clinical-biotech/open-targets.md) — `clinical-biotech`
 - [eQTL Catalogue](../entries/bio-genomics/eqtl-catalogue.md) — `bio-genomics`
 
 ## ENSEMBL_ID
 
-_22 dataset(s)._
+_29 dataset(s)._
 
+- [CZ CELLxGENE Discover](../entries/bio-genomics/cellxgene.md) — `bio-genomics`
 - [Cancer Cell Line Encyclopedia (CCLE)](../entries/bio-genomics/cancer-cell-line-encyclopedia.md) — `bio-genomics`
+- [DepMap (Cancer Dependency Map)](../entries/bio-genomics/depmap.md) — `bio-genomics`
+- [ENCODE](../entries/bio-genomics/encode.md) — `bio-genomics`
 - [Ensembl](../entries/bio-genomics/ensembl.md) — `bio-genomics`
 - [Europe PMC](../entries/academic/europe-pmc.md) — `academic`
 - [Expression Atlas (EMBL-EBI)](../entries/bio-genomics/expression-atlas.md) — `bio-genomics`
 - [GTEx (Genotype-Tissue Expression)](../entries/bio-genomics/gtex.md) — `bio-genomics`
 - [GWAS Catalog](../entries/bio-genomics/gwas-catalog.md) — `bio-genomics`
 - [Gene Ontology](../entries/bio-genomics/gene-ontology.md) — `bio-genomics`
+- [Human Cell Atlas Data Portal](../entries/bio-genomics/human-cell-atlas.md) — `bio-genomics`
 - [Human Protein Atlas](../entries/bio-genomics/human-protein-atlas.md) — `bio-genomics`
+- [IUPHAR/BPS Guide to PHARMACOLOGY](../entries/clinical-biotech/guide-to-pharmacology.md) — `clinical-biotech`
 - [KEGG (Kyoto Encyclopedia of Genes and Genomes)](../entries/bio-genomics/kyoto-encyclopedia-of-genes-and-genomes.md) — `bio-genomics`
 - [NCBI Gene](../entries/bio-genomics/ncbi-gene.md) — `bio-genomics`
 - [NCI Genomic Data Commons (GDC)](../entries/bio-genomics/nci-genomic-data-commons.md) — `bio-genomics`
 - [Open Targets](../entries/clinical-biotech/open-targets.md) — `clinical-biotech`
+- [Orphanet](../entries/clinical-biotech/orphanet.md) — `clinical-biotech`
 - [PeptideAtlas](../entries/bio-genomics/peptideatlas.md) — `bio-genomics`
+- [PharmGKB](../entries/bio-genomics/pharmgkb.md) — `bio-genomics`
 - [Reactome](../entries/bio-genomics/reactome.md) — `bio-genomics`
 - [STRING](../entries/bio-genomics/string-db.md) — `bio-genomics`
 - [The Cancer Genome Atlas (TCGA, via Broad GDAC Firehose)](../entries/bio-genomics/the-cancer-genome-atlas.md) — `bio-genomics`
@@ -194,15 +240,20 @@ _22 dataset(s)._
 
 ## ENTREZ_GENE_ID
 
-_12 dataset(s)._
+_17 dataset(s)._
 
 - [Cancer Cell Line Encyclopedia (CCLE)](../entries/bio-genomics/cancer-cell-line-encyclopedia.md) — `bio-genomics`
 - [ClinGen (Clinical Genome Resource)](../entries/bio-genomics/clingen.md) — `bio-genomics`
 - [ClinVar](../entries/bio-genomics/clinvar.md) — `bio-genomics`
+- [DepMap (Cancer Dependency Map)](../entries/bio-genomics/depmap.md) — `bio-genomics`
 - [Gene Ontology](../entries/bio-genomics/gene-ontology.md) — `bio-genomics`
+- [Human Phenotype Ontology](../entries/bio-genomics/hpo.md) — `bio-genomics`
+- [IUPHAR/BPS Guide to PHARMACOLOGY](../entries/clinical-biotech/guide-to-pharmacology.md) — `clinical-biotech`
 - [KEGG (Kyoto Encyclopedia of Genes and Genomes)](../entries/bio-genomics/kyoto-encyclopedia-of-genes-and-genomes.md) — `bio-genomics`
+- [LINCS / CMap L1000 (CLUE)](../entries/bio-genomics/lincs-l1000.md) — `bio-genomics`
 - [MyVariant.info](../entries/bio-genomics/myvariant.md) — `bio-genomics`
 - [NCI Genomic Data Commons (GDC)](../entries/bio-genomics/nci-genomic-data-commons.md) — `bio-genomics`
+- [PharmGKB](../entries/bio-genomics/pharmgkb.md) — `bio-genomics`
 - [PubChem](../entries/clinical-biotech/pub-chem.md) — `clinical-biotech`
 - [The Cancer Genome Atlas (TCGA, via Broad GDAC Firehose)](../entries/bio-genomics/the-cancer-genome-atlas.md) — `bio-genomics`
 - [UCSC Genome Browser](../entries/bio-genomics/ucsc-genome-browser.md) — `bio-genomics`
@@ -211,11 +262,13 @@ _12 dataset(s)._
 
 ## EUDRACT_NUMBER
 
-_3 dataset(s)._
+_5 dataset(s)._
 
 - [AACT (Aggregate Analysis of ClinicalTrials.gov)](../entries/clinical-biotech/aact.md) — `clinical-biotech`
 - [ClinicalTrials.gov](../entries/clinical-biotech/clinicaltrials-gov.md) — `clinical-biotech`
 - [EU CTIS (Clinical Trials Information System)](../entries/clinical-biotech/eu-ctis.md) — `clinical-biotech`
+- [ISRCTN Registry](../entries/clinical-biotech/isrctn.md) — `clinical-biotech`
+- [WHO ICTRP (International Clinical Trials Registry Platform)](../entries/clinical-biotech/who-ictrp.md) — `clinical-biotech`
 
 ## EU_CT_NUMBER
 
@@ -227,9 +280,11 @@ _3 dataset(s)._
 
 ## FDA_APPLICATION_NUMBER
 
-_1 dataset(s)._
+_3 dataset(s)._
 
 - [Drugs@FDA](../entries/clinical-biotech/drugs-at-fda.md) — `clinical-biotech`
+- [FDA Adverse Event Reporting System (FAERS)](../entries/clinical-biotech/fda-faers.md) — `clinical-biotech`
+- [RxNorm](../entries/clinical-biotech/rxnorm.md) — `clinical-biotech`
 
 ## FIGI
 
@@ -241,9 +296,10 @@ _3 dataset(s)._
 
 ## FIPS
 
-_1 dataset(s)._
+_2 dataset(s)._
 
 - [Bureau of Labor Statistics (BLS) Public Data API](../entries/government-open-data/bureau-of-labour-statistics.md) — `government-open-data`
+- [CMS Medicare Part D Prescribers](../entries/healthcare-claims/cms-medicare-part-d.md) — `healthcare-claims`
 
 ## FUNDER_DOI
 
@@ -253,27 +309,36 @@ _1 dataset(s)._
 
 ## GENE_SYMBOL
 
-_29 dataset(s)._
+_38 dataset(s)._
 
 - [Cancer Cell Line Encyclopedia (CCLE)](../entries/bio-genomics/cancer-cell-line-encyclopedia.md) — `bio-genomics`
+- [Cancer Therapeutics Response Portal (CTRP)](../entries/bio-genomics/ctrp.md) — `bio-genomics`
 - [ClinGen (Clinical Genome Resource)](../entries/bio-genomics/clingen.md) — `bio-genomics`
 - [ClinVar](../entries/bio-genomics/clinvar.md) — `bio-genomics`
+- [DepMap (Cancer Dependency Map)](../entries/bio-genomics/depmap.md) — `bio-genomics`
 - [DrugBank](../entries/clinical-biotech/drugbank.md) — `clinical-biotech`
+- [DrugCentral](../entries/clinical-biotech/drugcentral.md) — `clinical-biotech`
 - [Ensembl](../entries/bio-genomics/ensembl.md) — `bio-genomics`
 - [Expression Atlas (EMBL-EBI)](../entries/bio-genomics/expression-atlas.md) — `bio-genomics`
+- [GDSC (Genomics of Drug Sensitivity in Cancer)](../entries/clinical-biotech/gdsc.md) — `clinical-biotech`
 - [GTEx (Genotype-Tissue Expression)](../entries/bio-genomics/gtex.md) — `bio-genomics`
 - [GWAS Catalog](../entries/bio-genomics/gwas-catalog.md) — `bio-genomics`
 - [Gene Ontology](../entries/bio-genomics/gene-ontology.md) — `bio-genomics`
+- [HMDB (Human Metabolome Database)](../entries/bio-genomics/hmdb.md) — `bio-genomics`
+- [Human Phenotype Ontology](../entries/bio-genomics/hpo.md) — `bio-genomics`
 - [Human Protein Atlas](../entries/bio-genomics/human-protein-atlas.md) — `bio-genomics`
 - [Image Data Resource (IDR)](../entries/bio-genomics/image-data-resource.md) — `bio-genomics`
 - [KEGG (Kyoto Encyclopedia of Genes and Genomes)](../entries/bio-genomics/kyoto-encyclopedia-of-genes-and-genomes.md) — `bio-genomics`
+- [LINCS / CMap L1000 (CLUE)](../entries/bio-genomics/lincs-l1000.md) — `bio-genomics`
 - [MyVariant.info](../entries/bio-genomics/myvariant.md) — `bio-genomics`
 - [NCBI GEO](../entries/bio-genomics/ncbi-geo.md) — `bio-genomics`
 - [NCBI Gene](../entries/bio-genomics/ncbi-gene.md) — `bio-genomics`
 - [NCI Genomic Data Commons (GDC)](../entries/bio-genomics/nci-genomic-data-commons.md) — `bio-genomics`
 - [OncoKB](../entries/clinical-biotech/oncokb.md) — `clinical-biotech`
 - [Open Targets](../entries/clinical-biotech/open-targets.md) — `clinical-biotech`
+- [Orphanet](../entries/clinical-biotech/orphanet.md) — `clinical-biotech`
 - [PeptideAtlas](../entries/bio-genomics/peptideatlas.md) — `bio-genomics`
+- [PharmGKB](../entries/bio-genomics/pharmgkb.md) — `bio-genomics`
 - [PubChem](../entries/clinical-biotech/pub-chem.md) — `clinical-biotech`
 - [Reactome](../entries/bio-genomics/reactome.md) — `bio-genomics`
 - [STRING](../entries/bio-genomics/string-db.md) — `bio-genomics`
@@ -293,18 +358,37 @@ _3 dataset(s)._
 - [InterPro](../entries/bio-genomics/interpro.md) — `bio-genomics`
 - [Rfam](../entries/bio-genomics/rna-families-database.md) — `bio-genomics`
 
+## HCPCS
+
+_3 dataset(s)._
+
+- [OMOP / OHDSI Athena](../entries/clinical-biotech/ohdsi-athena.md) — `clinical-biotech`
+- [RxNorm](../entries/clinical-biotech/rxnorm.md) — `clinical-biotech`
+- [UMLS Metathesaurus](../entries/clinical-biotech/umls.md) — `clinical-biotech`
+
 ## ICD_10
 
-_2 dataset(s)._
+_7 dataset(s)._
 
+- [Mondo Disease Ontology](../entries/bio-genomics/mondo.md) — `bio-genomics`
 - [NCI Genomic Data Commons (GDC)](../entries/bio-genomics/nci-genomic-data-commons.md) — `bio-genomics`
+- [OMOP / OHDSI Athena](../entries/clinical-biotech/ohdsi-athena.md) — `clinical-biotech`
+- [Orphanet](../entries/clinical-biotech/orphanet.md) — `clinical-biotech`
+- [PhysioNet (MIMIC-IV / eICU)](../entries/clinical-biotech/physionet.md) — `clinical-biotech`
 - [UK Biobank](../entries/public-health/uk-biobank.md) — `public-health`
+- [UMLS Metathesaurus](../entries/clinical-biotech/umls.md) — `clinical-biotech`
 
 ## INCHI_KEY
 
-_2 dataset(s)._
+_8 dataset(s)._
 
 - [BindingDB](../entries/clinical-biotech/bindingdb.md) — `clinical-biotech`
+- [Cancer Therapeutics Response Portal (CTRP)](../entries/bio-genomics/ctrp.md) — `bio-genomics`
+- [DrugCentral](../entries/clinical-biotech/drugcentral.md) — `clinical-biotech`
+- [GNPS](../entries/bio-genomics/gnps.md) — `bio-genomics`
+- [HMDB (Human Metabolome Database)](../entries/bio-genomics/hmdb.md) — `bio-genomics`
+- [IUPHAR/BPS Guide to PHARMACOLOGY](../entries/clinical-biotech/guide-to-pharmacology.md) — `clinical-biotech`
+- [LINCS / CMap L1000 (CLUE)](../entries/bio-genomics/lincs-l1000.md) — `bio-genomics`
 - [PubChem](../entries/clinical-biotech/pub-chem.md) — `clinical-biotech`
 
 ## INTERPRO_ID
@@ -315,8 +399,9 @@ _1 dataset(s)._
 
 ## ISBN
 
-_1 dataset(s)._
+_2 dataset(s)._
 
+- [OpenCitations](../entries/academic/opencitations.md) — `academic`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
 
 ## ISIN
@@ -397,14 +482,16 @@ _1 dataset(s)._
 
 ## ISSN
 
-_8 dataset(s)._
+_10 dataset(s)._
 
 - [CORE](../entries/academic/core.md) — `academic`
 - [Crossref](../entries/academic/crossref.md) — `academic`
 - [Europe PMC](../entries/academic/europe-pmc.md) — `academic`
 - [OpenAlex](../entries/academic/openalex.md) — `academic`
+- [OpenCitations](../entries/academic/opencitations.md) — `academic`
 - [Proceedings of Machine Learning Research (PMLR)](../entries/academic/pmlr.md) — `academic`
 - [PubMed (NCBI E-utilities)](../entries/academic/pubmed.md) — `academic`
+- [The Lens](../entries/academic/the-lens.md) — `academic`
 - [Unpaywall](../entries/academic/unpaywall.md) — `academic`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
 
@@ -417,31 +504,45 @@ _2 dataset(s)._
 
 ## MAG_ID
 
-_1 dataset(s)._
+_2 dataset(s)._
 
 - [OpenAlex](../entries/academic/openalex.md) — `academic`
+- [The Lens](../entries/academic/the-lens.md) — `academic`
 
 ## MEDDRA_TERM
 
-_1 dataset(s)._
+_6 dataset(s)._
 
+- [FDA Adverse Event Reporting System (FAERS)](../entries/clinical-biotech/fda-faers.md) — `clinical-biotech`
+- [Mondo Disease Ontology](../entries/bio-genomics/mondo.md) — `bio-genomics`
+- [OMOP / OHDSI Athena](../entries/clinical-biotech/ohdsi-athena.md) — `clinical-biotech`
+- [Orphanet](../entries/clinical-biotech/orphanet.md) — `clinical-biotech`
+- [UMLS Metathesaurus](../entries/clinical-biotech/umls.md) — `clinical-biotech`
 - [openFDA](../entries/clinical-biotech/openfda.md) — `clinical-biotech`
 
 ## MESH_TERM
 
-_12 dataset(s)._
+_20 dataset(s)._
 
 - [AACT (Aggregate Analysis of ClinicalTrials.gov)](../entries/clinical-biotech/aact.md) — `clinical-biotech`
 - [ChEMBL](../entries/clinical-biotech/chembl.md) — `clinical-biotech`
 - [ClinVar](../entries/bio-genomics/clinvar.md) — `bio-genomics`
 - [ClinicalTrials.gov](../entries/clinical-biotech/clinicaltrials-gov.md) — `clinical-biotech`
 - [DrugBank](../entries/clinical-biotech/drugbank.md) — `clinical-biotech`
+- [DrugCentral](../entries/clinical-biotech/drugcentral.md) — `clinical-biotech`
+- [EMA EPAR / Medicines](../entries/clinical-biotech/ema-epar.md) — `clinical-biotech`
 - [Europe PMC](../entries/academic/europe-pmc.md) — `academic`
+- [MeSH (Medical Subject Headings)](../entries/academic/mesh.md) — `academic`
+- [Mondo Disease Ontology](../entries/bio-genomics/mondo.md) — `bio-genomics`
 - [NCBI GEO](../entries/bio-genomics/ncbi-geo.md) — `bio-genomics`
 - [NCBI Gene](../entries/bio-genomics/ncbi-gene.md) — `bio-genomics`
 - [NCBI SRA (Sequence Read Archive)](../entries/bio-genomics/ncbi-sra.md) — `bio-genomics`
+- [OMOP / OHDSI Athena](../entries/clinical-biotech/ohdsi-athena.md) — `clinical-biotech`
+- [Orphanet](../entries/clinical-biotech/orphanet.md) — `clinical-biotech`
+- [PharmGKB](../entries/bio-genomics/pharmgkb.md) — `bio-genomics`
 - [PubChem](../entries/clinical-biotech/pub-chem.md) — `clinical-biotech`
 - [PubMed (NCBI E-utilities)](../entries/academic/pubmed.md) — `academic`
+- [UMLS Metathesaurus](../entries/clinical-biotech/umls.md) — `clinical-biotech`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
 
 ## MIRBASE_ID
@@ -452,10 +553,11 @@ _1 dataset(s)._
 
 ## NCBI_TAXON_ID
 
-_16 dataset(s)._
+_17 dataset(s)._
 
 - [ArrayExpress](../entries/bio-genomics/arrayexpress.md) — `bio-genomics`
 - [BioImage Archive](../entries/bio-genomics/bioimage-archive.md) — `bio-genomics`
+- [CZ CELLxGENE Discover](../entries/bio-genomics/cellxgene.md) — `bio-genomics`
 - [EMPIAR](../entries/bio-genomics/empiar.md) — `bio-genomics`
 - [European Nucleotide Archive (ENA)](../entries/bio-genomics/european-nucleotide-archive.md) — `bio-genomics`
 - [Expression Atlas (EMBL-EBI)](../entries/bio-genomics/expression-atlas.md) — `bio-genomics`
@@ -473,23 +575,39 @@ _16 dataset(s)._
 
 ## NCT_ID
 
-_5 dataset(s)._
+_8 dataset(s)._
 
 - [AACT (Aggregate Analysis of ClinicalTrials.gov)](../entries/clinical-biotech/aact.md) — `clinical-biotech`
 - [ClinicalTrials.gov](../entries/clinical-biotech/clinicaltrials-gov.md) — `clinical-biotech`
+- [ISRCTN Registry](../entries/clinical-biotech/isrctn.md) — `clinical-biotech`
+- [PharmGKB](../entries/bio-genomics/pharmgkb.md) — `bio-genomics`
 - [Project Baseline Health Study](../entries/public-health/project-baseline-health-study.md) — `public-health`
+- [WHO ICTRP (International Clinical Trials Registry Platform)](../entries/clinical-biotech/who-ictrp.md) — `clinical-biotech`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
 - [openFDA](../entries/clinical-biotech/openfda.md) — `clinical-biotech`
 
 ## NDC
 
-_5 dataset(s)._
+_10 dataset(s)._
 
+- [CMS Open Payments](../entries/healthcare-claims/cms-open-payments.md) — `healthcare-claims`
 - [DailyMed](../entries/clinical-biotech/dailymed.md) — `clinical-biotech`
 - [Drugs@FDA](../entries/clinical-biotech/drugs-at-fda.md) — `clinical-biotech`
 - [FDA Orange Book](../entries/clinical-biotech/fda-orange-book.md) — `clinical-biotech`
+- [OMOP / OHDSI Athena](../entries/clinical-biotech/ohdsi-athena.md) — `clinical-biotech`
+- [PharmGKB](../entries/bio-genomics/pharmgkb.md) — `bio-genomics`
+- [PhysioNet (MIMIC-IV / eICU)](../entries/clinical-biotech/physionet.md) — `clinical-biotech`
 - [PubChem](../entries/clinical-biotech/pub-chem.md) — `clinical-biotech`
+- [RxNorm](../entries/clinical-biotech/rxnorm.md) — `clinical-biotech`
 - [openFDA](../entries/clinical-biotech/openfda.md) — `clinical-biotech`
+
+## NPI
+
+_3 dataset(s)._
+
+- [CMS Medicare Part D Prescribers](../entries/healthcare-claims/cms-medicare-part-d.md) — `healthcare-claims`
+- [CMS Open Payments](../entries/healthcare-claims/cms-open-payments.md) — `healthcare-claims`
+- [NPPES NPI Registry](../entries/healthcare-claims/nppes-npi.md) — `healthcare-claims`
 
 ## OPCS_4
 
@@ -499,7 +617,7 @@ _1 dataset(s)._
 
 ## ORCID
 
-_7 dataset(s)._
+_10 dataset(s)._
 
 - [Crossref](../entries/academic/crossref.md) — `academic`
 - [DataCite](../entries/academic/datacite.md) — `academic`
@@ -507,6 +625,9 @@ _7 dataset(s)._
 - [Global Biodiversity Information Facility (GBIF)](../entries/geospatial/global-biodiversity-information-facility.md) — `geospatial`
 - [ORCID](../entries/academic/orcid.md) — `academic`
 - [OpenAlex](../entries/academic/openalex.md) — `academic`
+- [OpenCitations](../entries/academic/opencitations.md) — `academic`
+- [PRIDE Archive](../entries/bio-genomics/pride.md) — `bio-genomics`
+- [The Lens](../entries/academic/the-lens.md) — `academic`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
 
 ## OSM_ID
@@ -531,18 +652,21 @@ _8 dataset(s)._
 
 ## PMCID
 
-_6 dataset(s)._
+_9 dataset(s)._
 
 - [Europe PMC](../entries/academic/europe-pmc.md) — `academic`
 - [NCBI SRA (Sequence Read Archive)](../entries/bio-genomics/ncbi-sra.md) — `bio-genomics`
 - [OpenAlex](../entries/academic/openalex.md) — `academic`
+- [PharmGKB](../entries/bio-genomics/pharmgkb.md) — `bio-genomics`
 - [PubMed (NCBI E-utilities)](../entries/academic/pubmed.md) — `academic`
+- [PubMed Central Open Access Subset](../entries/academic/pmc.md) — `academic`
 - [Semantic Scholar](../entries/academic/semantic-scholar.md) — `academic`
+- [The Lens](../entries/academic/the-lens.md) — `academic`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
 
 ## PMID
 
-_31 dataset(s)._
+_39 dataset(s)._
 
 - [AACT (Aggregate Analysis of ClinicalTrials.gov)](../entries/clinical-biotech/aact.md) — `clinical-biotech`
 - [American Gut Project](../entries/bio-genomics/american-gut-project.md) — `bio-genomics`
@@ -554,10 +678,12 @@ _31 dataset(s)._
 - [ClinicalTrials.gov](../entries/clinical-biotech/clinicaltrials-gov.md) — `clinical-biotech`
 - [Europe PMC](../entries/academic/europe-pmc.md) — `academic`
 - [Expression Atlas (EMBL-EBI)](../entries/bio-genomics/expression-atlas.md) — `bio-genomics`
+- [GNPS](../entries/bio-genomics/gnps.md) — `bio-genomics`
 - [GWAS Catalog](../entries/bio-genomics/gwas-catalog.md) — `bio-genomics`
 - [Gene Ontology](../entries/bio-genomics/gene-ontology.md) — `bio-genomics`
 - [IGSR (International Genome Sample Resource)](../entries/bio-genomics/international-genome-sample-resource.md) — `bio-genomics`
 - [KEGG (Kyoto Encyclopedia of Genes and Genomes)](../entries/bio-genomics/kyoto-encyclopedia-of-genes-and-genomes.md) — `bio-genomics`
+- [MetaboLights](../entries/bio-genomics/metabolights.md) — `bio-genomics`
 - [NCBI GEO](../entries/bio-genomics/ncbi-geo.md) — `bio-genomics`
 - [NCBI Gene](../entries/bio-genomics/ncbi-gene.md) — `bio-genomics`
 - [NCBI Protein](../entries/bio-genomics/ncbi-proteins.md) — `bio-genomics`
@@ -565,14 +691,20 @@ _31 dataset(s)._
 - [NCBI Taxonomy](../entries/bio-genomics/ncbi-taxonomy.md) — `bio-genomics`
 - [Open Targets](../entries/clinical-biotech/open-targets.md) — `clinical-biotech`
 - [OpenAlex](../entries/academic/openalex.md) — `academic`
+- [OpenCitations](../entries/academic/opencitations.md) — `academic`
+- [PRIDE Archive](../entries/bio-genomics/pride.md) — `bio-genomics`
+- [PharmGKB](../entries/bio-genomics/pharmgkb.md) — `bio-genomics`
 - [ProteomeXchange](../entries/bio-genomics/proteomexchange.md) — `bio-genomics`
 - [PubChem](../entries/clinical-biotech/pub-chem.md) — `clinical-biotech`
 - [PubMed (NCBI E-utilities)](../entries/academic/pubmed.md) — `academic`
+- [PubMed Central Open Access Subset](../entries/academic/pmc.md) — `academic`
 - [RCSB Protein Data Bank](../entries/bio-genomics/protein-data-bank.md) — `bio-genomics`
 - [Reactome](../entries/bio-genomics/reactome.md) — `bio-genomics`
+- [Retraction Watch Database](../entries/academic/retraction-watch.md) — `academic`
 - [Rfam](../entries/bio-genomics/rna-families-database.md) — `bio-genomics`
 - [Semantic Scholar](../entries/academic/semantic-scholar.md) — `academic`
 - [The Cancer Genome Atlas (TCGA, via Broad GDAC Firehose)](../entries/bio-genomics/the-cancer-genome-atlas.md) — `bio-genomics`
+- [The Lens](../entries/academic/the-lens.md) — `academic`
 - [UniProt](../entries/bio-genomics/uniprot.md) — `bio-genomics`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
 
@@ -590,11 +722,12 @@ _7 dataset(s)._
 
 ## RSID
 
-_8 dataset(s)._
+_9 dataset(s)._
 
 - [ClinGen (Clinical Genome Resource)](../entries/bio-genomics/clingen.md) — `bio-genomics`
 - [ClinVar](../entries/bio-genomics/clinvar.md) — `bio-genomics`
 - [MyVariant.info](../entries/bio-genomics/myvariant.md) — `bio-genomics`
+- [PharmGKB](../entries/bio-genomics/pharmgkb.md) — `bio-genomics`
 - [UCSC Genome Browser](../entries/bio-genomics/ucsc-genome-browser.md) — `bio-genomics`
 - [UK Biobank](../entries/public-health/uk-biobank.md) — `public-health`
 - [dbSNP](../entries/bio-genomics/dbsnp.md) — `bio-genomics`
@@ -603,11 +736,16 @@ _8 dataset(s)._
 
 ## RXNORM_CUI
 
-_4 dataset(s)._
+_9 dataset(s)._
 
 - [DailyMed](../entries/clinical-biotech/dailymed.md) — `clinical-biotech`
 - [DrugBank](../entries/clinical-biotech/drugbank.md) — `clinical-biotech`
+- [DrugCentral](../entries/clinical-biotech/drugcentral.md) — `clinical-biotech`
+- [OMOP / OHDSI Athena](../entries/clinical-biotech/ohdsi-athena.md) — `clinical-biotech`
+- [PharmGKB](../entries/bio-genomics/pharmgkb.md) — `bio-genomics`
 - [PubChem](../entries/clinical-biotech/pub-chem.md) — `clinical-biotech`
+- [RxNorm](../entries/clinical-biotech/rxnorm.md) — `clinical-biotech`
+- [UMLS Metathesaurus](../entries/clinical-biotech/umls.md) — `clinical-biotech`
 - [openFDA](../entries/clinical-biotech/openfda.md) — `clinical-biotech`
 
 ## SEDOL
@@ -615,6 +753,12 @@ _4 dataset(s)._
 _1 dataset(s)._
 
 - [OpenFIGI](../entries/finance-markets/openfigi.md) — `finance-markets`
+
+## SETID
+
+_1 dataset(s)._
+
+- [RxNorm](../entries/clinical-biotech/rxnorm.md) — `clinical-biotech`
 
 ## TICKER
 
@@ -632,35 +776,47 @@ _9 dataset(s)._
 
 ## UBERON_ID
 
-_1 dataset(s)._
+_5 dataset(s)._
 
+- [CZ CELLxGENE Discover](../entries/bio-genomics/cellxgene.md) — `bio-genomics`
+- [ENCODE](../entries/bio-genomics/encode.md) — `bio-genomics`
+- [HuBMAP Data Portal](../entries/bio-genomics/hubmap.md) — `bio-genomics`
+- [Human Cell Atlas Data Portal](../entries/bio-genomics/human-cell-atlas.md) — `bio-genomics`
 - [eQTL Catalogue](../entries/bio-genomics/eqtl-catalogue.md) — `bio-genomics`
 
 ## UNII
 
-_3 dataset(s)._
+_5 dataset(s)._
 
+- [DrugCentral](../entries/clinical-biotech/drugcentral.md) — `clinical-biotech`
 - [Drugs@FDA](../entries/clinical-biotech/drugs-at-fda.md) — `clinical-biotech`
 - [PubChem](../entries/clinical-biotech/pub-chem.md) — `clinical-biotech`
+- [RxNorm](../entries/clinical-biotech/rxnorm.md) — `clinical-biotech`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
 
 ## UNIPROT_ACCESSION
 
-_19 dataset(s)._
+_25 dataset(s)._
 
 - [AlphaFold Protein Structure Database](../entries/bio-genomics/alphafold.md) — `bio-genomics`
 - [BindingDB](../entries/clinical-biotech/bindingdb.md) — `clinical-biotech`
 - [ChEMBL](../entries/clinical-biotech/chembl.md) — `clinical-biotech`
 - [DrugBank](../entries/clinical-biotech/drugbank.md) — `clinical-biotech`
+- [DrugCentral](../entries/clinical-biotech/drugcentral.md) — `clinical-biotech`
 - [Ensembl](../entries/bio-genomics/ensembl.md) — `bio-genomics`
 - [Europe PMC](../entries/academic/europe-pmc.md) — `academic`
 - [Gene Ontology](../entries/bio-genomics/gene-ontology.md) — `bio-genomics`
+- [HMDB (Human Metabolome Database)](../entries/bio-genomics/hmdb.md) — `bio-genomics`
 - [Human Protein Atlas](../entries/bio-genomics/human-protein-atlas.md) — `bio-genomics`
+- [IUPHAR/BPS Guide to PHARMACOLOGY](../entries/clinical-biotech/guide-to-pharmacology.md) — `clinical-biotech`
 - [InterPro](../entries/bio-genomics/interpro.md) — `bio-genomics`
 - [KEGG (Kyoto Encyclopedia of Genes and Genomes)](../entries/bio-genomics/kyoto-encyclopedia-of-genes-and-genomes.md) — `bio-genomics`
 - [NCBI Protein](../entries/bio-genomics/ncbi-proteins.md) — `bio-genomics`
 - [Open Targets](../entries/clinical-biotech/open-targets.md) — `clinical-biotech`
+- [Orphanet](../entries/clinical-biotech/orphanet.md) — `clinical-biotech`
+- [PRIDE Archive](../entries/bio-genomics/pride.md) — `bio-genomics`
 - [PeptideAtlas](../entries/bio-genomics/peptideatlas.md) — `bio-genomics`
+- [PharmGKB](../entries/bio-genomics/pharmgkb.md) — `bio-genomics`
 - [PubChem](../entries/clinical-biotech/pub-chem.md) — `clinical-biotech`
 - [RCSB Protein Data Bank](../entries/bio-genomics/protein-data-bank.md) — `bio-genomics`
 - [Reactome](../entries/bio-genomics/reactome.md) — `bio-genomics`
@@ -694,16 +850,21 @@ _19 dataset(s)._
 
 ## US_STATE_CODE
 
-_2 dataset(s)._
+_5 dataset(s)._
 
 - [Bureau of Labor Statistics (BLS) Public Data API](../entries/government-open-data/bureau-of-labour-statistics.md) — `government-open-data`
+- [CMS Medicare Part D Prescribers](../entries/healthcare-claims/cms-medicare-part-d.md) — `healthcare-claims`
+- [CMS Open Payments](../entries/healthcare-claims/cms-open-payments.md) — `healthcare-claims`
 - [EIA Open Data](../entries/finance-markets/eia-open-data.md) — `finance-markets`
+- [NPPES NPI Registry](../entries/healthcare-claims/nppes-npi.md) — `healthcare-claims`
 
 ## WHO_UTN
 
-_1 dataset(s)._
+_3 dataset(s)._
 
 - [EU CTIS (Clinical Trials Information System)](../entries/clinical-biotech/eu-ctis.md) — `clinical-biotech`
+- [ISRCTN Registry](../entries/clinical-biotech/isrctn.md) — `clinical-biotech`
+- [WHO ICTRP (International Clinical Trials Registry Platform)](../entries/clinical-biotech/who-ictrp.md) — `clinical-biotech`
 
 ## WIKIDATA_QID
 
@@ -732,3 +893,9 @@ _2 dataset(s)._
 
 - [OpenStreetMap](../entries/geospatial/openstreetmap.md) — `geospatial`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
+
+## ZCTA
+
+_1 dataset(s)._
+
+- [NPPES NPI Registry](../entries/healthcare-claims/nppes-npi.md) — `healthcare-claims`
