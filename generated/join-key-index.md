@@ -3,13 +3,14 @@
 Reverse index of canonical join keys mapped to the datasets that expose them.
 Generated from `entries/**/*.md`. Do not hand-edit.
 
-**211 datasets, 65 distinct canonical keys, 698 key→source links.**
+**226 datasets, 66 distinct canonical keys, 730 key→source links.**
 
 ## ARXIV_ID
 
-_6 dataset(s)._
+_7 dataset(s)._
 
 - [CORE](../entries/academic/core.md) — `academic`
+- [OpenAIRE Graph](../entries/academic/openaire.md) — `academic`
 - [OpenAlex](../entries/academic/openalex.md) — `academic`
 - [PubPeer](../entries/academic/pubpeer.md) — `academic`
 - [Semantic Scholar](../entries/academic/semantic-scholar.md) — `academic`
@@ -122,7 +123,7 @@ _12 dataset(s)._
 
 ## DATE
 
-_60 dataset(s)._
+_62 dataset(s)._
 
 - [Alpha Vantage](../entries/finance-markets/alpha-vantage.md) — `finance-markets`
 - [BEA Data API (Bureau of Economic Analysis)](../entries/government-open-data/bea.md) — `government-open-data`
@@ -133,11 +134,13 @@ _60 dataset(s)._
 - [CBOE Volatility Index (VIX)](../entries/finance-markets/cboe-volatility-index-vix.md) — `finance-markets`
 - [CFTC Commitments of Traders](../entries/finance-markets/cftc-cot.md) — `finance-markets`
 - [Cboe DataShop](../entries/finance-markets/cboe-datashop.md) — `finance-markets`
+- [Census Building Permits Survey (BPS)](../entries/government-open-data/census-building-permits.md) — `government-open-data`
 - [Census M3 (Manufacturers' Shipments, Inventories & Orders)](../entries/government-open-data/census-m3.md) — `government-open-data`
 - [CommodityPriceAPI](../entries/finance-markets/commodity-price-api.md) — `finance-markets`
 - [Common Crawl](../entries/news-events/common-crawl.md) — `news-events`
 - [Companies House (UK)](../entries/corporate-registry/companies-house.md) — `corporate-registry`
 - [DefiLlama Stablecoins](../entries/finance-markets/defillama-stablecoins.md) — `finance-markets`
+- [E-PRTR (European Industrial Emissions Portal)](../entries/government-open-data/e-prtr.md) — `government-open-data`
 - [ECB Data Portal (SDMX API)](../entries/finance-markets/ecb-data.md) — `finance-markets`
 - [ECMWF (European Centre for Medium-Range Weather Forecasts)](../entries/geospatial/ecmwf.md) — `geospatial`
 - [EIA Open Data](../entries/finance-markets/eia-open-data.md) — `finance-markets`
@@ -187,9 +190,10 @@ _60 dataset(s)._
 
 ## DOI
 
-_42 dataset(s)._
+_44 dataset(s)._
 
 - [American Gut Project](../entries/bio-genomics/american-gut-project.md) — `bio-genomics`
+- [CORDIS (EU Research Projects)](../entries/government-open-data/cordis.md) — `government-open-data`
 - [CORE](../entries/academic/core.md) — `academic`
 - [CZ CELLxGENE Discover](../entries/bio-genomics/cellxgene.md) — `bio-genomics`
 - [Cancer Cell Line Encyclopedia (CCLE)](../entries/bio-genomics/cancer-cell-line-encyclopedia.md) — `bio-genomics`
@@ -209,6 +213,7 @@ _42 dataset(s)._
 - [NCI Genomic Data Commons (GDC)](../entries/bio-genomics/nci-genomic-data-commons.md) — `bio-genomics`
 - [ORCID](../entries/academic/orcid.md) — `academic`
 - [Open Targets](../entries/clinical-biotech/open-targets.md) — `clinical-biotech`
+- [OpenAIRE Graph](../entries/academic/openaire.md) — `academic`
 - [OpenAlex](../entries/academic/openalex.md) — `academic`
 - [OpenCitations](../entries/academic/opencitations.md) — `academic`
 - [PRIDE Archive](../entries/bio-genomics/pride.md) — `bio-genomics`
@@ -355,18 +360,22 @@ _6 dataset(s)._
 
 ## FIPS
 
-_4 dataset(s)._
+_7 dataset(s)._
 
 - [BEA Data API (Bureau of Economic Analysis)](../entries/government-open-data/bea.md) — `government-open-data`
 - [Bureau of Labor Statistics (BLS) Public Data API](../entries/government-open-data/bureau-of-labour-statistics.md) — `government-open-data`
 - [CMS Medicare Part D Prescribers](../entries/healthcare-claims/cms-medicare-part-d.md) — `healthcare-claims`
+- [Census Building Permits Survey (BPS)](../entries/government-open-data/census-building-permits.md) — `government-open-data`
+- [EPA ECHO (Enforcement & Compliance History Online)](../entries/government-open-data/epa-echo.md) — `government-open-data`
 - [EPA Facility Registry Service (FRS)](../entries/government-open-data/epa-frs.md) — `government-open-data`
+- [USAspending.gov](../entries/government-open-data/usaspending.md) — `government-open-data`
 
 ## FUNDER_DOI
 
-_2 dataset(s)._
+_3 dataset(s)._
 
 - [DataCite](../entries/academic/datacite.md) — `academic`
+- [ROR (Research Organization Registry)](../entries/academic/ror.md) — `academic`
 - [The Lens](../entries/academic/the-lens.md) — `academic`
 
 ## GENE_SYMBOL
@@ -487,16 +496,20 @@ _10 dataset(s)._
 
 ## ISNI
 
-_3 dataset(s)._
+_5 dataset(s)._
 
 - [MusicBrainz API](../entries/consumer-signal/music-brainz-api.md) — `consumer-signal`
+- [OpenAIRE Graph](../entries/academic/openaire.md) — `academic`
+- [ROR (Research Organization Registry)](../entries/academic/ror.md) — `academic`
 - [The Lens](../entries/academic/the-lens.md) — `academic`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
 
 ## ISO_2
 
-_16 dataset(s)._
+_18 dataset(s)._
 
+- [CORDIS (EU Research Projects)](../entries/government-open-data/cordis.md) — `government-open-data`
+- [E-PRTR (European Industrial Emissions Portal)](../entries/government-open-data/e-prtr.md) — `government-open-data`
 - [ECB Data Portal (SDMX API)](../entries/finance-markets/ecb-data.md) — `finance-markets`
 - [Eurostat PRODCOM](../entries/government-open-data/eurostat-prodcom.md) — `government-open-data`
 - [Event Registry](../entries/news-events/event-registry.md) — `news-events`
@@ -516,7 +529,7 @@ _16 dataset(s)._
 
 ## ISO_3
 
-_20 dataset(s)._
+_22 dataset(s)._
 
 - [Alpha Vantage](../entries/finance-markets/alpha-vantage.md) — `finance-markets`
 - [Companies House (UK)](../entries/corporate-registry/companies-house.md) — `corporate-registry`
@@ -532,8 +545,10 @@ _20 dataset(s)._
 - [OECD Data Explorer](../entries/government-open-data/oecd-data.md) — `government-open-data`
 - [OpenCorporates](../entries/corporate-registry/opencorporates.md) — `corporate-registry`
 - [OpenStreetMap](../entries/geospatial/openstreetmap.md) — `geospatial`
+- [TED (Tenders Electronic Daily)](../entries/government-open-data/eu-ted.md) — `government-open-data`
 - [UN Comtrade](../entries/government-open-data/un-comtrade.md) — `government-open-data`
 - [UN/LOCODE (United Nations Code for Trade and Transport Locations)](../entries/government-open-data/united-nations-code-for-trade-and-transport.md) — `government-open-data`
+- [USAspending.gov](../entries/government-open-data/usaspending.md) — `government-open-data`
 - [WHO FluNet](../entries/public-health/who-flunet.md) — `public-health`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
 - [Wikipedia Pageviews API](../entries/consumer-signal/wikipedia-pageviews.md) — `consumer-signal`
@@ -706,6 +721,13 @@ _3 dataset(s)._
 - [CMS Open Payments](../entries/healthcare-claims/cms-open-payments.md) — `healthcare-claims`
 - [NPPES NPI Registry](../entries/healthcare-claims/nppes-npi.md) — `healthcare-claims`
 
+## NUTS
+
+_2 dataset(s)._
+
+- [E-PRTR (European Industrial Emissions Portal)](../entries/government-open-data/e-prtr.md) — `government-open-data`
+- [TED (Tenders Electronic Daily)](../entries/government-open-data/eu-ted.md) — `government-open-data`
+
 ## OPCS_4
 
 _1 dataset(s)._
@@ -714,17 +736,19 @@ _1 dataset(s)._
 
 ## ORCID
 
-_10 dataset(s)._
+_12 dataset(s)._
 
 - [Crossref](../entries/academic/crossref.md) — `academic`
 - [DataCite](../entries/academic/datacite.md) — `academic`
 - [Europe PMC](../entries/academic/europe-pmc.md) — `academic`
 - [Global Biodiversity Information Facility (GBIF)](../entries/geospatial/global-biodiversity-information-facility.md) — `geospatial`
 - [ORCID](../entries/academic/orcid.md) — `academic`
+- [OpenAIRE Graph](../entries/academic/openaire.md) — `academic`
 - [OpenAlex](../entries/academic/openalex.md) — `academic`
 - [OpenCitations](../entries/academic/opencitations.md) — `academic`
 - [PRIDE Archive](../entries/bio-genomics/pride.md) — `bio-genomics`
 - [The Lens](../entries/academic/the-lens.md) — `academic`
+- [UKRI Gateway to Research (GtR)](../entries/government-open-data/ukri-gtr.md) — `government-open-data`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
 
 ## OSM_ID
@@ -750,10 +774,11 @@ _9 dataset(s)._
 
 ## PMCID
 
-_9 dataset(s)._
+_10 dataset(s)._
 
 - [Europe PMC](../entries/academic/europe-pmc.md) — `academic`
 - [NCBI SRA (Sequence Read Archive)](../entries/bio-genomics/ncbi-sra.md) — `bio-genomics`
+- [OpenAIRE Graph](../entries/academic/openaire.md) — `academic`
 - [OpenAlex](../entries/academic/openalex.md) — `academic`
 - [PharmGKB](../entries/bio-genomics/pharmgkb.md) — `bio-genomics`
 - [PubMed (NCBI E-utilities)](../entries/academic/pubmed.md) — `academic`
@@ -764,7 +789,7 @@ _9 dataset(s)._
 
 ## PMID
 
-_40 dataset(s)._
+_42 dataset(s)._
 
 - [AACT (Aggregate Analysis of ClinicalTrials.gov)](../entries/clinical-biotech/aact.md) — `clinical-biotech`
 - [American Gut Project](../entries/bio-genomics/american-gut-project.md) — `bio-genomics`
@@ -787,7 +812,9 @@ _40 dataset(s)._
 - [NCBI Protein](../entries/bio-genomics/ncbi-proteins.md) — `bio-genomics`
 - [NCBI SRA (Sequence Read Archive)](../entries/bio-genomics/ncbi-sra.md) — `bio-genomics`
 - [NCBI Taxonomy](../entries/bio-genomics/ncbi-taxonomy.md) — `bio-genomics`
+- [NIH RePORTER](../entries/government-open-data/nih-reporter.md) — `government-open-data`
 - [Open Targets](../entries/clinical-biotech/open-targets.md) — `clinical-biotech`
+- [OpenAIRE Graph](../entries/academic/openaire.md) — `academic`
 - [OpenAlex](../entries/academic/openalex.md) — `academic`
 - [OpenCitations](../entries/academic/opencitations.md) — `academic`
 - [PRIDE Archive](../entries/bio-genomics/pride.md) — `bio-genomics`
@@ -809,13 +836,15 @@ _40 dataset(s)._
 
 ## ROR
 
-_8 dataset(s)._
+_10 dataset(s)._
 
 - [Crossref](../entries/academic/crossref.md) — `academic`
 - [DataCite](../entries/academic/datacite.md) — `academic`
 - [Europe PMC](../entries/academic/europe-pmc.md) — `academic`
 - [ORCID](../entries/academic/orcid.md) — `academic`
+- [OpenAIRE Graph](../entries/academic/openaire.md) — `academic`
 - [OpenAlex](../entries/academic/openalex.md) — `academic`
+- [ROR (Research Organization Registry)](../entries/academic/ror.md) — `academic`
 - [The Lens](../entries/academic/the-lens.md) — `academic`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
 - [bioRxiv / medRxiv](../entries/academic/biorxiv-medrxiv.md) — `academic`
@@ -965,16 +994,22 @@ _19 dataset(s)._
 
 ## US_STATE_CODE
 
-_8 dataset(s)._
+_14 dataset(s)._
 
 - [BTS Airline On-Time Performance](../entries/government-open-data/bts-airline-ontime.md) — `government-open-data`
 - [Bureau of Labor Statistics (BLS) Public Data API](../entries/government-open-data/bureau-of-labour-statistics.md) — `government-open-data`
 - [CMS Medicare Part D Prescribers](../entries/healthcare-claims/cms-medicare-part-d.md) — `healthcare-claims`
 - [CMS Open Payments](../entries/healthcare-claims/cms-open-payments.md) — `healthcare-claims`
 - [EIA Open Data](../entries/finance-markets/eia-open-data.md) — `finance-markets`
+- [EPA ECHO (Enforcement & Compliance History Online)](../entries/government-open-data/epa-echo.md) — `government-open-data`
 - [EPA Facility Registry Service (FRS)](../entries/government-open-data/epa-frs.md) — `government-open-data`
+- [NIH RePORTER](../entries/government-open-data/nih-reporter.md) — `government-open-data`
 - [NPPES NPI Registry](../entries/healthcare-claims/nppes-npi.md) — `healthcare-claims`
+- [OSHA Inspections](../entries/government-open-data/osha-inspections.md) — `government-open-data`
+- [SAM.gov Contract Opportunities](../entries/government-open-data/sam-gov.md) — `government-open-data`
+- [SBIR.gov (America's Seed Fund)](../entries/government-open-data/sbir.md) — `government-open-data`
 - [USACE Waterborne Commerce Statistics (WCSC)](../entries/government-open-data/usace-waterborne-commerce.md) — `government-open-data`
+- [USAspending.gov](../entries/government-open-data/usaspending.md) — `government-open-data`
 
 ## WHO_UTN
 
@@ -994,7 +1029,7 @@ _11 dataset(s)._
 
 ## WIKIDATA_QID
 
-_17 dataset(s)._
+_18 dataset(s)._
 
 - [DrugBank](../entries/clinical-biotech/drugbank.md) — `clinical-biotech`
 - [Event Registry](../entries/news-events/event-registry.md) — `news-events`
@@ -1007,6 +1042,7 @@ _17 dataset(s)._
 - [OpenCorporates](../entries/corporate-registry/opencorporates.md) — `corporate-registry`
 - [OpenStreetMap](../entries/geospatial/openstreetmap.md) — `geospatial`
 - [PubChem](../entries/clinical-biotech/pub-chem.md) — `clinical-biotech`
+- [ROR (Research Organization Registry)](../entries/academic/ror.md) — `academic`
 - [Reddit Data API](../entries/consumer-signal/reddit.md) — `consumer-signal`
 - [Smithsonian Open Access](../entries/government-open-data/smithsonian-open-access.md) — `government-open-data`
 - [Stack Exchange Data Explorer](../entries/consumer-signal/stack-exchange-data-explorer.md) — `consumer-signal`
@@ -1023,7 +1059,8 @@ _2 dataset(s)._
 
 ## ZCTA
 
-_2 dataset(s)._
+_3 dataset(s)._
 
+- [EPA ECHO (Enforcement & Compliance History Online)](../entries/government-open-data/epa-echo.md) — `government-open-data`
 - [EPA Facility Registry Service (FRS)](../entries/government-open-data/epa-frs.md) — `government-open-data`
 - [NPPES NPI Registry](../entries/healthcare-claims/nppes-npi.md) — `healthcare-claims`

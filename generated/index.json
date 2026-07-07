@@ -1,1320 +1,291 @@
 [
   {
-    "_path": "entries/finance-markets/fed-g17-industrial-production.md",
+    "_path": "entries/academic/ror.md",
     "access_test": {
-      "command": "curl -sf 'https://www.federalreserve.gov/datadownload/Output.aspx?rel=G17&filetype=zip' -o /dev/null",
-      "expected_status": 200
-    },
-    "agent_use_cases": [
-      "industrial output tracking",
-      "capacity utilization monitoring",
-      "manufacturing cycle analysis",
-      "macro nowcasting features",
-      "industry-level output comparison"
-    ],
-    "auth_required": "none",
-    "build_priority": "low",
-    "bulk_available": true,
-    "cost": "free",
-    "description": "Monthly Federal Reserve Board indexes of US industrial production, capacity, and capacity utilization for manufacturing, mining, and electric and gas utilities, broken out by market group and NAICS industry.",
-    "docs_url": "https://www.federalreserve.gov/releases/g17/g17_technical_qa.htm",
-    "domain": "finance-markets",
-    "entry_kind": "panel",
-    "frequency": "monthly",
-    "geography": [
-      "USA"
-    ],
-    "homepage_url": "https://www.federalreserve.gov/releases/g17/current/default.htm",
-    "id": "fed-g17-industrial-production",
-    "join_key_fields": [
-      {
-        "fields": [
-          "TIME_PERIOD",
-          "obs.TIME_PERIOD"
-        ],
-        "join_key": "DATE"
-      }
-    ],
-    "join_keys": [
-      "DATE"
-    ],
-    "lag": "released mid-month (~15-17 days) for the prior reference month; preliminary value revised over the following months, plus a full annual revision each autumn",
-    "last_verified": "2026-07-03",
-    "license": "US-Government-Public-Domain",
-    "mcp_notes": "No dedicated MCP for the Fed's own G.17 DDP. In practice agents reach these series (INDPRO, TCU, and the industry breakouts) through FRED, which has several community MCPs, so a standalone G.17 connector is low marginal value. A generic Federal Reserve DDP MCP covering G.17 alongside H.15, G.19, Z.1 etc. would be the more sensible surface if built.\n",
-    "mcp_status": "mcp-needed-low-value",
-    "name": "Federal Reserve G.17 Industrial Production and Capacity Utilization",
-    "notes": "access_test executed 2026-07-03: full-release ZIP package returned HTTP 200 (~8.5 MB, application/x-zip-compressed). Per-package CSV/SDMX endpoints (Output.aspx?rel=G17&series=<hash>&filetype=csv) and the current-release text file (releases/g17/current/g17.txt, HTTP 200, ~158 KB) also confirmed reachable with no auth.",
-    "pit_reconstructable": false,
-    "primary_keys": [
-      "FRB_G17_SERIES_NAME",
-      "FRB_IP_INDUSTRY_CODE"
-    ],
-    "rate_limit": "none published; polite scraping of the DDP endpoints assumed",
-    "release_lag_days": 17,
-    "revisions_possible": true,
-    "structure": "panel",
-    "type": [
-      "bulk-download",
-      "web-ui"
-    ]
-  },
-  {
-    "_path": "entries/clinical-biotech/euctr-eudract.md",
-    "access_test": {
-      "command": "curl -sf -A 'datasources-registry/1.0' 'https://www.clinicaltrialsregister.eu/ctr-search/search?query=cancer&page=1' -o /dev/null -w '%{http_code}'",
-      "expected_fields": [
-        "EudraCT"
-      ],
-      "expected_status": 200
-    },
-    "agent_use_cases": [
-      "historical EU/EEA trial discovery by condition, product, or sponsor",
-      "cross-registry deduplication with ClinicalTrials.gov and ISRCTN",
-      "EudraCT-to-NCT identifier cross-walking for legacy trials",
-      "retrospective sponsor and pipeline analysis pre-2025",
-      "results-reporting compliance auditing for older EU trials"
-    ],
-    "auth_required": "none",
-    "build_priority": "low",
-    "bulk_available": false,
-    "cost": "free",
-    "description": "Legacy public register of interventional clinical trials of medicines conducted in the EU and EEA between May 2004 and January 2025 under Directive 2001/20/EC, backed by the EudraCT database and run by the European Medicines Agency.",
-    "docs_url": "https://www.clinicaltrialsregister.eu/about.html",
-    "domain": "clinical-biotech",
-    "entry_kind": "registry",
-    "frequency": "legacy",
-    "geography": [
-      "EU",
-      "EEA"
-    ],
-    "homepage_url": "https://www.clinicaltrialsregister.eu/",
-    "id": "euctr-eudract",
-    "join_key_fields": [
-      {
-        "fields": [
-          "A.2 EudraCT number"
-        ],
-        "join_key": "EUDRACT_NUMBER"
-      },
-      {
-        "fields": [
-          "A.5.2 US NCT (ClinicalTrials.gov registry) number"
-        ],
-        "join_key": "NCT_ID"
-      },
-      {
-        "fields": [
-          "A.5.3 WHO universal trial number (UTN)"
-        ],
-        "join_key": "WHO_UTN"
-      }
-    ],
-    "join_keys": [
-      "EUDRACT_NUMBER",
-      "NCT_ID",
-      "WHO_UTN"
-    ],
-    "lag": "static legacy register; closed to new EudraCT protocols after 30 January 2025, only residual results-section updates for existing trials",
-    "last_verified": "2026-07-03",
-    "license": "EU-Commission-Reuse-Decision-2011-833",
-    "mcp_maturity": "none",
-    "mcp_notes": "No official API and no MCP. The register serves server-rendered HTML from a URL-parameterised search; a connector must scrape trial-protocol pages or drive the 20-record text export. Suggested surface: search_trials, get_trial_protocol, get_trial_results, cross_registry_lookup (EudraCT to NCT and WHO UTN via the A.5 secondary-identifier fields). The mature open-source reference is the R package ctrdata, which already parses EUCTR into structured records.\n",
-    "mcp_status": "requires-scraping",
-    "name": "EU Clinical Trials Register (EUCTR / EudraCT)",
-    "notes": "Legacy layer. New EU/EEA medicine trials now register in CTIS (see eu-ctis entry); EUCTR is the frozen prior register. No documented API; access is HTML scraping plus a per-request 20-record .txt export.",
-    "pit_reconstructable": false,
-    "primary_keys": [
-      "EUDRACT_NUMBER"
-    ],
-    "rate_limit": "no published quota; polite low-volume public use expected; text download capped at 20 records per request",
-    "revisions_possible": false,
-    "structure": "registry-snapshot",
-    "type": [
-      "web-ui",
-      "bulk-download",
-      "scraper-required"
-    ]
-  },
-  {
-    "_path": "entries/clinical-biotech/anzctr.md",
-    "agent_use_cases": [
-      "Australia and New Zealand clinical trial discovery by condition or intervention",
-      "cross-registry deduplication with ClinicalTrials.gov via secondary IDs and UTN",
-      "non-US/EU trial coverage for pipeline and epidemiology scans",
-      "WHO Trial Registration Data Set retrieval for AU/NZ studies",
-      "prospective-registration and registration-completeness audits"
-    ],
-    "auth_required": "none",
-    "build_priority": "low",
-    "bulk_available": true,
-    "cost": "free",
-    "description": "WHO- and ICMJE-recognised primary clinical trials registry for Australia, New Zealand, and international studies, run by the NHMRC Clinical Trials Centre at the University of Sydney.",
-    "docs_url": "https://www.anzctr.org.au/Faq.aspx",
-    "domain": "clinical-biotech",
-    "entry_kind": "registry",
-    "frequency": "continuous",
-    "geography": [
-      "AUS",
-      "NZL",
-      "global"
-    ],
-    "homepage_url": "https://www.anzctr.org.au/",
-    "id": "anzctr",
-    "join_key_fields": [
-      {
-        "fields": [
-          "utrn",
-          "secondary_ids"
-        ],
-        "join_key": "WHO_UTN"
-      },
-      {
-        "fields": [
-          "secondary_ids"
-        ],
-        "join_key": "NCT_ID"
-      }
-    ],
-    "join_keys": [
-      "NCT_ID",
-      "WHO_UTN"
-    ],
-    "lag": "sponsor-driven; records appear after registration and editorial curation, and propagate to WHO ICTRP on its weekly re-import cycle",
-    "last_verified": "2026-07-03",
-    "license": "ANZCTR-Terms-of-Use",
-    "mcp_notes": "No official or community MCP, and no public no-auth API: the site is behind a WAF that returns 403 to direct HTTP clients, so programmatic access needs browser automation or the WHO ICTRP aggregation layer. Practical connector path is to reach ANZCTR trials via WHO ICTRP (which re-imports ANZCTR weekly) rather than scraping the ASP.NET UI directly. If scraping ANZCTR itself, drive the search page and the per-trial XML/Excel export.\n",
-    "mcp_status": "requires-scraping",
-    "name": "ANZCTR (Australian New Zealand Clinical Trials Registry)",
-    "notes": "access_test omitted: no public no-auth structured endpoint. Direct curl to https://www.anzctr.org.au/ and to TrialReview.aspx returns HTTP 403 (WAF); the only public paths are the JS search UI (Excel export of search results) and the per-trial WHO-format XML download button. Reach ANZCTR data programmatically via WHO ICTRP. Verify freshness from the WHO ICTRP weekly refresh date or the trial record's last-updated field.",
-    "primary_keys": [
-      "ACTRN_ID"
-    ],
-    "rate_limit": "no published quota; public site behind a bot-filtering WAF that rejects non-browser HTTP clients",
-    "revisions_possible": true,
-    "structure": "registry-snapshot",
-    "type": [
-      "web-ui",
-      "bulk-download",
-      "scraper-required"
-    ]
-  },
-  {
-    "_path": "entries/clinical-biotech/rebec.md",
-    "access_test": {
-      "command": "curl -sf -A 'Mozilla/5.0 (compatible; datasources-verify/1.0)' 'https://ensaiosclinicos.gov.br/rg/RBR-6qvdftm'",
-      "expected_fields": [
-        "RBR-6qvdftm",
-        "UTN code"
-      ],
-      "expected_status": 200
-    },
-    "agent_use_cases": [
-      "Brazilian clinical trial discovery by condition or intervention",
-      "cross-registry deduplication via WHO UTN",
-      "Latin American / Lusophone trial-landscape monitoring",
-      "trial registration and status lookup for Brazil-conducted studies"
-    ],
-    "auth_required": "none",
-    "build_priority": "low",
-    "bulk_available": false,
-    "cost": "free",
-    "description": "Brazil's national WHO- and ICMJE-recognised primary clinical trials registry for experimental and non-experimental studies conducted on humans in Brazilian territory, run by Fiocruz for the Ministry of Health.",
-    "domain": "clinical-biotech",
-    "entry_kind": "registry",
-    "frequency": "continuous",
-    "geography": [
-      "BRA"
-    ],
-    "homepage_url": "https://ensaiosclinicos.gov.br/",
-    "id": "rebec",
-    "join_key_fields": [
-      {
-        "fields": [
-          "utrn"
-        ],
-        "join_key": "WHO_UTN"
-      }
-    ],
-    "join_keys": [
-      "WHO_UTN"
-    ],
-    "lag": "sponsor-driven; records appear once submitted and editorially validated",
-    "last_verified": "2026-07-03",
-    "license": "unknown",
-    "mcp_maturity": "none",
-    "mcp_notes": "No official or community MCP. The new gov.br platform is a CodeIgniter web app; the historical ICTRP XML dump path no longer resolves, so a dedicated connector would need HTML scraping of single-trial pages or, more reliably, reading ReBEC records via the WHO ICTRP redistribution. A multi-registry clinical-trials MCP (ClinicalTrials.gov + ISRCTN + EU CTIS + WHO ICTRP + ReBEC) is the higher-leverage build; ReBEC alone is low priority.\n",
-    "mcp_status": "requires-scraping",
-    "name": "ReBEC (Brazilian Registry of Clinical Trials)",
-    "notes": "Single-trial pages resolve at https://ensaiosclinicos.gov.br/rg/RBR-{id} and return HTML (not JSON/XML). Raw curl without a browser-like User-Agent is 403-blocked at the nginx layer; the access_test sets a UA. Public overview dashboard at /api2/bi is HTML, not a data API.",
-    "primary_keys": [
-      "RBR_ID"
-    ],
-    "revisions_possible": true,
-    "structure": "registry-snapshot",
-    "type": [
-      "web-ui",
-      "scraper-required"
-    ]
-  },
-  {
-    "_path": "entries/clinical-biotech/project-data-sphere.md",
-    "agent_use_cases": [
-      "external control arm construction",
-      "historical comparator retrieval",
-      "patient-level survival analysis",
-      "trial result reanalysis",
-      "oncology outcomes benchmarking"
-    ],
-    "auth_required": "account-required",
-    "build_priority": "low",
-    "bulk_available": true,
-    "cost": "free-with-registration",
-    "description": "Free digital library of de-identified, patient-level data from academic and industry Phase II-III oncology clinical trials.",
-    "docs_url": "https://data.projectdatasphere.org/projectdatasphere/html/resources/PDF/HOW_TO_ACCESS_AND_DOWNLOAD_DATA",
-    "domain": "clinical-biotech",
-    "entry_kind": "corpus",
-    "frequency": "irregular",
-    "geography": [
-      "global"
-    ],
-    "homepage_url": "https://data.projectdatasphere.org/",
-    "id": "project-data-sphere",
-    "join_key_fields": [
-      {
-        "fields": [
-          "trial-summary.nct-number"
-        ],
-        "join_key": "NCT_ID"
-      }
-    ],
-    "join_keys": [
-      "NCT_ID"
-    ],
-    "lag": "historical; datasets contributed after trial completion",
-    "last_verified": "2026-07-03",
-    "license": "PDS-Data-Sharing-Agreement",
-    "mcp_status": "mcp-needed-low-value",
-    "name": "Project Data Sphere",
-    "notes": "Data access gated behind an application and a signed Data Sharing Agreement; no public no-auth data endpoint, so access_test omitted.",
-    "primary_keys": [
-      "PDS_UNIQUE_DATASET_ID",
-      "PDS_TRIAL_ID"
-    ],
-    "type": [
-      "bulk-download",
-      "web-ui",
-      "database"
-    ]
-  },
-  {
-    "_path": "entries/clinical-biotech/ct-ade.md",
-    "access_test": {
-      "command": "curl -sf 'https://huggingface.co/api/datasets/anthonyyazdaniml/CT-ADE-PT'",
+      "command": "curl -sf 'https://api.ror.org/v2/organizations/https://ror.org/013cjyk83'",
       "expected_fields": [
         "id",
-        "tags",
-        "description"
+        "names",
+        "external_ids",
+        "locations",
+        "types"
       ],
       "expected_status": 200
     },
     "agent_use_cases": [
-      "adverse-event prediction benchmarking",
-      "drug-safety model training",
-      "trial-arm to MedDRA ADE lookup",
-      "drug-to-ADE association mining"
+      "institution name resolution",
+      "affiliation disambiguation",
+      "cross-registry id crosswalk",
+      "funder-to-org linking",
+      "org hierarchy lookup"
     ],
     "auth_required": "none",
-    "build_priority": "low",
+    "build_priority": "medium",
     "bulk_available": true,
     "cost": "free",
-    "description": "Curated benchmark dataset of drug-adverse-event pairs extracted from ClinicalTrials.gov monopharmacy trial results, annotated to MedDRA SOC and PT levels for multilabel ADE prediction.",
-    "docs_url": "https://www.nature.com/articles/s41597-025-04718-1",
-    "domain": "clinical-biotech",
-    "entry_kind": "corpus",
-    "frequency": "static",
+    "description": "Global community-led registry of open persistent identifiers and metadata for research and funding organizations.",
+    "docs_url": "https://ror.readme.io/docs/rest-api",
+    "domain": "academic",
+    "entry_kind": "registry",
+    "frequency": "at least monthly (community curation releases)",
     "geography": [
       "global"
     ],
-    "homepage_url": "https://github.com/ds4dh/CT-ADE",
-    "id": "ct-ade",
+    "homepage_url": "https://ror.org/",
+    "id": "ror",
     "join_key_fields": [
       {
         "fields": [
-          "nctid"
+          "id"
         ],
-        "join_key": "NCT_ID"
+        "join_key": "ROR"
       },
       {
         "fields": [
-          "ade_soc",
-          "ade_pt"
+          "external_ids[type=isni].all",
+          "external_ids[type=isni].preferred"
         ],
-        "join_key": "MEDDRA_TERM"
+        "join_key": "ISNI"
       },
       {
         "fields": [
-          "atc_codes"
+          "external_ids[type=wikidata].all",
+          "external_ids[type=wikidata].preferred"
         ],
-        "join_key": "ATC_CODE"
+        "join_key": "WIKIDATA_QID"
       },
       {
         "fields": [
-          "chembl_id"
+          "external_ids[type=fundref].preferred",
+          "external_ids[type=fundref].all"
         ],
-        "join_key": "CHEMBL_ID"
-      },
-      {
-        "fields": [
-          "drugbank_id"
-        ],
-        "join_key": "DRUGBANK_ID"
+        "join_key": "FUNDER_DOI"
       }
     ],
     "join_keys": [
-      "NCT_ID",
-      "MEDDRA_TERM",
-      "ATC_CODE",
-      "CHEMBL_ID",
-      "DRUGBANK_ID"
+      "ROR",
+      "ISNI",
+      "WIKIDATA_QID",
+      "FUNDER_DOI"
     ],
-    "lag": "one-time research release; MedDRA 25.0, trials up to 2024 snapshot",
-    "last_verified": "2026-07-03",
-    "license": "MIT",
+    "lag": "days-to-weeks between org change request and published release",
+    "last_verified": "2026-07-07",
+    "license": "CC0",
     "mcp_status": "mcp-needed-low-value",
-    "name": "CT-ADE",
-    "pit_reconstructable": false,
-    "revisions_possible": false,
-    "structure": "cross-section",
-    "type": [
-      "dataset-dump",
-      "bulk-download"
-    ]
-  },
-  {
-    "_path": "entries/clinical-biotech/yoda-project.md",
-    "agent_use_cases": [
-      "discover which sponsor trials have shareable IPD",
-      "locate a specific trial's dataset by NCT number for a meta-analysis",
-      "scope a secondary-analysis or reproducibility proposal",
-      "identify clinical study reports available on request",
-      "build a request-application shortlist across therapeutic areas"
-    ],
-    "auth_required": "dars-or-equivalent",
-    "build_priority": "low",
-    "bulk_available": false,
-    "cost": "free-with-registration",
-    "description": "Yale-based data-sharing intermediary that brokers controlled access to individual participant data (IPD) and clinical study reports from 500+ industry-sponsored clinical trials via a formal data-request and DUA process.",
-    "domain": "clinical-biotech",
-    "entry_kind": "registry",
-    "frequency": "irregular; new trials and data partners added over time (J&J, Medtronic, Kenvue, QMUL, SI-BONE)",
-    "geography": [
-      "global"
-    ],
-    "homepage_url": "https://yoda.yale.edu/",
-    "id": "yoda-project",
-    "join_key_fields": [
-      {
-        "fields": [
-          "trial catalogue NCT number (per-trial listing on yoda.yale.edu)"
-        ],
-        "join_key": "NCT_ID"
-      }
-    ],
-    "join_keys": [
-      "NCT_ID"
-    ],
-    "lag": "historical; de-identified trial datasets are released years after study completion, after sponsor onboarding and de-identification",
-    "last_verified": "2026-07-03",
-    "license": "YODA-Data-Use-Agreement",
-    "mcp_status": "requires-scraping",
-    "name": "YODA Project (Yale Open Data Access)",
-    "notes": "Access is gated: submit an online research proposal, complete a conflict-of-interest disclosure, accept the Data Use Agreement (DUA training video), and pass YODA steering-committee / due-diligence review. Approved data is analysed inside a secure environment; there is no bulk export and no programmatic API. Registration and access are free of charge.",
+    "name": "ROR (Research Organization Registry)",
     "primary_keys": [
-      "YODA_TRIAL_ID",
-      "SPONSOR_PROTOCOL_NUMBER"
+      "ROR_ID"
     ],
-    "rate_limit": "not applicable; no public API. Trial catalogue is browsable on the web; participant-level data is delivered only after request approval into a secure analysis environment",
-    "type": [
-      "web-ui"
-    ]
-  },
-  {
-    "_path": "entries/clinical-biotech/vivli.md",
-    "agent_use_cases": [
-      "discover which completed trials have shareable IPD",
-      "resolve a trial to its IPD data package via NCT or DOI",
-      "locate sponsor datasets for a drug or condition",
-      "scope an IPD meta-analysis feasibility check",
-      "cross-reference registry trials against available raw participant data"
-    ],
-    "auth_required": "dars-or-equivalent",
-    "build_priority": "medium",
-    "bulk_available": false,
-    "cost": "free-with-registration",
-    "description": "Independent non-profit repository and secure research environment for de-identified individual participant-level data (IPD) from completed clinical trials, with a public metadata search index and controlled access to the underlying datasets.",
-    "docs_url": "https://vivli.org/resources/",
-    "domain": "clinical-biotech",
-    "entry_kind": "registry",
-    "frequency": "continuous; new studies listed as sponsors and contributors add them",
-    "geography": [
-      "global"
-    ],
-    "homepage_url": "https://vivli.org/",
-    "id": "vivli",
-    "join_key_fields": [
-      {
-        "fields": [
-          "nctId",
-          "secondaryIds (ClinicalTrials.gov registration)"
-        ],
-        "join_key": "NCT_ID"
-      },
-      {
-        "fields": [
-          "doi (DataCite study-package DOI)"
-        ],
-        "join_key": "DOI"
-      }
-    ],
-    "join_keys": [
-      "NCT_ID",
-      "DOI"
-    ],
-    "lag": "studies are completed trials, typically shared years after primary completion once results are published or a sharing commitment matures",
-    "last_verified": "2026-07-03",
-    "license": "Vivli-Data-Use-Agreement",
-    "mcp_status": "mcp-needed-low-value",
-    "name": "Vivli",
-    "notes": "Metadata (study listings, DOIs, registration IDs) is free to search without an account. Obtaining participant-level data requires a Vivli account, a submitted research proposal, Independent Review Panel approval where the contributor requires it, and a signed Data Use Agreement; data are then analysed only inside Vivli's Azure-based secure research environment. Some data requests may incur platform or hosting fees depending on the contributor and funding; access itself is not a paid subscription. No confirmed public JSON API, so access_test is omitted.",
-    "primary_keys": [
-      "VIVLI_STUDY_ID",
-      "SPONSOR_STUDY_ID"
-    ],
-    "rate_limit": "not applicable; public surface is the metadata search UI, data delivered inside a gated secure research environment after approval",
-    "type": [
-      "web-ui",
-      "database"
-    ]
-  },
-  {
-    "_path": "entries/clinical-biotech/jrct.md",
-    "access_test": {
-      "command": "curl -sf -A 'datasources-verify' -o /dev/null -w '%{http_code}' 'https://jrct.mhlw.go.jp/en-top'",
-      "expected_status": 200
-    },
-    "agent_use_cases": [
-      "Japanese clinical trial discovery by disease or intervention",
-      "regenerative-medicine and specified-clinical-trial lookup under the Clinical Trials Act",
-      "cross-registry deduplication with ClinicalTrials.gov and EU CTIS via WHO UTN",
-      "sponsor and institution pipeline monitoring in Japan",
-      "legacy academic trial retrieval via UMIN-CTR"
-    ],
-    "auth_required": "none",
-    "build_priority": "medium",
-    "bulk_available": false,
-    "cost": "free",
-    "description": "Japan's national clinical-trial registry run by the Ministry of Health, Labour and Welfare, disclosing specified clinical trials and regenerative-medicine studies under the Clinical Trials Act; a WHO ICTRP primary registry that, together with the legacy UMIN-CTR, forms the Japan Primary Registries Network (JPRN).",
-    "docs_url": "https://jrct.mhlw.go.jp/en-top",
-    "domain": "clinical-biotech",
-    "entry_kind": "registry",
-    "frequency": "continuous",
-    "geography": [
-      "JPN"
-    ],
-    "homepage_url": "https://jrct.mhlw.go.jp/",
-    "id": "jrct",
-    "join_key_fields": [
-      {
-        "fields": [
-          "who-universal-trial-number"
-        ],
-        "join_key": "WHO_UTN"
-      }
-    ],
-    "join_keys": [
-      "WHO_UTN"
-    ],
-    "lag": "sponsor-driven; records appear after MHLW submission and are updated as trials progress",
-    "last_verified": "2026-07-03",
-    "license": "jRCT-Terms-of-Use",
-    "mcp_maturity": "none",
-    "mcp_notes": "No official or community MCP. jRCT exposes only a JS-driven web UI with per-record HTML pages and no documented REST/bulk API; its terms forbid programmatic download beyond personal use, so a direct connector must scrape politely (or route through WHO ICTRP / the NIPH rctportal cross-search instead). Suggested surface: search_trials, get_trial (parse the jRCT record page and secondary-ID block), cross_registry_lookup (jRCT to WHO UTN, UMIN, NCT). An unofficial UMIN-CTR client (github.com/mokjpn/umin-ctr) is the closest existing tooling for the legacy sister registry.\n",
-    "mcp_status": "requires-scraping",
-    "name": "Japan Registry of Clinical Trials (jRCT)",
-    "notes": "Homepage migrated from https://jrct.niph.go.jp/ (now unreachable) to https://jrct.mhlw.go.jp/. NIPH runs the cross-search portal https://rctportal.niph.go.jp/en over jRCT + UMIN-CTR + JMACCT + JAPIC. Legacy sister registry UMIN-CTR: https://center6.umin.ac.jp/cgi-open-bin/ctr_e/index.cgi (verified 200 on 2026-07-03).",
-    "primary_keys": [
-      "JRCT_ID",
-      "UMIN_ID"
-    ],
-    "rate_limit": "no public API; terms prohibit automated/bulk download beyond personal use",
-    "revisions_possible": true,
-    "structure": "registry-snapshot",
-    "type": [
-      "web-ui",
-      "scraper-required"
-    ]
-  },
-  {
-    "_path": "entries/clinical-biotech/ctri.md",
-    "agent_use_cases": [
-      "India clinical trial discovery by condition, intervention, or sponsor",
-      "cross-registry deduplication of multinational trials via WHO UTN",
-      "non-US/EU trial coverage for global pipeline scans",
-      "regulatory and DCGI-approval status lookup for Indian studies",
-      "prospective-registration and transparency audits"
-    ],
-    "auth_required": "none",
-    "build_priority": "medium",
-    "bulk_available": false,
-    "cost": "free",
-    "description": "WHO- and ICMJE-recognised primary clinical trials registry for studies conducted in India, run by ICMR, with mandatory prospective registration since 2009.",
-    "docs_url": "https://ctri.nic.in/Clinicaltrials/faq.php",
-    "domain": "clinical-biotech",
-    "entry_kind": "registry",
-    "frequency": "continuous",
-    "geography": [
-      "IND"
-    ],
-    "homepage_url": "https://ctri.nic.in/",
-    "id": "ctri",
-    "join_key_fields": [
-      {
-        "fields": [
-          "who-universal-trial-number-utn"
-        ],
-        "join_key": "WHO_UTN"
-      }
-    ],
-    "join_keys": [
-      "WHO_UTN"
-    ],
-    "lag": "records appear after editorial review, typically days after submission; monthly export to WHO ICTRP",
-    "last_verified": "2026-07-03",
-    "license": "unknown",
-    "mcp_maturity": "none",
-    "mcp_notes": "No official or community MCP and no public API. Records are only reachable through the JS-driven CTRI web UI (keyword/advanced search + per-trial detail page) or, downstream, via the monthly WHO ICTRP export. A connector would need browser automation over the CTRI search forms, or should route through the WHO ICTRP layer where CTRI records already arrive normalised to the WHO TRDS schema.\n",
-    "mcp_status": "requires-scraping",
-    "name": "Clinical Trials Registry - India (CTRI)",
-    "notes": "access_test omitted: no public no-auth structured-data endpoint. CTRI is web-UI only (advanced search at /Clinicaltrials/advancesearchmain.php). Single CTRI records also resolve via WHO ICTRP at https://trialsearch.who.int/Trial2.aspx?TrialID=CTRI/YYYY/MM/NNNNNN (verified 200, 2026-07-03). Verify freshness from the record count / last-update date shown on the CTRI home page and the monthly ICTRP transfer.",
-    "pit_reconstructable": false,
-    "primary_keys": [
-      "CTRI_ID"
-    ],
-    "rate_limit": "no published quota; polite low-volume public web use expected",
-    "revisions_possible": true,
-    "structure": "registry-snapshot",
-    "type": [
-      "web-ui",
-      "scraper-required"
-    ]
-  },
-  {
-    "_path": "entries/clinical-biotech/pactr.md",
-    "access_test": {
-      "command": "curl -sfL 'https://pactr.samrc.ac.za/TrialDisplay.aspx?TrialID=25488'",
-      "expected_status": 200
-    },
-    "agent_use_cases": [
-      "discover clinical trials conducted in Africa by condition, intervention, or country",
-      "cross-registry deduplication against ClinicalTrials.gov, ISRCTN, and EU CTIS via WHO UTN",
-      "monitor African trial activity for sponsors, funders, and NGOs",
-      "locate the African arm of a globally registered multi-country trial",
-      "resolve a PACTR number cited in a publication to its trial record"
-    ],
-    "auth_required": "none",
-    "build_priority": "low",
-    "bulk_available": false,
-    "cost": "free",
-    "description": "WHO- and ICMJE-recognised primary clinical trials registry for trials conducted in Africa, the only African member of the WHO Network of Primary Registries, operated by the South African Medical Research Council (SAMRC).",
-    "domain": "clinical-biotech",
-    "entry_kind": "registry",
-    "frequency": "continuous",
-    "geography": [
-      "Africa"
-    ],
-    "homepage_url": "https://pactr.samrc.ac.za/",
-    "id": "pactr",
-    "join_key_fields": [
-      {
-        "fields": [
-          "universal-trial-number"
-        ],
-        "join_key": "WHO_UTN"
-      }
-    ],
-    "join_keys": [
-      "WHO_UTN"
-    ],
-    "lag": "sponsor-driven; records appear once registered and curated; propagates to WHO ICTRP on a monthly transfer cycle",
-    "last_verified": "2026-07-03",
-    "license": "unknown",
-    "mcp_notes": "No public API and no MCP. Records are server-rendered ASP.NET pages (TrialDisplay.aspx?TrialID=). The reliable machine-readable path for PACTR data is the WHO ICTRP export, which pulls PACTR monthly. A PACTR-specific connector would require HTML scraping of search results and trial-display pages, or should be subsumed by a WHO-ICTRP MCP that already normalises this registry.\n",
-    "mcp_status": "requires-scraping",
-    "name": "Pan African Clinical Trials Registry (PACTR)",
-    "notes": "No documented public API or bulk download. Trial records resolve at https://pactr.samrc.ac.za/TrialDisplay.aspx?TrialID={n} where {n} is the source-internal numeric display id (distinct from the PACTR registration number). Data reaches WHO ICTRP via a monthly transfer, so ICTRP is the practical programmatic access path.",
-    "primary_keys": [
-      "PACTR_ID",
-      "PACTR_TRIAL_DISPLAY_ID"
-    ],
-    "revisions_possible": true,
-    "structure": "registry-snapshot",
-    "type": [
-      "web-ui",
-      "scraper-required"
-    ]
-  },
-  {
-    "_path": "entries/clinical-biotech/ctg-db.md",
-    "access_test": {
-      "command": "curl -sf 'https://api.github.com/repos/jlpainter/ctgdb'",
-      "expected_fields": [
-        "full_name",
-        "license",
-        "pushed_at"
-      ],
-      "expected_status": 200
-    },
-    "agent_use_cases": [
-      "cross-trial adverse-event retrieval",
-      "arm-level safety-signal comparison",
-      "MedDRA-normalised AE aggregation",
-      "placebo-vs-comparator safety diffs"
-    ],
-    "auth_required": "none",
-    "build_priority": "low",
-    "bulk_available": false,
-    "cost": "free",
-    "description": "Open-source pipeline that transforms the full ClinicalTrials.gov XML archive into a relational database with arm-level adverse-event counts normalised to MedDRA terminology.",
-    "docs_url": "https://arxiv.org/abs/2603.15936",
-    "domain": "clinical-biotech",
-    "entry_kind": "registry",
-    "frequency": "one-off snapshot (input archive downloaded 2026-02-10); no automatic refresh",
-    "geography": [
-      "global"
-    ],
-    "homepage_url": "https://github.com/jlpainter/ctgdb",
-    "id": "ctg-db",
-    "join_key_fields": [
-      {
-        "fields": [
-          "clinical_trial.nct_id",
-          "ct_arms.nct_id"
-        ],
-        "join_key": "NCT_ID"
-      },
-      {
-        "fields": [
-          "adverse_events.meddra_pt",
-          "adverse_events.meddra_llt"
-        ],
-        "join_key": "MEDDRA_TERM"
-      }
-    ],
-    "join_keys": [
-      "NCT_ID",
-      "MEDDRA_TERM"
-    ],
-    "lag": "snapshot-based; re-ingest CT.gov XML to update",
-    "last_verified": "2026-07-03",
-    "license": "Apache-2.0",
-    "mcp_status": "mcp-needed-low-value",
-    "name": "CTG-DB (ClinicalTrials.gov MedDRA-Normalised Safety Database)",
-    "pit_reconstructable": false,
-    "primary_keys": [
-      "CTGDB_ARM_ID"
-    ],
-    "revisions_possible": false,
-    "structure": "registry-snapshot",
-    "type": [
-      "database"
-    ]
-  },
-  {
-    "_path": "entries/clinical-biotech/withdrawn-database.md",
-    "agent_use_cases": [
-      "withdrawal-reason lookup",
-      "drug-toxicity mechanism analysis",
-      "target-based safety screening",
-      "ATC-class withdrawal-pattern analysis",
-      "chemical-similarity safety flagging"
-    ],
-    "auth_required": "none",
-    "build_priority": "low",
-    "bulk_available": true,
-    "cost": "free",
-    "description": "Curated database of withdrawn and discontinued drugs with withdrawal reasons, toxicity classification, targets, and ATC classes.",
-    "docs_url": "https://bioinformatics.charite.de/withdrawn_3/subpages/faq.php",
-    "domain": "clinical-biotech",
-    "entry_kind": "registry",
-    "frequency": "irregular",
-    "geography": [
-      "global"
-    ],
-    "homepage_url": "https://bioinformatics.charite.de/withdrawn_3/index.php",
-    "id": "withdrawn-database",
-    "join_key_fields": [
-      {
-        "fields": [
-          "atc_code"
-        ],
-        "join_key": "ATC_CODE"
-      },
-      {
-        "fields": [
-          "inchikey"
-        ],
-        "join_key": "INCHI_KEY"
-      },
-      {
-        "fields": [
-          "chembl_id",
-          "target.chembl_id"
-        ],
-        "join_key": "CHEMBL_ID"
-      },
-      {
-        "fields": [
-          "drugbank_id"
-        ],
-        "join_key": "DRUGBANK_ID"
-      },
-      {
-        "fields": [
-          "target.uniprot_accession"
-        ],
-        "join_key": "UNIPROT_ACCESSION"
-      },
-      {
-        "fields": [
-          "target.gene_symbol"
-        ],
-        "join_key": "GENE_SYMBOL"
-      }
-    ],
-    "join_keys": [
-      "ATC_CODE",
-      "INCHI_KEY",
-      "CHEMBL_ID",
-      "DRUGBANK_ID",
-      "UNIPROT_ACCESSION",
-      "GENE_SYMBOL"
-    ],
-    "last_verified": "2026-07-03",
-    "license": "unknown",
-    "mcp_status": "mcp-needed-low-value",
-    "name": "WITHDRAWN",
-    "primary_keys": [
-      "WITHDRAWN_ID"
-    ],
-    "type": [
-      "web-ui",
-      "bulk-download"
-    ]
-  },
-  {
-    "_path": "entries/clinical-biotech/ctod.md",
-    "access_test": {
-      "command": "curl -sf 'https://huggingface.co/api/datasets/chufangao/CTO'",
-      "expected_fields": [
-        "id",
-        "sha",
-        "tags"
-      ],
-      "expected_status": 200
-    },
-    "agent_use_cases": [
-      "trial success/failure labeling",
-      "outcome-prediction model training",
-      "drug-development benchmark evaluation",
-      "phase-progression analysis"
-    ],
-    "auth_required": "none",
-    "build_priority": "low",
-    "bulk_available": true,
-    "cost": "free",
-    "description": "Large-scale benchmark of clinical trial outcomes with machine-generated and human-annotated success/failure labels, keyed on NCT ID.",
-    "docs_url": "https://github.com/chufangao/ctod",
-    "domain": "clinical-biotech",
-    "entry_kind": "registry",
-    "frequency": "periodic (irregular releases; last refreshed 2025-10)",
-    "geography": [
-      "global"
-    ],
-    "homepage_url": "https://chufangao.github.io/CTOD/",
-    "id": "ctod",
-    "join_key_fields": [
-      {
-        "fields": [
-          "nct_id"
-        ],
-        "join_key": "NCT_ID"
-      }
-    ],
-    "join_keys": [
-      "NCT_ID"
-    ],
-    "last_verified": "2026-07-03",
-    "license": "MIT",
-    "mcp_status": "mcp-needed-low-value",
-    "name": "Clinical Trial Outcomes (CTO)",
-    "notes": "CTO/CTOD benchmark (Gao et al., arXiv:2406.10292). Distinct from the older futianfan/clinical-trial-outcome-prediction TOP benchmark, which is non-commercial; CTO is MIT-licensed.",
-    "pit_reconstructable": false,
-    "primary_keys": [
-      "nct_id"
-    ],
-    "revisions_possible": true,
-    "structure": "registry-snapshot",
-    "type": [
-      "dataset-dump",
-      "bulk-download"
-    ]
-  },
-  {
-    "_path": "entries/clinical-biotech/chictr.md",
-    "agent_use_cases": [
-      "China-only clinical trial discovery by condition or intervention",
-      "cross-registry deduplication via WHO UTN and secondary IDs",
-      "coverage of trials absent from ClinicalTrials.gov and EU CTIS",
-      "traditional-Chinese-medicine and China-sponsor pipeline scans",
-      "registration-completeness and prospective-registration audits for China"
-    ],
-    "auth_required": "none",
-    "build_priority": "medium",
-    "bulk_available": false,
-    "cost": "free",
-    "description": "WHO ICTRP primary clinical trial registry for mainland China, recording interventional, prevention, diagnostic, prognostic, and epidemiological studies, run by the Chinese Clinical Trial Registry centre at West China Hospital, Sichuan University.",
-    "docs_url": "https://www.chictr.org.cn/indexEN.html",
-    "domain": "clinical-biotech",
-    "entry_kind": "registry",
-    "frequency": "continuous",
-    "geography": [
-      "CHN"
-    ],
-    "homepage_url": "https://www.chictr.org.cn/",
-    "id": "chictr",
-    "join_key_fields": [
-      {
-        "fields": [
-          "who-universal-trial-number"
-        ],
-        "join_key": "WHO_UTN"
-      }
-    ],
-    "join_keys": [
-      "WHO_UTN"
-    ],
-    "lag": "registration number issued about two weeks after submission, following completion of the registry audit",
-    "last_verified": "2026-07-03",
-    "license": "unknown",
-    "mcp_command": [
-      "npx -y chictr-mcp-server@latest"
-    ],
-    "mcp_maturity": "experimental",
-    "mcp_notes": "One early-stage community MCP (PancrePal-xiaoyibao/chictr-mcp-server, TypeScript, ~5 stars, built for cancer patients and families). It drives the public site with Playwright browser automation plus Cheerio parsing to defeat anti-bot protection, since ChiCTR exposes no official API. Exposes search_trials (keyword / registration number / year), get_trial_detail, cache and runtime tooling, and verification-session handling. Scrape-based, so fragile to site changes.\n",
-    "mcp_package": [
-      "chictr-mcp-server (npm)",
-      "github.com/PancrePal-xiaoyibao/chictr-mcp-server"
-    ],
-    "mcp_status": "mcp-exists",
-    "name": "Chinese Clinical Trial Registry (ChiCTR)",
-    "notes": "access_test omitted: no public no-auth structured data endpoint. The site is a JS single-page app with anti-bot verification; programmatic access requires browser automation (see the community MCP) or the WHO ICTRP aggregate export. Verify freshness from the record's registration/last-refreshed date, or reach ChiCTR records upstream via WHO ICTRP.",
-    "pit_reconstructable": false,
-    "primary_keys": [
-      "CHICTR_ID"
-    ],
-    "rate_limit": "no published quota; site enforces anti-bot / verification challenges that gate automated access",
-    "revisions_possible": true,
-    "structure": "registry-snapshot",
-    "type": [
-      "web-ui",
-      "scraper-required"
-    ]
-  },
-  {
-    "_path": "entries/clinical-biotech/cris-korea.md",
-    "access_test": {
-      "command": "curl -sf 'http://apis.data.go.kr/1352159/crisinfodataview/list?serviceKey=${CRIS_DATA_GO_KR_KEY}&resultType=JSON&numOfRows=1&pageNo=1'",
-      "expected_fields": [
-        "resultCode",
-        "totalCount",
-        "trial_id",
-        "scientific_title_en"
-      ],
-      "expected_status": 200
-    },
-    "agent_use_cases": [
-      "Korean clinical trial discovery by condition or intervention",
-      "cross-registry deduplication against ClinicalTrials.gov and WHO ICTRP",
-      "sponsor and institution monitoring for Korea-based research",
-      "trial-registration statistics for the Korean research landscape",
-      "retrieval of Korean-language protocol and outcome metadata"
-    ],
-    "auth_required": "api-key-free",
-    "build_priority": "low",
-    "bulk_available": false,
-    "cost": "free-non-commercial",
-    "description": "WHO- and ICMJE-recognised primary clinical trial registry for the Republic of Korea, operated by the Korea Disease Control and Prevention Agency, exposing Korean and English trial records via a web UI and a public-data-portal REST API.",
-    "docs_url": "https://www.data.go.kr/data/3033869/openapi.do",
-    "domain": "clinical-biotech",
-    "entry_kind": "registry",
-    "frequency": "continuous",
-    "geography": [
-      "KOR"
-    ],
-    "homepage_url": "https://cris.nih.go.kr/",
-    "id": "cris-korea",
-    "join_key_fields": [
-      {
-        "fields": [
-          "secondary_id"
-        ],
-        "join_key": "WHO_UTN"
-      }
-    ],
-    "join_keys": [
-      "WHO_UTN"
-    ],
-    "lag": "sponsor-driven; records appear after editorial review, then propagate to WHO ICTRP every 4 weeks",
-    "last_verified": "2026-07-03",
-    "license": "KOGL-Type-2",
-    "mcp_maturity": "none",
-    "mcp_notes": "No official or community MCP. Standalone value is narrow (Korea-scoped, Korean-language fields, non-commercial licence), and global agents can already reach CRIS records through the WHO ICTRP aggregate. If built, a Korea-specific connector should wrap the data.go.kr crisinfodataview endpoints (list / detail / statistics), inject the service key, normalise the resultType XML/JSON toggle, and pair Korean and English title fields.\n",
-    "mcp_status": "mcp-needed-low-value",
-    "name": "Clinical Research Information Service (CRIS)",
-    "notes": "access_test not executed; requires ${CRIS_DATA_GO_KR_KEY} (free data.go.kr service key). Homepage https://cris.nih.go.kr/ returns 200; single trials resolve at https://cris.nih.go.kr/cris/search/detailSearchEn.do?seq={n}.",
-    "primary_keys": [
-      "KCT_ID"
-    ],
-    "rate_limit": "data.go.kr quota: ~10,000 calls/day for development keys; higher for approved operational accounts; numOfRows max 50 per page",
-    "revisions_possible": true,
-    "structure": "registry-snapshot",
+    "rate_limit": "2000 req / 5 min per IP; from Q3 2026 unregistered clients drop to 50 req / 5 min (client ID keeps the standard limit)",
     "type": [
       "rest-api",
-      "web-ui"
+      "bulk-download"
     ]
   },
   {
-    "_path": "entries/government-open-data/usace-waterborne-commerce.md",
+    "_path": "entries/academic/openaire.md",
     "access_test": {
-      "command": "curl -sf -A 'Mozilla/5.0' -o /dev/null -w '%{http_code}' 'https://ndc.ops.usace.army.mil/wcsc/webpub/'",
+      "command": "curl -sf -H 'accept: application/json' 'https://api.openaire.eu/graph/v1/researchProducts?search=climate&pageSize=1'",
+      "expected_fields": [
+        "header",
+        "results"
+      ],
       "expected_status": 200
     },
     "agent_use_cases": [
-      "port throughput lookup",
-      "commodity tonnage trends",
-      "waterway freight-volume analysis",
-      "trade-flow macro signal",
-      "infrastructure / dock characteristics"
+      "literature and dataset search",
+      "funder and grant attribution",
+      "project-to-output linkage",
+      "organization research profiling",
+      "open-access status lookup"
     ],
     "auth_required": "none",
-    "build_priority": "low",
+    "build_priority": "medium",
     "bulk_available": true,
     "cost": "free",
-    "description": "Official US Army Corps of Engineers statistics on domestic and foreign waterborne cargo tonnage and vessel trips, by port, commodity, and waterway.",
-    "docs_url": "https://ndc.ops.usace.army.mil/wcsc/webpub/",
-    "domain": "government-open-data",
-    "entry_kind": "mixed",
-    "frequency": "annual final report; monthly preliminary indicators",
+    "description": "Open scholarly knowledge graph linking research products (publications, data, software, other) to authors, organizations, funders, projects, and data sources across global research.",
+    "docs_url": "https://graph.openaire.eu/docs/",
+    "domain": "academic",
+    "entry_kind": "knowledge-graph",
+    "frequency": "versioned graph releases (~bi-monthly); API continuously updated",
     "geography": [
-      "USA"
+      "global"
     ],
-    "homepage_url": "https://www.iwr.usace.army.mil/about/technical-centers/wcsc-waterborne-commerce-statistics-center/",
-    "id": "usace-waterborne-commerce",
+    "homepage_url": "https://graph.openaire.eu/",
+    "id": "openaire",
     "join_key_fields": [
       {
         "fields": [
-          "year",
-          "month"
+          "pids[scheme=doi].value",
+          "instances.pids[scheme=doi].value"
         ],
-        "join_key": "DATE"
+        "join_key": "DOI"
       },
       {
         "fields": [
-          "state"
+          "pids[scheme=pmid].value"
         ],
-        "join_key": "US_STATE_CODE"
+        "join_key": "PMID"
+      },
+      {
+        "fields": [
+          "pids[scheme=pmc].value"
+        ],
+        "join_key": "PMCID"
+      },
+      {
+        "fields": [
+          "pids[scheme=arxiv].value"
+        ],
+        "join_key": "ARXIV_ID"
+      },
+      {
+        "fields": [
+          "authors.pid[scheme=orcid].value"
+        ],
+        "join_key": "ORCID"
+      },
+      {
+        "fields": [
+          "organizations.pids[scheme=ror].value"
+        ],
+        "join_key": "ROR"
+      },
+      {
+        "fields": [
+          "organizations.pids[scheme=isni].value"
+        ],
+        "join_key": "ISNI"
       }
     ],
     "join_keys": [
-      "DATE",
-      "US_STATE_CODE"
+      "DOI",
+      "PMID",
+      "PMCID",
+      "ARXIV_ID",
+      "ORCID",
+      "ROR",
+      "ISNI"
     ],
-    "lag": "monthly indicators are near-current; final annual waterborne-commerce data typically lags ~1-2 years",
-    "last_verified": "2026-07-03",
-    "license": "US-Government-Public-Domain",
-    "mcp_status": "mcp-needed-low-value",
-    "name": "USACE Waterborne Commerce Statistics (WCSC)",
-    "pit_reconstructable": false,
+    "last_verified": "2026-07-07",
+    "license": "CC-BY-4.0",
+    "mcp_status": "mcp-needed-high-value",
+    "name": "OpenAIRE Graph",
     "primary_keys": [
-      "WCSC_PORT_CODE",
-      "WCSC_WATERWAY_CODE",
-      "WCSC_COMMODITY_CODE",
-      "WCSC_DOCK_ID"
+      "OPENAIRE_ID"
     ],
-    "revisions_possible": true,
-    "structure": "panel",
+    "rate_limit": "anonymous requests rate-limited per terms of use; register an OpenAIRE personal token (OAuth) for higher hourly limits",
     "type": [
-      "bulk-download",
-      "web-ui"
+      "rest-api",
+      "bulk-download"
     ]
   },
   {
-    "_path": "entries/government-open-data/bts-airline-ontime.md",
+    "_path": "entries/government-open-data/osha-inspections.md",
     "access_test": {
-      "command": "curl -sfI 'https://transtats.bts.gov/PREZIP/On_Time_Reporting_Carrier_On_Time_Performance_1987_present_2025_10.zip' -o /dev/null -w '%{http_code}\\n'",
+      "command": "curl -sf -o /dev/null -w '%{http_code}' 'https://www.osha.gov/ords/imis/establishment.html'",
       "expected_fields": [],
       "expected_status": 200
     },
     "agent_use_cases": [
-      "flight delay analysis",
-      "airline reliability benchmarking",
-      "airport congestion study",
-      "delay-cause attribution",
-      "route-level punctuality lookup"
+      "workplace-safety diligence on an employer",
+      "citation and penalty lookup by establishment",
+      "industry-level enforcement pattern analysis",
+      "fatality and severe-injury inspection retrieval",
+      "ESG / labour-risk screening"
     ],
-    "auth_required": "none",
+    "auth_required": "api-key-free",
     "build_priority": "low",
     "bulk_available": true,
     "cost": "free",
-    "description": "Flight-level on-time performance records for US domestic scheduled carriers, with scheduled/actual times, delays by cause, cancellations, and diversions.",
-    "docs_url": "https://www.transtats.bts.gov/Fields.asp?gnoyr_VQ=FGJ",
+    "description": "US OSHA workplace safety inspection, citation, and penalty records from the IMIS enforcement database, covering federal and state-plan inspections since 1972.",
+    "docs_url": "https://developer.dol.gov/health-and-safety/dol-osha-enforcement/",
     "domain": "government-open-data",
     "entry_kind": "event-stream",
-    "frequency": "monthly",
+    "frequency": "quarterly",
     "geography": [
       "USA"
     ],
-    "homepage_url": "https://www.transtats.bts.gov/ontime/",
-    "id": "bts-airline-ontime",
+    "homepage_url": "https://www.osha.gov/ords/imis/establishment.html",
+    "id": "osha-inspections",
     "join_key_fields": [
       {
         "fields": [
-          "FlightDate"
-        ],
-        "join_key": "DATE"
-      },
-      {
-        "fields": [
-          "OriginState",
-          "DestState"
+          "site_state",
+          "mail_state"
         ],
         "join_key": "US_STATE_CODE"
       }
     ],
     "join_keys": [
-      "DATE",
       "US_STATE_CODE"
     ],
-    "lag": "~2-3 months after month-end (e.g. Oct data released ~Jan)",
-    "last_verified": "2026-07-03",
+    "lag": "inspection records post weeks-to-months after case activity; citations subject to continuing correction",
+    "last_verified": "2026-07-07",
     "license": "US-Government-Public-Domain",
     "mcp_status": "mcp-needed-low-value",
-    "name": "BTS Airline On-Time Performance",
-    "pit_reconstructable": false,
+    "name": "OSHA Inspections",
+    "notes": "access_test hits the public establishment-search web UI (no auth); the programmatic DOL OSHA Enforcement API requires a free key (${DOL_API_KEY}) and was not executed.",
     "primary_keys": [
-      "DOT_ID_REPORTING_AIRLINE",
-      "IATA_CODE_REPORTING_AIRLINE",
-      "ORIGIN_AIRPORT_ID",
-      "DEST_AIRPORT_ID",
-      "ORIGIN_AIRPORT_SEQ_ID",
-      "DEST_AIRPORT_SEQ_ID",
-      "FLIGHT_NUMBER_REPORTING_AIRLINE",
-      "TAIL_NUMBER"
+      "OSHA_ACTIVITY_NR",
+      "OSHA_REPORTING_ID"
     ],
-    "rate_limit": "none published; be polite with large prezip pulls",
-    "release_lag_days": 75,
-    "revisions_possible": true,
-    "structure": "event-log",
-    "type": [
-      "bulk-download",
-      "web-ui"
-    ]
-  },
-  {
-    "_path": "entries/government-open-data/census-m3.md",
-    "access_test": {
-      "command": "curl -sf 'https://api.census.gov/data/timeseries/eits/m3?get=cell_value,category_code,data_type_code,seasonally_adj,time&category_code=MTM&data_type_code=NO&time=2024&key=${CENSUS_API_KEY}'",
-      "expected_fields": [
-        "cell_value",
-        "category_code",
-        "data_type_code",
-        "seasonally_adj",
-        "time"
-      ],
-      "expected_status": 200
-    },
-    "agent_use_cases": [
-      "manufacturing demand nowcasting",
-      "durable-goods new-orders tracking",
-      "inventory-to-shipments ratio analysis",
-      "industrial macro context for markets",
-      "point-in-time indicator retrieval"
-    ],
-    "auth_required": "api-key-free",
-    "build_priority": "medium",
-    "bulk_available": true,
-    "cost": "free",
-    "description": "US Census Bureau monthly survey of manufacturers' value of shipments, new orders, unfilled orders, and inventories, by NAICS-based industry category, served via the Economic Indicators time series API.",
-    "docs_url": "https://www.census.gov/data/developers/data-sets/economic-indicators.html",
-    "domain": "government-open-data",
-    "entry_kind": "time-series",
-    "frequency": "monthly",
-    "geography": [
-      "USA"
-    ],
-    "homepage_url": "https://www.census.gov/manufacturing/m3",
-    "id": "census-m3",
-    "join_key_fields": [
-      {
-        "fields": [
-          "time"
-        ],
-        "join_key": "DATE"
-      }
-    ],
-    "join_keys": [
-      "DATE"
-    ],
-    "lag": "advance report ~4 weeks after the reference month; full report ~1 week after the advance; both revised in subsequent months",
-    "last_verified": "2026-07-03",
-    "license": "US-Government-Public-Domain",
-    "mcp_maturity": "official",
-    "mcp_notes": "Official Census Bureau Data API MCP wraps the whole Census Data API, including the eits/m3 timeseries endpoint, so no M3-specific connector is needed. Gap: it is a generic Census-API surface, not an economic-indicator helper, so an agent must still know M3 category_code / data_type_code vocabulary to build a query.\n",
-    "mcp_package": [
-      "github.com/uscensusbureau/us-census-bureau-data-api-mcp",
-      "github.com/cyanheads/census-mcp-server"
-    ],
-    "mcp_status": "mcp-exists",
-    "name": "Census M3 (Manufacturers' Shipments, Inventories & Orders)",
-    "notes": "access_test not executed; requires a free ${CENSUS_API_KEY}. Host reachability confirmed: keyless data query 302-redirects to /data/missing_key.html, and the keyless metadata endpoint api.census.gov/data/timeseries/eits/m3/variables.json returns HTTP 200 with the 13-variable schema.",
-    "pit_reconstructable": false,
-    "primary_keys": [
-      "M3_CATEGORY_CODE",
-      "M3_DATA_TYPE_CODE"
-    ],
-    "rate_limit": "free API key required for all data queries; no published per-key cap (fair-use). Metadata endpoints (variables.json, etc.) are keyless.",
-    "release_lag_days": 34,
-    "revisions_possible": true,
-    "structure": "time-series",
+    "rate_limit": "DOL API: free key, per-key throttling (undocumented ceiling); bulk CSV: none",
     "type": [
       "rest-api",
-      "bulk-download"
-    ]
-  },
-  {
-    "_path": "entries/government-open-data/bts-faf.md",
-    "access_test": {
-      "command": "curl -sfI -A 'Mozilla/5.0' 'https://faf.ornl.gov/faf5/data/download_files/FAF5.7.1_State.zip' -o /dev/null -w '%{http_code}'",
-      "expected_status": 200
-    },
-    "agent_use_cases": [
-      "freight flow lookup by commodity and mode",
-      "domestic origin-destination tonnage and value estimates",
-      "modal share analysis (truck, rail, water, air, pipeline)",
-      "long-range freight demand forecasts to 2050",
-      "commodity-level trade gateway analysis"
-    ],
-    "auth_required": "none",
-    "build_priority": "low",
-    "bulk_available": true,
-    "cost": "free",
-    "description": "US origin-destination freight flow estimates by commodity, mode, and FAF zone, in tons, value, and ton-miles across historical, base, and forecast years.",
-    "docs_url": "https://faf.ornl.gov/faf5/",
-    "domain": "government-open-data",
-    "entry_kind": "panel",
-    "frequency": "annual provisional updates; new base year roughly every 5 years, aligned to the Commodity Flow Survey",
-    "geography": [
-      "USA"
-    ],
-    "homepage_url": "https://www.bts.gov/faf",
-    "id": "bts-faf",
-    "join_key_fields": [
-      {
-        "fields": [
-          "tons_2017",
-          "tons_2022",
-          "value_2022",
-          "tmiles_2022"
-        ],
-        "join_key": "DATE"
-      }
-    ],
-    "join_keys": [
-      "DATE"
-    ],
-    "lag": "base year trails the reference year by 2-4 years; annual provisional estimates trail by ~1 year",
-    "last_verified": "2026-07-03",
-    "license": "US-Government-Public-Domain",
-    "mcp_status": "mcp-needed-low-value",
-    "name": "BTS Freight Analysis Framework (FAF)",
-    "pit_reconstructable": false,
-    "primary_keys": [
-      "FAF_ZONE",
-      "SCTG2",
-      "DMS_MODE"
-    ],
-    "rate_limit": "none documented; static file downloads",
-    "revisions_possible": true,
-    "structure": "panel",
-    "type": [
       "bulk-download",
       "web-ui"
     ]
   },
   {
-    "_path": "entries/government-open-data/epa-frs.md",
+    "_path": "entries/government-open-data/epa-echo.md",
     "access_test": {
-      "command": "curl -sf 'https://data.epa.gov/dmapservice/frs.frs_facility_site/registry_id/equals/110009327246/JSON'",
+      "command": "curl -sf 'https://echodata.epa.gov/echo/echo_rest_services.get_facility_info?output=JSON&p_st=DC'",
       "expected_fields": [
-        "registry_id",
-        "primary_name",
-        "state_code",
-        "fips_code",
-        "postal_code"
+        "Results",
+        "Message",
+        "QueryID"
       ],
       "expected_status": 200
     },
     "agent_use_cases": [
-      "environmental facility lookup",
-      "cross-program facility resolution",
-      "facility geolocation",
-      "industry-classified facility search",
-      "regulatory-interest screening"
+      "facility compliance screening",
+      "enforcement-history lookup",
+      "inspection and violation tracking",
+      "permit-discharge (DMR) retrieval",
+      "corporate multi-facility compliance screening"
     ],
     "auth_required": "none",
     "build_priority": "medium",
     "bulk_available": true,
     "cost": "free",
-    "description": "US EPA master registry of facilities and sites subject to environmental regulation, each assigned a single cross-program FRS Registry ID.",
-    "docs_url": "https://www.epa.gov/enviro/envirofacts-data-service-api",
+    "description": "US EPA integrated compliance, enforcement, inspection, and permit-discharge database for ~800,000 facilities regulated under the Clean Air Act, Clean Water Act, RCRA, and SDWA.",
+    "docs_url": "https://echo.epa.gov/tools/web-services",
     "domain": "government-open-data",
-    "entry_kind": "registry",
+    "entry_kind": "mixed",
     "frequency": "weekly",
     "geography": [
       "USA"
     ],
-    "homepage_url": "https://www.epa.gov/frs",
-    "id": "epa-frs",
+    "homepage_url": "https://echo.epa.gov/",
+    "id": "epa-echo",
     "join_key_fields": [
       {
         "fields": [
-          "fips_code",
-          "std_county_fips"
+          "FacFIPSCode",
+          "FacDerivedStctyFIPS"
         ],
         "join_key": "FIPS"
       },
       {
         "fields": [
-          "state_code",
-          "std_state_code"
+          "FacState"
         ],
         "join_key": "US_STATE_CODE"
       },
       {
         "fields": [
-          "postal_code",
-          "std_postal_code"
+          "FacZip"
         ],
         "join_key": "ZCTA"
       }
@@ -1324,15 +295,693 @@
       "US_STATE_CODE",
       "ZCTA"
     ],
-    "lag": "continuous to monthly refresh from contributing EPA program systems; national bulk files typically monthly, file geodatabase weekly",
-    "last_verified": "2026-07-03",
+    "lag": "facility compliance snapshot refreshed weekly from contributing EPA program systems; enforcement cases and DMR effluent data lag their source systems by weeks to a quarter",
+    "last_verified": "2026-07-07",
     "license": "US-Government-Public-Domain",
-    "mcp_status": "api-direct-sufficient",
-    "name": "EPA Facility Registry Service (FRS)",
-    "primary_keys": [
-      "FRS_REGISTRY_ID"
+    "mcp_maturity": "community",
+    "mcp_notes": "Community MCPs wrap the ECHO REST endpoints (combined all-media search plus Clean Water Act and hazardous-waste media services) and normalise output. No official EPA MCP. Suggested surface: search_facilities, get_facility_report, get_enforcement_cases, get_effluent_charts, screen_corporation.\n",
+    "mcp_package": [
+      "github.com/pipeworx-io/epa-echo",
+      "apify.com/andrew_avina/epa-intelligence-mcp"
     ],
-    "rate_limit": "no documented request cap; each request must complete within 15 minutes, paginate large pulls",
+    "mcp_status": "mcp-exists",
+    "name": "EPA ECHO (Enforcement & Compliance History Online)",
+    "primary_keys": [
+      "FRS_REGISTRY_ID",
+      "NPDES_PERMIT_ID",
+      "RCRA_HANDLER_ID",
+      "PWSID",
+      "AIR_FACILITY_ID"
+    ],
+    "rate_limit": "no documented request cap; a hard queryset row limit rejects overly broad searches, refine with state/county/program filters and page via QueryID + responseset",
+    "structure": "registry-snapshot",
+    "type": [
+      "rest-api",
+      "bulk-download",
+      "web-ui"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/eu-ted.md",
+    "access_test": {
+      "command": "curl -sf -X POST 'https://api.ted.europa.eu/v3/notices/search' -H 'Content-Type: application/json' -d '{\"query\":\"classification-cpv=33600000\",\"fields\":[\"publication-number\",\"buyer-country\",\"place-of-performance\"],\"limit\":1,\"page\":1}'",
+      "expected_fields": [
+        "notices",
+        "publication-number",
+        "totalNoticeCount"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "public procurement search",
+      "supplier and buyer diligence",
+      "contract-award monitoring",
+      "CPV-category market sizing",
+      "cross-border tender discovery"
+    ],
+    "auth_required": "none",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "EU public procurement notices from the Supplement to the Official Journal, published daily with a free anonymous search API, bulk XML, and a Linked Open Data / SPARQL backend.",
+    "docs_url": "https://docs.ted.europa.eu/api/latest/index.html",
+    "domain": "government-open-data",
+    "entry_kind": "event-stream",
+    "frequency": "daily",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://ted.europa.eu/",
+    "id": "eu-ted",
+    "join_key_fields": [
+      {
+        "fields": [
+          "buyer-country"
+        ],
+        "join_key": "ISO_3"
+      },
+      {
+        "fields": [
+          "place-of-performance"
+        ],
+        "join_key": "NUTS"
+      }
+    ],
+    "join_keys": [
+      "ISO_3",
+      "NUTS"
+    ],
+    "lag": "notices appear on TED on or shortly after publication in the OJ Supplement",
+    "last_verified": "2026-07-07",
+    "license": "CC-BY-4.0",
+    "mcp_maturity": "community",
+    "mcp_notes": "Community MCPs wrap the anonymous TED v3 search API (no key). Suggested surface: search_notices (expert query), get_notice (by publication-number), get_notice_xml. Must abstract the eForms expert-query syntax and the 24-language notice-title map.\n",
+    "mcp_package": [
+      "github.com/pipeworx-io/mcp-ted-eu",
+      "fbuchner-ted-mcp"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "TED (Tenders Electronic Daily)",
+    "primary_keys": [
+      "TED_PUBLICATION_NUMBER"
+    ],
+    "rate_limit": "anonymous search API; per-IP throttling, no published hard quota",
+    "type": [
+      "rest-api",
+      "bulk-download",
+      "database"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/ukri-gtr.md",
+    "access_test": {
+      "command": "curl -sf -H 'Accept: application/vnd.rcuk.gtr.json-v7' 'https://gtr.ukri.org/gtr/api/projects?q=graphene&p=1&s=10'",
+      "expected_fields": [
+        "page",
+        "size",
+        "totalSize",
+        "project"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "uk research funding lookup",
+      "grant-to-institution mapping",
+      "principal-investigator project history",
+      "funder portfolio analysis",
+      "research-outcome tracing"
+    ],
+    "auth_required": "none",
+    "build_priority": "medium",
+    "bulk_available": false,
+    "cost": "free",
+    "description": "UK Research and Innovation's registry of publicly funded research projects, linked to funding, people, organisations, and outcomes.",
+    "docs_url": "https://gtr.ukri.org/resources/api.html",
+    "domain": "government-open-data",
+    "entry_kind": "knowledge-graph",
+    "frequency": "periodic (data refreshed roughly monthly)",
+    "geography": [
+      "GBR"
+    ],
+    "homepage_url": "https://gtr.ukri.org/",
+    "id": "ukri-gtr",
+    "join_key_fields": [
+      {
+        "fields": [
+          "orcidId"
+        ],
+        "join_key": "ORCID"
+      }
+    ],
+    "join_keys": [
+      "ORCID"
+    ],
+    "last_verified": "2026-07-07",
+    "license": "OGL-3.0",
+    "mcp_status": "api-direct-sufficient",
+    "name": "UKRI Gateway to Research (GtR)",
+    "primary_keys": [
+      "GTR_PROJECT_ID",
+      "GTR_PERSON_ID",
+      "GTR_ORGANISATION_ID",
+      "GTR_FUND_ID",
+      "GTR_OUTCOME_ID",
+      "RCUK_GRANT_REFERENCE"
+    ],
+    "rate_limit": "no formal limit; UKRI asks users to follow web etiquette and not flood the service",
+    "structure": "registry-snapshot",
+    "type": [
+      "rest-api"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/usaspending.md",
+    "access_test": {
+      "command": "curl -sf 'https://api.usaspending.gov/api/v2/references/toptier_agencies/'",
+      "expected_fields": [
+        "results",
+        "toptier_code",
+        "agency_name"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "federal contractor diligence",
+      "grant recipient lookup",
+      "agency spending breakdown",
+      "award search by NAICS or PSC",
+      "geographic spending analysis"
+    ],
+    "auth_required": "none",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "Official U.S. government record of federal spending \u2014 contracts, grants, loans, and other awards, plus agency account balances, from FY2008 to present.",
+    "docs_url": "https://api.usaspending.gov/docs/endpoints",
+    "domain": "government-open-data",
+    "entry_kind": "mixed",
+    "frequency": "daily",
+    "geography": [
+      "USA"
+    ],
+    "homepage_url": "https://www.usaspending.gov/",
+    "id": "usaspending",
+    "join_key_fields": [
+      {
+        "fields": [
+          "recipient.location.county_code",
+          "place_of_performance.county_code"
+        ],
+        "join_key": "FIPS"
+      },
+      {
+        "fields": [
+          "recipient.location.state_code",
+          "place_of_performance.state_code"
+        ],
+        "join_key": "US_STATE_CODE"
+      },
+      {
+        "fields": [
+          "recipient.location.country_code",
+          "place_of_performance.country_code"
+        ],
+        "join_key": "ISO_3"
+      }
+    ],
+    "join_keys": [
+      "FIPS",
+      "US_STATE_CODE",
+      "ISO_3"
+    ],
+    "lag": "FPDS contract transactions flow ~daily; agency financial (DABS) submissions are monthly/quarterly",
+    "last_verified": "2026-07-07",
+    "license": "US-Government-Public-Domain",
+    "mcp_maturity": "community",
+    "mcp_notes": "Multiple community MCPs exist (none official). Suggested surface: search_awards, get_award, get_recipient, spending_by_agency, spending_by_geography, bulk_download. Connector must abstract the POST-body filter grammar and paginate large result sets.\n",
+    "mcp_package": [
+      "github.com/blencorp/capture-mcp-server",
+      "github.com/agilesix/usaspending-mcp-nextjs",
+      "github.com/jsconiers/usaspending-mcp"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "USAspending.gov",
+    "pit_reconstructable": false,
+    "primary_keys": [
+      "USASPENDING_GENERATED_AWARD_ID",
+      "USASPENDING_INTERNAL_AWARD_ID",
+      "USASPENDING_RECIPIENT_HASH",
+      "PIID",
+      "FAIN",
+      "URI"
+    ],
+    "rate_limit": "not publicly documented; HTTP 429 returned on excessive use",
+    "revisions_possible": true,
+    "structure": "event-log",
+    "type": [
+      "rest-api",
+      "bulk-download"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/e-prtr.md",
+    "access_test": {
+      "command": "curl -sf 'https://air.discomap.eea.europa.eu/arcgis/rest/services/Air/EprtrFacilities_Dyna_WGS84/FeatureServer/0/query?where=1%3D1&outFields=FacilityID,CountryCode,ReportingYear,NUTSLevel2RegionCode&resultRecordCount=1&f=json'",
+      "expected_fields": [
+        "FacilityID",
+        "CountryCode",
+        "ReportingYear",
+        "NUTSLevel2RegionCode"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "industrial facility lookup by location",
+      "pollutant release and waste-transfer queries",
+      "parent-company emissions attribution",
+      "sector-level emissions aggregation",
+      "large-combustion-plant energy and emissions analysis"
+    ],
+    "auth_required": "none",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "EU-wide register of pollutant releases, waste transfers, and energy/emissions data for ~33,000 large industrial facilities across 33 European countries.",
+    "docs_url": "https://industry.eea.europa.eu/download",
+    "domain": "government-open-data",
+    "entry_kind": "mixed",
+    "frequency": "annual",
+    "geography": [
+      "Europe",
+      "EU27",
+      "EFTA",
+      "Serbia",
+      "Iceland",
+      "Liechtenstein",
+      "Norway",
+      "Switzerland"
+    ],
+    "homepage_url": "https://industry.eea.europa.eu/",
+    "id": "e-prtr",
+    "join_key_fields": [
+      {
+        "fields": [
+          "CountryCode"
+        ],
+        "join_key": "ISO_2"
+      },
+      {
+        "fields": [
+          "NUTSLevel2RegionCode"
+        ],
+        "join_key": "NUTS"
+      },
+      {
+        "fields": [
+          "ReportingYear"
+        ],
+        "join_key": "DATE"
+      }
+    ],
+    "join_keys": [
+      "ISO_2",
+      "NUTS",
+      "DATE"
+    ],
+    "lag": "1-2 years; member states report annually under Art. 7 of Regulation (EC) No 166/2006",
+    "last_verified": "2026-07-07",
+    "license": "CC-BY-4.0",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "E-PRTR (European Industrial Emissions Portal)",
+    "primary_keys": [
+      "EPRTR_FACILITY_ID",
+      "EPRTR_FACILITY_REPORT_ID",
+      "EPRTR_NATIONAL_ID"
+    ],
+    "rate_limit": "no published limit; ArcGIS REST FeatureServer standard paging (resultRecordCount / resultOffset)",
+    "revisions_possible": true,
+    "structure": "panel",
+    "type": [
+      "rest-api",
+      "bulk-download",
+      "web-ui"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/google-patents-bigquery.md",
+    "access_test": {
+      "command": "bq query --use_legacy_sql=false 'SELECT publication_number FROM `patents-public-data.patents.publications` LIMIT 1'",
+      "expected_fields": [
+        "publication_number"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "patent prior-art search",
+      "assignee patent-portfolio analysis",
+      "technology-trend analysis by CPC class",
+      "patent-to-literature linking",
+      "citation-network analysis"
+    ],
+    "auth_required": "account-required",
+    "bulk_available": true,
+    "cost": "freemium",
+    "description": "BigQuery collection of worldwide patent bibliographic data (90M+ publications from 17 countries) plus research-layer enrichments, queryable in SQL.",
+    "docs_url": "https://github.com/google/patents-public-data",
+    "domain": "government-open-data",
+    "entry_kind": "registry",
+    "frequency": "quarterly",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://console.cloud.google.com/marketplace/product/google_patents_public_datasets/google-patents-public-data",
+    "id": "google-patents-bigquery",
+    "join_keys": [],
+    "last_verified": "2026-07-07",
+    "license": "CC-BY-4.0",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "Google Patents Public Datasets (BigQuery)",
+    "notes": "access_test not yet executed; requires a Google Cloud account and project (bq CLI authenticated via gcloud). Querying beyond the 1 TB/month free tier is billed.",
+    "primary_keys": [
+      "PATENT_PUBLICATION_NUMBER",
+      "PATENT_APPLICATION_NUMBER",
+      "PATENT_FAMILY_ID"
+    ],
+    "type": [
+      "database",
+      "bulk-download"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/cordis.md",
+    "access_test": {
+      "command": "curl -sf 'https://cordis.europa.eu/datalab/sparql?query=SELECT%20%3Fp%20WHERE%20%7B%3Fs%20%3Fp%20%3Fo%7D%20LIMIT%201&format=application/sparql-results%2Bjson'",
+      "expected_fields": [
+        "head",
+        "results"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "EU research-funding lookup",
+      "grant participant mapping",
+      "collaboration-network analysis",
+      "technology-landscape scouting",
+      "linking projects to open-access publications"
+    ],
+    "auth_required": "none",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "The European Commission's registry of EU-funded research projects (FP1 to Horizon Europe) with participating organisations, results, deliverables, and links to open-access publications.",
+    "docs_url": "https://cordis.europa.eu/about/services",
+    "domain": "government-open-data",
+    "entry_kind": "knowledge-graph",
+    "frequency": "portal updated continuously; per-framework-programme bulk snapshots refreshed periodically",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://cordis.europa.eu/",
+    "id": "cordis",
+    "join_key_fields": [
+      {
+        "fields": [
+          "doi"
+        ],
+        "join_key": "DOI"
+      },
+      {
+        "fields": [
+          "country"
+        ],
+        "join_key": "ISO_2"
+      }
+    ],
+    "join_keys": [
+      "DOI",
+      "ISO_2"
+    ],
+    "lag": "weeks-to-months for newly signed grants and published results to appear",
+    "last_verified": "2026-07-07",
+    "license": "CC-BY-4.0",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "CORDIS (EU Research Projects)",
+    "primary_keys": [
+      "CORDIS_PROJECT_ID",
+      "CORDIS_RCN",
+      "CORDIS_PIC"
+    ],
+    "rate_limit": "no published limit on bulk downloads or SPARQL; interactive CORDIS API requires registration",
+    "type": [
+      "bulk-download",
+      "database",
+      "rest-api"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/census-building-permits.md",
+    "access_test": {
+      "command": "curl -sfI 'https://www2.census.gov/econ/bps/County/co2023a.txt'",
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "housing supply tracking",
+      "local construction activity by county or metro",
+      "leading indicator for residential real estate",
+      "regional economic monitoring"
+    ],
+    "auth_required": "none",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "Monthly and annual counts of new privately-owned residential building permits authorized in the US, reported at national, state, CBSA, county, and place levels.",
+    "docs_url": "https://www.census.gov/construction/bps/how_the_data_are_collected.html",
+    "domain": "government-open-data",
+    "entry_kind": "panel",
+    "frequency": "monthly (plus year-to-date and annual releases)",
+    "geography": [
+      "USA"
+    ],
+    "homepage_url": "https://www.census.gov/construction/bps/",
+    "id": "census-building-permits",
+    "join_key_fields": [
+      {
+        "fields": [
+          "FIPS State Code",
+          "FIPS County Code",
+          "6-Digit ID (Census place code)"
+        ],
+        "join_key": "FIPS"
+      },
+      {
+        "fields": [
+          "Survey Date (YYYYMM)",
+          "Year",
+          "Month"
+        ],
+        "join_key": "DATE"
+      }
+    ],
+    "join_keys": [
+      "FIPS",
+      "DATE"
+    ],
+    "lag": "monthly data released on the 17th workday of the following month; annual data lags ~5 months",
+    "last_verified": "2026-07-07",
+    "license": "US-Government-Public-Domain",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "Census Building Permits Survey (BPS)",
+    "notes": "No official Census Data API for BPS; access is static bulk files under www2.census.gov/econ/bps/ plus Excel current-data downloads. access_test runs a HEAD against a stable annual county file.",
+    "pit_reconstructable": false,
+    "primary_keys": [
+      "CBSA_CODE",
+      "CENSUS_PLACE_FIPS"
+    ],
+    "rate_limit": "none published (static file downloads)",
+    "release_lag_days": 45,
+    "revisions_possible": true,
+    "structure": "panel",
+    "type": [
+      "bulk-download",
+      "web-ui"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/sam-gov.md",
+    "access_test": {
+      "command": "curl -sf 'https://api.sam.gov/opportunities/v2/search?api_key=${SAM_GOV_API_KEY}&postedFrom=01/01/2026&postedTo=01/31/2026&limit=1'",
+      "expected_fields": [
+        "totalRecords",
+        "opportunitiesData",
+        "noticeId",
+        "solicitationNumber"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "federal procurement monitoring",
+      "solicitation search by NAICS",
+      "set-aside opportunity tracking",
+      "award and awardee lookup",
+      "competitor contract intelligence"
+    ],
+    "auth_required": "api-key-free",
+    "build_priority": "medium",
+    "bulk_available": false,
+    "cost": "free-with-registration",
+    "description": "US federal contract opportunities (solicitations, awards, sources-sought, presolicitations) posted by federal agencies on SAM.gov.",
+    "docs_url": "https://open.gsa.gov/api/get-opportunities-public-api/",
+    "domain": "government-open-data",
+    "entry_kind": "event-stream",
+    "frequency": "continuous",
+    "geography": [
+      "USA"
+    ],
+    "homepage_url": "https://sam.gov/opportunities",
+    "id": "sam-gov",
+    "join_key_fields": [
+      {
+        "fields": [
+          "placeOfPerformance.state.code",
+          "officeAddress.state"
+        ],
+        "join_key": "US_STATE_CODE"
+      }
+    ],
+    "join_keys": [
+      "US_STATE_CODE"
+    ],
+    "lag": "minutes-to-hours after an agency posts a notice",
+    "last_verified": "2026-07-07",
+    "license": "US-Government-Public-Domain",
+    "mcp_maturity": "community",
+    "mcp_notes": "Community MCPs wrap the Get Opportunities API alongside USASpending/FPDS. Suggested surface: search_opportunities (date range + NAICS + set-aside), get_opportunity_by_notice_id, list_awards. Must abstract the mandatory postedFrom/postedTo window (max 1 year) and the low daily quota.\n",
+    "mcp_package": [
+      "github.com/blencorp/capture-mcp-server",
+      "github.com/martc03/gov-mcp-servers",
+      "1102Tools SAM.gov MCP (pulsemcp.com/servers/1102tools-sam-gov)"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "SAM.gov Contract Opportunities",
+    "notes": "access_test not yet executed; requires ${SAM_GOV_API_KEY} (free public key from SAM.gov Account Details page).",
+    "primary_keys": [
+      "SAM_NOTICE_ID",
+      "SAM_SOLICITATION_NUMBER"
+    ],
+    "rate_limit": "per-day quota by role: ~10/day non-federal personal key, 1,000/day registered/federal; 429 with Retry-After to midnight UTC on exhaustion",
+    "type": [
+      "rest-api",
+      "web-ui"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/lens-patseq.md",
+    "agent_use_cases": [
+      "patent sequence similarity search",
+      "freedom-to-operate sequence checks",
+      "link genes and proteins to patent filings",
+      "bulk patent sequence corpus retrieval",
+      "prior-art sequence search"
+    ],
+    "auth_required": "account-required",
+    "bulk_available": true,
+    "cost": "free-non-commercial",
+    "description": "Bulk collection of DNA, RNA, and protein sequences disclosed in patent documents worldwide, with linked patent metadata, searchable by sequence similarity.",
+    "docs_url": "https://support.lens.org/knowledge-base/patseq-bulk-download/",
+    "domain": "government-open-data",
+    "entry_kind": "corpus",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://www.lens.org/lens/bio/patseqfinder",
+    "id": "lens-patseq",
+    "join_keys": [],
+    "last_verified": "2026-07-07",
+    "license": "Lens-PatSeq-Terms",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "Lens PatSeq",
+    "primary_keys": [
+      "LENS_PATENT_ID",
+      "PATENT_PUBLICATION_NUMBER",
+      "PATSEQ_SEQUENCE_ID"
+    ],
+    "rate_limit": "monthly query quotas on PatSeq Finder; up to 5 API access tokens per user",
+    "type": [
+      "bulk-download",
+      "rest-api",
+      "web-ui"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/nih-reporter.md",
+    "access_test": {
+      "command": "curl -sf -X POST 'https://api.reporter.nih.gov/v2/projects/search' -H 'Content-Type: application/json' -d '{\"criteria\":{\"fiscal_years\":[2023]},\"limit\":1}'",
+      "expected_fields": [
+        "meta.total",
+        "results"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "grant funding lookup",
+      "PI funding history",
+      "institution funding profile",
+      "research portfolio analysis",
+      "link publications to grants"
+    ],
+    "auth_required": "none",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "US NIH database of federally funded biomedical research projects, their investigators, awarding institutes, funding amounts, and linked publications.",
+    "docs_url": "https://api.reporter.nih.gov/",
+    "domain": "government-open-data",
+    "entry_kind": "registry",
+    "frequency": "weekly",
+    "geography": [
+      "USA"
+    ],
+    "homepage_url": "https://reporter.nih.gov/",
+    "id": "nih-reporter",
+    "join_key_fields": [
+      {
+        "fields": [
+          "pmid"
+        ],
+        "join_key": "PMID"
+      },
+      {
+        "fields": [
+          "organization.org_state"
+        ],
+        "join_key": "US_STATE_CODE"
+      }
+    ],
+    "join_keys": [
+      "PMID",
+      "US_STATE_CODE"
+    ],
+    "lag": "projects appear after the award notice date; ExPORTER bulk files refresh weekly",
+    "last_verified": "2026-07-07",
+    "license": "US-Government-Public-Domain",
+    "mcp_maturity": "community",
+    "mcp_notes": "Multiple community MCP servers wrap the same POST search API. Suggested surface: search_projects, get_project, search_publications, funding_by_pi, funding_by_org. Connector must abstract the POST body criteria model and paginate under the 1 req/sec cap.\n",
+    "mcp_package": [
+      "github.com/jbdamask/mcp-nih-reporter",
+      "github.com/GSA-TTS/nih-reporter-mcp-server",
+      "github.com/jhalsey87/MCP_NIH_Reporter"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "NIH RePORTER",
+    "primary_keys": [
+      "NIH_APPL_ID",
+      "NIH_CORE_PROJECT_NUM",
+      "NIH_PROJECT_NUM",
+      "NIH_PI_PROFILE_ID",
+      "NIH_ORG_IPF_CODE"
+    ],
+    "rate_limit": "1 request/sec; run large jobs off-peak (weekends or 9pm-5am ET); abusive IPs blocked",
+    "revisions_possible": true,
     "structure": "registry-snapshot",
     "type": [
       "rest-api",
@@ -1340,526 +989,64 @@
     ]
   },
   {
-    "_path": "entries/government-open-data/eurostat-prodcom.md",
+    "_path": "entries/government-open-data/sbir.md",
     "access_test": {
-      "command": "curl -sf 'https://ec.europa.eu/eurostat/api/comext/dissemination/statistics/1.0/data/DS-059358?format=JSON&lang=EN&time=2023&product=08111250&reporter=DE'",
+      "command": "curl -sf 'https://api.www.sbir.gov/public/api/awards?agency=DOE&rows=1&format=json'",
       "expected_fields": [
-        "label",
-        "value",
-        "dimension",
-        "updated",
-        "source"
+        "firm",
+        "agency",
+        "award_amount",
+        "award_year",
+        "uei",
+        "duns"
       ],
       "expected_status": 200
     },
     "agent_use_cases": [
-      "manufacturing-output lookup by product",
-      "industry supply-and-demand analysis (production + trade)",
-      "apparent-consumption estimation (production + imports - exports)",
-      "cross-country product-market sizing",
-      "NACE-sector production trends"
-    ],
-    "auth_required": "none",
-    "build_priority": "medium",
-    "bulk_available": true,
-    "cost": "free",
-    "description": "EU statistics on the physical and value volume of manufactured goods sold, exported, and imported, by 8-digit product code, country, and year.",
-    "docs_url": "https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-detailed-guidelines/api-statistics",
-    "domain": "government-open-data",
-    "entry_kind": "panel",
-    "frequency": "annual",
-    "geography": [
-      "EU",
-      "EFTA"
-    ],
-    "homepage_url": "https://ec.europa.eu/eurostat/web/prodcom",
-    "id": "eurostat-prodcom",
-    "join_key_fields": [
-      {
-        "fields": [
-          "reporter"
-        ],
-        "join_key": "ISO_2"
-      },
-      {
-        "fields": [
-          "time"
-        ],
-        "join_key": "DATE"
-      }
-    ],
-    "join_keys": [
-      "ISO_2",
-      "DATE"
-    ],
-    "lag": "reference-year data first disseminated ~6-18 months after year-end, then revised in later cycles",
-    "last_verified": "2026-07-03",
-    "license": "CC-BY-4.0",
-    "mcp_command": [
-      "uv --directory /path/to/eurostat-mcp run server.py"
-    ],
-    "mcp_maturity": "experimental",
-    "mcp_notes": "Single-author community server (MIT, ~7 stars, single commit) covering all of Eurostat, including the SDMX 2.1 Comext API that serves PRODCOM DS-prefixed datasets. Exposes search_datasets, query_eurostat_data, get_dataset_info, get_available_values, export_to_csv. DS-prefixed extractions need aggressive filtering to stay under the 5M-point cap.\n",
-    "mcp_package": [
-      "github.com/ano-kuhanathan/eurostat-mcp"
-    ],
-    "mcp_status": "mcp-exists",
-    "name": "Eurostat PRODCOM",
-    "pit_reconstructable": false,
-    "primary_keys": [
-      "PRODCOM_CODE",
-      "NACE_REV2_CODE",
-      "EUROSTAT_DATASET_CODE"
-    ],
-    "rate_limit": "no documented request-rate cap; a single extraction is limited to 5,000,000 data points (HTTP 413 otherwise)",
-    "revisions_possible": true,
-    "structure": "panel",
-    "type": [
-      "rest-api",
-      "bulk-download",
-      "web-ui"
-    ]
-  },
-  {
-    "_path": "entries/government-open-data/faa-aspm.md",
-    "agent_use_cases": [
-      "airport on-time and delay analysis",
-      "taxi-time (actual vs unimpeded) benchmarking",
-      "carrier operational performance comparison",
-      "city-pair demand and delay lookup",
-      "airport capacity and throughput monitoring"
-    ],
-    "auth_required": "account-required",
-    "bulk_available": false,
-    "cost": "free-with-registration",
-    "description": "FAA online system reporting flight, delay, taxi-time, and airport-efficiency metrics for ~77 US ASPM airports and ~40 major ASPM carriers.",
-    "docs_url": "https://www.aspm.faa.gov/aspmhelp/index/Main_Page.html",
-    "domain": "government-open-data",
-    "entry_kind": "panel",
-    "frequency": "daily",
-    "geography": [
-      "USA"
-    ],
-    "homepage_url": "https://aspm.faa.gov/",
-    "id": "faa-aspm",
-    "join_key_fields": [
-      {
-        "fields": [
-          "Date",
-          "Day",
-          "Month",
-          "Year"
-        ],
-        "join_key": "DATE"
-      }
-    ],
-    "join_keys": [
-      "DATE"
-    ],
-    "lag": "next-day preliminary (login); public web access to Airport/City-Pair/Taxi-Time data within ~60 days after month end",
-    "last_verified": "2026-07-03",
-    "license": "US-Government-Public-Domain",
-    "mcp_maturity": "none",
-    "mcp_notes": "No public API; access is web-UI report builder behind a login for preliminary and flight-level data. An MCP would need authenticated browser automation to drive the report forms and retrieve the emailed/exported files, or a scheduled scrape of the public 60-day-lag Airport/City-Pair/Taxi-Time reports.\n",
-    "mcp_status": "requires-scraping",
-    "name": "FAA Aviation System Performance Metrics (ASPM)",
-    "notes": "No programmatic API; web-UI report builder only. Reports export as DBF, comma-separated, tab-separated, or fixed-length files, delivered via emailed download link. Public tier (no login) covers Airport Analysis, City Pair Analysis, and Taxi Time at ~60-day lag; preliminary next-day and Individual Flights require an account.",
-    "primary_keys": [
-      "FAA_AIRPORT_LOCID",
-      "ASPM_CARRIER_CODE"
-    ],
-    "type": [
-      "web-ui",
-      "scraper-required"
-    ]
-  },
-  {
-    "_path": "entries/government-open-data/stb-waybill.md",
-    "access_test": {
-      "command": "curl -sf 'https://agtransport.usda.gov/resource/xve5-xb56.json?$limit=1'",
-      "expected_fields": [
-        "stcc",
-        "numberofcarloads",
-        "freightrevenue",
-        "originbea",
-        "terminationbea"
-      ],
-      "expected_status": 200
-    },
-    "agent_use_cases": [
-      "rail commodity flow analysis",
-      "origin-destination freight traffic",
-      "freight revenue and rate analysis",
-      "modal-shift and productivity studies",
-      "STCC-coded traffic lookup"
+      "federal seed-funding diligence on a company",
+      "map SBIR/STTR awards by agency and year",
+      "find open solicitations and topics",
+      "track small-business award history and amounts"
     ],
     "auth_required": "none",
     "build_priority": "low",
     "bulk_available": true,
     "cost": "free",
-    "description": "Stratified sample of U.S. rail carload waybills (commodity, tonnage, revenue, origin/destination) collected by the Surface Transportation Board from large freight railroads.",
-    "docs_url": "https://stb.gov/wp-content/uploads/2023-STB-Waybill-Reference-Guide.pdf",
+    "description": "US federal SBIR/STTR seed-fund award records, awarded small businesses, and open solicitations across the participating federal agencies.",
+    "docs_url": "https://www.sbir.gov/api",
     "domain": "government-open-data",
-    "entry_kind": "event-stream",
-    "frequency": "annual",
+    "entry_kind": "registry",
+    "frequency": "irregular",
     "geography": [
       "USA"
     ],
-    "homepage_url": "https://www.stb.gov/reports-data/waybill/",
-    "id": "stb-waybill",
-    "join_keys": [],
-    "lag": "public-use file typically released 1-2 years after the data year",
-    "last_verified": "2026-07-03",
+    "homepage_url": "https://www.sbir.gov/",
+    "id": "sbir",
+    "join_key_fields": [
+      {
+        "fields": [
+          "state"
+        ],
+        "join_key": "US_STATE_CODE"
+      }
+    ],
+    "join_keys": [
+      "US_STATE_CODE"
+    ],
+    "last_verified": "2026-07-07",
     "license": "US-Government-Public-Domain",
     "mcp_status": "mcp-needed-low-value",
-    "name": "STB Carload Waybill Sample",
-    "rate_limit": "Socrata SODA mirror: ~1000 rows/page default; add $$app_token for higher throughput",
-    "structure": "event-log",
-    "type": [
-      "bulk-download",
-      "socrata",
-      "rest-api",
-      "web-ui"
-    ]
-  },
-  {
-    "_path": "entries/government-open-data/un-comtrade.md",
-    "access_test": {
-      "command": "curl -sf 'https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=842&period=2022&partnerCode=0&cmdCode=TOTAL&flowCode=X'",
-      "expected_fields": [
-        "reporterCode",
-        "partnerCode",
-        "cmdCode",
-        "period",
-        "flowCode",
-        "primaryValue"
-      ],
-      "expected_status": 200
-    },
-    "agent_use_cases": [
-      "bilateral trade flow lookup",
-      "commodity-level import/export analysis",
-      "supply-chain dependency mapping",
-      "trade balance computation",
-      "country trade-partner ranking"
-    ],
-    "auth_required": "api-key-free",
-    "build_priority": "medium",
-    "bulk_available": true,
-    "cost": "free-with-registration",
-    "description": "Official United Nations repository of annual and monthly international merchandise (and services) trade statistics, bilateral by reporter, partner, and commodity code.",
-    "docs_url": "https://comtradedeveloper.un.org/",
-    "domain": "government-open-data",
-    "entry_kind": "panel",
-    "frequency": "monthly",
-    "geography": [
-      "global"
-    ],
-    "homepage_url": "https://comtradeplus.un.org/",
-    "id": "un-comtrade",
-    "join_key_fields": [
-      {
-        "fields": [
-          "reporterISO",
-          "partnerISO",
-          "partner2ISO"
-        ],
-        "join_key": "ISO_3"
-      },
-      {
-        "fields": [
-          "period",
-          "refYear",
-          "refPeriodId"
-        ],
-        "join_key": "DATE"
-      }
-    ],
-    "join_keys": [
-      "ISO_3",
-      "DATE"
-    ],
-    "lag": "months; countries report with variable delay, most within 3-12 months of the reference period",
-    "last_verified": "2026-07-03",
-    "license": "UN-Comtrade-Terms",
-    "mcp_status": "mcp-needed-high-value",
-    "name": "UN Comtrade",
-    "pit_reconstructable": false,
+    "name": "SBIR.gov (America's Seed Fund)",
+    "notes": "access_test not executed successfully; endpoint returned HTTP 429 (SBIR Public API under maintenance) on 2026-07-07. Command constructed against the documented awards endpoint.",
     "primary_keys": [
-      "COMTRADE_REPORTER_M49",
-      "COMTRADE_PARTNER_M49",
-      "COMTRADE_CMD_CODE"
+      "SBIR_FIRM_NID",
+      "SBIR_AGENCY_TRACKING_NUMBER",
+      "SBIR_CONTRACT_NUMBER",
+      "SBIR_SOLICITATION_NUMBER"
     ],
-    "rate_limit": "no token: 1 req/sec, 100 req/hr per IP; free token: 1 req/sec, 10K req/hr, 500 calls/day, up to 100K records/call",
-    "revisions_possible": true,
-    "structure": "panel",
+    "rate_limit": "not documented; public API returns 429 during maintenance windows",
     "type": [
       "rest-api",
-      "bulk-download",
-      "web-ui"
-    ]
-  },
-  {
-    "_path": "entries/government-open-data/census-intl-trade.md",
-    "access_test": {
-      "command": "curl -sf 'https://api.census.gov/data/timeseries/intltrade/exports/hs?get=CTY_CODE,CTY_NAME,ALL_VAL_MO,E_COMMODITY&YEAR=2013&MONTH=12&COMM_LVL=HS2&E_COMMODITY=01&key=${CENSUS_API_KEY}'",
-      "expected_fields": [
-        "CTY_CODE",
-        "CTY_NAME",
-        "ALL_VAL_MO",
-        "E_COMMODITY"
-      ],
-      "expected_status": 200
-    },
-    "agent_use_cases": [
-      "trade-flow lookup by HS commodity",
-      "import/export values by trading partner",
-      "port- and district-level trade volumes",
-      "supply-chain and tariff-exposure analysis",
-      "monthly trade-balance time series"
-    ],
-    "auth_required": "api-key-free",
-    "build_priority": "medium",
-    "bulk_available": false,
-    "cost": "free",
-    "description": "Monthly US import and export statistics by commodity, country, district, port, and state, from the Census Bureau's foreign-trade program.",
-    "docs_url": "https://www.census.gov/foreign-trade/reference/guides/Guide_to_International_Trade_Datasets.pdf",
-    "domain": "government-open-data",
-    "entry_kind": "panel",
-    "frequency": "monthly",
-    "geography": [
-      "USA"
-    ],
-    "homepage_url": "https://www.census.gov/data/developers/data-sets/international-trade.html",
-    "id": "census-intl-trade",
-    "join_key_fields": [
-      {
-        "fields": [
-          "time",
-          "YEAR",
-          "MONTH"
-        ],
-        "join_key": "DATE"
-      }
-    ],
-    "join_keys": [
-      "DATE"
-    ],
-    "lag": "~35 days after the reference month (FT-900 release day); annual revisions each April",
-    "last_verified": "2026-07-03",
-    "license": "US-Government-Public-Domain",
-    "mcp_maturity": "official",
-    "mcp_notes": "Official Census Bureau Data API MCP covers the whole api.census.gov surface, including the timeseries/intltrade endpoints. General-purpose; no trade-specific tooling for Schedule-C country codes or HS-level rollups.\n",
-    "mcp_package": [
-      "github.com/uscensusbureau/us-census-bureau-data-api-mcp"
-    ],
-    "mcp_status": "mcp-exists",
-    "name": "US Census International Trade API",
-    "notes": "access_test not executed; requires ${CENSUS_API_KEY}. Endpoint returns 302 -> Missing Key page without a valid key.",
-    "pit_reconstructable": false,
-    "primary_keys": [
-      "E_COMMODITY",
-      "I_COMMODITY",
-      "CTY_CODE",
-      "PORT",
-      "DISTRICT",
-      "STATE"
-    ],
-    "rate_limit": "no key: 500 queries/day per IP; with free key: effectively unlimited for normal use",
-    "release_lag_days": 35,
-    "revisions_possible": true,
-    "structure": "panel",
-    "type": [
-      "rest-api",
-      "web-ui"
-    ]
-  },
-  {
-    "_path": "entries/government-open-data/bts-port-performance.md",
-    "access_test": {
-      "command": "curl -sf 'https://data.bts.gov/resource/rd72-aq8r.json?$limit=2'",
-      "expected_fields": [
-        "port",
-        "los_angeles_ca",
-        "port_of_ny_nj",
-        "savannah_ga"
-      ],
-      "expected_status": 200
-    },
-    "agent_use_cases": [
-      "port throughput trend analysis",
-      "container volume (TEU) time series",
-      "supply-chain congestion monitoring",
-      "freight tonnage ranking by port",
-      "dry bulk capacity lookup"
-    ],
-    "auth_required": "none",
-    "build_priority": "low",
-    "bulk_available": true,
-    "cost": "free",
-    "description": "US DOT program publishing nationally-consistent throughput and capacity metrics (TEU, tonnage, dry bulk) for the largest US ports, hosted as Socrata datasets plus annual reports to Congress.",
-    "docs_url": "https://www.bts.gov/PPFS-Tech-Docs",
-    "domain": "government-open-data",
-    "entry_kind": "mixed",
-    "frequency": "annual report to Congress; underlying Socrata datasets refreshed monthly-to-annually by series",
-    "geography": [
-      "USA"
-    ],
-    "homepage_url": "https://www.bts.gov/ports",
-    "id": "bts-port-performance",
-    "join_key_fields": [
-      {
-        "fields": [
-          "port",
-          "year",
-          "month"
-        ],
-        "join_key": "DATE"
-      }
-    ],
-    "join_keys": [
-      "DATE"
-    ],
-    "lag": "months (container/tonnage source data lags observation by roughly a quarter)",
-    "last_verified": "2026-07-03",
-    "license": "US-Government-Public-Domain",
-    "mcp_status": "api-direct-sufficient",
-    "name": "BTS Port Performance Freight Statistics",
-    "pit_reconstructable": false,
-    "primary_keys": [
-      "SOCRATA_DATASET_4X4"
-    ],
-    "rate_limit": "no hard limit unauthenticated; optional Socrata app token lifts throttling under load",
-    "revisions_possible": true,
-    "structure": "time-series",
-    "type": [
-      "socrata",
-      "rest-api",
-      "bulk-download",
-      "web-ui"
-    ]
-  },
-  {
-    "_path": "entries/geospatial/marinecadastre-ais.md",
-    "access_test": {
-      "command": "curl -sfI 'https://coast.noaa.gov/htdata/CMSP/AISDataHandler/2022/AIS_2022_01_01.zip'",
-      "expected_fields": [],
-      "expected_status": 200
-    },
-    "agent_use_cases": [
-      "vessel-track reconstruction",
-      "port-call and traffic-density analysis",
-      "offshore-activity monitoring",
-      "vessel-type spatial filtering",
-      "fishing-effort estimation"
-    ],
-    "auth_required": "none",
-    "build_priority": "low",
-    "bulk_available": true,
-    "cost": "free",
-    "description": "US Coast Guard Nationwide AIS vessel position broadcasts for US coastal and ocean waters, cleaned and republished as bulk CSV and GeoParquet by NOAA's MarineCadastre.",
-    "docs_url": "https://github.com/ocm-marinecadastre/ais-vessel-traffic",
-    "domain": "geospatial",
-    "entry_kind": "event-stream",
-    "frequency": "annual bulk CSV; experimental daily/monthly GeoParquet for 2024-2025",
-    "geography": [
-      "USA"
-    ],
-    "homepage_url": "https://hub.marinecadastre.gov/pages/vesseltraffic",
-    "id": "marinecadastre-ais",
-    "join_key_fields": [
-      {
-        "fields": [
-          "BaseDateTime"
-        ],
-        "join_key": "DATE"
-      }
-    ],
-    "join_keys": [
-      "DATE"
-    ],
-    "lag": "months-to-a-year for annual CSV; GeoParquet products released periodically",
-    "last_verified": "2026-07-03",
-    "license": "CC0",
-    "mcp_status": "mcp-needed-low-value",
-    "name": "MarineCadastre AIS Vessel Traffic",
-    "primary_keys": [
-      "MMSI",
-      "IMO",
-      "CALL_SIGN"
-    ],
-    "structure": "event-log",
-    "type": [
-      "bulk-download",
-      "web-ui"
-    ]
-  },
-  {
-    "_path": "entries/geospatial/opensky.md",
-    "access_test": {
-      "command": "curl -sf 'https://opensky-network.org/api/states/all?lamin=45.8389&lomin=5.9962&lamax=47.8229&lomax=10.5226'",
-      "expected_fields": [
-        "time",
-        "states"
-      ],
-      "expected_status": 200
-    },
-    "agent_use_cases": [
-      "live aircraft tracking by bounding box",
-      "flight arrival/departure lookup by airport",
-      "aircraft trajectory reconstruction",
-      "airspace and congestion analysis",
-      "callsign-to-position resolution"
-    ],
-    "auth_required": "oauth",
-    "build_priority": "medium",
-    "bulk_available": true,
-    "cost": "free-non-commercial",
-    "description": "Crowdsourced ADS-B/Mode-S air traffic data \u2014 live aircraft state vectors and historical flight tracks from a global receiver network.",
-    "docs_url": "https://openskynetwork.github.io/opensky-api/",
-    "domain": "geospatial",
-    "entry_kind": "event-stream",
-    "frequency": "real-time",
-    "geography": [
-      "global"
-    ],
-    "homepage_url": "https://opensky-network.org/",
-    "id": "opensky",
-    "join_key_fields": [
-      {
-        "fields": [
-          "time",
-          "firstSeen",
-          "lastSeen",
-          "time_position",
-          "last_contact"
-        ],
-        "join_key": "DATE"
-      }
-    ],
-    "join_keys": [
-      "DATE"
-    ],
-    "lag": "seconds for live state vectors; historical flights queryable via Trino/Impala shell",
-    "last_verified": "2026-07-03",
-    "license": "OpenSky-Data-License",
-    "mcp_maturity": "community",
-    "mcp_notes": "Community/unofficial connectors only; no first-party MCP. Suggested surface: get_states_by_bbox, track_by_icao24, airport_arrivals, airport_departures, aircraft_track. Must abstract OAuth token refresh, credit budgeting, and the two-dimensional untagged state-vector row array into named fields.\n",
-    "mcp_package": [
-      "github.com/patpil/cloudflare-mcp-opensky"
-    ],
-    "mcp_status": "mcp-exists",
-    "name": "OpenSky Network",
-    "primary_keys": [
-      "ICAO24",
-      "CALLSIGN",
-      "OPENSKY_AIRPORT_ICAO"
-    ],
-    "rate_limit": "anon 400 credits/day (10s resolution); OAuth account 4000 credits/day (5s resolution); credits per query scale with bounding-box area",
-    "structure": "event-log",
-    "type": [
-      "rest-api",
-      "database",
       "bulk-download"
     ]
   },
@@ -16880,6 +16067,1870 @@
     "rate_limit": "non-paying tier: ~3.5 GB traffic/week; per-request throttling enforced via Fair Use charter (X-Throttling-Control header)",
     "type": [
       "rest-api"
+    ]
+  },
+  {
+    "_path": "entries/finance-markets/fed-g17-industrial-production.md",
+    "access_test": {
+      "command": "curl -sf 'https://www.federalreserve.gov/datadownload/Output.aspx?rel=G17&filetype=zip' -o /dev/null",
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "industrial output tracking",
+      "capacity utilization monitoring",
+      "manufacturing cycle analysis",
+      "macro nowcasting features",
+      "industry-level output comparison"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "Monthly Federal Reserve Board indexes of US industrial production, capacity, and capacity utilization for manufacturing, mining, and electric and gas utilities, broken out by market group and NAICS industry.",
+    "docs_url": "https://www.federalreserve.gov/releases/g17/g17_technical_qa.htm",
+    "domain": "finance-markets",
+    "entry_kind": "panel",
+    "frequency": "monthly",
+    "geography": [
+      "USA"
+    ],
+    "homepage_url": "https://www.federalreserve.gov/releases/g17/current/default.htm",
+    "id": "fed-g17-industrial-production",
+    "join_key_fields": [
+      {
+        "fields": [
+          "TIME_PERIOD",
+          "obs.TIME_PERIOD"
+        ],
+        "join_key": "DATE"
+      }
+    ],
+    "join_keys": [
+      "DATE"
+    ],
+    "lag": "released mid-month (~15-17 days) for the prior reference month; preliminary value revised over the following months, plus a full annual revision each autumn",
+    "last_verified": "2026-07-03",
+    "license": "US-Government-Public-Domain",
+    "mcp_notes": "No dedicated MCP for the Fed's own G.17 DDP. In practice agents reach these series (INDPRO, TCU, and the industry breakouts) through FRED, which has several community MCPs, so a standalone G.17 connector is low marginal value. A generic Federal Reserve DDP MCP covering G.17 alongside H.15, G.19, Z.1 etc. would be the more sensible surface if built.\n",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "Federal Reserve G.17 Industrial Production and Capacity Utilization",
+    "notes": "access_test executed 2026-07-03: full-release ZIP package returned HTTP 200 (~8.5 MB, application/x-zip-compressed). Per-package CSV/SDMX endpoints (Output.aspx?rel=G17&series=<hash>&filetype=csv) and the current-release text file (releases/g17/current/g17.txt, HTTP 200, ~158 KB) also confirmed reachable with no auth.",
+    "pit_reconstructable": false,
+    "primary_keys": [
+      "FRB_G17_SERIES_NAME",
+      "FRB_IP_INDUSTRY_CODE"
+    ],
+    "rate_limit": "none published; polite scraping of the DDP endpoints assumed",
+    "release_lag_days": 17,
+    "revisions_possible": true,
+    "structure": "panel",
+    "type": [
+      "bulk-download",
+      "web-ui"
+    ]
+  },
+  {
+    "_path": "entries/clinical-biotech/euctr-eudract.md",
+    "access_test": {
+      "command": "curl -sf -A 'datasources-registry/1.0' 'https://www.clinicaltrialsregister.eu/ctr-search/search?query=cancer&page=1' -o /dev/null -w '%{http_code}'",
+      "expected_fields": [
+        "EudraCT"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "historical EU/EEA trial discovery by condition, product, or sponsor",
+      "cross-registry deduplication with ClinicalTrials.gov and ISRCTN",
+      "EudraCT-to-NCT identifier cross-walking for legacy trials",
+      "retrospective sponsor and pipeline analysis pre-2025",
+      "results-reporting compliance auditing for older EU trials"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": false,
+    "cost": "free",
+    "description": "Legacy public register of interventional clinical trials of medicines conducted in the EU and EEA between May 2004 and January 2025 under Directive 2001/20/EC, backed by the EudraCT database and run by the European Medicines Agency.",
+    "docs_url": "https://www.clinicaltrialsregister.eu/about.html",
+    "domain": "clinical-biotech",
+    "entry_kind": "registry",
+    "frequency": "legacy",
+    "geography": [
+      "EU",
+      "EEA"
+    ],
+    "homepage_url": "https://www.clinicaltrialsregister.eu/",
+    "id": "euctr-eudract",
+    "join_key_fields": [
+      {
+        "fields": [
+          "A.2 EudraCT number"
+        ],
+        "join_key": "EUDRACT_NUMBER"
+      },
+      {
+        "fields": [
+          "A.5.2 US NCT (ClinicalTrials.gov registry) number"
+        ],
+        "join_key": "NCT_ID"
+      },
+      {
+        "fields": [
+          "A.5.3 WHO universal trial number (UTN)"
+        ],
+        "join_key": "WHO_UTN"
+      }
+    ],
+    "join_keys": [
+      "EUDRACT_NUMBER",
+      "NCT_ID",
+      "WHO_UTN"
+    ],
+    "lag": "static legacy register; closed to new EudraCT protocols after 30 January 2025, only residual results-section updates for existing trials",
+    "last_verified": "2026-07-03",
+    "license": "EU-Commission-Reuse-Decision-2011-833",
+    "mcp_maturity": "none",
+    "mcp_notes": "No official API and no MCP. The register serves server-rendered HTML from a URL-parameterised search; a connector must scrape trial-protocol pages or drive the 20-record text export. Suggested surface: search_trials, get_trial_protocol, get_trial_results, cross_registry_lookup (EudraCT to NCT and WHO UTN via the A.5 secondary-identifier fields). The mature open-source reference is the R package ctrdata, which already parses EUCTR into structured records.\n",
+    "mcp_status": "requires-scraping",
+    "name": "EU Clinical Trials Register (EUCTR / EudraCT)",
+    "notes": "Legacy layer. New EU/EEA medicine trials now register in CTIS (see eu-ctis entry); EUCTR is the frozen prior register. No documented API; access is HTML scraping plus a per-request 20-record .txt export.",
+    "pit_reconstructable": false,
+    "primary_keys": [
+      "EUDRACT_NUMBER"
+    ],
+    "rate_limit": "no published quota; polite low-volume public use expected; text download capped at 20 records per request",
+    "revisions_possible": false,
+    "structure": "registry-snapshot",
+    "type": [
+      "web-ui",
+      "bulk-download",
+      "scraper-required"
+    ]
+  },
+  {
+    "_path": "entries/clinical-biotech/anzctr.md",
+    "agent_use_cases": [
+      "Australia and New Zealand clinical trial discovery by condition or intervention",
+      "cross-registry deduplication with ClinicalTrials.gov via secondary IDs and UTN",
+      "non-US/EU trial coverage for pipeline and epidemiology scans",
+      "WHO Trial Registration Data Set retrieval for AU/NZ studies",
+      "prospective-registration and registration-completeness audits"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "WHO- and ICMJE-recognised primary clinical trials registry for Australia, New Zealand, and international studies, run by the NHMRC Clinical Trials Centre at the University of Sydney.",
+    "docs_url": "https://www.anzctr.org.au/Faq.aspx",
+    "domain": "clinical-biotech",
+    "entry_kind": "registry",
+    "frequency": "continuous",
+    "geography": [
+      "AUS",
+      "NZL",
+      "global"
+    ],
+    "homepage_url": "https://www.anzctr.org.au/",
+    "id": "anzctr",
+    "join_key_fields": [
+      {
+        "fields": [
+          "utrn",
+          "secondary_ids"
+        ],
+        "join_key": "WHO_UTN"
+      },
+      {
+        "fields": [
+          "secondary_ids"
+        ],
+        "join_key": "NCT_ID"
+      }
+    ],
+    "join_keys": [
+      "NCT_ID",
+      "WHO_UTN"
+    ],
+    "lag": "sponsor-driven; records appear after registration and editorial curation, and propagate to WHO ICTRP on its weekly re-import cycle",
+    "last_verified": "2026-07-03",
+    "license": "ANZCTR-Terms-of-Use",
+    "mcp_notes": "No official or community MCP, and no public no-auth API: the site is behind a WAF that returns 403 to direct HTTP clients, so programmatic access needs browser automation or the WHO ICTRP aggregation layer. Practical connector path is to reach ANZCTR trials via WHO ICTRP (which re-imports ANZCTR weekly) rather than scraping the ASP.NET UI directly. If scraping ANZCTR itself, drive the search page and the per-trial XML/Excel export.\n",
+    "mcp_status": "requires-scraping",
+    "name": "ANZCTR (Australian New Zealand Clinical Trials Registry)",
+    "notes": "access_test omitted: no public no-auth structured endpoint. Direct curl to https://www.anzctr.org.au/ and to TrialReview.aspx returns HTTP 403 (WAF); the only public paths are the JS search UI (Excel export of search results) and the per-trial WHO-format XML download button. Reach ANZCTR data programmatically via WHO ICTRP. Verify freshness from the WHO ICTRP weekly refresh date or the trial record's last-updated field.",
+    "primary_keys": [
+      "ACTRN_ID"
+    ],
+    "rate_limit": "no published quota; public site behind a bot-filtering WAF that rejects non-browser HTTP clients",
+    "revisions_possible": true,
+    "structure": "registry-snapshot",
+    "type": [
+      "web-ui",
+      "bulk-download",
+      "scraper-required"
+    ]
+  },
+  {
+    "_path": "entries/clinical-biotech/rebec.md",
+    "access_test": {
+      "command": "curl -sf -A 'Mozilla/5.0 (compatible; datasources-verify/1.0)' 'https://ensaiosclinicos.gov.br/rg/RBR-6qvdftm'",
+      "expected_fields": [
+        "RBR-6qvdftm",
+        "UTN code"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "Brazilian clinical trial discovery by condition or intervention",
+      "cross-registry deduplication via WHO UTN",
+      "Latin American / Lusophone trial-landscape monitoring",
+      "trial registration and status lookup for Brazil-conducted studies"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": false,
+    "cost": "free",
+    "description": "Brazil's national WHO- and ICMJE-recognised primary clinical trials registry for experimental and non-experimental studies conducted on humans in Brazilian territory, run by Fiocruz for the Ministry of Health.",
+    "domain": "clinical-biotech",
+    "entry_kind": "registry",
+    "frequency": "continuous",
+    "geography": [
+      "BRA"
+    ],
+    "homepage_url": "https://ensaiosclinicos.gov.br/",
+    "id": "rebec",
+    "join_key_fields": [
+      {
+        "fields": [
+          "utrn"
+        ],
+        "join_key": "WHO_UTN"
+      }
+    ],
+    "join_keys": [
+      "WHO_UTN"
+    ],
+    "lag": "sponsor-driven; records appear once submitted and editorially validated",
+    "last_verified": "2026-07-03",
+    "license": "unknown",
+    "mcp_maturity": "none",
+    "mcp_notes": "No official or community MCP. The new gov.br platform is a CodeIgniter web app; the historical ICTRP XML dump path no longer resolves, so a dedicated connector would need HTML scraping of single-trial pages or, more reliably, reading ReBEC records via the WHO ICTRP redistribution. A multi-registry clinical-trials MCP (ClinicalTrials.gov + ISRCTN + EU CTIS + WHO ICTRP + ReBEC) is the higher-leverage build; ReBEC alone is low priority.\n",
+    "mcp_status": "requires-scraping",
+    "name": "ReBEC (Brazilian Registry of Clinical Trials)",
+    "notes": "Single-trial pages resolve at https://ensaiosclinicos.gov.br/rg/RBR-{id} and return HTML (not JSON/XML). Raw curl without a browser-like User-Agent is 403-blocked at the nginx layer; the access_test sets a UA. Public overview dashboard at /api2/bi is HTML, not a data API.",
+    "primary_keys": [
+      "RBR_ID"
+    ],
+    "revisions_possible": true,
+    "structure": "registry-snapshot",
+    "type": [
+      "web-ui",
+      "scraper-required"
+    ]
+  },
+  {
+    "_path": "entries/clinical-biotech/project-data-sphere.md",
+    "agent_use_cases": [
+      "external control arm construction",
+      "historical comparator retrieval",
+      "patient-level survival analysis",
+      "trial result reanalysis",
+      "oncology outcomes benchmarking"
+    ],
+    "auth_required": "account-required",
+    "build_priority": "low",
+    "bulk_available": true,
+    "cost": "free-with-registration",
+    "description": "Free digital library of de-identified, patient-level data from academic and industry Phase II-III oncology clinical trials.",
+    "docs_url": "https://data.projectdatasphere.org/projectdatasphere/html/resources/PDF/HOW_TO_ACCESS_AND_DOWNLOAD_DATA",
+    "domain": "clinical-biotech",
+    "entry_kind": "corpus",
+    "frequency": "irregular",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://data.projectdatasphere.org/",
+    "id": "project-data-sphere",
+    "join_key_fields": [
+      {
+        "fields": [
+          "trial-summary.nct-number"
+        ],
+        "join_key": "NCT_ID"
+      }
+    ],
+    "join_keys": [
+      "NCT_ID"
+    ],
+    "lag": "historical; datasets contributed after trial completion",
+    "last_verified": "2026-07-03",
+    "license": "PDS-Data-Sharing-Agreement",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "Project Data Sphere",
+    "notes": "Data access gated behind an application and a signed Data Sharing Agreement; no public no-auth data endpoint, so access_test omitted.",
+    "primary_keys": [
+      "PDS_UNIQUE_DATASET_ID",
+      "PDS_TRIAL_ID"
+    ],
+    "type": [
+      "bulk-download",
+      "web-ui",
+      "database"
+    ]
+  },
+  {
+    "_path": "entries/clinical-biotech/ct-ade.md",
+    "access_test": {
+      "command": "curl -sf 'https://huggingface.co/api/datasets/anthonyyazdaniml/CT-ADE-PT'",
+      "expected_fields": [
+        "id",
+        "tags",
+        "description"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "adverse-event prediction benchmarking",
+      "drug-safety model training",
+      "trial-arm to MedDRA ADE lookup",
+      "drug-to-ADE association mining"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "Curated benchmark dataset of drug-adverse-event pairs extracted from ClinicalTrials.gov monopharmacy trial results, annotated to MedDRA SOC and PT levels for multilabel ADE prediction.",
+    "docs_url": "https://www.nature.com/articles/s41597-025-04718-1",
+    "domain": "clinical-biotech",
+    "entry_kind": "corpus",
+    "frequency": "static",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://github.com/ds4dh/CT-ADE",
+    "id": "ct-ade",
+    "join_key_fields": [
+      {
+        "fields": [
+          "nctid"
+        ],
+        "join_key": "NCT_ID"
+      },
+      {
+        "fields": [
+          "ade_soc",
+          "ade_pt"
+        ],
+        "join_key": "MEDDRA_TERM"
+      },
+      {
+        "fields": [
+          "atc_codes"
+        ],
+        "join_key": "ATC_CODE"
+      },
+      {
+        "fields": [
+          "chembl_id"
+        ],
+        "join_key": "CHEMBL_ID"
+      },
+      {
+        "fields": [
+          "drugbank_id"
+        ],
+        "join_key": "DRUGBANK_ID"
+      }
+    ],
+    "join_keys": [
+      "NCT_ID",
+      "MEDDRA_TERM",
+      "ATC_CODE",
+      "CHEMBL_ID",
+      "DRUGBANK_ID"
+    ],
+    "lag": "one-time research release; MedDRA 25.0, trials up to 2024 snapshot",
+    "last_verified": "2026-07-03",
+    "license": "MIT",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "CT-ADE",
+    "pit_reconstructable": false,
+    "revisions_possible": false,
+    "structure": "cross-section",
+    "type": [
+      "dataset-dump",
+      "bulk-download"
+    ]
+  },
+  {
+    "_path": "entries/clinical-biotech/yoda-project.md",
+    "agent_use_cases": [
+      "discover which sponsor trials have shareable IPD",
+      "locate a specific trial's dataset by NCT number for a meta-analysis",
+      "scope a secondary-analysis or reproducibility proposal",
+      "identify clinical study reports available on request",
+      "build a request-application shortlist across therapeutic areas"
+    ],
+    "auth_required": "dars-or-equivalent",
+    "build_priority": "low",
+    "bulk_available": false,
+    "cost": "free-with-registration",
+    "description": "Yale-based data-sharing intermediary that brokers controlled access to individual participant data (IPD) and clinical study reports from 500+ industry-sponsored clinical trials via a formal data-request and DUA process.",
+    "domain": "clinical-biotech",
+    "entry_kind": "registry",
+    "frequency": "irregular; new trials and data partners added over time (J&J, Medtronic, Kenvue, QMUL, SI-BONE)",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://yoda.yale.edu/",
+    "id": "yoda-project",
+    "join_key_fields": [
+      {
+        "fields": [
+          "trial catalogue NCT number (per-trial listing on yoda.yale.edu)"
+        ],
+        "join_key": "NCT_ID"
+      }
+    ],
+    "join_keys": [
+      "NCT_ID"
+    ],
+    "lag": "historical; de-identified trial datasets are released years after study completion, after sponsor onboarding and de-identification",
+    "last_verified": "2026-07-03",
+    "license": "YODA-Data-Use-Agreement",
+    "mcp_status": "requires-scraping",
+    "name": "YODA Project (Yale Open Data Access)",
+    "notes": "Access is gated: submit an online research proposal, complete a conflict-of-interest disclosure, accept the Data Use Agreement (DUA training video), and pass YODA steering-committee / due-diligence review. Approved data is analysed inside a secure environment; there is no bulk export and no programmatic API. Registration and access are free of charge.",
+    "primary_keys": [
+      "YODA_TRIAL_ID",
+      "SPONSOR_PROTOCOL_NUMBER"
+    ],
+    "rate_limit": "not applicable; no public API. Trial catalogue is browsable on the web; participant-level data is delivered only after request approval into a secure analysis environment",
+    "type": [
+      "web-ui"
+    ]
+  },
+  {
+    "_path": "entries/clinical-biotech/vivli.md",
+    "agent_use_cases": [
+      "discover which completed trials have shareable IPD",
+      "resolve a trial to its IPD data package via NCT or DOI",
+      "locate sponsor datasets for a drug or condition",
+      "scope an IPD meta-analysis feasibility check",
+      "cross-reference registry trials against available raw participant data"
+    ],
+    "auth_required": "dars-or-equivalent",
+    "build_priority": "medium",
+    "bulk_available": false,
+    "cost": "free-with-registration",
+    "description": "Independent non-profit repository and secure research environment for de-identified individual participant-level data (IPD) from completed clinical trials, with a public metadata search index and controlled access to the underlying datasets.",
+    "docs_url": "https://vivli.org/resources/",
+    "domain": "clinical-biotech",
+    "entry_kind": "registry",
+    "frequency": "continuous; new studies listed as sponsors and contributors add them",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://vivli.org/",
+    "id": "vivli",
+    "join_key_fields": [
+      {
+        "fields": [
+          "nctId",
+          "secondaryIds (ClinicalTrials.gov registration)"
+        ],
+        "join_key": "NCT_ID"
+      },
+      {
+        "fields": [
+          "doi (DataCite study-package DOI)"
+        ],
+        "join_key": "DOI"
+      }
+    ],
+    "join_keys": [
+      "NCT_ID",
+      "DOI"
+    ],
+    "lag": "studies are completed trials, typically shared years after primary completion once results are published or a sharing commitment matures",
+    "last_verified": "2026-07-03",
+    "license": "Vivli-Data-Use-Agreement",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "Vivli",
+    "notes": "Metadata (study listings, DOIs, registration IDs) is free to search without an account. Obtaining participant-level data requires a Vivli account, a submitted research proposal, Independent Review Panel approval where the contributor requires it, and a signed Data Use Agreement; data are then analysed only inside Vivli's Azure-based secure research environment. Some data requests may incur platform or hosting fees depending on the contributor and funding; access itself is not a paid subscription. No confirmed public JSON API, so access_test is omitted.",
+    "primary_keys": [
+      "VIVLI_STUDY_ID",
+      "SPONSOR_STUDY_ID"
+    ],
+    "rate_limit": "not applicable; public surface is the metadata search UI, data delivered inside a gated secure research environment after approval",
+    "type": [
+      "web-ui",
+      "database"
+    ]
+  },
+  {
+    "_path": "entries/clinical-biotech/jrct.md",
+    "access_test": {
+      "command": "curl -sf -A 'datasources-verify' -o /dev/null -w '%{http_code}' 'https://jrct.mhlw.go.jp/en-top'",
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "Japanese clinical trial discovery by disease or intervention",
+      "regenerative-medicine and specified-clinical-trial lookup under the Clinical Trials Act",
+      "cross-registry deduplication with ClinicalTrials.gov and EU CTIS via WHO UTN",
+      "sponsor and institution pipeline monitoring in Japan",
+      "legacy academic trial retrieval via UMIN-CTR"
+    ],
+    "auth_required": "none",
+    "build_priority": "medium",
+    "bulk_available": false,
+    "cost": "free",
+    "description": "Japan's national clinical-trial registry run by the Ministry of Health, Labour and Welfare, disclosing specified clinical trials and regenerative-medicine studies under the Clinical Trials Act; a WHO ICTRP primary registry that, together with the legacy UMIN-CTR, forms the Japan Primary Registries Network (JPRN).",
+    "docs_url": "https://jrct.mhlw.go.jp/en-top",
+    "domain": "clinical-biotech",
+    "entry_kind": "registry",
+    "frequency": "continuous",
+    "geography": [
+      "JPN"
+    ],
+    "homepage_url": "https://jrct.mhlw.go.jp/",
+    "id": "jrct",
+    "join_key_fields": [
+      {
+        "fields": [
+          "who-universal-trial-number"
+        ],
+        "join_key": "WHO_UTN"
+      }
+    ],
+    "join_keys": [
+      "WHO_UTN"
+    ],
+    "lag": "sponsor-driven; records appear after MHLW submission and are updated as trials progress",
+    "last_verified": "2026-07-03",
+    "license": "jRCT-Terms-of-Use",
+    "mcp_maturity": "none",
+    "mcp_notes": "No official or community MCP. jRCT exposes only a JS-driven web UI with per-record HTML pages and no documented REST/bulk API; its terms forbid programmatic download beyond personal use, so a direct connector must scrape politely (or route through WHO ICTRP / the NIPH rctportal cross-search instead). Suggested surface: search_trials, get_trial (parse the jRCT record page and secondary-ID block), cross_registry_lookup (jRCT to WHO UTN, UMIN, NCT). An unofficial UMIN-CTR client (github.com/mokjpn/umin-ctr) is the closest existing tooling for the legacy sister registry.\n",
+    "mcp_status": "requires-scraping",
+    "name": "Japan Registry of Clinical Trials (jRCT)",
+    "notes": "Homepage migrated from https://jrct.niph.go.jp/ (now unreachable) to https://jrct.mhlw.go.jp/. NIPH runs the cross-search portal https://rctportal.niph.go.jp/en over jRCT + UMIN-CTR + JMACCT + JAPIC. Legacy sister registry UMIN-CTR: https://center6.umin.ac.jp/cgi-open-bin/ctr_e/index.cgi (verified 200 on 2026-07-03).",
+    "primary_keys": [
+      "JRCT_ID",
+      "UMIN_ID"
+    ],
+    "rate_limit": "no public API; terms prohibit automated/bulk download beyond personal use",
+    "revisions_possible": true,
+    "structure": "registry-snapshot",
+    "type": [
+      "web-ui",
+      "scraper-required"
+    ]
+  },
+  {
+    "_path": "entries/clinical-biotech/ctri.md",
+    "agent_use_cases": [
+      "India clinical trial discovery by condition, intervention, or sponsor",
+      "cross-registry deduplication of multinational trials via WHO UTN",
+      "non-US/EU trial coverage for global pipeline scans",
+      "regulatory and DCGI-approval status lookup for Indian studies",
+      "prospective-registration and transparency audits"
+    ],
+    "auth_required": "none",
+    "build_priority": "medium",
+    "bulk_available": false,
+    "cost": "free",
+    "description": "WHO- and ICMJE-recognised primary clinical trials registry for studies conducted in India, run by ICMR, with mandatory prospective registration since 2009.",
+    "docs_url": "https://ctri.nic.in/Clinicaltrials/faq.php",
+    "domain": "clinical-biotech",
+    "entry_kind": "registry",
+    "frequency": "continuous",
+    "geography": [
+      "IND"
+    ],
+    "homepage_url": "https://ctri.nic.in/",
+    "id": "ctri",
+    "join_key_fields": [
+      {
+        "fields": [
+          "who-universal-trial-number-utn"
+        ],
+        "join_key": "WHO_UTN"
+      }
+    ],
+    "join_keys": [
+      "WHO_UTN"
+    ],
+    "lag": "records appear after editorial review, typically days after submission; monthly export to WHO ICTRP",
+    "last_verified": "2026-07-03",
+    "license": "unknown",
+    "mcp_maturity": "none",
+    "mcp_notes": "No official or community MCP and no public API. Records are only reachable through the JS-driven CTRI web UI (keyword/advanced search + per-trial detail page) or, downstream, via the monthly WHO ICTRP export. A connector would need browser automation over the CTRI search forms, or should route through the WHO ICTRP layer where CTRI records already arrive normalised to the WHO TRDS schema.\n",
+    "mcp_status": "requires-scraping",
+    "name": "Clinical Trials Registry - India (CTRI)",
+    "notes": "access_test omitted: no public no-auth structured-data endpoint. CTRI is web-UI only (advanced search at /Clinicaltrials/advancesearchmain.php). Single CTRI records also resolve via WHO ICTRP at https://trialsearch.who.int/Trial2.aspx?TrialID=CTRI/YYYY/MM/NNNNNN (verified 200, 2026-07-03). Verify freshness from the record count / last-update date shown on the CTRI home page and the monthly ICTRP transfer.",
+    "pit_reconstructable": false,
+    "primary_keys": [
+      "CTRI_ID"
+    ],
+    "rate_limit": "no published quota; polite low-volume public web use expected",
+    "revisions_possible": true,
+    "structure": "registry-snapshot",
+    "type": [
+      "web-ui",
+      "scraper-required"
+    ]
+  },
+  {
+    "_path": "entries/clinical-biotech/pactr.md",
+    "access_test": {
+      "command": "curl -sfL 'https://pactr.samrc.ac.za/TrialDisplay.aspx?TrialID=25488'",
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "discover clinical trials conducted in Africa by condition, intervention, or country",
+      "cross-registry deduplication against ClinicalTrials.gov, ISRCTN, and EU CTIS via WHO UTN",
+      "monitor African trial activity for sponsors, funders, and NGOs",
+      "locate the African arm of a globally registered multi-country trial",
+      "resolve a PACTR number cited in a publication to its trial record"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": false,
+    "cost": "free",
+    "description": "WHO- and ICMJE-recognised primary clinical trials registry for trials conducted in Africa, the only African member of the WHO Network of Primary Registries, operated by the South African Medical Research Council (SAMRC).",
+    "domain": "clinical-biotech",
+    "entry_kind": "registry",
+    "frequency": "continuous",
+    "geography": [
+      "Africa"
+    ],
+    "homepage_url": "https://pactr.samrc.ac.za/",
+    "id": "pactr",
+    "join_key_fields": [
+      {
+        "fields": [
+          "universal-trial-number"
+        ],
+        "join_key": "WHO_UTN"
+      }
+    ],
+    "join_keys": [
+      "WHO_UTN"
+    ],
+    "lag": "sponsor-driven; records appear once registered and curated; propagates to WHO ICTRP on a monthly transfer cycle",
+    "last_verified": "2026-07-03",
+    "license": "unknown",
+    "mcp_notes": "No public API and no MCP. Records are server-rendered ASP.NET pages (TrialDisplay.aspx?TrialID=). The reliable machine-readable path for PACTR data is the WHO ICTRP export, which pulls PACTR monthly. A PACTR-specific connector would require HTML scraping of search results and trial-display pages, or should be subsumed by a WHO-ICTRP MCP that already normalises this registry.\n",
+    "mcp_status": "requires-scraping",
+    "name": "Pan African Clinical Trials Registry (PACTR)",
+    "notes": "No documented public API or bulk download. Trial records resolve at https://pactr.samrc.ac.za/TrialDisplay.aspx?TrialID={n} where {n} is the source-internal numeric display id (distinct from the PACTR registration number). Data reaches WHO ICTRP via a monthly transfer, so ICTRP is the practical programmatic access path.",
+    "primary_keys": [
+      "PACTR_ID",
+      "PACTR_TRIAL_DISPLAY_ID"
+    ],
+    "revisions_possible": true,
+    "structure": "registry-snapshot",
+    "type": [
+      "web-ui",
+      "scraper-required"
+    ]
+  },
+  {
+    "_path": "entries/clinical-biotech/ctg-db.md",
+    "access_test": {
+      "command": "curl -sf 'https://api.github.com/repos/jlpainter/ctgdb'",
+      "expected_fields": [
+        "full_name",
+        "license",
+        "pushed_at"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "cross-trial adverse-event retrieval",
+      "arm-level safety-signal comparison",
+      "MedDRA-normalised AE aggregation",
+      "placebo-vs-comparator safety diffs"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": false,
+    "cost": "free",
+    "description": "Open-source pipeline that transforms the full ClinicalTrials.gov XML archive into a relational database with arm-level adverse-event counts normalised to MedDRA terminology.",
+    "docs_url": "https://arxiv.org/abs/2603.15936",
+    "domain": "clinical-biotech",
+    "entry_kind": "registry",
+    "frequency": "one-off snapshot (input archive downloaded 2026-02-10); no automatic refresh",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://github.com/jlpainter/ctgdb",
+    "id": "ctg-db",
+    "join_key_fields": [
+      {
+        "fields": [
+          "clinical_trial.nct_id",
+          "ct_arms.nct_id"
+        ],
+        "join_key": "NCT_ID"
+      },
+      {
+        "fields": [
+          "adverse_events.meddra_pt",
+          "adverse_events.meddra_llt"
+        ],
+        "join_key": "MEDDRA_TERM"
+      }
+    ],
+    "join_keys": [
+      "NCT_ID",
+      "MEDDRA_TERM"
+    ],
+    "lag": "snapshot-based; re-ingest CT.gov XML to update",
+    "last_verified": "2026-07-03",
+    "license": "Apache-2.0",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "CTG-DB (ClinicalTrials.gov MedDRA-Normalised Safety Database)",
+    "pit_reconstructable": false,
+    "primary_keys": [
+      "CTGDB_ARM_ID"
+    ],
+    "revisions_possible": false,
+    "structure": "registry-snapshot",
+    "type": [
+      "database"
+    ]
+  },
+  {
+    "_path": "entries/clinical-biotech/withdrawn-database.md",
+    "agent_use_cases": [
+      "withdrawal-reason lookup",
+      "drug-toxicity mechanism analysis",
+      "target-based safety screening",
+      "ATC-class withdrawal-pattern analysis",
+      "chemical-similarity safety flagging"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "Curated database of withdrawn and discontinued drugs with withdrawal reasons, toxicity classification, targets, and ATC classes.",
+    "docs_url": "https://bioinformatics.charite.de/withdrawn_3/subpages/faq.php",
+    "domain": "clinical-biotech",
+    "entry_kind": "registry",
+    "frequency": "irregular",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://bioinformatics.charite.de/withdrawn_3/index.php",
+    "id": "withdrawn-database",
+    "join_key_fields": [
+      {
+        "fields": [
+          "atc_code"
+        ],
+        "join_key": "ATC_CODE"
+      },
+      {
+        "fields": [
+          "inchikey"
+        ],
+        "join_key": "INCHI_KEY"
+      },
+      {
+        "fields": [
+          "chembl_id",
+          "target.chembl_id"
+        ],
+        "join_key": "CHEMBL_ID"
+      },
+      {
+        "fields": [
+          "drugbank_id"
+        ],
+        "join_key": "DRUGBANK_ID"
+      },
+      {
+        "fields": [
+          "target.uniprot_accession"
+        ],
+        "join_key": "UNIPROT_ACCESSION"
+      },
+      {
+        "fields": [
+          "target.gene_symbol"
+        ],
+        "join_key": "GENE_SYMBOL"
+      }
+    ],
+    "join_keys": [
+      "ATC_CODE",
+      "INCHI_KEY",
+      "CHEMBL_ID",
+      "DRUGBANK_ID",
+      "UNIPROT_ACCESSION",
+      "GENE_SYMBOL"
+    ],
+    "last_verified": "2026-07-03",
+    "license": "unknown",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "WITHDRAWN",
+    "primary_keys": [
+      "WITHDRAWN_ID"
+    ],
+    "type": [
+      "web-ui",
+      "bulk-download"
+    ]
+  },
+  {
+    "_path": "entries/clinical-biotech/ctod.md",
+    "access_test": {
+      "command": "curl -sf 'https://huggingface.co/api/datasets/chufangao/CTO'",
+      "expected_fields": [
+        "id",
+        "sha",
+        "tags"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "trial success/failure labeling",
+      "outcome-prediction model training",
+      "drug-development benchmark evaluation",
+      "phase-progression analysis"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "Large-scale benchmark of clinical trial outcomes with machine-generated and human-annotated success/failure labels, keyed on NCT ID.",
+    "docs_url": "https://github.com/chufangao/ctod",
+    "domain": "clinical-biotech",
+    "entry_kind": "registry",
+    "frequency": "periodic (irregular releases; last refreshed 2025-10)",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://chufangao.github.io/CTOD/",
+    "id": "ctod",
+    "join_key_fields": [
+      {
+        "fields": [
+          "nct_id"
+        ],
+        "join_key": "NCT_ID"
+      }
+    ],
+    "join_keys": [
+      "NCT_ID"
+    ],
+    "last_verified": "2026-07-03",
+    "license": "MIT",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "Clinical Trial Outcomes (CTO)",
+    "notes": "CTO/CTOD benchmark (Gao et al., arXiv:2406.10292). Distinct from the older futianfan/clinical-trial-outcome-prediction TOP benchmark, which is non-commercial; CTO is MIT-licensed.",
+    "pit_reconstructable": false,
+    "primary_keys": [
+      "nct_id"
+    ],
+    "revisions_possible": true,
+    "structure": "registry-snapshot",
+    "type": [
+      "dataset-dump",
+      "bulk-download"
+    ]
+  },
+  {
+    "_path": "entries/clinical-biotech/chictr.md",
+    "agent_use_cases": [
+      "China-only clinical trial discovery by condition or intervention",
+      "cross-registry deduplication via WHO UTN and secondary IDs",
+      "coverage of trials absent from ClinicalTrials.gov and EU CTIS",
+      "traditional-Chinese-medicine and China-sponsor pipeline scans",
+      "registration-completeness and prospective-registration audits for China"
+    ],
+    "auth_required": "none",
+    "build_priority": "medium",
+    "bulk_available": false,
+    "cost": "free",
+    "description": "WHO ICTRP primary clinical trial registry for mainland China, recording interventional, prevention, diagnostic, prognostic, and epidemiological studies, run by the Chinese Clinical Trial Registry centre at West China Hospital, Sichuan University.",
+    "docs_url": "https://www.chictr.org.cn/indexEN.html",
+    "domain": "clinical-biotech",
+    "entry_kind": "registry",
+    "frequency": "continuous",
+    "geography": [
+      "CHN"
+    ],
+    "homepage_url": "https://www.chictr.org.cn/",
+    "id": "chictr",
+    "join_key_fields": [
+      {
+        "fields": [
+          "who-universal-trial-number"
+        ],
+        "join_key": "WHO_UTN"
+      }
+    ],
+    "join_keys": [
+      "WHO_UTN"
+    ],
+    "lag": "registration number issued about two weeks after submission, following completion of the registry audit",
+    "last_verified": "2026-07-03",
+    "license": "unknown",
+    "mcp_command": [
+      "npx -y chictr-mcp-server@latest"
+    ],
+    "mcp_maturity": "experimental",
+    "mcp_notes": "One early-stage community MCP (PancrePal-xiaoyibao/chictr-mcp-server, TypeScript, ~5 stars, built for cancer patients and families). It drives the public site with Playwright browser automation plus Cheerio parsing to defeat anti-bot protection, since ChiCTR exposes no official API. Exposes search_trials (keyword / registration number / year), get_trial_detail, cache and runtime tooling, and verification-session handling. Scrape-based, so fragile to site changes.\n",
+    "mcp_package": [
+      "chictr-mcp-server (npm)",
+      "github.com/PancrePal-xiaoyibao/chictr-mcp-server"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "Chinese Clinical Trial Registry (ChiCTR)",
+    "notes": "access_test omitted: no public no-auth structured data endpoint. The site is a JS single-page app with anti-bot verification; programmatic access requires browser automation (see the community MCP) or the WHO ICTRP aggregate export. Verify freshness from the record's registration/last-refreshed date, or reach ChiCTR records upstream via WHO ICTRP.",
+    "pit_reconstructable": false,
+    "primary_keys": [
+      "CHICTR_ID"
+    ],
+    "rate_limit": "no published quota; site enforces anti-bot / verification challenges that gate automated access",
+    "revisions_possible": true,
+    "structure": "registry-snapshot",
+    "type": [
+      "web-ui",
+      "scraper-required"
+    ]
+  },
+  {
+    "_path": "entries/clinical-biotech/cris-korea.md",
+    "access_test": {
+      "command": "curl -sf 'http://apis.data.go.kr/1352159/crisinfodataview/list?serviceKey=${CRIS_DATA_GO_KR_KEY}&resultType=JSON&numOfRows=1&pageNo=1'",
+      "expected_fields": [
+        "resultCode",
+        "totalCount",
+        "trial_id",
+        "scientific_title_en"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "Korean clinical trial discovery by condition or intervention",
+      "cross-registry deduplication against ClinicalTrials.gov and WHO ICTRP",
+      "sponsor and institution monitoring for Korea-based research",
+      "trial-registration statistics for the Korean research landscape",
+      "retrieval of Korean-language protocol and outcome metadata"
+    ],
+    "auth_required": "api-key-free",
+    "build_priority": "low",
+    "bulk_available": false,
+    "cost": "free-non-commercial",
+    "description": "WHO- and ICMJE-recognised primary clinical trial registry for the Republic of Korea, operated by the Korea Disease Control and Prevention Agency, exposing Korean and English trial records via a web UI and a public-data-portal REST API.",
+    "docs_url": "https://www.data.go.kr/data/3033869/openapi.do",
+    "domain": "clinical-biotech",
+    "entry_kind": "registry",
+    "frequency": "continuous",
+    "geography": [
+      "KOR"
+    ],
+    "homepage_url": "https://cris.nih.go.kr/",
+    "id": "cris-korea",
+    "join_key_fields": [
+      {
+        "fields": [
+          "secondary_id"
+        ],
+        "join_key": "WHO_UTN"
+      }
+    ],
+    "join_keys": [
+      "WHO_UTN"
+    ],
+    "lag": "sponsor-driven; records appear after editorial review, then propagate to WHO ICTRP every 4 weeks",
+    "last_verified": "2026-07-03",
+    "license": "KOGL-Type-2",
+    "mcp_maturity": "none",
+    "mcp_notes": "No official or community MCP. Standalone value is narrow (Korea-scoped, Korean-language fields, non-commercial licence), and global agents can already reach CRIS records through the WHO ICTRP aggregate. If built, a Korea-specific connector should wrap the data.go.kr crisinfodataview endpoints (list / detail / statistics), inject the service key, normalise the resultType XML/JSON toggle, and pair Korean and English title fields.\n",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "Clinical Research Information Service (CRIS)",
+    "notes": "access_test not executed; requires ${CRIS_DATA_GO_KR_KEY} (free data.go.kr service key). Homepage https://cris.nih.go.kr/ returns 200; single trials resolve at https://cris.nih.go.kr/cris/search/detailSearchEn.do?seq={n}.",
+    "primary_keys": [
+      "KCT_ID"
+    ],
+    "rate_limit": "data.go.kr quota: ~10,000 calls/day for development keys; higher for approved operational accounts; numOfRows max 50 per page",
+    "revisions_possible": true,
+    "structure": "registry-snapshot",
+    "type": [
+      "rest-api",
+      "web-ui"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/usace-waterborne-commerce.md",
+    "access_test": {
+      "command": "curl -sf -A 'Mozilla/5.0' -o /dev/null -w '%{http_code}' 'https://ndc.ops.usace.army.mil/wcsc/webpub/'",
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "port throughput lookup",
+      "commodity tonnage trends",
+      "waterway freight-volume analysis",
+      "trade-flow macro signal",
+      "infrastructure / dock characteristics"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "Official US Army Corps of Engineers statistics on domestic and foreign waterborne cargo tonnage and vessel trips, by port, commodity, and waterway.",
+    "docs_url": "https://ndc.ops.usace.army.mil/wcsc/webpub/",
+    "domain": "government-open-data",
+    "entry_kind": "mixed",
+    "frequency": "annual final report; monthly preliminary indicators",
+    "geography": [
+      "USA"
+    ],
+    "homepage_url": "https://www.iwr.usace.army.mil/about/technical-centers/wcsc-waterborne-commerce-statistics-center/",
+    "id": "usace-waterborne-commerce",
+    "join_key_fields": [
+      {
+        "fields": [
+          "year",
+          "month"
+        ],
+        "join_key": "DATE"
+      },
+      {
+        "fields": [
+          "state"
+        ],
+        "join_key": "US_STATE_CODE"
+      }
+    ],
+    "join_keys": [
+      "DATE",
+      "US_STATE_CODE"
+    ],
+    "lag": "monthly indicators are near-current; final annual waterborne-commerce data typically lags ~1-2 years",
+    "last_verified": "2026-07-03",
+    "license": "US-Government-Public-Domain",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "USACE Waterborne Commerce Statistics (WCSC)",
+    "pit_reconstructable": false,
+    "primary_keys": [
+      "WCSC_PORT_CODE",
+      "WCSC_WATERWAY_CODE",
+      "WCSC_COMMODITY_CODE",
+      "WCSC_DOCK_ID"
+    ],
+    "revisions_possible": true,
+    "structure": "panel",
+    "type": [
+      "bulk-download",
+      "web-ui"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/bts-airline-ontime.md",
+    "access_test": {
+      "command": "curl -sfI 'https://transtats.bts.gov/PREZIP/On_Time_Reporting_Carrier_On_Time_Performance_1987_present_2025_10.zip' -o /dev/null -w '%{http_code}\\n'",
+      "expected_fields": [],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "flight delay analysis",
+      "airline reliability benchmarking",
+      "airport congestion study",
+      "delay-cause attribution",
+      "route-level punctuality lookup"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "Flight-level on-time performance records for US domestic scheduled carriers, with scheduled/actual times, delays by cause, cancellations, and diversions.",
+    "docs_url": "https://www.transtats.bts.gov/Fields.asp?gnoyr_VQ=FGJ",
+    "domain": "government-open-data",
+    "entry_kind": "event-stream",
+    "frequency": "monthly",
+    "geography": [
+      "USA"
+    ],
+    "homepage_url": "https://www.transtats.bts.gov/ontime/",
+    "id": "bts-airline-ontime",
+    "join_key_fields": [
+      {
+        "fields": [
+          "FlightDate"
+        ],
+        "join_key": "DATE"
+      },
+      {
+        "fields": [
+          "OriginState",
+          "DestState"
+        ],
+        "join_key": "US_STATE_CODE"
+      }
+    ],
+    "join_keys": [
+      "DATE",
+      "US_STATE_CODE"
+    ],
+    "lag": "~2-3 months after month-end (e.g. Oct data released ~Jan)",
+    "last_verified": "2026-07-03",
+    "license": "US-Government-Public-Domain",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "BTS Airline On-Time Performance",
+    "pit_reconstructable": false,
+    "primary_keys": [
+      "DOT_ID_REPORTING_AIRLINE",
+      "IATA_CODE_REPORTING_AIRLINE",
+      "ORIGIN_AIRPORT_ID",
+      "DEST_AIRPORT_ID",
+      "ORIGIN_AIRPORT_SEQ_ID",
+      "DEST_AIRPORT_SEQ_ID",
+      "FLIGHT_NUMBER_REPORTING_AIRLINE",
+      "TAIL_NUMBER"
+    ],
+    "rate_limit": "none published; be polite with large prezip pulls",
+    "release_lag_days": 75,
+    "revisions_possible": true,
+    "structure": "event-log",
+    "type": [
+      "bulk-download",
+      "web-ui"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/census-m3.md",
+    "access_test": {
+      "command": "curl -sf 'https://api.census.gov/data/timeseries/eits/m3?get=cell_value,category_code,data_type_code,seasonally_adj,time&category_code=MTM&data_type_code=NO&time=2024&key=${CENSUS_API_KEY}'",
+      "expected_fields": [
+        "cell_value",
+        "category_code",
+        "data_type_code",
+        "seasonally_adj",
+        "time"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "manufacturing demand nowcasting",
+      "durable-goods new-orders tracking",
+      "inventory-to-shipments ratio analysis",
+      "industrial macro context for markets",
+      "point-in-time indicator retrieval"
+    ],
+    "auth_required": "api-key-free",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "US Census Bureau monthly survey of manufacturers' value of shipments, new orders, unfilled orders, and inventories, by NAICS-based industry category, served via the Economic Indicators time series API.",
+    "docs_url": "https://www.census.gov/data/developers/data-sets/economic-indicators.html",
+    "domain": "government-open-data",
+    "entry_kind": "time-series",
+    "frequency": "monthly",
+    "geography": [
+      "USA"
+    ],
+    "homepage_url": "https://www.census.gov/manufacturing/m3",
+    "id": "census-m3",
+    "join_key_fields": [
+      {
+        "fields": [
+          "time"
+        ],
+        "join_key": "DATE"
+      }
+    ],
+    "join_keys": [
+      "DATE"
+    ],
+    "lag": "advance report ~4 weeks after the reference month; full report ~1 week after the advance; both revised in subsequent months",
+    "last_verified": "2026-07-03",
+    "license": "US-Government-Public-Domain",
+    "mcp_maturity": "official",
+    "mcp_notes": "Official Census Bureau Data API MCP wraps the whole Census Data API, including the eits/m3 timeseries endpoint, so no M3-specific connector is needed. Gap: it is a generic Census-API surface, not an economic-indicator helper, so an agent must still know M3 category_code / data_type_code vocabulary to build a query.\n",
+    "mcp_package": [
+      "github.com/uscensusbureau/us-census-bureau-data-api-mcp",
+      "github.com/cyanheads/census-mcp-server"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "Census M3 (Manufacturers' Shipments, Inventories & Orders)",
+    "notes": "access_test not executed; requires a free ${CENSUS_API_KEY}. Host reachability confirmed: keyless data query 302-redirects to /data/missing_key.html, and the keyless metadata endpoint api.census.gov/data/timeseries/eits/m3/variables.json returns HTTP 200 with the 13-variable schema.",
+    "pit_reconstructable": false,
+    "primary_keys": [
+      "M3_CATEGORY_CODE",
+      "M3_DATA_TYPE_CODE"
+    ],
+    "rate_limit": "free API key required for all data queries; no published per-key cap (fair-use). Metadata endpoints (variables.json, etc.) are keyless.",
+    "release_lag_days": 34,
+    "revisions_possible": true,
+    "structure": "time-series",
+    "type": [
+      "rest-api",
+      "bulk-download"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/bts-faf.md",
+    "access_test": {
+      "command": "curl -sfI -A 'Mozilla/5.0' 'https://faf.ornl.gov/faf5/data/download_files/FAF5.7.1_State.zip' -o /dev/null -w '%{http_code}'",
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "freight flow lookup by commodity and mode",
+      "domestic origin-destination tonnage and value estimates",
+      "modal share analysis (truck, rail, water, air, pipeline)",
+      "long-range freight demand forecasts to 2050",
+      "commodity-level trade gateway analysis"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "US origin-destination freight flow estimates by commodity, mode, and FAF zone, in tons, value, and ton-miles across historical, base, and forecast years.",
+    "docs_url": "https://faf.ornl.gov/faf5/",
+    "domain": "government-open-data",
+    "entry_kind": "panel",
+    "frequency": "annual provisional updates; new base year roughly every 5 years, aligned to the Commodity Flow Survey",
+    "geography": [
+      "USA"
+    ],
+    "homepage_url": "https://www.bts.gov/faf",
+    "id": "bts-faf",
+    "join_key_fields": [
+      {
+        "fields": [
+          "tons_2017",
+          "tons_2022",
+          "value_2022",
+          "tmiles_2022"
+        ],
+        "join_key": "DATE"
+      }
+    ],
+    "join_keys": [
+      "DATE"
+    ],
+    "lag": "base year trails the reference year by 2-4 years; annual provisional estimates trail by ~1 year",
+    "last_verified": "2026-07-03",
+    "license": "US-Government-Public-Domain",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "BTS Freight Analysis Framework (FAF)",
+    "pit_reconstructable": false,
+    "primary_keys": [
+      "FAF_ZONE",
+      "SCTG2",
+      "DMS_MODE"
+    ],
+    "rate_limit": "none documented; static file downloads",
+    "revisions_possible": true,
+    "structure": "panel",
+    "type": [
+      "bulk-download",
+      "web-ui"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/epa-frs.md",
+    "access_test": {
+      "command": "curl -sf 'https://data.epa.gov/dmapservice/frs.frs_facility_site/registry_id/equals/110009327246/JSON'",
+      "expected_fields": [
+        "registry_id",
+        "primary_name",
+        "state_code",
+        "fips_code",
+        "postal_code"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "environmental facility lookup",
+      "cross-program facility resolution",
+      "facility geolocation",
+      "industry-classified facility search",
+      "regulatory-interest screening"
+    ],
+    "auth_required": "none",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "US EPA master registry of facilities and sites subject to environmental regulation, each assigned a single cross-program FRS Registry ID.",
+    "docs_url": "https://www.epa.gov/enviro/envirofacts-data-service-api",
+    "domain": "government-open-data",
+    "entry_kind": "registry",
+    "frequency": "weekly",
+    "geography": [
+      "USA"
+    ],
+    "homepage_url": "https://www.epa.gov/frs",
+    "id": "epa-frs",
+    "join_key_fields": [
+      {
+        "fields": [
+          "fips_code",
+          "std_county_fips"
+        ],
+        "join_key": "FIPS"
+      },
+      {
+        "fields": [
+          "state_code",
+          "std_state_code"
+        ],
+        "join_key": "US_STATE_CODE"
+      },
+      {
+        "fields": [
+          "postal_code",
+          "std_postal_code"
+        ],
+        "join_key": "ZCTA"
+      }
+    ],
+    "join_keys": [
+      "FIPS",
+      "US_STATE_CODE",
+      "ZCTA"
+    ],
+    "lag": "continuous to monthly refresh from contributing EPA program systems; national bulk files typically monthly, file geodatabase weekly",
+    "last_verified": "2026-07-03",
+    "license": "US-Government-Public-Domain",
+    "mcp_status": "api-direct-sufficient",
+    "name": "EPA Facility Registry Service (FRS)",
+    "primary_keys": [
+      "FRS_REGISTRY_ID"
+    ],
+    "rate_limit": "no documented request cap; each request must complete within 15 minutes, paginate large pulls",
+    "structure": "registry-snapshot",
+    "type": [
+      "rest-api",
+      "bulk-download"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/eurostat-prodcom.md",
+    "access_test": {
+      "command": "curl -sf 'https://ec.europa.eu/eurostat/api/comext/dissemination/statistics/1.0/data/DS-059358?format=JSON&lang=EN&time=2023&product=08111250&reporter=DE'",
+      "expected_fields": [
+        "label",
+        "value",
+        "dimension",
+        "updated",
+        "source"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "manufacturing-output lookup by product",
+      "industry supply-and-demand analysis (production + trade)",
+      "apparent-consumption estimation (production + imports - exports)",
+      "cross-country product-market sizing",
+      "NACE-sector production trends"
+    ],
+    "auth_required": "none",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "EU statistics on the physical and value volume of manufactured goods sold, exported, and imported, by 8-digit product code, country, and year.",
+    "docs_url": "https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-detailed-guidelines/api-statistics",
+    "domain": "government-open-data",
+    "entry_kind": "panel",
+    "frequency": "annual",
+    "geography": [
+      "EU",
+      "EFTA"
+    ],
+    "homepage_url": "https://ec.europa.eu/eurostat/web/prodcom",
+    "id": "eurostat-prodcom",
+    "join_key_fields": [
+      {
+        "fields": [
+          "reporter"
+        ],
+        "join_key": "ISO_2"
+      },
+      {
+        "fields": [
+          "time"
+        ],
+        "join_key": "DATE"
+      }
+    ],
+    "join_keys": [
+      "ISO_2",
+      "DATE"
+    ],
+    "lag": "reference-year data first disseminated ~6-18 months after year-end, then revised in later cycles",
+    "last_verified": "2026-07-03",
+    "license": "CC-BY-4.0",
+    "mcp_command": [
+      "uv --directory /path/to/eurostat-mcp run server.py"
+    ],
+    "mcp_maturity": "experimental",
+    "mcp_notes": "Single-author community server (MIT, ~7 stars, single commit) covering all of Eurostat, including the SDMX 2.1 Comext API that serves PRODCOM DS-prefixed datasets. Exposes search_datasets, query_eurostat_data, get_dataset_info, get_available_values, export_to_csv. DS-prefixed extractions need aggressive filtering to stay under the 5M-point cap.\n",
+    "mcp_package": [
+      "github.com/ano-kuhanathan/eurostat-mcp"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "Eurostat PRODCOM",
+    "pit_reconstructable": false,
+    "primary_keys": [
+      "PRODCOM_CODE",
+      "NACE_REV2_CODE",
+      "EUROSTAT_DATASET_CODE"
+    ],
+    "rate_limit": "no documented request-rate cap; a single extraction is limited to 5,000,000 data points (HTTP 413 otherwise)",
+    "revisions_possible": true,
+    "structure": "panel",
+    "type": [
+      "rest-api",
+      "bulk-download",
+      "web-ui"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/faa-aspm.md",
+    "agent_use_cases": [
+      "airport on-time and delay analysis",
+      "taxi-time (actual vs unimpeded) benchmarking",
+      "carrier operational performance comparison",
+      "city-pair demand and delay lookup",
+      "airport capacity and throughput monitoring"
+    ],
+    "auth_required": "account-required",
+    "bulk_available": false,
+    "cost": "free-with-registration",
+    "description": "FAA online system reporting flight, delay, taxi-time, and airport-efficiency metrics for ~77 US ASPM airports and ~40 major ASPM carriers.",
+    "docs_url": "https://www.aspm.faa.gov/aspmhelp/index/Main_Page.html",
+    "domain": "government-open-data",
+    "entry_kind": "panel",
+    "frequency": "daily",
+    "geography": [
+      "USA"
+    ],
+    "homepage_url": "https://aspm.faa.gov/",
+    "id": "faa-aspm",
+    "join_key_fields": [
+      {
+        "fields": [
+          "Date",
+          "Day",
+          "Month",
+          "Year"
+        ],
+        "join_key": "DATE"
+      }
+    ],
+    "join_keys": [
+      "DATE"
+    ],
+    "lag": "next-day preliminary (login); public web access to Airport/City-Pair/Taxi-Time data within ~60 days after month end",
+    "last_verified": "2026-07-03",
+    "license": "US-Government-Public-Domain",
+    "mcp_maturity": "none",
+    "mcp_notes": "No public API; access is web-UI report builder behind a login for preliminary and flight-level data. An MCP would need authenticated browser automation to drive the report forms and retrieve the emailed/exported files, or a scheduled scrape of the public 60-day-lag Airport/City-Pair/Taxi-Time reports.\n",
+    "mcp_status": "requires-scraping",
+    "name": "FAA Aviation System Performance Metrics (ASPM)",
+    "notes": "No programmatic API; web-UI report builder only. Reports export as DBF, comma-separated, tab-separated, or fixed-length files, delivered via emailed download link. Public tier (no login) covers Airport Analysis, City Pair Analysis, and Taxi Time at ~60-day lag; preliminary next-day and Individual Flights require an account.",
+    "primary_keys": [
+      "FAA_AIRPORT_LOCID",
+      "ASPM_CARRIER_CODE"
+    ],
+    "type": [
+      "web-ui",
+      "scraper-required"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/stb-waybill.md",
+    "access_test": {
+      "command": "curl -sf 'https://agtransport.usda.gov/resource/xve5-xb56.json?$limit=1'",
+      "expected_fields": [
+        "stcc",
+        "numberofcarloads",
+        "freightrevenue",
+        "originbea",
+        "terminationbea"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "rail commodity flow analysis",
+      "origin-destination freight traffic",
+      "freight revenue and rate analysis",
+      "modal-shift and productivity studies",
+      "STCC-coded traffic lookup"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "Stratified sample of U.S. rail carload waybills (commodity, tonnage, revenue, origin/destination) collected by the Surface Transportation Board from large freight railroads.",
+    "docs_url": "https://stb.gov/wp-content/uploads/2023-STB-Waybill-Reference-Guide.pdf",
+    "domain": "government-open-data",
+    "entry_kind": "event-stream",
+    "frequency": "annual",
+    "geography": [
+      "USA"
+    ],
+    "homepage_url": "https://www.stb.gov/reports-data/waybill/",
+    "id": "stb-waybill",
+    "join_keys": [],
+    "lag": "public-use file typically released 1-2 years after the data year",
+    "last_verified": "2026-07-03",
+    "license": "US-Government-Public-Domain",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "STB Carload Waybill Sample",
+    "rate_limit": "Socrata SODA mirror: ~1000 rows/page default; add $$app_token for higher throughput",
+    "structure": "event-log",
+    "type": [
+      "bulk-download",
+      "socrata",
+      "rest-api",
+      "web-ui"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/un-comtrade.md",
+    "access_test": {
+      "command": "curl -sf 'https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=842&period=2022&partnerCode=0&cmdCode=TOTAL&flowCode=X'",
+      "expected_fields": [
+        "reporterCode",
+        "partnerCode",
+        "cmdCode",
+        "period",
+        "flowCode",
+        "primaryValue"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "bilateral trade flow lookup",
+      "commodity-level import/export analysis",
+      "supply-chain dependency mapping",
+      "trade balance computation",
+      "country trade-partner ranking"
+    ],
+    "auth_required": "api-key-free",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "cost": "free-with-registration",
+    "description": "Official United Nations repository of annual and monthly international merchandise (and services) trade statistics, bilateral by reporter, partner, and commodity code.",
+    "docs_url": "https://comtradedeveloper.un.org/",
+    "domain": "government-open-data",
+    "entry_kind": "panel",
+    "frequency": "monthly",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://comtradeplus.un.org/",
+    "id": "un-comtrade",
+    "join_key_fields": [
+      {
+        "fields": [
+          "reporterISO",
+          "partnerISO",
+          "partner2ISO"
+        ],
+        "join_key": "ISO_3"
+      },
+      {
+        "fields": [
+          "period",
+          "refYear",
+          "refPeriodId"
+        ],
+        "join_key": "DATE"
+      }
+    ],
+    "join_keys": [
+      "ISO_3",
+      "DATE"
+    ],
+    "lag": "months; countries report with variable delay, most within 3-12 months of the reference period",
+    "last_verified": "2026-07-03",
+    "license": "UN-Comtrade-Terms",
+    "mcp_status": "mcp-needed-high-value",
+    "name": "UN Comtrade",
+    "pit_reconstructable": false,
+    "primary_keys": [
+      "COMTRADE_REPORTER_M49",
+      "COMTRADE_PARTNER_M49",
+      "COMTRADE_CMD_CODE"
+    ],
+    "rate_limit": "no token: 1 req/sec, 100 req/hr per IP; free token: 1 req/sec, 10K req/hr, 500 calls/day, up to 100K records/call",
+    "revisions_possible": true,
+    "structure": "panel",
+    "type": [
+      "rest-api",
+      "bulk-download",
+      "web-ui"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/census-intl-trade.md",
+    "access_test": {
+      "command": "curl -sf 'https://api.census.gov/data/timeseries/intltrade/exports/hs?get=CTY_CODE,CTY_NAME,ALL_VAL_MO,E_COMMODITY&YEAR=2013&MONTH=12&COMM_LVL=HS2&E_COMMODITY=01&key=${CENSUS_API_KEY}'",
+      "expected_fields": [
+        "CTY_CODE",
+        "CTY_NAME",
+        "ALL_VAL_MO",
+        "E_COMMODITY"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "trade-flow lookup by HS commodity",
+      "import/export values by trading partner",
+      "port- and district-level trade volumes",
+      "supply-chain and tariff-exposure analysis",
+      "monthly trade-balance time series"
+    ],
+    "auth_required": "api-key-free",
+    "build_priority": "medium",
+    "bulk_available": false,
+    "cost": "free",
+    "description": "Monthly US import and export statistics by commodity, country, district, port, and state, from the Census Bureau's foreign-trade program.",
+    "docs_url": "https://www.census.gov/foreign-trade/reference/guides/Guide_to_International_Trade_Datasets.pdf",
+    "domain": "government-open-data",
+    "entry_kind": "panel",
+    "frequency": "monthly",
+    "geography": [
+      "USA"
+    ],
+    "homepage_url": "https://www.census.gov/data/developers/data-sets/international-trade.html",
+    "id": "census-intl-trade",
+    "join_key_fields": [
+      {
+        "fields": [
+          "time",
+          "YEAR",
+          "MONTH"
+        ],
+        "join_key": "DATE"
+      }
+    ],
+    "join_keys": [
+      "DATE"
+    ],
+    "lag": "~35 days after the reference month (FT-900 release day); annual revisions each April",
+    "last_verified": "2026-07-03",
+    "license": "US-Government-Public-Domain",
+    "mcp_maturity": "official",
+    "mcp_notes": "Official Census Bureau Data API MCP covers the whole api.census.gov surface, including the timeseries/intltrade endpoints. General-purpose; no trade-specific tooling for Schedule-C country codes or HS-level rollups.\n",
+    "mcp_package": [
+      "github.com/uscensusbureau/us-census-bureau-data-api-mcp"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "US Census International Trade API",
+    "notes": "access_test not executed; requires ${CENSUS_API_KEY}. Endpoint returns 302 -> Missing Key page without a valid key.",
+    "pit_reconstructable": false,
+    "primary_keys": [
+      "E_COMMODITY",
+      "I_COMMODITY",
+      "CTY_CODE",
+      "PORT",
+      "DISTRICT",
+      "STATE"
+    ],
+    "rate_limit": "no key: 500 queries/day per IP; with free key: effectively unlimited for normal use",
+    "release_lag_days": 35,
+    "revisions_possible": true,
+    "structure": "panel",
+    "type": [
+      "rest-api",
+      "web-ui"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/bts-port-performance.md",
+    "access_test": {
+      "command": "curl -sf 'https://data.bts.gov/resource/rd72-aq8r.json?$limit=2'",
+      "expected_fields": [
+        "port",
+        "los_angeles_ca",
+        "port_of_ny_nj",
+        "savannah_ga"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "port throughput trend analysis",
+      "container volume (TEU) time series",
+      "supply-chain congestion monitoring",
+      "freight tonnage ranking by port",
+      "dry bulk capacity lookup"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "US DOT program publishing nationally-consistent throughput and capacity metrics (TEU, tonnage, dry bulk) for the largest US ports, hosted as Socrata datasets plus annual reports to Congress.",
+    "docs_url": "https://www.bts.gov/PPFS-Tech-Docs",
+    "domain": "government-open-data",
+    "entry_kind": "mixed",
+    "frequency": "annual report to Congress; underlying Socrata datasets refreshed monthly-to-annually by series",
+    "geography": [
+      "USA"
+    ],
+    "homepage_url": "https://www.bts.gov/ports",
+    "id": "bts-port-performance",
+    "join_key_fields": [
+      {
+        "fields": [
+          "port",
+          "year",
+          "month"
+        ],
+        "join_key": "DATE"
+      }
+    ],
+    "join_keys": [
+      "DATE"
+    ],
+    "lag": "months (container/tonnage source data lags observation by roughly a quarter)",
+    "last_verified": "2026-07-03",
+    "license": "US-Government-Public-Domain",
+    "mcp_status": "api-direct-sufficient",
+    "name": "BTS Port Performance Freight Statistics",
+    "pit_reconstructable": false,
+    "primary_keys": [
+      "SOCRATA_DATASET_4X4"
+    ],
+    "rate_limit": "no hard limit unauthenticated; optional Socrata app token lifts throttling under load",
+    "revisions_possible": true,
+    "structure": "time-series",
+    "type": [
+      "socrata",
+      "rest-api",
+      "bulk-download",
+      "web-ui"
+    ]
+  },
+  {
+    "_path": "entries/geospatial/marinecadastre-ais.md",
+    "access_test": {
+      "command": "curl -sfI 'https://coast.noaa.gov/htdata/CMSP/AISDataHandler/2022/AIS_2022_01_01.zip'",
+      "expected_fields": [],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "vessel-track reconstruction",
+      "port-call and traffic-density analysis",
+      "offshore-activity monitoring",
+      "vessel-type spatial filtering",
+      "fishing-effort estimation"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "US Coast Guard Nationwide AIS vessel position broadcasts for US coastal and ocean waters, cleaned and republished as bulk CSV and GeoParquet by NOAA's MarineCadastre.",
+    "docs_url": "https://github.com/ocm-marinecadastre/ais-vessel-traffic",
+    "domain": "geospatial",
+    "entry_kind": "event-stream",
+    "frequency": "annual bulk CSV; experimental daily/monthly GeoParquet for 2024-2025",
+    "geography": [
+      "USA"
+    ],
+    "homepage_url": "https://hub.marinecadastre.gov/pages/vesseltraffic",
+    "id": "marinecadastre-ais",
+    "join_key_fields": [
+      {
+        "fields": [
+          "BaseDateTime"
+        ],
+        "join_key": "DATE"
+      }
+    ],
+    "join_keys": [
+      "DATE"
+    ],
+    "lag": "months-to-a-year for annual CSV; GeoParquet products released periodically",
+    "last_verified": "2026-07-03",
+    "license": "CC0",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "MarineCadastre AIS Vessel Traffic",
+    "primary_keys": [
+      "MMSI",
+      "IMO",
+      "CALL_SIGN"
+    ],
+    "structure": "event-log",
+    "type": [
+      "bulk-download",
+      "web-ui"
+    ]
+  },
+  {
+    "_path": "entries/geospatial/opensky.md",
+    "access_test": {
+      "command": "curl -sf 'https://opensky-network.org/api/states/all?lamin=45.8389&lomin=5.9962&lamax=47.8229&lomax=10.5226'",
+      "expected_fields": [
+        "time",
+        "states"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "live aircraft tracking by bounding box",
+      "flight arrival/departure lookup by airport",
+      "aircraft trajectory reconstruction",
+      "airspace and congestion analysis",
+      "callsign-to-position resolution"
+    ],
+    "auth_required": "oauth",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "cost": "free-non-commercial",
+    "description": "Crowdsourced ADS-B/Mode-S air traffic data \u2014 live aircraft state vectors and historical flight tracks from a global receiver network.",
+    "docs_url": "https://openskynetwork.github.io/opensky-api/",
+    "domain": "geospatial",
+    "entry_kind": "event-stream",
+    "frequency": "real-time",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://opensky-network.org/",
+    "id": "opensky",
+    "join_key_fields": [
+      {
+        "fields": [
+          "time",
+          "firstSeen",
+          "lastSeen",
+          "time_position",
+          "last_contact"
+        ],
+        "join_key": "DATE"
+      }
+    ],
+    "join_keys": [
+      "DATE"
+    ],
+    "lag": "seconds for live state vectors; historical flights queryable via Trino/Impala shell",
+    "last_verified": "2026-07-03",
+    "license": "OpenSky-Data-License",
+    "mcp_maturity": "community",
+    "mcp_notes": "Community/unofficial connectors only; no first-party MCP. Suggested surface: get_states_by_bbox, track_by_icao24, airport_arrivals, airport_departures, aircraft_track. Must abstract OAuth token refresh, credit budgeting, and the two-dimensional untagged state-vector row array into named fields.\n",
+    "mcp_package": [
+      "github.com/patpil/cloudflare-mcp-opensky"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "OpenSky Network",
+    "primary_keys": [
+      "ICAO24",
+      "CALLSIGN",
+      "OPENSKY_AIRPORT_ICAO"
+    ],
+    "rate_limit": "anon 400 credits/day (10s resolution); OAuth account 4000 credits/day (5s resolution); credits per query scale with bounding-box area",
+    "structure": "event-log",
+    "type": [
+      "rest-api",
+      "database",
+      "bulk-download"
     ]
   }
 ]
