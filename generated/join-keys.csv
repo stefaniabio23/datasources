@@ -6,6 +6,7 @@ CHEBI_ID,chemical_entity,^CHEBI:[0-9]+$,,Chemical Entities of Biological Interes
 CHEMBL_ID,chemical_or_target,^CHEMBL[0-9]+$,,"ChEMBL molecule, target, or assay identifier."
 CIK,us_company,^[0-9]+$,,SEC Central Index Key.
 COMPANIES_HOUSE_NUMBER,uk_company,^[A-Z0-9]{8}$,,UK Companies House company number.
+CPC_CODE,patent_classification,"^[A-H][0-9]{2}[A-Z][0-9]{1,4}/[0-9]{2,6}$",C07D498/04; A61K31/00,Cooperative Patent Classification code (joint EPO/USPTO technology classification).
 CPT,procedure_code,,,Current Procedural Terminology code.
 CUSIP,security,^[0-9A-Z]{9}$,,Committee on Uniform Securities Identification Procedures (US).
 DATE,time,^[0-9]{4}(-[0-9]{2}(-[0-9]{2})?)?$,,ISO 8601 date.
@@ -14,6 +15,7 @@ DRUGBANK_ID,drug,^DB[0-9]{5}$,DB00945,DrugBank molecule identifier.
 EFO_ID,disease_or_phenotype,^EFO_[0-9]+$,,Experimental Factor Ontology identifier.
 ENSEMBL_ID,gene_transcript_or_protein,^ENS[A-Z]*[GTPR][0-9]+$,,"Ensembl gene, transcript, or protein identifier."
 ENTREZ_GENE_ID,gene,^[0-9]+$,7157,NCBI Entrez Gene identifier (integer).
+EPA_REGISTRY_ID,regulated_facility,^[0-9]{12}$,110000350681,US EPA Facility Registry Service identifier for a regulated facility/site (exposed by FRS and ECHO).
 EUDRACT_NUMBER,clinical_trial,^[0-9]{4}-[0-9]{6}-[0-9]{2}$,,Legacy EudraCT clinical trial identifier.
 EU_CT_NUMBER,clinical_trial,^[0-9]{4}-[0-9]{6}-[0-9]{2}-[0-9]{2}$,,EU CTIS trial identifier (Regulation 536/2014).
 FDA_APPLICATION_NUMBER,drug_approval,^(NDA|ANDA|BLA)?[0-9]{6}$,NDA021440,US FDA application number (NDA/ANDA/BLA prefix optional; 6-digit body canonical).
@@ -24,9 +26,13 @@ GENE_SYMBOL,gene,^[A-Z][A-Z0-9-]*$,,HGNC gene symbol (human).
 GO_ID,ontology_term,^GO:[0-9]{7}$,,"Gene Ontology term identifier (molecular function, biological process, or cellular component)."
 HCPCS,procedure_or_drug_code,,,Healthcare Common Procedure Coding System code.
 HCPCS_J_CODE,drug_product,,,HCPCS J-code (clinician-administered drug).
+HMDB_ID,metabolite,"^HMDB[0-9]{7,}$",HMDB0000122,Human Metabolome Database identifier for a metabolite.
+HPO_ID,phenotype,^HP:[0-9]{7}$,HP:0001250,Human Phenotype Ontology term identifier (phenotypic abnormalities).
+HS_CODE,traded_commodity,"^[0-9]{6,10}$",300490; 870380,"Harmonized System commodity code for internationally traded goods (WCO; 6-digit HS, extended nationally to 8-10 digits)."
 ICB_CODE,uk_geography,,,UK Integrated Care Board code.
 ICD_10,condition_code,,,"International Classification of Diseases, 10th revision."
 INCHI_KEY,chemical_compound,^[A-Z]{14}-[A-Z]{10}-[A-Z]$,XEEYBQQBJWHFJM-UHFFFAOYSA-N,27-character hashed InChI identifier for a chemical structure.
+INPADOC_FAMILY_ID,patent_family,^[0-9]+$,44561203,INPADOC/DOCDB simple patent-family identifier grouping equivalent patents across offices.
 INTERPRO_ID,protein_family,^IPR[0-9]{6}$,,InterPro protein family or domain identifier.
 ISBN,scholarly_work,^(97[89])?[0-9]{9}[0-9X]$,,International Standard Book Number (ISBN-10 or ISBN-13).
 ISIN,security,^[A-Z]{2}[A-Z0-9]{9}[0-9]$,,International Securities Identification Number.
@@ -38,32 +44,43 @@ ISO_639_1,language,^[a-z]{2}$,en; fr; ja; zh,"ISO 639-1 two-letter language code
 ISSN,journal,^[0-9]{4}-[0-9]{3}[0-9X]$,,"International Standard Serial Number (journals, serials)."
 LAD_CODE,uk_geography,,,UK Local Authority District code.
 LEI,legal_entity,^[A-Z0-9]{18}[0-9]{2}$,529900T8BM49AURSDO55,Legal Entity Identifier (ISO 17442). Issued by GLEIF for financial counterparties.
+LOINC_CODE,lab_or_observation,"^[0-9]{1,5}-[0-9]$",2951-2,"LOINC code for laboratory tests, measurements, and clinical observations."
 LSOA,uk_geography,,,UK Lower-layer Super Output Area.
 MAG_ID,scholarly_work,^[0-9]+$,,Microsoft Academic Graph identifier (legacy; still exposed by OpenAlex via ids.mag).
 MEDDRA_TERM,adverse_event_term,,,Medical Dictionary for Regulatory Activities term (adverse events).
 MESH_TERM,biomedical_concept,,,Medical Subject Headings term.
 MIRBASE_ID,microRNA,^MI(MAT)?[0-9]{7}$,,miRBase microRNA precursor or mature identifier.
 MMWR_WEEK,time_period,,,US CDC week-of-year numbering for surveillance.
+MONDO_ID,disease,^MONDO:[0-9]{7}$,MONDO:0007739,Mondo Disease Ontology identifier (harmonised disease concept).
 MSOA,uk_geography,,,UK Middle-layer Super Output Area.
+NAICS_CODE,industry_classification,"^[0-9]{2,6}$",325412; 3254,"North American Industry Classification System code (2-6 digit). Used across USAspending, SAM.gov, OSHA, EPA, and Census manufacturing series."
 NCBI_TAXON_ID,organism,^[0-9]+$,9606,NCBI Taxonomy identifier.
 NCT_ID,clinical_trial,^NCT[0-9]{8}$,,ClinicalTrials.gov trial identifier.
 NDC,drug_product,"^[0-9]{4,5}-[0-9]{3,4}-[0-9]{1,2}$",,National Drug Code (US).
 NPI,healthcare_provider,^[0-9]{10}$,,US National Provider Identifier.
 NUTS,eu_geography,,,EU regional classification code.
+OMIM_ID,gene_or_disorder,^[0-9]{6}$,143100,Online Mendelian Inheritance in Man identifier (genes and Mendelian disorders).
+OMOP_CONCEPT_ID,omop_concept,^[0-9]+$,1127433,OMOP Standardized Vocabularies concept id (OHDSI); the standard target that RxNorm/SNOMED/LOINC/ICD map into.
 OPCS_4,procedure_code,,,UK procedure classification code.
 ORCID,person,^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]$,,Researcher identifier.
+ORPHA_CODE,rare_disease,^(ORPHA:)?[0-9]+$,ORPHA:558; 558,Orphanet identifier for rare diseases (ORPHAcode).
 OSM_ID,geographic_feature,,node/240109189; way/4267181; relation/146268,"OpenStreetMap object identifier. OSM IDs are namespaced by object type; store with the type prefix (e.g. ""node/240109189"") so the type is unambiguous. Bare numeric IDs are ambiguous between node, way, and relation."
+PATENT_PUBLICATION_NUMBER,patent_document,,US10123456B2; EP1234567A1; WO2020123456A1,"Patent publication number (country prefix + number + kind code); the cross-office patent-document key used by EPO OPS, WIPO, Lens, Google Patents, and USPTO."
 PDB_ID,macromolecular_structure,^[0-9][A-Z0-9]{3}$,1TUP,Protein Data Bank structure identifier.
 PMCID,open_access_biomedical_article,^PMC[0-9]+$,,PubMed Central identifier (open-access biomedical articles).
 PMID,biomedical_article,^[0-9]+$,,PubMed identifier.
+PXD_IDENTIFIER,proteomics_dataset,"^PXD[0-9]{6,}$",PXD000001,"ProteomeXchange dataset accession for mass-spectrometry proteomics deposits (exposed by ProteomeXchange, PRIDE, PeptideAtlas)."
 ROR,institution,^[a-z0-9]{9}$,,Research Organization Registry identifier (institutions).
 RSID,variant,^rs[0-9]+$,,dbSNP reference SNP identifier.
 RXNORM_CUI,drug_concept,,,RxNorm Concept Unique Identifier (US drug terminology).
 SEDOL,security,,,Stock Exchange Daily Official List code (UK).
 SETID,spl_document,^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$,,FDA Structured Product Labeling (SPL) document UUIDv4. Used in DailyMed.
 SIC_UK_2007,industry_classification,^[0-9]{5}$,62012; 70100,UK Standard Industrial Classification (2007 edition). Companies House records SIC codes per company; ONS economic statistics use the same classification.
+SNOMED_CT_ID,clinical_concept,"^[0-9]{6,18}$",73211009,SNOMED CT clinical concept identifier (SCTID).
 TICKER,public_company,,,Public equity ticker symbol.
 UBERON_ID,anatomy_term,^UBERON:[0-9]{7}$,,Uber-anatomy ontology identifier (cross-species anatomy).
+UEI,federal_award_entity,^[A-Z0-9]{12}$,ABC123DEF456,SAM.gov Unique Entity Identifier for US federal award recipients (replaced DUNS in 2022).
+UMLS_CUI,biomedical_concept,^C[0-9]{7}$,C0004096,"UMLS Metathesaurus Concept Unique Identifier; the cross-vocabulary concept spine linking MeSH, SNOMED CT, ICD, RxNorm, and LOINC."
 UNII,chemical_substance,^[A-Z0-9]{10}$,R16CO5Y76E,FDA Unique Ingredient Identifier (Substance Registration System).
 UNIPROT_ACCESSION,protein,^[A-NR-Z][0-9][A-Z0-9]{3}[0-9]$,,UniProt protein accession.
 URL,webpage_or_resource,,,Canonical web URL (last-resort join key).
