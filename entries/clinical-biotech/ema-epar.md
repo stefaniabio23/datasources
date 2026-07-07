@@ -84,6 +84,8 @@ Primary programmatic path is the JSON report dump: a single GET to `https://www.
 
 Human-facing bulk tables are on the download-medicine-data page in Excel (auto-updated overnight); the download page is the freshness reference. Note the field set changed in October 2025 (EMA product number added), and date fields use `DD/MM/YYYY`. An older static `Medicines_output_european_public_assessment_reports.xlsx` URL now 404s; use the download page or the JSON report instead.
 
+**Regulatory-failure analysis.** The sibling report files include refused marketing authorisations and withdrawn applications, and CHMP negative opinions surface in the EPAR/procedure records. Pull the refusals/withdrawn report alongside the main medicines table to capture EU approval *failures*, not just successes, the European complement to FDA Complete Response Letters.
+
 ## MCP / connector notes
 
 MCP exists (community): `openpharma-org/ema-mcp`, a JavaScript server that fetches the EMA JSON report files and exposes a single `ema_info` tool with 14 methods (`search_medicines`, `get_medicine_by_name`, `search_epar_documents`, `get_orphan_designations`, `get_supply_shortages`, `get_referrals`, `get_post_auth_procedures`, `get_dhpcs`, `get_psusas`, `get_pips`, and more). It is not npm-published, so clone, `npm install && npm run build`, and run `node build/index.js`. An Apify actor (`ryanclinton/ema-medicines-search`) additionally offers a hosted MCP endpoint. Gaps: static-file backed (no server-side per-record query, so the connector loads and filters the whole dump), no EPAR PDF text extraction beyond document URLs, and no cross-map to UNII/RxNorm/DrugBank (the connector would add value by resolving INN/ATC to those coded identifiers).

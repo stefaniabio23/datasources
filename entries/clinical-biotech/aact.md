@@ -91,6 +91,8 @@ Sign up at `/users/sign_up` (free, name + email + password). After login, the co
 
 For reproducible workloads, prefer the static snapshot archive over the live database: CTTI publishes a daily full Postgres dump plus a separate pipe-delimited file bundle, plus dated monthly archives, downloadable without auth. Use the snapshot date as the citation anchor. The live database is fine for ad-hoc analysis but its contents change nightly, so analyses against the live DB are not reproducible without recording the snapshot date.
 
+**Failed-trial analysis.** AACT is the practical open substitute for a curated failed-trials dataset. The load-bearing fields are `overall_status`, `why_stopped`, `completion_date`, and `results_first_submitted`, plus the outcome/results tables: filter `overall_status` to Terminated / Withdrawn / Suspended and mine the `why_stopped` free text for attrition signals. It mirrors ClinicalTrials.gov's status module one-to-one.
+
 Attribution is required: cite "Aggregate Analysis of ClinicalTrials.gov (AACT) Database. Clinical Trials Transformation Initiative (CTTI)." The terms are non-SPDX; commercial use is not explicitly prohibited but also not blanket-authorised, see Review notes.
 
 ## MCP / connector notes
