@@ -19,6 +19,7 @@ lag: "released mid-month (~15-17 days) for the prior reference month; preliminar
 geography: [USA]
 join_keys:
   - DATE
+  - NAICS_CODE
 primary_keys:
   - FRB_G17_SERIES_NAME
   - FRB_IP_INDUSTRY_CODE

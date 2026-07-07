@@ -25,6 +25,9 @@ join_keys:
   - GENE_SYMBOL
   - ENSEMBL_ID
   - UNIPROT_ACCESSION
+  - ORPHA_CODE
+  - OMIM_ID
+  - UMLS_CUI
 primary_keys:
   - ORPHA_CODE
 join_key_fields:

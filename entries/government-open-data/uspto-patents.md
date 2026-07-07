@@ -18,7 +18,9 @@ bulk_available: true
 frequency: "daily refresh for Patent File Wrapper; granted patents weekly (Tuesday grant cycle)"
 lag: "days for prosecution events into PFW; weekly for new grants"
 geography: [US]
-join_keys: []
+join_keys:
+  - PATENT_PUBLICATION_NUMBER
+  - CPC_CODE
 primary_keys:
   - US_PATENT_NUMBER
   - US_APPLICATION_NUMBER

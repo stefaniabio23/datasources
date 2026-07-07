@@ -22,6 +22,8 @@ geography: [global]
 join_keys:
   - GENE_SYMBOL
   - ENTREZ_GENE_ID
+  - HPO_ID
+  - OMIM_ID
 primary_keys:
   - HPO_ID
 join_key_fields:

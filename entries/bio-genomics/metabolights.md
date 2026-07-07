@@ -22,6 +22,7 @@ join_keys:
   - CHEBI_ID
   - PMID
   - DOI
+  - HMDB_ID
 primary_keys:
   - MTBLS_ID
 join_key_fields:

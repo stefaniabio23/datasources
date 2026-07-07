@@ -24,6 +24,8 @@ join_keys:
   - FIPS
   - US_STATE_CODE
   - ISO_3
+  - NAICS_CODE
+  - UEI
 primary_keys:
   - USASPENDING_GENERATED_AWARD_ID
   - USASPENDING_INTERNAL_AWARD_ID

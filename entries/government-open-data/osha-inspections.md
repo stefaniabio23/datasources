@@ -20,6 +20,7 @@ lag: "inspection records post weeks-to-months after case activity; citations sub
 geography: [USA]
 join_keys:
   - US_STATE_CODE
+  - NAICS_CODE
 primary_keys:
   - OSHA_ACTIVITY_NR
   - OSHA_REPORTING_ID

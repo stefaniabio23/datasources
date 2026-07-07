@@ -27,6 +27,9 @@ join_keys:
   - ISNI
   - WIKIDATA_QID
   - FUNDER_DOI
+  - PATENT_PUBLICATION_NUMBER
+  - CPC_CODE
+  - INPADOC_FAMILY_ID
 primary_keys:
   - LENS_ID
 join_key_fields:

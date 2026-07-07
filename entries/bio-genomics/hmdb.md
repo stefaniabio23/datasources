@@ -24,6 +24,7 @@ join_keys:
   - DRUGBANK_ID
   - UNIPROT_ACCESSION
   - GENE_SYMBOL
+  - HMDB_ID
 primary_keys:
   - HMDB_ID
 join_key_fields:

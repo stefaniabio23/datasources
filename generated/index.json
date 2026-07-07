@@ -1,52 +1,5 @@
 [
   {
-    "_path": "entries/clinical-biotech/surechembl.md",
-    "access_test": {
-      "command": "curl -sf 'https://www.ebi.ac.uk/unichem/rest/inchikey/RYYVLZVUVIJVGH-UHFFFAOYSA-N' -o /dev/null",
-      "expected_status": 200
-    },
-    "agent_use_cases": [
-      "chemistry extraction from patents",
-      "compound-to-patent mapping",
-      "chemical patent landscaping and prior-art search",
-      "linking disclosed compounds to patent families",
-      "feeding small-molecule IP analysis"
-    ],
-    "auth_required": "none",
-    "build_priority": "low",
-    "bulk_available": true,
-    "cost": "free",
-    "description": "EMBL-EBI database of chemistry text-mined from patent documents, linking compounds extracted from patent full text and images to the patents that disclose them.",
-    "docs_url": "https://chembl.gitbook.io/surechembl-documentation",
-    "domain": "clinical-biotech",
-    "entry_kind": "knowledge-graph",
-    "frequency": "rolling; reprocessed as new patents publish (SureChEMBL 2.0 pipeline)",
-    "geography": [
-      "global"
-    ],
-    "homepage_url": "https://www.surechembl.org/",
-    "id": "surechembl",
-    "join_keys": [
-      "INCHI_KEY",
-      "CHEMBL_ID"
-    ],
-    "lag": "days-to-weeks after patent publication",
-    "last_verified": "2026-07-07",
-    "license": "CC0",
-    "mcp_status": "mcp-needed-low-value",
-    "name": "SureChEMBL",
-    "notes": "SureChEMBL 2.0 (2025 major update): rebuilt annotation pipeline, AI annotations, expanded global coverage (USPTO/EPO/WIPO full text, JPO titles/abstracts, CNIPA translated). No first-class REST API yet (stated future development); UniChem provides InChI-based REST cross-referencing (SureChEMBL is UniChem source 15) and is the access_test path. Data was donated to the public domain (2013); CC0 used pending confirmation (flagged). PATENT_PUBLICATION_NUMBER is the key join here but is not yet in the registry, proposed in PR #1; flagged in Review notes.",
-    "primary_keys": [
-      "SURECHEMBL_ID"
-    ],
-    "rate_limit": "none; bulk download + UniChem REST for structure lookups",
-    "type": [
-      "web-ui",
-      "bulk-download",
-      "rest-api"
-    ]
-  },
-  {
     "_path": "entries/bio-genomics/gtex.md",
     "access_test": {
       "command": "curl -sf 'https://gtexportal.org/api/v2/reference/gene?geneId=BRCA1'",
@@ -9336,7 +9289,10 @@
     ],
     "homepage_url": "https://data.uspto.gov",
     "id": "uspto-patents",
-    "join_keys": [],
+    "join_keys": [
+      "PATENT_PUBLICATION_NUMBER",
+      "CPC_CODE"
+    ],
     "lag": "days for prosecution events into PFW; weekly for new grants",
     "last_verified": "2026-06-22",
     "license": "US-Government-Public-Domain",
@@ -9517,7 +9473,8 @@
     "join_keys": [
       "UNIPROT_ACCESSION",
       "ENSEMBL_ID",
-      "GENE_SYMBOL"
+      "GENE_SYMBOL",
+      "PXD_IDENTIFIER"
     ],
     "lag": "reprocessed data lags original ProteomeXchange deposition by months to years",
     "last_verified": "2026-07-02",
@@ -9785,7 +9742,8 @@
     "is_directory": true,
     "join_keys": [
       "PMID",
-      "DOI"
+      "DOI",
+      "PXD_IDENTIFIER"
     ],
     "lag": "days; datasets go public on associated publication",
     "last_verified": "2026-07-02",
@@ -10081,7 +10039,9 @@
     ],
     "join_keys": [
       "GENE_SYMBOL",
-      "ENTREZ_GENE_ID"
+      "ENTREZ_GENE_ID",
+      "HPO_ID",
+      "OMIM_ID"
     ],
     "lag": "new terms and disease/gene annotations appear per dated release; weeks-to-months",
     "last_verified": "2026-07-02",
@@ -10173,7 +10133,8 @@
       "DOI",
       "PMID",
       "UNIPROT_ACCESSION",
-      "ORCID"
+      "ORCID",
+      "PXD_IDENTIFIER"
     ],
     "lag": "days-to-weeks from submission to public release; private until submitter/journal releases",
     "last_verified": "2026-07-02",
@@ -10338,7 +10299,8 @@
       "INCHI_KEY",
       "DRUGBANK_ID",
       "UNIPROT_ACCESSION",
-      "GENE_SYMBOL"
+      "GENE_SYMBOL",
+      "HMDB_ID"
     ],
     "lag": "major versions every few years (v5.0 released 2022)",
     "last_verified": "2026-07-02",
@@ -10499,7 +10461,10 @@
       "EFO_ID",
       "ICD_10",
       "MESH_TERM",
-      "MEDDRA_TERM"
+      "MEDDRA_TERM",
+      "MONDO_ID",
+      "OMIM_ID",
+      "ORPHA_CODE"
     ],
     "lag": "~1 week for a Mondo release to load into OLS",
     "last_verified": "2026-07-02",
@@ -10812,7 +10777,8 @@
     "join_keys": [
       "CHEBI_ID",
       "PMID",
-      "DOI"
+      "DOI",
+      "HMDB_ID"
     ],
     "lag": "days-to-weeks between submission acceptance/curation and public release",
     "last_verified": "2026-07-02",
@@ -11104,7 +11070,10 @@
     ],
     "homepage_url": "https://loinc.org/",
     "id": "loinc",
-    "join_keys": [],
+    "join_keys": [
+      "LOINC_CODE",
+      "SNOMED_CT_ID"
+    ],
     "last_verified": "2026-07-02",
     "license": "LOINC-License",
     "mcp_status": "mcp-needed-high-value",
@@ -11285,7 +11254,10 @@
       "CPT",
       "HCPCS",
       "MEDDRA_TERM",
-      "ATC_CODE"
+      "ATC_CODE",
+      "UMLS_CUI",
+      "SNOMED_CT_ID",
+      "LOINC_CODE"
     ],
     "last_verified": "2026-07-02",
     "license": "UMLS-License",
@@ -11469,7 +11441,10 @@
       "HCPCS",
       "CPT",
       "MESH_TERM",
-      "MEDDRA_TERM"
+      "MEDDRA_TERM",
+      "OMOP_CONCEPT_ID",
+      "SNOMED_CT_ID",
+      "LOINC_CODE"
     ],
     "last_verified": "2026-07-02",
     "license": "mixed-vocabulary-licenses",
@@ -11771,7 +11746,10 @@
       "MEDDRA_TERM",
       "GENE_SYMBOL",
       "ENSEMBL_ID",
-      "UNIPROT_ACCESSION"
+      "UNIPROT_ACCESSION",
+      "ORPHA_CODE",
+      "OMIM_ID",
+      "UMLS_CUI"
     ],
     "lag": "curation lag of months; refreshed on the fixed release cadence above",
     "last_verified": "2026-07-02",
@@ -11828,7 +11806,8 @@
     ],
     "join_keys": [
       "ICD_10",
-      "NDC"
+      "NDC",
+      "LOINC_CODE"
     ],
     "lag": "historical and de-identified with per-patient date-shifting; MIMIC-IV covers ICU/ED admissions across roughly 2008-2022, released years after collection",
     "last_verified": "2026-07-02",
@@ -12545,7 +12524,10 @@
       "ROR",
       "ISNI",
       "WIKIDATA_QID",
-      "FUNDER_DOI"
+      "FUNDER_DOI",
+      "PATENT_PUBLICATION_NUMBER",
+      "CPC_CODE",
+      "INPADOC_FAMILY_ID"
     ],
     "last_verified": "2026-07-02",
     "license": "Lens-Terms-of-Use",
@@ -14825,7 +14807,9 @@
     ],
     "homepage_url": "https://patentscope.wipo.int/",
     "id": "wipo-patentscope",
-    "join_keys": [],
+    "join_keys": [
+      "PATENT_PUBLICATION_NUMBER"
+    ],
     "lag": "PCT data available on day of publication; national collection lag varies by office",
     "last_verified": "2026-07-02",
     "license": "WIPO-Terms-of-Use",
@@ -15038,7 +15022,11 @@
     ],
     "homepage_url": "https://www.epo.org/en/searching-for-patents/data/web-services/ops",
     "id": "epo-ops",
-    "join_keys": [],
+    "join_keys": [
+      "PATENT_PUBLICATION_NUMBER",
+      "CPC_CODE",
+      "INPADOC_FAMILY_ID"
+    ],
     "lag": "days-to-weeks for newly published patents; DOCDB/INPADOC refreshed weekly",
     "last_verified": "2026-07-02",
     "license": "EPO-OPS-Fair-Use",
@@ -15102,7 +15090,8 @@
       }
     ],
     "join_keys": [
-      "DATE"
+      "DATE",
+      "NAICS_CODE"
     ],
     "lag": "released mid-month (~15-17 days) for the prior reference month; preliminary value revised over the following months, plus a full annual revision each autumn",
     "last_verified": "2026-07-03",
@@ -16240,7 +16229,8 @@
       }
     ],
     "join_keys": [
-      "DATE"
+      "DATE",
+      "NAICS_CODE"
     ],
     "lag": "advance report ~4 weeks after the reference month; full report ~1 week after the advance; both revised in subsequent months",
     "last_verified": "2026-07-03",
@@ -16388,7 +16378,9 @@
     "join_keys": [
       "FIPS",
       "US_STATE_CODE",
-      "ZCTA"
+      "ZCTA",
+      "NAICS_CODE",
+      "EPA_REGISTRY_ID"
     ],
     "lag": "continuous to monthly refresh from contributing EPA program systems; national bulk files typically monthly, file geodatabase weekly",
     "last_verified": "2026-07-03",
@@ -16643,7 +16635,8 @@
     ],
     "join_keys": [
       "ISO_3",
-      "DATE"
+      "DATE",
+      "HS_CODE"
     ],
     "lag": "months; countries report with variable delay, most within 3-12 months of the reference period",
     "last_verified": "2026-07-03",
@@ -16709,7 +16702,8 @@
       }
     ],
     "join_keys": [
-      "DATE"
+      "DATE",
+      "HS_CODE"
     ],
     "lag": "~35 days after the reference month (FT-900 release day); annual revisions each April",
     "last_verified": "2026-07-03",
@@ -17148,7 +17142,8 @@
       }
     ],
     "join_keys": [
-      "US_STATE_CODE"
+      "US_STATE_CODE",
+      "NAICS_CODE"
     ],
     "lag": "inspection records post weeks-to-months after case activity; citations subject to continuing correction",
     "last_verified": "2026-07-07",
@@ -17223,7 +17218,9 @@
     "join_keys": [
       "FIPS",
       "US_STATE_CODE",
-      "ZCTA"
+      "ZCTA",
+      "NAICS_CODE",
+      "EPA_REGISTRY_ID"
     ],
     "lag": "facility compliance snapshot refreshed weekly from contributing EPA program systems; enforcement cases and DMR effluent data lag their source systems by weeks to a quarter",
     "last_verified": "2026-07-07",
@@ -17442,7 +17439,9 @@
     "join_keys": [
       "FIPS",
       "US_STATE_CODE",
-      "ISO_3"
+      "ISO_3",
+      "NAICS_CODE",
+      "UEI"
     ],
     "lag": "FPDS contract transactions flow ~daily; agency financial (DABS) submissions are monthly/quarterly",
     "last_verified": "2026-07-07",
@@ -17586,7 +17585,10 @@
     ],
     "homepage_url": "https://console.cloud.google.com/marketplace/product/google_patents_public_datasets/google-patents-public-data",
     "id": "google-patents-bigquery",
-    "join_keys": [],
+    "join_keys": [
+      "PATENT_PUBLICATION_NUMBER",
+      "CPC_CODE"
+    ],
     "last_verified": "2026-07-07",
     "license": "CC-BY-4.0",
     "mcp_status": "mcp-needed-low-value",
@@ -17779,7 +17781,9 @@
       }
     ],
     "join_keys": [
-      "US_STATE_CODE"
+      "US_STATE_CODE",
+      "NAICS_CODE",
+      "UEI"
     ],
     "lag": "minutes-to-hours after an agency posts a notice",
     "last_verified": "2026-07-07",
@@ -17825,7 +17829,10 @@
     ],
     "homepage_url": "https://www.lens.org/lens/bio/patseqfinder",
     "id": "lens-patseq",
-    "join_keys": [],
+    "join_keys": [
+      "PATENT_PUBLICATION_NUMBER",
+      "CPC_CODE"
+    ],
     "last_verified": "2026-07-07",
     "license": "Lens-PatSeq-Terms",
     "mcp_status": "mcp-needed-low-value",
@@ -17978,6 +17985,54 @@
     "type": [
       "rest-api",
       "bulk-download"
+    ]
+  },
+  {
+    "_path": "entries/clinical-biotech/surechembl.md",
+    "access_test": {
+      "command": "curl -sf 'https://www.ebi.ac.uk/unichem/rest/inchikey/RYYVLZVUVIJVGH-UHFFFAOYSA-N' -o /dev/null",
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "chemistry extraction from patents",
+      "compound-to-patent mapping",
+      "chemical patent landscaping and prior-art search",
+      "linking disclosed compounds to patent families",
+      "feeding small-molecule IP analysis"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "EMBL-EBI database of chemistry text-mined from patent documents, linking compounds extracted from patent full text and images to the patents that disclose them.",
+    "docs_url": "https://chembl.gitbook.io/surechembl-documentation",
+    "domain": "clinical-biotech",
+    "entry_kind": "knowledge-graph",
+    "frequency": "rolling; reprocessed as new patents publish (SureChEMBL 2.0 pipeline)",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://www.surechembl.org/",
+    "id": "surechembl",
+    "join_keys": [
+      "INCHI_KEY",
+      "CHEMBL_ID",
+      "PATENT_PUBLICATION_NUMBER"
+    ],
+    "lag": "days-to-weeks after patent publication",
+    "last_verified": "2026-07-07",
+    "license": "CC0",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "SureChEMBL",
+    "notes": "SureChEMBL 2.0 (2025 major update): rebuilt annotation pipeline, AI annotations, expanded global coverage (USPTO/EPO/WIPO full text, JPO titles/abstracts, CNIPA translated). No first-class REST API yet (stated future development); UniChem provides InChI-based REST cross-referencing (SureChEMBL is UniChem source 15) and is the access_test path. Data was donated to the public domain (2013); CC0 used pending confirmation (flagged). PATENT_PUBLICATION_NUMBER is the key join here but is not yet in the registry, proposed in PR #1; flagged in Review notes.",
+    "primary_keys": [
+      "SURECHEMBL_ID"
+    ],
+    "rate_limit": "none; bulk download + UniChem REST for structure lookups",
+    "type": [
+      "web-ui",
+      "bulk-download",
+      "rest-api"
     ]
   }
 ]

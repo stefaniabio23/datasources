@@ -25,6 +25,9 @@ join_keys:
   - CPT
   - MESH_TERM
   - MEDDRA_TERM
+  - OMOP_CONCEPT_ID
+  - SNOMED_CT_ID
+  - LOINC_CODE
 primary_keys:
   - OMOP_CONCEPT_ID
 join_key_fields:

@@ -21,6 +21,7 @@ is_directory: true
 join_keys:
   - PMID
   - DOI
+  - PXD_IDENTIFIER
 primary_keys:
   - PXD_IDENTIFIER
   - PRIDE_PROJECT_ID

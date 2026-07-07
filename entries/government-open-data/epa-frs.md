@@ -22,6 +22,8 @@ join_keys:
   - FIPS
   - US_STATE_CODE
   - ZCTA
+  - NAICS_CODE
+  - EPA_REGISTRY_ID
 primary_keys:
   - FRS_REGISTRY_ID
 join_key_fields:

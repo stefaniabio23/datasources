@@ -3,7 +3,7 @@
 Reverse index of canonical join keys mapped to the datasets that expose them.
 Generated from `entries/**/*.md`. Do not hand-edit.
 
-**227 datasets, 66 distinct canonical keys, 732 key→source links.**
+**227 datasets, 83 distinct canonical keys, 781 key→source links.**
 
 ## ARXIV_ID
 
@@ -97,6 +97,16 @@ _2 dataset(s)._
 
 - [Companies House (UK)](../entries/corporate-registry/companies-house.md) — `corporate-registry`
 - [OpenCorporates](../entries/corporate-registry/opencorporates.md) — `corporate-registry`
+
+## CPC_CODE
+
+_5 dataset(s)._
+
+- [EPO Open Patent Services (OPS)](../entries/government-open-data/epo-ops.md) — `government-open-data`
+- [Google Patents Public Datasets (BigQuery)](../entries/government-open-data/google-patents-bigquery.md) — `government-open-data`
+- [Lens PatSeq](../entries/government-open-data/lens-patseq.md) — `government-open-data`
+- [The Lens](../entries/academic/the-lens.md) — `academic`
+- [USPTO Open Data Portal (Patents)](../entries/government-open-data/uspto-patents.md) — `government-open-data`
 
 ## CPT
 
@@ -321,6 +331,13 @@ _17 dataset(s)._
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
 - [dbSNP](../entries/bio-genomics/dbsnp.md) — `bio-genomics`
 
+## EPA_REGISTRY_ID
+
+_2 dataset(s)._
+
+- [EPA ECHO (Enforcement & Compliance History Online)](../entries/government-open-data/epa-echo.md) — `government-open-data`
+- [EPA Facility Registry Service (FRS)](../entries/government-open-data/epa-frs.md) — `government-open-data`
+
 ## EUDRACT_NUMBER
 
 _6 dataset(s)._
@@ -440,6 +457,26 @@ _3 dataset(s)._
 - [RxNorm](../entries/clinical-biotech/rxnorm.md) — `clinical-biotech`
 - [UMLS Metathesaurus](../entries/clinical-biotech/umls.md) — `clinical-biotech`
 
+## HMDB_ID
+
+_2 dataset(s)._
+
+- [HMDB (Human Metabolome Database)](../entries/bio-genomics/hmdb.md) — `bio-genomics`
+- [MetaboLights](../entries/bio-genomics/metabolights.md) — `bio-genomics`
+
+## HPO_ID
+
+_1 dataset(s)._
+
+- [Human Phenotype Ontology](../entries/bio-genomics/hpo.md) — `bio-genomics`
+
+## HS_CODE
+
+_2 dataset(s)._
+
+- [UN Comtrade](../entries/government-open-data/un-comtrade.md) — `government-open-data`
+- [US Census International Trade API](../entries/government-open-data/census-intl-trade.md) — `government-open-data`
+
 ## ICD_10
 
 _7 dataset(s)._
@@ -467,6 +504,13 @@ _11 dataset(s)._
 - [PubChem](../entries/clinical-biotech/pub-chem.md) — `clinical-biotech`
 - [SureChEMBL](../entries/clinical-biotech/surechembl.md) — `clinical-biotech`
 - [WITHDRAWN](../entries/clinical-biotech/withdrawn-database.md) — `clinical-biotech`
+
+## INPADOC_FAMILY_ID
+
+_2 dataset(s)._
+
+- [EPO Open Patent Services (OPS)](../entries/government-open-data/epo-ops.md) — `government-open-data`
+- [The Lens](../entries/academic/the-lens.md) — `academic`
 
 ## INTERPRO_ID
 
@@ -605,6 +649,15 @@ _6 dataset(s)._
 - [SEC Form N-PORT Fund Holdings](../entries/finance-markets/sec-nport.md) — `finance-markets`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
 
+## LOINC_CODE
+
+_4 dataset(s)._
+
+- [LOINC](../entries/clinical-biotech/loinc.md) — `clinical-biotech`
+- [OMOP / OHDSI Athena](../entries/clinical-biotech/ohdsi-athena.md) — `clinical-biotech`
+- [PhysioNet (MIMIC-IV / eICU)](../entries/clinical-biotech/physionet.md) — `clinical-biotech`
+- [UMLS Metathesaurus](../entries/clinical-biotech/umls.md) — `clinical-biotech`
+
 ## MAG_ID
 
 _2 dataset(s)._
@@ -655,6 +708,24 @@ _19 dataset(s)._
 _1 dataset(s)._
 
 - [Rfam](../entries/bio-genomics/rna-families-database.md) — `bio-genomics`
+
+## MONDO_ID
+
+_1 dataset(s)._
+
+- [Mondo Disease Ontology](../entries/bio-genomics/mondo.md) — `bio-genomics`
+
+## NAICS_CODE
+
+_7 dataset(s)._
+
+- [Census M3 (Manufacturers' Shipments, Inventories & Orders)](../entries/government-open-data/census-m3.md) — `government-open-data`
+- [EPA ECHO (Enforcement & Compliance History Online)](../entries/government-open-data/epa-echo.md) — `government-open-data`
+- [EPA Facility Registry Service (FRS)](../entries/government-open-data/epa-frs.md) — `government-open-data`
+- [Federal Reserve G.17 Industrial Production and Capacity Utilization](../entries/finance-markets/fed-g17-industrial-production.md) — `finance-markets`
+- [OSHA Inspections](../entries/government-open-data/osha-inspections.md) — `government-open-data`
+- [SAM.gov Contract Opportunities](../entries/government-open-data/sam-gov.md) — `government-open-data`
+- [USAspending.gov](../entries/government-open-data/usaspending.md) — `government-open-data`
 
 ## NCBI_TAXON_ID
 
@@ -730,6 +801,20 @@ _2 dataset(s)._
 - [E-PRTR (European Industrial Emissions Portal)](../entries/government-open-data/e-prtr.md) — `government-open-data`
 - [TED (Tenders Electronic Daily)](../entries/government-open-data/eu-ted.md) — `government-open-data`
 
+## OMIM_ID
+
+_3 dataset(s)._
+
+- [Human Phenotype Ontology](../entries/bio-genomics/hpo.md) — `bio-genomics`
+- [Mondo Disease Ontology](../entries/bio-genomics/mondo.md) — `bio-genomics`
+- [Orphanet](../entries/clinical-biotech/orphanet.md) — `clinical-biotech`
+
+## OMOP_CONCEPT_ID
+
+_1 dataset(s)._
+
+- [OMOP / OHDSI Athena](../entries/clinical-biotech/ohdsi-athena.md) — `clinical-biotech`
+
 ## OPCS_4
 
 _1 dataset(s)._
@@ -753,12 +838,31 @@ _12 dataset(s)._
 - [UKRI Gateway to Research (GtR)](../entries/government-open-data/ukri-gtr.md) — `government-open-data`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
 
+## ORPHA_CODE
+
+_2 dataset(s)._
+
+- [Mondo Disease Ontology](../entries/bio-genomics/mondo.md) — `bio-genomics`
+- [Orphanet](../entries/clinical-biotech/orphanet.md) — `clinical-biotech`
+
 ## OSM_ID
 
 _2 dataset(s)._
 
 - [OpenStreetMap](../entries/geospatial/openstreetmap.md) — `geospatial`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
+
+## PATENT_PUBLICATION_NUMBER
+
+_7 dataset(s)._
+
+- [EPO Open Patent Services (OPS)](../entries/government-open-data/epo-ops.md) — `government-open-data`
+- [Google Patents Public Datasets (BigQuery)](../entries/government-open-data/google-patents-bigquery.md) — `government-open-data`
+- [Lens PatSeq](../entries/government-open-data/lens-patseq.md) — `government-open-data`
+- [SureChEMBL](../entries/clinical-biotech/surechembl.md) — `clinical-biotech`
+- [The Lens](../entries/academic/the-lens.md) — `academic`
+- [USPTO Open Data Portal (Patents)](../entries/government-open-data/uspto-patents.md) — `government-open-data`
+- [WIPO PATENTSCOPE](../entries/government-open-data/wipo-patentscope.md) — `government-open-data`
 
 ## PDB_ID
 
@@ -836,6 +940,14 @@ _42 dataset(s)._
 - [UniProt](../entries/bio-genomics/uniprot.md) — `bio-genomics`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
 
+## PXD_IDENTIFIER
+
+_3 dataset(s)._
+
+- [PRIDE Archive](../entries/bio-genomics/pride.md) — `bio-genomics`
+- [PeptideAtlas](../entries/bio-genomics/peptideatlas.md) — `bio-genomics`
+- [ProteomeXchange](../entries/bio-genomics/proteomexchange.md) — `bio-genomics`
+
 ## ROR
 
 _10 dataset(s)._
@@ -892,6 +1004,14 @@ _1 dataset(s)._
 
 - [RxNorm](../entries/clinical-biotech/rxnorm.md) — `clinical-biotech`
 
+## SNOMED_CT_ID
+
+_3 dataset(s)._
+
+- [LOINC](../entries/clinical-biotech/loinc.md) — `clinical-biotech`
+- [OMOP / OHDSI Athena](../entries/clinical-biotech/ohdsi-athena.md) — `clinical-biotech`
+- [UMLS Metathesaurus](../entries/clinical-biotech/umls.md) — `clinical-biotech`
+
 ## TICKER
 
 _21 dataset(s)._
@@ -927,6 +1047,20 @@ _5 dataset(s)._
 - [HuBMAP Data Portal](../entries/bio-genomics/hubmap.md) — `bio-genomics`
 - [Human Cell Atlas Data Portal](../entries/bio-genomics/human-cell-atlas.md) — `bio-genomics`
 - [eQTL Catalogue](../entries/bio-genomics/eqtl-catalogue.md) — `bio-genomics`
+
+## UEI
+
+_2 dataset(s)._
+
+- [SAM.gov Contract Opportunities](../entries/government-open-data/sam-gov.md) — `government-open-data`
+- [USAspending.gov](../entries/government-open-data/usaspending.md) — `government-open-data`
+
+## UMLS_CUI
+
+_2 dataset(s)._
+
+- [Orphanet](../entries/clinical-biotech/orphanet.md) — `clinical-biotech`
+- [UMLS Metathesaurus](../entries/clinical-biotech/umls.md) — `clinical-biotech`
 
 ## UNII
 

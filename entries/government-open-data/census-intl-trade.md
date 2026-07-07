@@ -23,6 +23,7 @@ structure: panel
 geography: [USA]
 join_keys:
   - DATE
+  - HS_CODE
 primary_keys:
   - E_COMMODITY
   - I_COMMODITY

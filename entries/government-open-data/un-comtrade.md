@@ -24,6 +24,7 @@ revisions_possible: true
 join_keys:
   - ISO_3
   - DATE
+  - HS_CODE
 primary_keys:
   - COMTRADE_REPORTER_M49
   - COMTRADE_PARTNER_M49

@@ -15,7 +15,9 @@ license: CC-BY-4.0
 bulk_available: true
 frequency: quarterly
 geography: [global]
-join_keys: []
+join_keys:
+  - PATENT_PUBLICATION_NUMBER
+  - CPC_CODE
 primary_keys:
   - PATENT_PUBLICATION_NUMBER
   - PATENT_APPLICATION_NUMBER

@@ -17,7 +17,8 @@ bulk_available: true
 frequency: "PCT weekly (Thursdays), daily bibliographic updates; national collections ad hoc per office"
 lag: "PCT data available on day of publication; national collection lag varies by office"
 geography: [global]
-join_keys: []
+join_keys:
+  - PATENT_PUBLICATION_NUMBER
 primary_keys:
   - WO_PUBLICATION_NUMBER
   - PCT_APPLICATION_NUMBER

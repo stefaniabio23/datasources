@@ -19,6 +19,8 @@ lag: "minutes-to-hours after an agency posts a notice"
 geography: [USA]
 join_keys:
   - US_STATE_CODE
+  - NAICS_CODE
+  - UEI
 primary_keys:
   - SAM_NOTICE_ID
   - SAM_SOLICITATION_NUMBER

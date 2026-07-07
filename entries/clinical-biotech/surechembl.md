@@ -21,6 +21,7 @@ geography: [global]
 join_keys:
   - INCHI_KEY
   - CHEMBL_ID
+  - PATENT_PUBLICATION_NUMBER
 primary_keys:
   - SURECHEMBL_ID
 mcp_status: mcp-needed-low-value

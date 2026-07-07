@@ -25,6 +25,9 @@ join_keys:
   - HCPCS
   - MEDDRA_TERM
   - ATC_CODE
+  - UMLS_CUI
+  - SNOMED_CT_ID
+  - LOINC_CODE
 primary_keys:
   - UMLS_CUI
   - UMLS_AUI

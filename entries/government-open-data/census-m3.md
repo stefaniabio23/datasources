@@ -19,6 +19,7 @@ lag: "advance report ~4 weeks after the reference month; full report ~1 week aft
 geography: [USA]
 join_keys:
   - DATE
+  - NAICS_CODE
 primary_keys:
   - M3_CATEGORY_CODE
   - M3_DATA_TYPE_CODE

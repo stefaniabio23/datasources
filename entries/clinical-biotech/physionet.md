@@ -21,6 +21,7 @@ geography: [USA]
 join_keys:
   - ICD_10
   - NDC
+  - LOINC_CODE
 primary_keys:
   - MIMIC_SUBJECT_ID
   - MIMIC_HADM_ID

@@ -16,7 +16,9 @@ license: Lens-PatSeq-Terms
 rate_limit: "monthly query quotas on PatSeq Finder; up to 5 API access tokens per user"
 bulk_available: true
 geography: [global]
-join_keys: []
+join_keys:
+  - PATENT_PUBLICATION_NUMBER
+  - CPC_CODE
 primary_keys:
   - LENS_PATENT_ID
   - PATENT_PUBLICATION_NUMBER

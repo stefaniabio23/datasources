@@ -16,7 +16,10 @@ bulk_available: false
 frequency: weekly
 lag: "days-to-weeks for newly published patents; DOCDB/INPADOC refreshed weekly"
 geography: [global]
-join_keys: []
+join_keys:
+  - PATENT_PUBLICATION_NUMBER
+  - CPC_CODE
+  - INPADOC_FAMILY_ID
 primary_keys:
   - EPODOC_PUBLICATION_NUMBER
   - DOCDB_PUBLICATION_NUMBER

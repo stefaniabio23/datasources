@@ -23,6 +23,9 @@ join_keys:
   - ICD_10
   - MESH_TERM
   - MEDDRA_TERM
+  - MONDO_ID
+  - OMIM_ID
+  - ORPHA_CODE
 primary_keys:
   - MONDO_ID
 join_key_fields:

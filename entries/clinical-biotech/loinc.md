@@ -17,7 +17,9 @@ rate_limit: "not published; FHIR server is BETA, availability not guaranteed"
 bulk_available: true
 frequency: "semiannual major releases (v2.82 released 2026-02-24)"
 geography: [global]
-join_keys: []
+join_keys:
+  - LOINC_CODE
+  - SNOMED_CT_ID
 primary_keys:
   - LOINC_CODE
 mcp_status: mcp-needed-high-value

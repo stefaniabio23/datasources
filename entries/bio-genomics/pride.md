@@ -23,6 +23,7 @@ join_keys:
   - PMID
   - UNIPROT_ACCESSION
   - ORCID
+  - PXD_IDENTIFIER
 primary_keys:
   - PXD_ACCESSION
   - PRIDE_SUBMITTER_ID
