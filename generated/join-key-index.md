@@ -3,7 +3,7 @@
 Reverse index of canonical join keys mapped to the datasets that expose them.
 Generated from `entries/**/*.md`. Do not hand-edit.
 
-**226 datasets, 66 distinct canonical keys, 730 key→source links.**
+**227 datasets, 66 distinct canonical keys, 732 key→source links.**
 
 ## ARXIV_ID
 
@@ -56,7 +56,7 @@ _8 dataset(s)._
 
 ## CHEMBL_ID
 
-_15 dataset(s)._
+_16 dataset(s)._
 
 - [BindingDB](../entries/clinical-biotech/bindingdb.md) — `clinical-biotech`
 - [CT-ADE](../entries/clinical-biotech/ct-ade.md) — `clinical-biotech`
@@ -70,6 +70,7 @@ _15 dataset(s)._
 - [Open Targets](../entries/clinical-biotech/open-targets.md) — `clinical-biotech`
 - [PubChem](../entries/clinical-biotech/pub-chem.md) — `clinical-biotech`
 - [Reactome](../entries/bio-genomics/reactome.md) — `bio-genomics`
+- [SureChEMBL](../entries/clinical-biotech/surechembl.md) — `clinical-biotech`
 - [UniProt](../entries/bio-genomics/uniprot.md) — `bio-genomics`
 - [WITHDRAWN](../entries/clinical-biotech/withdrawn-database.md) — `clinical-biotech`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
@@ -453,7 +454,7 @@ _7 dataset(s)._
 
 ## INCHI_KEY
 
-_10 dataset(s)._
+_11 dataset(s)._
 
 - [BindingDB](../entries/clinical-biotech/bindingdb.md) — `clinical-biotech`
 - [Cancer Therapeutics Response Portal (CTRP)](../entries/bio-genomics/ctrp.md) — `bio-genomics`
@@ -464,6 +465,7 @@ _10 dataset(s)._
 - [IUPHAR/BPS Guide to PHARMACOLOGY](../entries/clinical-biotech/guide-to-pharmacology.md) — `clinical-biotech`
 - [LINCS / CMap L1000 (CLUE)](../entries/bio-genomics/lincs-l1000.md) — `bio-genomics`
 - [PubChem](../entries/clinical-biotech/pub-chem.md) — `clinical-biotech`
+- [SureChEMBL](../entries/clinical-biotech/surechembl.md) — `clinical-biotech`
 - [WITHDRAWN](../entries/clinical-biotech/withdrawn-database.md) — `clinical-biotech`
 
 ## INTERPRO_ID

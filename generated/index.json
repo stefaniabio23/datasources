@@ -1,1053 +1,49 @@
 [
   {
-    "_path": "entries/academic/ror.md",
+    "_path": "entries/clinical-biotech/surechembl.md",
     "access_test": {
-      "command": "curl -sf 'https://api.ror.org/v2/organizations/https://ror.org/013cjyk83'",
-      "expected_fields": [
-        "id",
-        "names",
-        "external_ids",
-        "locations",
-        "types"
-      ],
+      "command": "curl -sf 'https://www.ebi.ac.uk/unichem/rest/inchikey/RYYVLZVUVIJVGH-UHFFFAOYSA-N' -o /dev/null",
       "expected_status": 200
     },
     "agent_use_cases": [
-      "institution name resolution",
-      "affiliation disambiguation",
-      "cross-registry id crosswalk",
-      "funder-to-org linking",
-      "org hierarchy lookup"
+      "chemistry extraction from patents",
+      "compound-to-patent mapping",
+      "chemical patent landscaping and prior-art search",
+      "linking disclosed compounds to patent families",
+      "feeding small-molecule IP analysis"
     ],
     "auth_required": "none",
-    "build_priority": "medium",
+    "build_priority": "low",
     "bulk_available": true,
     "cost": "free",
-    "description": "Global community-led registry of open persistent identifiers and metadata for research and funding organizations.",
-    "docs_url": "https://ror.readme.io/docs/rest-api",
-    "domain": "academic",
-    "entry_kind": "registry",
-    "frequency": "at least monthly (community curation releases)",
+    "description": "EMBL-EBI database of chemistry text-mined from patent documents, linking compounds extracted from patent full text and images to the patents that disclose them.",
+    "docs_url": "https://chembl.gitbook.io/surechembl-documentation",
+    "domain": "clinical-biotech",
+    "entry_kind": "knowledge-graph",
+    "frequency": "rolling; reprocessed as new patents publish (SureChEMBL 2.0 pipeline)",
     "geography": [
       "global"
     ],
-    "homepage_url": "https://ror.org/",
-    "id": "ror",
-    "join_key_fields": [
-      {
-        "fields": [
-          "id"
-        ],
-        "join_key": "ROR"
-      },
-      {
-        "fields": [
-          "external_ids[type=isni].all",
-          "external_ids[type=isni].preferred"
-        ],
-        "join_key": "ISNI"
-      },
-      {
-        "fields": [
-          "external_ids[type=wikidata].all",
-          "external_ids[type=wikidata].preferred"
-        ],
-        "join_key": "WIKIDATA_QID"
-      },
-      {
-        "fields": [
-          "external_ids[type=fundref].preferred",
-          "external_ids[type=fundref].all"
-        ],
-        "join_key": "FUNDER_DOI"
-      }
-    ],
+    "homepage_url": "https://www.surechembl.org/",
+    "id": "surechembl",
     "join_keys": [
-      "ROR",
-      "ISNI",
-      "WIKIDATA_QID",
-      "FUNDER_DOI"
+      "INCHI_KEY",
+      "CHEMBL_ID"
     ],
-    "lag": "days-to-weeks between org change request and published release",
+    "lag": "days-to-weeks after patent publication",
     "last_verified": "2026-07-07",
     "license": "CC0",
     "mcp_status": "mcp-needed-low-value",
-    "name": "ROR (Research Organization Registry)",
+    "name": "SureChEMBL",
+    "notes": "SureChEMBL 2.0 (2025 major update): rebuilt annotation pipeline, AI annotations, expanded global coverage (USPTO/EPO/WIPO full text, JPO titles/abstracts, CNIPA translated). No first-class REST API yet (stated future development); UniChem provides InChI-based REST cross-referencing (SureChEMBL is UniChem source 15) and is the access_test path. Data was donated to the public domain (2013); CC0 used pending confirmation (flagged). PATENT_PUBLICATION_NUMBER is the key join here but is not yet in the registry, proposed in PR #1; flagged in Review notes.",
     "primary_keys": [
-      "ROR_ID"
+      "SURECHEMBL_ID"
     ],
-    "rate_limit": "2000 req / 5 min per IP; from Q3 2026 unregistered clients drop to 50 req / 5 min (client ID keeps the standard limit)",
+    "rate_limit": "none; bulk download + UniChem REST for structure lookups",
     "type": [
-      "rest-api",
-      "bulk-download"
-    ]
-  },
-  {
-    "_path": "entries/academic/openaire.md",
-    "access_test": {
-      "command": "curl -sf -H 'accept: application/json' 'https://api.openaire.eu/graph/v1/researchProducts?search=climate&pageSize=1'",
-      "expected_fields": [
-        "header",
-        "results"
-      ],
-      "expected_status": 200
-    },
-    "agent_use_cases": [
-      "literature and dataset search",
-      "funder and grant attribution",
-      "project-to-output linkage",
-      "organization research profiling",
-      "open-access status lookup"
-    ],
-    "auth_required": "none",
-    "build_priority": "medium",
-    "bulk_available": true,
-    "cost": "free",
-    "description": "Open scholarly knowledge graph linking research products (publications, data, software, other) to authors, organizations, funders, projects, and data sources across global research.",
-    "docs_url": "https://graph.openaire.eu/docs/",
-    "domain": "academic",
-    "entry_kind": "knowledge-graph",
-    "frequency": "versioned graph releases (~bi-monthly); API continuously updated",
-    "geography": [
-      "global"
-    ],
-    "homepage_url": "https://graph.openaire.eu/",
-    "id": "openaire",
-    "join_key_fields": [
-      {
-        "fields": [
-          "pids[scheme=doi].value",
-          "instances.pids[scheme=doi].value"
-        ],
-        "join_key": "DOI"
-      },
-      {
-        "fields": [
-          "pids[scheme=pmid].value"
-        ],
-        "join_key": "PMID"
-      },
-      {
-        "fields": [
-          "pids[scheme=pmc].value"
-        ],
-        "join_key": "PMCID"
-      },
-      {
-        "fields": [
-          "pids[scheme=arxiv].value"
-        ],
-        "join_key": "ARXIV_ID"
-      },
-      {
-        "fields": [
-          "authors.pid[scheme=orcid].value"
-        ],
-        "join_key": "ORCID"
-      },
-      {
-        "fields": [
-          "organizations.pids[scheme=ror].value"
-        ],
-        "join_key": "ROR"
-      },
-      {
-        "fields": [
-          "organizations.pids[scheme=isni].value"
-        ],
-        "join_key": "ISNI"
-      }
-    ],
-    "join_keys": [
-      "DOI",
-      "PMID",
-      "PMCID",
-      "ARXIV_ID",
-      "ORCID",
-      "ROR",
-      "ISNI"
-    ],
-    "last_verified": "2026-07-07",
-    "license": "CC-BY-4.0",
-    "mcp_status": "mcp-needed-high-value",
-    "name": "OpenAIRE Graph",
-    "primary_keys": [
-      "OPENAIRE_ID"
-    ],
-    "rate_limit": "anonymous requests rate-limited per terms of use; register an OpenAIRE personal token (OAuth) for higher hourly limits",
-    "type": [
-      "rest-api",
-      "bulk-download"
-    ]
-  },
-  {
-    "_path": "entries/government-open-data/osha-inspections.md",
-    "access_test": {
-      "command": "curl -sf -o /dev/null -w '%{http_code}' 'https://www.osha.gov/ords/imis/establishment.html'",
-      "expected_fields": [],
-      "expected_status": 200
-    },
-    "agent_use_cases": [
-      "workplace-safety diligence on an employer",
-      "citation and penalty lookup by establishment",
-      "industry-level enforcement pattern analysis",
-      "fatality and severe-injury inspection retrieval",
-      "ESG / labour-risk screening"
-    ],
-    "auth_required": "api-key-free",
-    "build_priority": "low",
-    "bulk_available": true,
-    "cost": "free",
-    "description": "US OSHA workplace safety inspection, citation, and penalty records from the IMIS enforcement database, covering federal and state-plan inspections since 1972.",
-    "docs_url": "https://developer.dol.gov/health-and-safety/dol-osha-enforcement/",
-    "domain": "government-open-data",
-    "entry_kind": "event-stream",
-    "frequency": "quarterly",
-    "geography": [
-      "USA"
-    ],
-    "homepage_url": "https://www.osha.gov/ords/imis/establishment.html",
-    "id": "osha-inspections",
-    "join_key_fields": [
-      {
-        "fields": [
-          "site_state",
-          "mail_state"
-        ],
-        "join_key": "US_STATE_CODE"
-      }
-    ],
-    "join_keys": [
-      "US_STATE_CODE"
-    ],
-    "lag": "inspection records post weeks-to-months after case activity; citations subject to continuing correction",
-    "last_verified": "2026-07-07",
-    "license": "US-Government-Public-Domain",
-    "mcp_status": "mcp-needed-low-value",
-    "name": "OSHA Inspections",
-    "notes": "access_test hits the public establishment-search web UI (no auth); the programmatic DOL OSHA Enforcement API requires a free key (${DOL_API_KEY}) and was not executed.",
-    "primary_keys": [
-      "OSHA_ACTIVITY_NR",
-      "OSHA_REPORTING_ID"
-    ],
-    "rate_limit": "DOL API: free key, per-key throttling (undocumented ceiling); bulk CSV: none",
-    "type": [
-      "rest-api",
+      "web-ui",
       "bulk-download",
-      "web-ui"
-    ]
-  },
-  {
-    "_path": "entries/government-open-data/epa-echo.md",
-    "access_test": {
-      "command": "curl -sf 'https://echodata.epa.gov/echo/echo_rest_services.get_facility_info?output=JSON&p_st=DC'",
-      "expected_fields": [
-        "Results",
-        "Message",
-        "QueryID"
-      ],
-      "expected_status": 200
-    },
-    "agent_use_cases": [
-      "facility compliance screening",
-      "enforcement-history lookup",
-      "inspection and violation tracking",
-      "permit-discharge (DMR) retrieval",
-      "corporate multi-facility compliance screening"
-    ],
-    "auth_required": "none",
-    "build_priority": "medium",
-    "bulk_available": true,
-    "cost": "free",
-    "description": "US EPA integrated compliance, enforcement, inspection, and permit-discharge database for ~800,000 facilities regulated under the Clean Air Act, Clean Water Act, RCRA, and SDWA.",
-    "docs_url": "https://echo.epa.gov/tools/web-services",
-    "domain": "government-open-data",
-    "entry_kind": "mixed",
-    "frequency": "weekly",
-    "geography": [
-      "USA"
-    ],
-    "homepage_url": "https://echo.epa.gov/",
-    "id": "epa-echo",
-    "join_key_fields": [
-      {
-        "fields": [
-          "FacFIPSCode",
-          "FacDerivedStctyFIPS"
-        ],
-        "join_key": "FIPS"
-      },
-      {
-        "fields": [
-          "FacState"
-        ],
-        "join_key": "US_STATE_CODE"
-      },
-      {
-        "fields": [
-          "FacZip"
-        ],
-        "join_key": "ZCTA"
-      }
-    ],
-    "join_keys": [
-      "FIPS",
-      "US_STATE_CODE",
-      "ZCTA"
-    ],
-    "lag": "facility compliance snapshot refreshed weekly from contributing EPA program systems; enforcement cases and DMR effluent data lag their source systems by weeks to a quarter",
-    "last_verified": "2026-07-07",
-    "license": "US-Government-Public-Domain",
-    "mcp_maturity": "community",
-    "mcp_notes": "Community MCPs wrap the ECHO REST endpoints (combined all-media search plus Clean Water Act and hazardous-waste media services) and normalise output. No official EPA MCP. Suggested surface: search_facilities, get_facility_report, get_enforcement_cases, get_effluent_charts, screen_corporation.\n",
-    "mcp_package": [
-      "github.com/pipeworx-io/epa-echo",
-      "apify.com/andrew_avina/epa-intelligence-mcp"
-    ],
-    "mcp_status": "mcp-exists",
-    "name": "EPA ECHO (Enforcement & Compliance History Online)",
-    "primary_keys": [
-      "FRS_REGISTRY_ID",
-      "NPDES_PERMIT_ID",
-      "RCRA_HANDLER_ID",
-      "PWSID",
-      "AIR_FACILITY_ID"
-    ],
-    "rate_limit": "no documented request cap; a hard queryset row limit rejects overly broad searches, refine with state/county/program filters and page via QueryID + responseset",
-    "structure": "registry-snapshot",
-    "type": [
-      "rest-api",
-      "bulk-download",
-      "web-ui"
-    ]
-  },
-  {
-    "_path": "entries/government-open-data/eu-ted.md",
-    "access_test": {
-      "command": "curl -sf -X POST 'https://api.ted.europa.eu/v3/notices/search' -H 'Content-Type: application/json' -d '{\"query\":\"classification-cpv=33600000\",\"fields\":[\"publication-number\",\"buyer-country\",\"place-of-performance\"],\"limit\":1,\"page\":1}'",
-      "expected_fields": [
-        "notices",
-        "publication-number",
-        "totalNoticeCount"
-      ],
-      "expected_status": 200
-    },
-    "agent_use_cases": [
-      "public procurement search",
-      "supplier and buyer diligence",
-      "contract-award monitoring",
-      "CPV-category market sizing",
-      "cross-border tender discovery"
-    ],
-    "auth_required": "none",
-    "build_priority": "medium",
-    "bulk_available": true,
-    "cost": "free",
-    "description": "EU public procurement notices from the Supplement to the Official Journal, published daily with a free anonymous search API, bulk XML, and a Linked Open Data / SPARQL backend.",
-    "docs_url": "https://docs.ted.europa.eu/api/latest/index.html",
-    "domain": "government-open-data",
-    "entry_kind": "event-stream",
-    "frequency": "daily",
-    "geography": [
-      "global"
-    ],
-    "homepage_url": "https://ted.europa.eu/",
-    "id": "eu-ted",
-    "join_key_fields": [
-      {
-        "fields": [
-          "buyer-country"
-        ],
-        "join_key": "ISO_3"
-      },
-      {
-        "fields": [
-          "place-of-performance"
-        ],
-        "join_key": "NUTS"
-      }
-    ],
-    "join_keys": [
-      "ISO_3",
-      "NUTS"
-    ],
-    "lag": "notices appear on TED on or shortly after publication in the OJ Supplement",
-    "last_verified": "2026-07-07",
-    "license": "CC-BY-4.0",
-    "mcp_maturity": "community",
-    "mcp_notes": "Community MCPs wrap the anonymous TED v3 search API (no key). Suggested surface: search_notices (expert query), get_notice (by publication-number), get_notice_xml. Must abstract the eForms expert-query syntax and the 24-language notice-title map.\n",
-    "mcp_package": [
-      "github.com/pipeworx-io/mcp-ted-eu",
-      "fbuchner-ted-mcp"
-    ],
-    "mcp_status": "mcp-exists",
-    "name": "TED (Tenders Electronic Daily)",
-    "primary_keys": [
-      "TED_PUBLICATION_NUMBER"
-    ],
-    "rate_limit": "anonymous search API; per-IP throttling, no published hard quota",
-    "type": [
-      "rest-api",
-      "bulk-download",
-      "database"
-    ]
-  },
-  {
-    "_path": "entries/government-open-data/ukri-gtr.md",
-    "access_test": {
-      "command": "curl -sf -H 'Accept: application/vnd.rcuk.gtr.json-v7' 'https://gtr.ukri.org/gtr/api/projects?q=graphene&p=1&s=10'",
-      "expected_fields": [
-        "page",
-        "size",
-        "totalSize",
-        "project"
-      ],
-      "expected_status": 200
-    },
-    "agent_use_cases": [
-      "uk research funding lookup",
-      "grant-to-institution mapping",
-      "principal-investigator project history",
-      "funder portfolio analysis",
-      "research-outcome tracing"
-    ],
-    "auth_required": "none",
-    "build_priority": "medium",
-    "bulk_available": false,
-    "cost": "free",
-    "description": "UK Research and Innovation's registry of publicly funded research projects, linked to funding, people, organisations, and outcomes.",
-    "docs_url": "https://gtr.ukri.org/resources/api.html",
-    "domain": "government-open-data",
-    "entry_kind": "knowledge-graph",
-    "frequency": "periodic (data refreshed roughly monthly)",
-    "geography": [
-      "GBR"
-    ],
-    "homepage_url": "https://gtr.ukri.org/",
-    "id": "ukri-gtr",
-    "join_key_fields": [
-      {
-        "fields": [
-          "orcidId"
-        ],
-        "join_key": "ORCID"
-      }
-    ],
-    "join_keys": [
-      "ORCID"
-    ],
-    "last_verified": "2026-07-07",
-    "license": "OGL-3.0",
-    "mcp_status": "api-direct-sufficient",
-    "name": "UKRI Gateway to Research (GtR)",
-    "primary_keys": [
-      "GTR_PROJECT_ID",
-      "GTR_PERSON_ID",
-      "GTR_ORGANISATION_ID",
-      "GTR_FUND_ID",
-      "GTR_OUTCOME_ID",
-      "RCUK_GRANT_REFERENCE"
-    ],
-    "rate_limit": "no formal limit; UKRI asks users to follow web etiquette and not flood the service",
-    "structure": "registry-snapshot",
-    "type": [
       "rest-api"
-    ]
-  },
-  {
-    "_path": "entries/government-open-data/usaspending.md",
-    "access_test": {
-      "command": "curl -sf 'https://api.usaspending.gov/api/v2/references/toptier_agencies/'",
-      "expected_fields": [
-        "results",
-        "toptier_code",
-        "agency_name"
-      ],
-      "expected_status": 200
-    },
-    "agent_use_cases": [
-      "federal contractor diligence",
-      "grant recipient lookup",
-      "agency spending breakdown",
-      "award search by NAICS or PSC",
-      "geographic spending analysis"
-    ],
-    "auth_required": "none",
-    "build_priority": "medium",
-    "bulk_available": true,
-    "cost": "free",
-    "description": "Official U.S. government record of federal spending \u2014 contracts, grants, loans, and other awards, plus agency account balances, from FY2008 to present.",
-    "docs_url": "https://api.usaspending.gov/docs/endpoints",
-    "domain": "government-open-data",
-    "entry_kind": "mixed",
-    "frequency": "daily",
-    "geography": [
-      "USA"
-    ],
-    "homepage_url": "https://www.usaspending.gov/",
-    "id": "usaspending",
-    "join_key_fields": [
-      {
-        "fields": [
-          "recipient.location.county_code",
-          "place_of_performance.county_code"
-        ],
-        "join_key": "FIPS"
-      },
-      {
-        "fields": [
-          "recipient.location.state_code",
-          "place_of_performance.state_code"
-        ],
-        "join_key": "US_STATE_CODE"
-      },
-      {
-        "fields": [
-          "recipient.location.country_code",
-          "place_of_performance.country_code"
-        ],
-        "join_key": "ISO_3"
-      }
-    ],
-    "join_keys": [
-      "FIPS",
-      "US_STATE_CODE",
-      "ISO_3"
-    ],
-    "lag": "FPDS contract transactions flow ~daily; agency financial (DABS) submissions are monthly/quarterly",
-    "last_verified": "2026-07-07",
-    "license": "US-Government-Public-Domain",
-    "mcp_maturity": "community",
-    "mcp_notes": "Multiple community MCPs exist (none official). Suggested surface: search_awards, get_award, get_recipient, spending_by_agency, spending_by_geography, bulk_download. Connector must abstract the POST-body filter grammar and paginate large result sets.\n",
-    "mcp_package": [
-      "github.com/blencorp/capture-mcp-server",
-      "github.com/agilesix/usaspending-mcp-nextjs",
-      "github.com/jsconiers/usaspending-mcp"
-    ],
-    "mcp_status": "mcp-exists",
-    "name": "USAspending.gov",
-    "pit_reconstructable": false,
-    "primary_keys": [
-      "USASPENDING_GENERATED_AWARD_ID",
-      "USASPENDING_INTERNAL_AWARD_ID",
-      "USASPENDING_RECIPIENT_HASH",
-      "PIID",
-      "FAIN",
-      "URI"
-    ],
-    "rate_limit": "not publicly documented; HTTP 429 returned on excessive use",
-    "revisions_possible": true,
-    "structure": "event-log",
-    "type": [
-      "rest-api",
-      "bulk-download"
-    ]
-  },
-  {
-    "_path": "entries/government-open-data/e-prtr.md",
-    "access_test": {
-      "command": "curl -sf 'https://air.discomap.eea.europa.eu/arcgis/rest/services/Air/EprtrFacilities_Dyna_WGS84/FeatureServer/0/query?where=1%3D1&outFields=FacilityID,CountryCode,ReportingYear,NUTSLevel2RegionCode&resultRecordCount=1&f=json'",
-      "expected_fields": [
-        "FacilityID",
-        "CountryCode",
-        "ReportingYear",
-        "NUTSLevel2RegionCode"
-      ],
-      "expected_status": 200
-    },
-    "agent_use_cases": [
-      "industrial facility lookup by location",
-      "pollutant release and waste-transfer queries",
-      "parent-company emissions attribution",
-      "sector-level emissions aggregation",
-      "large-combustion-plant energy and emissions analysis"
-    ],
-    "auth_required": "none",
-    "build_priority": "medium",
-    "bulk_available": true,
-    "cost": "free",
-    "description": "EU-wide register of pollutant releases, waste transfers, and energy/emissions data for ~33,000 large industrial facilities across 33 European countries.",
-    "docs_url": "https://industry.eea.europa.eu/download",
-    "domain": "government-open-data",
-    "entry_kind": "mixed",
-    "frequency": "annual",
-    "geography": [
-      "Europe",
-      "EU27",
-      "EFTA",
-      "Serbia",
-      "Iceland",
-      "Liechtenstein",
-      "Norway",
-      "Switzerland"
-    ],
-    "homepage_url": "https://industry.eea.europa.eu/",
-    "id": "e-prtr",
-    "join_key_fields": [
-      {
-        "fields": [
-          "CountryCode"
-        ],
-        "join_key": "ISO_2"
-      },
-      {
-        "fields": [
-          "NUTSLevel2RegionCode"
-        ],
-        "join_key": "NUTS"
-      },
-      {
-        "fields": [
-          "ReportingYear"
-        ],
-        "join_key": "DATE"
-      }
-    ],
-    "join_keys": [
-      "ISO_2",
-      "NUTS",
-      "DATE"
-    ],
-    "lag": "1-2 years; member states report annually under Art. 7 of Regulation (EC) No 166/2006",
-    "last_verified": "2026-07-07",
-    "license": "CC-BY-4.0",
-    "mcp_status": "mcp-needed-low-value",
-    "name": "E-PRTR (European Industrial Emissions Portal)",
-    "primary_keys": [
-      "EPRTR_FACILITY_ID",
-      "EPRTR_FACILITY_REPORT_ID",
-      "EPRTR_NATIONAL_ID"
-    ],
-    "rate_limit": "no published limit; ArcGIS REST FeatureServer standard paging (resultRecordCount / resultOffset)",
-    "revisions_possible": true,
-    "structure": "panel",
-    "type": [
-      "rest-api",
-      "bulk-download",
-      "web-ui"
-    ]
-  },
-  {
-    "_path": "entries/government-open-data/google-patents-bigquery.md",
-    "access_test": {
-      "command": "bq query --use_legacy_sql=false 'SELECT publication_number FROM `patents-public-data.patents.publications` LIMIT 1'",
-      "expected_fields": [
-        "publication_number"
-      ],
-      "expected_status": 200
-    },
-    "agent_use_cases": [
-      "patent prior-art search",
-      "assignee patent-portfolio analysis",
-      "technology-trend analysis by CPC class",
-      "patent-to-literature linking",
-      "citation-network analysis"
-    ],
-    "auth_required": "account-required",
-    "bulk_available": true,
-    "cost": "freemium",
-    "description": "BigQuery collection of worldwide patent bibliographic data (90M+ publications from 17 countries) plus research-layer enrichments, queryable in SQL.",
-    "docs_url": "https://github.com/google/patents-public-data",
-    "domain": "government-open-data",
-    "entry_kind": "registry",
-    "frequency": "quarterly",
-    "geography": [
-      "global"
-    ],
-    "homepage_url": "https://console.cloud.google.com/marketplace/product/google_patents_public_datasets/google-patents-public-data",
-    "id": "google-patents-bigquery",
-    "join_keys": [],
-    "last_verified": "2026-07-07",
-    "license": "CC-BY-4.0",
-    "mcp_status": "mcp-needed-low-value",
-    "name": "Google Patents Public Datasets (BigQuery)",
-    "notes": "access_test not yet executed; requires a Google Cloud account and project (bq CLI authenticated via gcloud). Querying beyond the 1 TB/month free tier is billed.",
-    "primary_keys": [
-      "PATENT_PUBLICATION_NUMBER",
-      "PATENT_APPLICATION_NUMBER",
-      "PATENT_FAMILY_ID"
-    ],
-    "type": [
-      "database",
-      "bulk-download"
-    ]
-  },
-  {
-    "_path": "entries/government-open-data/cordis.md",
-    "access_test": {
-      "command": "curl -sf 'https://cordis.europa.eu/datalab/sparql?query=SELECT%20%3Fp%20WHERE%20%7B%3Fs%20%3Fp%20%3Fo%7D%20LIMIT%201&format=application/sparql-results%2Bjson'",
-      "expected_fields": [
-        "head",
-        "results"
-      ],
-      "expected_status": 200
-    },
-    "agent_use_cases": [
-      "EU research-funding lookup",
-      "grant participant mapping",
-      "collaboration-network analysis",
-      "technology-landscape scouting",
-      "linking projects to open-access publications"
-    ],
-    "auth_required": "none",
-    "build_priority": "medium",
-    "bulk_available": true,
-    "cost": "free",
-    "description": "The European Commission's registry of EU-funded research projects (FP1 to Horizon Europe) with participating organisations, results, deliverables, and links to open-access publications.",
-    "docs_url": "https://cordis.europa.eu/about/services",
-    "domain": "government-open-data",
-    "entry_kind": "knowledge-graph",
-    "frequency": "portal updated continuously; per-framework-programme bulk snapshots refreshed periodically",
-    "geography": [
-      "global"
-    ],
-    "homepage_url": "https://cordis.europa.eu/",
-    "id": "cordis",
-    "join_key_fields": [
-      {
-        "fields": [
-          "doi"
-        ],
-        "join_key": "DOI"
-      },
-      {
-        "fields": [
-          "country"
-        ],
-        "join_key": "ISO_2"
-      }
-    ],
-    "join_keys": [
-      "DOI",
-      "ISO_2"
-    ],
-    "lag": "weeks-to-months for newly signed grants and published results to appear",
-    "last_verified": "2026-07-07",
-    "license": "CC-BY-4.0",
-    "mcp_status": "mcp-needed-low-value",
-    "name": "CORDIS (EU Research Projects)",
-    "primary_keys": [
-      "CORDIS_PROJECT_ID",
-      "CORDIS_RCN",
-      "CORDIS_PIC"
-    ],
-    "rate_limit": "no published limit on bulk downloads or SPARQL; interactive CORDIS API requires registration",
-    "type": [
-      "bulk-download",
-      "database",
-      "rest-api"
-    ]
-  },
-  {
-    "_path": "entries/government-open-data/census-building-permits.md",
-    "access_test": {
-      "command": "curl -sfI 'https://www2.census.gov/econ/bps/County/co2023a.txt'",
-      "expected_status": 200
-    },
-    "agent_use_cases": [
-      "housing supply tracking",
-      "local construction activity by county or metro",
-      "leading indicator for residential real estate",
-      "regional economic monitoring"
-    ],
-    "auth_required": "none",
-    "build_priority": "medium",
-    "bulk_available": true,
-    "cost": "free",
-    "description": "Monthly and annual counts of new privately-owned residential building permits authorized in the US, reported at national, state, CBSA, county, and place levels.",
-    "docs_url": "https://www.census.gov/construction/bps/how_the_data_are_collected.html",
-    "domain": "government-open-data",
-    "entry_kind": "panel",
-    "frequency": "monthly (plus year-to-date and annual releases)",
-    "geography": [
-      "USA"
-    ],
-    "homepage_url": "https://www.census.gov/construction/bps/",
-    "id": "census-building-permits",
-    "join_key_fields": [
-      {
-        "fields": [
-          "FIPS State Code",
-          "FIPS County Code",
-          "6-Digit ID (Census place code)"
-        ],
-        "join_key": "FIPS"
-      },
-      {
-        "fields": [
-          "Survey Date (YYYYMM)",
-          "Year",
-          "Month"
-        ],
-        "join_key": "DATE"
-      }
-    ],
-    "join_keys": [
-      "FIPS",
-      "DATE"
-    ],
-    "lag": "monthly data released on the 17th workday of the following month; annual data lags ~5 months",
-    "last_verified": "2026-07-07",
-    "license": "US-Government-Public-Domain",
-    "mcp_status": "mcp-needed-low-value",
-    "name": "Census Building Permits Survey (BPS)",
-    "notes": "No official Census Data API for BPS; access is static bulk files under www2.census.gov/econ/bps/ plus Excel current-data downloads. access_test runs a HEAD against a stable annual county file.",
-    "pit_reconstructable": false,
-    "primary_keys": [
-      "CBSA_CODE",
-      "CENSUS_PLACE_FIPS"
-    ],
-    "rate_limit": "none published (static file downloads)",
-    "release_lag_days": 45,
-    "revisions_possible": true,
-    "structure": "panel",
-    "type": [
-      "bulk-download",
-      "web-ui"
-    ]
-  },
-  {
-    "_path": "entries/government-open-data/sam-gov.md",
-    "access_test": {
-      "command": "curl -sf 'https://api.sam.gov/opportunities/v2/search?api_key=${SAM_GOV_API_KEY}&postedFrom=01/01/2026&postedTo=01/31/2026&limit=1'",
-      "expected_fields": [
-        "totalRecords",
-        "opportunitiesData",
-        "noticeId",
-        "solicitationNumber"
-      ],
-      "expected_status": 200
-    },
-    "agent_use_cases": [
-      "federal procurement monitoring",
-      "solicitation search by NAICS",
-      "set-aside opportunity tracking",
-      "award and awardee lookup",
-      "competitor contract intelligence"
-    ],
-    "auth_required": "api-key-free",
-    "build_priority": "medium",
-    "bulk_available": false,
-    "cost": "free-with-registration",
-    "description": "US federal contract opportunities (solicitations, awards, sources-sought, presolicitations) posted by federal agencies on SAM.gov.",
-    "docs_url": "https://open.gsa.gov/api/get-opportunities-public-api/",
-    "domain": "government-open-data",
-    "entry_kind": "event-stream",
-    "frequency": "continuous",
-    "geography": [
-      "USA"
-    ],
-    "homepage_url": "https://sam.gov/opportunities",
-    "id": "sam-gov",
-    "join_key_fields": [
-      {
-        "fields": [
-          "placeOfPerformance.state.code",
-          "officeAddress.state"
-        ],
-        "join_key": "US_STATE_CODE"
-      }
-    ],
-    "join_keys": [
-      "US_STATE_CODE"
-    ],
-    "lag": "minutes-to-hours after an agency posts a notice",
-    "last_verified": "2026-07-07",
-    "license": "US-Government-Public-Domain",
-    "mcp_maturity": "community",
-    "mcp_notes": "Community MCPs wrap the Get Opportunities API alongside USASpending/FPDS. Suggested surface: search_opportunities (date range + NAICS + set-aside), get_opportunity_by_notice_id, list_awards. Must abstract the mandatory postedFrom/postedTo window (max 1 year) and the low daily quota.\n",
-    "mcp_package": [
-      "github.com/blencorp/capture-mcp-server",
-      "github.com/martc03/gov-mcp-servers",
-      "1102Tools SAM.gov MCP (pulsemcp.com/servers/1102tools-sam-gov)"
-    ],
-    "mcp_status": "mcp-exists",
-    "name": "SAM.gov Contract Opportunities",
-    "notes": "access_test not yet executed; requires ${SAM_GOV_API_KEY} (free public key from SAM.gov Account Details page).",
-    "primary_keys": [
-      "SAM_NOTICE_ID",
-      "SAM_SOLICITATION_NUMBER"
-    ],
-    "rate_limit": "per-day quota by role: ~10/day non-federal personal key, 1,000/day registered/federal; 429 with Retry-After to midnight UTC on exhaustion",
-    "type": [
-      "rest-api",
-      "web-ui"
-    ]
-  },
-  {
-    "_path": "entries/government-open-data/lens-patseq.md",
-    "agent_use_cases": [
-      "patent sequence similarity search",
-      "freedom-to-operate sequence checks",
-      "link genes and proteins to patent filings",
-      "bulk patent sequence corpus retrieval",
-      "prior-art sequence search"
-    ],
-    "auth_required": "account-required",
-    "bulk_available": true,
-    "cost": "free-non-commercial",
-    "description": "Bulk collection of DNA, RNA, and protein sequences disclosed in patent documents worldwide, with linked patent metadata, searchable by sequence similarity.",
-    "docs_url": "https://support.lens.org/knowledge-base/patseq-bulk-download/",
-    "domain": "government-open-data",
-    "entry_kind": "corpus",
-    "geography": [
-      "global"
-    ],
-    "homepage_url": "https://www.lens.org/lens/bio/patseqfinder",
-    "id": "lens-patseq",
-    "join_keys": [],
-    "last_verified": "2026-07-07",
-    "license": "Lens-PatSeq-Terms",
-    "mcp_status": "mcp-needed-low-value",
-    "name": "Lens PatSeq",
-    "primary_keys": [
-      "LENS_PATENT_ID",
-      "PATENT_PUBLICATION_NUMBER",
-      "PATSEQ_SEQUENCE_ID"
-    ],
-    "rate_limit": "monthly query quotas on PatSeq Finder; up to 5 API access tokens per user",
-    "type": [
-      "bulk-download",
-      "rest-api",
-      "web-ui"
-    ]
-  },
-  {
-    "_path": "entries/government-open-data/nih-reporter.md",
-    "access_test": {
-      "command": "curl -sf -X POST 'https://api.reporter.nih.gov/v2/projects/search' -H 'Content-Type: application/json' -d '{\"criteria\":{\"fiscal_years\":[2023]},\"limit\":1}'",
-      "expected_fields": [
-        "meta.total",
-        "results"
-      ],
-      "expected_status": 200
-    },
-    "agent_use_cases": [
-      "grant funding lookup",
-      "PI funding history",
-      "institution funding profile",
-      "research portfolio analysis",
-      "link publications to grants"
-    ],
-    "auth_required": "none",
-    "build_priority": "medium",
-    "bulk_available": true,
-    "cost": "free",
-    "description": "US NIH database of federally funded biomedical research projects, their investigators, awarding institutes, funding amounts, and linked publications.",
-    "docs_url": "https://api.reporter.nih.gov/",
-    "domain": "government-open-data",
-    "entry_kind": "registry",
-    "frequency": "weekly",
-    "geography": [
-      "USA"
-    ],
-    "homepage_url": "https://reporter.nih.gov/",
-    "id": "nih-reporter",
-    "join_key_fields": [
-      {
-        "fields": [
-          "pmid"
-        ],
-        "join_key": "PMID"
-      },
-      {
-        "fields": [
-          "organization.org_state"
-        ],
-        "join_key": "US_STATE_CODE"
-      }
-    ],
-    "join_keys": [
-      "PMID",
-      "US_STATE_CODE"
-    ],
-    "lag": "projects appear after the award notice date; ExPORTER bulk files refresh weekly",
-    "last_verified": "2026-07-07",
-    "license": "US-Government-Public-Domain",
-    "mcp_maturity": "community",
-    "mcp_notes": "Multiple community MCP servers wrap the same POST search API. Suggested surface: search_projects, get_project, search_publications, funding_by_pi, funding_by_org. Connector must abstract the POST body criteria model and paginate under the 1 req/sec cap.\n",
-    "mcp_package": [
-      "github.com/jbdamask/mcp-nih-reporter",
-      "github.com/GSA-TTS/nih-reporter-mcp-server",
-      "github.com/jhalsey87/MCP_NIH_Reporter"
-    ],
-    "mcp_status": "mcp-exists",
-    "name": "NIH RePORTER",
-    "primary_keys": [
-      "NIH_APPL_ID",
-      "NIH_CORE_PROJECT_NUM",
-      "NIH_PROJECT_NUM",
-      "NIH_PI_PROFILE_ID",
-      "NIH_ORG_IPF_CODE"
-    ],
-    "rate_limit": "1 request/sec; run large jobs off-peak (weekends or 9pm-5am ET); abusive IPs blocked",
-    "revisions_possible": true,
-    "structure": "registry-snapshot",
-    "type": [
-      "rest-api",
-      "bulk-download"
-    ]
-  },
-  {
-    "_path": "entries/government-open-data/sbir.md",
-    "access_test": {
-      "command": "curl -sf 'https://api.www.sbir.gov/public/api/awards?agency=DOE&rows=1&format=json'",
-      "expected_fields": [
-        "firm",
-        "agency",
-        "award_amount",
-        "award_year",
-        "uei",
-        "duns"
-      ],
-      "expected_status": 200
-    },
-    "agent_use_cases": [
-      "federal seed-funding diligence on a company",
-      "map SBIR/STTR awards by agency and year",
-      "find open solicitations and topics",
-      "track small-business award history and amounts"
-    ],
-    "auth_required": "none",
-    "build_priority": "low",
-    "bulk_available": true,
-    "cost": "free",
-    "description": "US federal SBIR/STTR seed-fund award records, awarded small businesses, and open solicitations across the participating federal agencies.",
-    "docs_url": "https://www.sbir.gov/api",
-    "domain": "government-open-data",
-    "entry_kind": "registry",
-    "frequency": "irregular",
-    "geography": [
-      "USA"
-    ],
-    "homepage_url": "https://www.sbir.gov/",
-    "id": "sbir",
-    "join_key_fields": [
-      {
-        "fields": [
-          "state"
-        ],
-        "join_key": "US_STATE_CODE"
-      }
-    ],
-    "join_keys": [
-      "US_STATE_CODE"
-    ],
-    "last_verified": "2026-07-07",
-    "license": "US-Government-Public-Domain",
-    "mcp_status": "mcp-needed-low-value",
-    "name": "SBIR.gov (America's Seed Fund)",
-    "notes": "access_test not executed successfully; endpoint returned HTTP 429 (SBIR Public API under maintenance) on 2026-07-07. Command constructed against the documented awards endpoint.",
-    "primary_keys": [
-      "SBIR_FIRM_NID",
-      "SBIR_AGENCY_TRACKING_NUMBER",
-      "SBIR_CONTRACT_NUMBER",
-      "SBIR_SOLICITATION_NUMBER"
-    ],
-    "rate_limit": "not documented; public API returns 429 during maintenance windows",
-    "type": [
-      "rest-api",
-      "bulk-download"
     ]
   },
   {
@@ -17930,6 +16926,1057 @@
     "type": [
       "rest-api",
       "database",
+      "bulk-download"
+    ]
+  },
+  {
+    "_path": "entries/academic/ror.md",
+    "access_test": {
+      "command": "curl -sf 'https://api.ror.org/v2/organizations/https://ror.org/013cjyk83'",
+      "expected_fields": [
+        "id",
+        "names",
+        "external_ids",
+        "locations",
+        "types"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "institution name resolution",
+      "affiliation disambiguation",
+      "cross-registry id crosswalk",
+      "funder-to-org linking",
+      "org hierarchy lookup"
+    ],
+    "auth_required": "none",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "Global community-led registry of open persistent identifiers and metadata for research and funding organizations.",
+    "docs_url": "https://ror.readme.io/docs/rest-api",
+    "domain": "academic",
+    "entry_kind": "registry",
+    "frequency": "at least monthly (community curation releases)",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://ror.org/",
+    "id": "ror",
+    "join_key_fields": [
+      {
+        "fields": [
+          "id"
+        ],
+        "join_key": "ROR"
+      },
+      {
+        "fields": [
+          "external_ids[type=isni].all",
+          "external_ids[type=isni].preferred"
+        ],
+        "join_key": "ISNI"
+      },
+      {
+        "fields": [
+          "external_ids[type=wikidata].all",
+          "external_ids[type=wikidata].preferred"
+        ],
+        "join_key": "WIKIDATA_QID"
+      },
+      {
+        "fields": [
+          "external_ids[type=fundref].preferred",
+          "external_ids[type=fundref].all"
+        ],
+        "join_key": "FUNDER_DOI"
+      }
+    ],
+    "join_keys": [
+      "ROR",
+      "ISNI",
+      "WIKIDATA_QID",
+      "FUNDER_DOI"
+    ],
+    "lag": "days-to-weeks between org change request and published release",
+    "last_verified": "2026-07-07",
+    "license": "CC0",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "ROR (Research Organization Registry)",
+    "primary_keys": [
+      "ROR_ID"
+    ],
+    "rate_limit": "2000 req / 5 min per IP; from Q3 2026 unregistered clients drop to 50 req / 5 min (client ID keeps the standard limit)",
+    "type": [
+      "rest-api",
+      "bulk-download"
+    ]
+  },
+  {
+    "_path": "entries/academic/openaire.md",
+    "access_test": {
+      "command": "curl -sf -H 'accept: application/json' 'https://api.openaire.eu/graph/v1/researchProducts?search=climate&pageSize=1'",
+      "expected_fields": [
+        "header",
+        "results"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "literature and dataset search",
+      "funder and grant attribution",
+      "project-to-output linkage",
+      "organization research profiling",
+      "open-access status lookup"
+    ],
+    "auth_required": "none",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "Open scholarly knowledge graph linking research products (publications, data, software, other) to authors, organizations, funders, projects, and data sources across global research.",
+    "docs_url": "https://graph.openaire.eu/docs/",
+    "domain": "academic",
+    "entry_kind": "knowledge-graph",
+    "frequency": "versioned graph releases (~bi-monthly); API continuously updated",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://graph.openaire.eu/",
+    "id": "openaire",
+    "join_key_fields": [
+      {
+        "fields": [
+          "pids[scheme=doi].value",
+          "instances.pids[scheme=doi].value"
+        ],
+        "join_key": "DOI"
+      },
+      {
+        "fields": [
+          "pids[scheme=pmid].value"
+        ],
+        "join_key": "PMID"
+      },
+      {
+        "fields": [
+          "pids[scheme=pmc].value"
+        ],
+        "join_key": "PMCID"
+      },
+      {
+        "fields": [
+          "pids[scheme=arxiv].value"
+        ],
+        "join_key": "ARXIV_ID"
+      },
+      {
+        "fields": [
+          "authors.pid[scheme=orcid].value"
+        ],
+        "join_key": "ORCID"
+      },
+      {
+        "fields": [
+          "organizations.pids[scheme=ror].value"
+        ],
+        "join_key": "ROR"
+      },
+      {
+        "fields": [
+          "organizations.pids[scheme=isni].value"
+        ],
+        "join_key": "ISNI"
+      }
+    ],
+    "join_keys": [
+      "DOI",
+      "PMID",
+      "PMCID",
+      "ARXIV_ID",
+      "ORCID",
+      "ROR",
+      "ISNI"
+    ],
+    "last_verified": "2026-07-07",
+    "license": "CC-BY-4.0",
+    "mcp_status": "mcp-needed-high-value",
+    "name": "OpenAIRE Graph",
+    "primary_keys": [
+      "OPENAIRE_ID"
+    ],
+    "rate_limit": "anonymous requests rate-limited per terms of use; register an OpenAIRE personal token (OAuth) for higher hourly limits",
+    "type": [
+      "rest-api",
+      "bulk-download"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/osha-inspections.md",
+    "access_test": {
+      "command": "curl -sf -o /dev/null -w '%{http_code}' 'https://www.osha.gov/ords/imis/establishment.html'",
+      "expected_fields": [],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "workplace-safety diligence on an employer",
+      "citation and penalty lookup by establishment",
+      "industry-level enforcement pattern analysis",
+      "fatality and severe-injury inspection retrieval",
+      "ESG / labour-risk screening"
+    ],
+    "auth_required": "api-key-free",
+    "build_priority": "low",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "US OSHA workplace safety inspection, citation, and penalty records from the IMIS enforcement database, covering federal and state-plan inspections since 1972.",
+    "docs_url": "https://developer.dol.gov/health-and-safety/dol-osha-enforcement/",
+    "domain": "government-open-data",
+    "entry_kind": "event-stream",
+    "frequency": "quarterly",
+    "geography": [
+      "USA"
+    ],
+    "homepage_url": "https://www.osha.gov/ords/imis/establishment.html",
+    "id": "osha-inspections",
+    "join_key_fields": [
+      {
+        "fields": [
+          "site_state",
+          "mail_state"
+        ],
+        "join_key": "US_STATE_CODE"
+      }
+    ],
+    "join_keys": [
+      "US_STATE_CODE"
+    ],
+    "lag": "inspection records post weeks-to-months after case activity; citations subject to continuing correction",
+    "last_verified": "2026-07-07",
+    "license": "US-Government-Public-Domain",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "OSHA Inspections",
+    "notes": "access_test hits the public establishment-search web UI (no auth); the programmatic DOL OSHA Enforcement API requires a free key (${DOL_API_KEY}) and was not executed.",
+    "primary_keys": [
+      "OSHA_ACTIVITY_NR",
+      "OSHA_REPORTING_ID"
+    ],
+    "rate_limit": "DOL API: free key, per-key throttling (undocumented ceiling); bulk CSV: none",
+    "type": [
+      "rest-api",
+      "bulk-download",
+      "web-ui"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/epa-echo.md",
+    "access_test": {
+      "command": "curl -sf 'https://echodata.epa.gov/echo/echo_rest_services.get_facility_info?output=JSON&p_st=DC'",
+      "expected_fields": [
+        "Results",
+        "Message",
+        "QueryID"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "facility compliance screening",
+      "enforcement-history lookup",
+      "inspection and violation tracking",
+      "permit-discharge (DMR) retrieval",
+      "corporate multi-facility compliance screening"
+    ],
+    "auth_required": "none",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "US EPA integrated compliance, enforcement, inspection, and permit-discharge database for ~800,000 facilities regulated under the Clean Air Act, Clean Water Act, RCRA, and SDWA.",
+    "docs_url": "https://echo.epa.gov/tools/web-services",
+    "domain": "government-open-data",
+    "entry_kind": "mixed",
+    "frequency": "weekly",
+    "geography": [
+      "USA"
+    ],
+    "homepage_url": "https://echo.epa.gov/",
+    "id": "epa-echo",
+    "join_key_fields": [
+      {
+        "fields": [
+          "FacFIPSCode",
+          "FacDerivedStctyFIPS"
+        ],
+        "join_key": "FIPS"
+      },
+      {
+        "fields": [
+          "FacState"
+        ],
+        "join_key": "US_STATE_CODE"
+      },
+      {
+        "fields": [
+          "FacZip"
+        ],
+        "join_key": "ZCTA"
+      }
+    ],
+    "join_keys": [
+      "FIPS",
+      "US_STATE_CODE",
+      "ZCTA"
+    ],
+    "lag": "facility compliance snapshot refreshed weekly from contributing EPA program systems; enforcement cases and DMR effluent data lag their source systems by weeks to a quarter",
+    "last_verified": "2026-07-07",
+    "license": "US-Government-Public-Domain",
+    "mcp_maturity": "community",
+    "mcp_notes": "Community MCPs wrap the ECHO REST endpoints (combined all-media search plus Clean Water Act and hazardous-waste media services) and normalise output. No official EPA MCP. Suggested surface: search_facilities, get_facility_report, get_enforcement_cases, get_effluent_charts, screen_corporation.\n",
+    "mcp_package": [
+      "github.com/pipeworx-io/epa-echo",
+      "apify.com/andrew_avina/epa-intelligence-mcp"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "EPA ECHO (Enforcement & Compliance History Online)",
+    "primary_keys": [
+      "FRS_REGISTRY_ID",
+      "NPDES_PERMIT_ID",
+      "RCRA_HANDLER_ID",
+      "PWSID",
+      "AIR_FACILITY_ID"
+    ],
+    "rate_limit": "no documented request cap; a hard queryset row limit rejects overly broad searches, refine with state/county/program filters and page via QueryID + responseset",
+    "structure": "registry-snapshot",
+    "type": [
+      "rest-api",
+      "bulk-download",
+      "web-ui"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/eu-ted.md",
+    "access_test": {
+      "command": "curl -sf -X POST 'https://api.ted.europa.eu/v3/notices/search' -H 'Content-Type: application/json' -d '{\"query\":\"classification-cpv=33600000\",\"fields\":[\"publication-number\",\"buyer-country\",\"place-of-performance\"],\"limit\":1,\"page\":1}'",
+      "expected_fields": [
+        "notices",
+        "publication-number",
+        "totalNoticeCount"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "public procurement search",
+      "supplier and buyer diligence",
+      "contract-award monitoring",
+      "CPV-category market sizing",
+      "cross-border tender discovery"
+    ],
+    "auth_required": "none",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "EU public procurement notices from the Supplement to the Official Journal, published daily with a free anonymous search API, bulk XML, and a Linked Open Data / SPARQL backend.",
+    "docs_url": "https://docs.ted.europa.eu/api/latest/index.html",
+    "domain": "government-open-data",
+    "entry_kind": "event-stream",
+    "frequency": "daily",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://ted.europa.eu/",
+    "id": "eu-ted",
+    "join_key_fields": [
+      {
+        "fields": [
+          "buyer-country"
+        ],
+        "join_key": "ISO_3"
+      },
+      {
+        "fields": [
+          "place-of-performance"
+        ],
+        "join_key": "NUTS"
+      }
+    ],
+    "join_keys": [
+      "ISO_3",
+      "NUTS"
+    ],
+    "lag": "notices appear on TED on or shortly after publication in the OJ Supplement",
+    "last_verified": "2026-07-07",
+    "license": "CC-BY-4.0",
+    "mcp_maturity": "community",
+    "mcp_notes": "Community MCPs wrap the anonymous TED v3 search API (no key). Suggested surface: search_notices (expert query), get_notice (by publication-number), get_notice_xml. Must abstract the eForms expert-query syntax and the 24-language notice-title map.\n",
+    "mcp_package": [
+      "github.com/pipeworx-io/mcp-ted-eu",
+      "fbuchner-ted-mcp"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "TED (Tenders Electronic Daily)",
+    "primary_keys": [
+      "TED_PUBLICATION_NUMBER"
+    ],
+    "rate_limit": "anonymous search API; per-IP throttling, no published hard quota",
+    "type": [
+      "rest-api",
+      "bulk-download",
+      "database"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/ukri-gtr.md",
+    "access_test": {
+      "command": "curl -sf -H 'Accept: application/vnd.rcuk.gtr.json-v7' 'https://gtr.ukri.org/gtr/api/projects?q=graphene&p=1&s=10'",
+      "expected_fields": [
+        "page",
+        "size",
+        "totalSize",
+        "project"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "uk research funding lookup",
+      "grant-to-institution mapping",
+      "principal-investigator project history",
+      "funder portfolio analysis",
+      "research-outcome tracing"
+    ],
+    "auth_required": "none",
+    "build_priority": "medium",
+    "bulk_available": false,
+    "cost": "free",
+    "description": "UK Research and Innovation's registry of publicly funded research projects, linked to funding, people, organisations, and outcomes.",
+    "docs_url": "https://gtr.ukri.org/resources/api.html",
+    "domain": "government-open-data",
+    "entry_kind": "knowledge-graph",
+    "frequency": "periodic (data refreshed roughly monthly)",
+    "geography": [
+      "GBR"
+    ],
+    "homepage_url": "https://gtr.ukri.org/",
+    "id": "ukri-gtr",
+    "join_key_fields": [
+      {
+        "fields": [
+          "orcidId"
+        ],
+        "join_key": "ORCID"
+      }
+    ],
+    "join_keys": [
+      "ORCID"
+    ],
+    "last_verified": "2026-07-07",
+    "license": "OGL-3.0",
+    "mcp_status": "api-direct-sufficient",
+    "name": "UKRI Gateway to Research (GtR)",
+    "primary_keys": [
+      "GTR_PROJECT_ID",
+      "GTR_PERSON_ID",
+      "GTR_ORGANISATION_ID",
+      "GTR_FUND_ID",
+      "GTR_OUTCOME_ID",
+      "RCUK_GRANT_REFERENCE"
+    ],
+    "rate_limit": "no formal limit; UKRI asks users to follow web etiquette and not flood the service",
+    "structure": "registry-snapshot",
+    "type": [
+      "rest-api"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/usaspending.md",
+    "access_test": {
+      "command": "curl -sf 'https://api.usaspending.gov/api/v2/references/toptier_agencies/'",
+      "expected_fields": [
+        "results",
+        "toptier_code",
+        "agency_name"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "federal contractor diligence",
+      "grant recipient lookup",
+      "agency spending breakdown",
+      "award search by NAICS or PSC",
+      "geographic spending analysis"
+    ],
+    "auth_required": "none",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "Official U.S. government record of federal spending \u2014 contracts, grants, loans, and other awards, plus agency account balances, from FY2008 to present.",
+    "docs_url": "https://api.usaspending.gov/docs/endpoints",
+    "domain": "government-open-data",
+    "entry_kind": "mixed",
+    "frequency": "daily",
+    "geography": [
+      "USA"
+    ],
+    "homepage_url": "https://www.usaspending.gov/",
+    "id": "usaspending",
+    "join_key_fields": [
+      {
+        "fields": [
+          "recipient.location.county_code",
+          "place_of_performance.county_code"
+        ],
+        "join_key": "FIPS"
+      },
+      {
+        "fields": [
+          "recipient.location.state_code",
+          "place_of_performance.state_code"
+        ],
+        "join_key": "US_STATE_CODE"
+      },
+      {
+        "fields": [
+          "recipient.location.country_code",
+          "place_of_performance.country_code"
+        ],
+        "join_key": "ISO_3"
+      }
+    ],
+    "join_keys": [
+      "FIPS",
+      "US_STATE_CODE",
+      "ISO_3"
+    ],
+    "lag": "FPDS contract transactions flow ~daily; agency financial (DABS) submissions are monthly/quarterly",
+    "last_verified": "2026-07-07",
+    "license": "US-Government-Public-Domain",
+    "mcp_maturity": "community",
+    "mcp_notes": "Multiple community MCPs exist (none official). Suggested surface: search_awards, get_award, get_recipient, spending_by_agency, spending_by_geography, bulk_download. Connector must abstract the POST-body filter grammar and paginate large result sets.\n",
+    "mcp_package": [
+      "github.com/blencorp/capture-mcp-server",
+      "github.com/agilesix/usaspending-mcp-nextjs",
+      "github.com/jsconiers/usaspending-mcp"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "USAspending.gov",
+    "pit_reconstructable": false,
+    "primary_keys": [
+      "USASPENDING_GENERATED_AWARD_ID",
+      "USASPENDING_INTERNAL_AWARD_ID",
+      "USASPENDING_RECIPIENT_HASH",
+      "PIID",
+      "FAIN",
+      "URI"
+    ],
+    "rate_limit": "not publicly documented; HTTP 429 returned on excessive use",
+    "revisions_possible": true,
+    "structure": "event-log",
+    "type": [
+      "rest-api",
+      "bulk-download"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/e-prtr.md",
+    "access_test": {
+      "command": "curl -sf 'https://air.discomap.eea.europa.eu/arcgis/rest/services/Air/EprtrFacilities_Dyna_WGS84/FeatureServer/0/query?where=1%3D1&outFields=FacilityID,CountryCode,ReportingYear,NUTSLevel2RegionCode&resultRecordCount=1&f=json'",
+      "expected_fields": [
+        "FacilityID",
+        "CountryCode",
+        "ReportingYear",
+        "NUTSLevel2RegionCode"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "industrial facility lookup by location",
+      "pollutant release and waste-transfer queries",
+      "parent-company emissions attribution",
+      "sector-level emissions aggregation",
+      "large-combustion-plant energy and emissions analysis"
+    ],
+    "auth_required": "none",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "EU-wide register of pollutant releases, waste transfers, and energy/emissions data for ~33,000 large industrial facilities across 33 European countries.",
+    "docs_url": "https://industry.eea.europa.eu/download",
+    "domain": "government-open-data",
+    "entry_kind": "mixed",
+    "frequency": "annual",
+    "geography": [
+      "Europe",
+      "EU27",
+      "EFTA",
+      "Serbia",
+      "Iceland",
+      "Liechtenstein",
+      "Norway",
+      "Switzerland"
+    ],
+    "homepage_url": "https://industry.eea.europa.eu/",
+    "id": "e-prtr",
+    "join_key_fields": [
+      {
+        "fields": [
+          "CountryCode"
+        ],
+        "join_key": "ISO_2"
+      },
+      {
+        "fields": [
+          "NUTSLevel2RegionCode"
+        ],
+        "join_key": "NUTS"
+      },
+      {
+        "fields": [
+          "ReportingYear"
+        ],
+        "join_key": "DATE"
+      }
+    ],
+    "join_keys": [
+      "ISO_2",
+      "NUTS",
+      "DATE"
+    ],
+    "lag": "1-2 years; member states report annually under Art. 7 of Regulation (EC) No 166/2006",
+    "last_verified": "2026-07-07",
+    "license": "CC-BY-4.0",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "E-PRTR (European Industrial Emissions Portal)",
+    "primary_keys": [
+      "EPRTR_FACILITY_ID",
+      "EPRTR_FACILITY_REPORT_ID",
+      "EPRTR_NATIONAL_ID"
+    ],
+    "rate_limit": "no published limit; ArcGIS REST FeatureServer standard paging (resultRecordCount / resultOffset)",
+    "revisions_possible": true,
+    "structure": "panel",
+    "type": [
+      "rest-api",
+      "bulk-download",
+      "web-ui"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/google-patents-bigquery.md",
+    "access_test": {
+      "command": "bq query --use_legacy_sql=false 'SELECT publication_number FROM `patents-public-data.patents.publications` LIMIT 1'",
+      "expected_fields": [
+        "publication_number"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "patent prior-art search",
+      "assignee patent-portfolio analysis",
+      "technology-trend analysis by CPC class",
+      "patent-to-literature linking",
+      "citation-network analysis"
+    ],
+    "auth_required": "account-required",
+    "bulk_available": true,
+    "cost": "freemium",
+    "description": "BigQuery collection of worldwide patent bibliographic data (90M+ publications from 17 countries) plus research-layer enrichments, queryable in SQL.",
+    "docs_url": "https://github.com/google/patents-public-data",
+    "domain": "government-open-data",
+    "entry_kind": "registry",
+    "frequency": "quarterly",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://console.cloud.google.com/marketplace/product/google_patents_public_datasets/google-patents-public-data",
+    "id": "google-patents-bigquery",
+    "join_keys": [],
+    "last_verified": "2026-07-07",
+    "license": "CC-BY-4.0",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "Google Patents Public Datasets (BigQuery)",
+    "notes": "access_test not yet executed; requires a Google Cloud account and project (bq CLI authenticated via gcloud). Querying beyond the 1 TB/month free tier is billed.",
+    "primary_keys": [
+      "PATENT_PUBLICATION_NUMBER",
+      "PATENT_APPLICATION_NUMBER",
+      "PATENT_FAMILY_ID"
+    ],
+    "type": [
+      "database",
+      "bulk-download"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/cordis.md",
+    "access_test": {
+      "command": "curl -sf 'https://cordis.europa.eu/datalab/sparql?query=SELECT%20%3Fp%20WHERE%20%7B%3Fs%20%3Fp%20%3Fo%7D%20LIMIT%201&format=application/sparql-results%2Bjson'",
+      "expected_fields": [
+        "head",
+        "results"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "EU research-funding lookup",
+      "grant participant mapping",
+      "collaboration-network analysis",
+      "technology-landscape scouting",
+      "linking projects to open-access publications"
+    ],
+    "auth_required": "none",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "The European Commission's registry of EU-funded research projects (FP1 to Horizon Europe) with participating organisations, results, deliverables, and links to open-access publications.",
+    "docs_url": "https://cordis.europa.eu/about/services",
+    "domain": "government-open-data",
+    "entry_kind": "knowledge-graph",
+    "frequency": "portal updated continuously; per-framework-programme bulk snapshots refreshed periodically",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://cordis.europa.eu/",
+    "id": "cordis",
+    "join_key_fields": [
+      {
+        "fields": [
+          "doi"
+        ],
+        "join_key": "DOI"
+      },
+      {
+        "fields": [
+          "country"
+        ],
+        "join_key": "ISO_2"
+      }
+    ],
+    "join_keys": [
+      "DOI",
+      "ISO_2"
+    ],
+    "lag": "weeks-to-months for newly signed grants and published results to appear",
+    "last_verified": "2026-07-07",
+    "license": "CC-BY-4.0",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "CORDIS (EU Research Projects)",
+    "primary_keys": [
+      "CORDIS_PROJECT_ID",
+      "CORDIS_RCN",
+      "CORDIS_PIC"
+    ],
+    "rate_limit": "no published limit on bulk downloads or SPARQL; interactive CORDIS API requires registration",
+    "type": [
+      "bulk-download",
+      "database",
+      "rest-api"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/census-building-permits.md",
+    "access_test": {
+      "command": "curl -sfI 'https://www2.census.gov/econ/bps/County/co2023a.txt'",
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "housing supply tracking",
+      "local construction activity by county or metro",
+      "leading indicator for residential real estate",
+      "regional economic monitoring"
+    ],
+    "auth_required": "none",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "Monthly and annual counts of new privately-owned residential building permits authorized in the US, reported at national, state, CBSA, county, and place levels.",
+    "docs_url": "https://www.census.gov/construction/bps/how_the_data_are_collected.html",
+    "domain": "government-open-data",
+    "entry_kind": "panel",
+    "frequency": "monthly (plus year-to-date and annual releases)",
+    "geography": [
+      "USA"
+    ],
+    "homepage_url": "https://www.census.gov/construction/bps/",
+    "id": "census-building-permits",
+    "join_key_fields": [
+      {
+        "fields": [
+          "FIPS State Code",
+          "FIPS County Code",
+          "6-Digit ID (Census place code)"
+        ],
+        "join_key": "FIPS"
+      },
+      {
+        "fields": [
+          "Survey Date (YYYYMM)",
+          "Year",
+          "Month"
+        ],
+        "join_key": "DATE"
+      }
+    ],
+    "join_keys": [
+      "FIPS",
+      "DATE"
+    ],
+    "lag": "monthly data released on the 17th workday of the following month; annual data lags ~5 months",
+    "last_verified": "2026-07-07",
+    "license": "US-Government-Public-Domain",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "Census Building Permits Survey (BPS)",
+    "notes": "No official Census Data API for BPS; access is static bulk files under www2.census.gov/econ/bps/ plus Excel current-data downloads. access_test runs a HEAD against a stable annual county file.",
+    "pit_reconstructable": false,
+    "primary_keys": [
+      "CBSA_CODE",
+      "CENSUS_PLACE_FIPS"
+    ],
+    "rate_limit": "none published (static file downloads)",
+    "release_lag_days": 45,
+    "revisions_possible": true,
+    "structure": "panel",
+    "type": [
+      "bulk-download",
+      "web-ui"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/sam-gov.md",
+    "access_test": {
+      "command": "curl -sf 'https://api.sam.gov/opportunities/v2/search?api_key=${SAM_GOV_API_KEY}&postedFrom=01/01/2026&postedTo=01/31/2026&limit=1'",
+      "expected_fields": [
+        "totalRecords",
+        "opportunitiesData",
+        "noticeId",
+        "solicitationNumber"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "federal procurement monitoring",
+      "solicitation search by NAICS",
+      "set-aside opportunity tracking",
+      "award and awardee lookup",
+      "competitor contract intelligence"
+    ],
+    "auth_required": "api-key-free",
+    "build_priority": "medium",
+    "bulk_available": false,
+    "cost": "free-with-registration",
+    "description": "US federal contract opportunities (solicitations, awards, sources-sought, presolicitations) posted by federal agencies on SAM.gov.",
+    "docs_url": "https://open.gsa.gov/api/get-opportunities-public-api/",
+    "domain": "government-open-data",
+    "entry_kind": "event-stream",
+    "frequency": "continuous",
+    "geography": [
+      "USA"
+    ],
+    "homepage_url": "https://sam.gov/opportunities",
+    "id": "sam-gov",
+    "join_key_fields": [
+      {
+        "fields": [
+          "placeOfPerformance.state.code",
+          "officeAddress.state"
+        ],
+        "join_key": "US_STATE_CODE"
+      }
+    ],
+    "join_keys": [
+      "US_STATE_CODE"
+    ],
+    "lag": "minutes-to-hours after an agency posts a notice",
+    "last_verified": "2026-07-07",
+    "license": "US-Government-Public-Domain",
+    "mcp_maturity": "community",
+    "mcp_notes": "Community MCPs wrap the Get Opportunities API alongside USASpending/FPDS. Suggested surface: search_opportunities (date range + NAICS + set-aside), get_opportunity_by_notice_id, list_awards. Must abstract the mandatory postedFrom/postedTo window (max 1 year) and the low daily quota.\n",
+    "mcp_package": [
+      "github.com/blencorp/capture-mcp-server",
+      "github.com/martc03/gov-mcp-servers",
+      "1102Tools SAM.gov MCP (pulsemcp.com/servers/1102tools-sam-gov)"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "SAM.gov Contract Opportunities",
+    "notes": "access_test not yet executed; requires ${SAM_GOV_API_KEY} (free public key from SAM.gov Account Details page).",
+    "primary_keys": [
+      "SAM_NOTICE_ID",
+      "SAM_SOLICITATION_NUMBER"
+    ],
+    "rate_limit": "per-day quota by role: ~10/day non-federal personal key, 1,000/day registered/federal; 429 with Retry-After to midnight UTC on exhaustion",
+    "type": [
+      "rest-api",
+      "web-ui"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/lens-patseq.md",
+    "agent_use_cases": [
+      "patent sequence similarity search",
+      "freedom-to-operate sequence checks",
+      "link genes and proteins to patent filings",
+      "bulk patent sequence corpus retrieval",
+      "prior-art sequence search"
+    ],
+    "auth_required": "account-required",
+    "bulk_available": true,
+    "cost": "free-non-commercial",
+    "description": "Bulk collection of DNA, RNA, and protein sequences disclosed in patent documents worldwide, with linked patent metadata, searchable by sequence similarity.",
+    "docs_url": "https://support.lens.org/knowledge-base/patseq-bulk-download/",
+    "domain": "government-open-data",
+    "entry_kind": "corpus",
+    "geography": [
+      "global"
+    ],
+    "homepage_url": "https://www.lens.org/lens/bio/patseqfinder",
+    "id": "lens-patseq",
+    "join_keys": [],
+    "last_verified": "2026-07-07",
+    "license": "Lens-PatSeq-Terms",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "Lens PatSeq",
+    "primary_keys": [
+      "LENS_PATENT_ID",
+      "PATENT_PUBLICATION_NUMBER",
+      "PATSEQ_SEQUENCE_ID"
+    ],
+    "rate_limit": "monthly query quotas on PatSeq Finder; up to 5 API access tokens per user",
+    "type": [
+      "bulk-download",
+      "rest-api",
+      "web-ui"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/nih-reporter.md",
+    "access_test": {
+      "command": "curl -sf -X POST 'https://api.reporter.nih.gov/v2/projects/search' -H 'Content-Type: application/json' -d '{\"criteria\":{\"fiscal_years\":[2023]},\"limit\":1}'",
+      "expected_fields": [
+        "meta.total",
+        "results"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "grant funding lookup",
+      "PI funding history",
+      "institution funding profile",
+      "research portfolio analysis",
+      "link publications to grants"
+    ],
+    "auth_required": "none",
+    "build_priority": "medium",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "US NIH database of federally funded biomedical research projects, their investigators, awarding institutes, funding amounts, and linked publications.",
+    "docs_url": "https://api.reporter.nih.gov/",
+    "domain": "government-open-data",
+    "entry_kind": "registry",
+    "frequency": "weekly",
+    "geography": [
+      "USA"
+    ],
+    "homepage_url": "https://reporter.nih.gov/",
+    "id": "nih-reporter",
+    "join_key_fields": [
+      {
+        "fields": [
+          "pmid"
+        ],
+        "join_key": "PMID"
+      },
+      {
+        "fields": [
+          "organization.org_state"
+        ],
+        "join_key": "US_STATE_CODE"
+      }
+    ],
+    "join_keys": [
+      "PMID",
+      "US_STATE_CODE"
+    ],
+    "lag": "projects appear after the award notice date; ExPORTER bulk files refresh weekly",
+    "last_verified": "2026-07-07",
+    "license": "US-Government-Public-Domain",
+    "mcp_maturity": "community",
+    "mcp_notes": "Multiple community MCP servers wrap the same POST search API. Suggested surface: search_projects, get_project, search_publications, funding_by_pi, funding_by_org. Connector must abstract the POST body criteria model and paginate under the 1 req/sec cap.\n",
+    "mcp_package": [
+      "github.com/jbdamask/mcp-nih-reporter",
+      "github.com/GSA-TTS/nih-reporter-mcp-server",
+      "github.com/jhalsey87/MCP_NIH_Reporter"
+    ],
+    "mcp_status": "mcp-exists",
+    "name": "NIH RePORTER",
+    "primary_keys": [
+      "NIH_APPL_ID",
+      "NIH_CORE_PROJECT_NUM",
+      "NIH_PROJECT_NUM",
+      "NIH_PI_PROFILE_ID",
+      "NIH_ORG_IPF_CODE"
+    ],
+    "rate_limit": "1 request/sec; run large jobs off-peak (weekends or 9pm-5am ET); abusive IPs blocked",
+    "revisions_possible": true,
+    "structure": "registry-snapshot",
+    "type": [
+      "rest-api",
+      "bulk-download"
+    ]
+  },
+  {
+    "_path": "entries/government-open-data/sbir.md",
+    "access_test": {
+      "command": "curl -sf 'https://api.www.sbir.gov/public/api/awards?agency=DOE&rows=1&format=json'",
+      "expected_fields": [
+        "firm",
+        "agency",
+        "award_amount",
+        "award_year",
+        "uei",
+        "duns"
+      ],
+      "expected_status": 200
+    },
+    "agent_use_cases": [
+      "federal seed-funding diligence on a company",
+      "map SBIR/STTR awards by agency and year",
+      "find open solicitations and topics",
+      "track small-business award history and amounts"
+    ],
+    "auth_required": "none",
+    "build_priority": "low",
+    "bulk_available": true,
+    "cost": "free",
+    "description": "US federal SBIR/STTR seed-fund award records, awarded small businesses, and open solicitations across the participating federal agencies.",
+    "docs_url": "https://www.sbir.gov/api",
+    "domain": "government-open-data",
+    "entry_kind": "registry",
+    "frequency": "irregular",
+    "geography": [
+      "USA"
+    ],
+    "homepage_url": "https://www.sbir.gov/",
+    "id": "sbir",
+    "join_key_fields": [
+      {
+        "fields": [
+          "state"
+        ],
+        "join_key": "US_STATE_CODE"
+      }
+    ],
+    "join_keys": [
+      "US_STATE_CODE"
+    ],
+    "last_verified": "2026-07-07",
+    "license": "US-Government-Public-Domain",
+    "mcp_status": "mcp-needed-low-value",
+    "name": "SBIR.gov (America's Seed Fund)",
+    "notes": "access_test not executed successfully; endpoint returned HTTP 429 (SBIR Public API under maintenance) on 2026-07-07. Command constructed against the documented awards endpoint.",
+    "primary_keys": [
+      "SBIR_FIRM_NID",
+      "SBIR_AGENCY_TRACKING_NUMBER",
+      "SBIR_CONTRACT_NUMBER",
+      "SBIR_SOLICITATION_NUMBER"
+    ],
+    "rate_limit": "not documented; public API returns 429 during maintenance windows",
+    "type": [
+      "rest-api",
       "bulk-download"
     ]
   }
