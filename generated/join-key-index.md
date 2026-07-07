@@ -3,7 +3,7 @@
 Reverse index of canonical join keys mapped to the datasets that expose them.
 Generated from `entries/**/*.md`. Do not hand-edit.
 
-**182 datasets, 65 distinct canonical keys, 650 key→source links.**
+**211 datasets, 65 distinct canonical keys, 698 key→source links.**
 
 ## ARXIV_ID
 
@@ -18,8 +18,9 @@ _6 dataset(s)._
 
 ## ATC_CODE
 
-_9 dataset(s)._
+_11 dataset(s)._
 
+- [CT-ADE](../entries/clinical-biotech/ct-ade.md) — `clinical-biotech`
 - [DrugCentral](../entries/clinical-biotech/drugcentral.md) — `clinical-biotech`
 - [EMA EPAR / Medicines](../entries/clinical-biotech/ema-epar.md) — `clinical-biotech`
 - [OMOP / OHDSI Athena](../entries/clinical-biotech/ohdsi-athena.md) — `clinical-biotech`
@@ -28,6 +29,7 @@ _9 dataset(s)._
 - [RxNorm](../entries/clinical-biotech/rxnorm.md) — `clinical-biotech`
 - [Therapeutic Target Database (TTD)](../entries/clinical-biotech/ttd.md) — `clinical-biotech`
 - [UMLS Metathesaurus](../entries/clinical-biotech/umls.md) — `clinical-biotech`
+- [WITHDRAWN](../entries/clinical-biotech/withdrawn-database.md) — `clinical-biotech`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
 
 ## BNF_CODE
@@ -53,9 +55,10 @@ _8 dataset(s)._
 
 ## CHEMBL_ID
 
-_13 dataset(s)._
+_15 dataset(s)._
 
 - [BindingDB](../entries/clinical-biotech/bindingdb.md) — `clinical-biotech`
+- [CT-ADE](../entries/clinical-biotech/ct-ade.md) — `clinical-biotech`
 - [ChEMBL](../entries/clinical-biotech/chembl.md) — `clinical-biotech`
 - [DrugBank](../entries/clinical-biotech/drugbank.md) — `clinical-biotech`
 - [DrugCentral](../entries/clinical-biotech/drugcentral.md) — `clinical-biotech`
@@ -67,6 +70,7 @@ _13 dataset(s)._
 - [PubChem](../entries/clinical-biotech/pub-chem.md) — `clinical-biotech`
 - [Reactome](../entries/bio-genomics/reactome.md) — `bio-genomics`
 - [UniProt](../entries/bio-genomics/uniprot.md) — `bio-genomics`
+- [WITHDRAWN](../entries/clinical-biotech/withdrawn-database.md) — `clinical-biotech`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
 
 ## CIK
@@ -118,14 +122,18 @@ _12 dataset(s)._
 
 ## DATE
 
-_48 dataset(s)._
+_60 dataset(s)._
 
 - [Alpha Vantage](../entries/finance-markets/alpha-vantage.md) — `finance-markets`
 - [BEA Data API (Bureau of Economic Analysis)](../entries/government-open-data/bea.md) — `government-open-data`
+- [BTS Airline On-Time Performance](../entries/government-open-data/bts-airline-ontime.md) — `government-open-data`
+- [BTS Freight Analysis Framework (FAF)](../entries/government-open-data/bts-faf.md) — `government-open-data`
+- [BTS Port Performance Freight Statistics](../entries/government-open-data/bts-port-performance.md) — `government-open-data`
 - [Bureau of Labor Statistics (BLS) Public Data API](../entries/government-open-data/bureau-of-labour-statistics.md) — `government-open-data`
 - [CBOE Volatility Index (VIX)](../entries/finance-markets/cboe-volatility-index-vix.md) — `finance-markets`
 - [CFTC Commitments of Traders](../entries/finance-markets/cftc-cot.md) — `finance-markets`
 - [Cboe DataShop](../entries/finance-markets/cboe-datashop.md) — `finance-markets`
+- [Census M3 (Manufacturers' Shipments, Inventories & Orders)](../entries/government-open-data/census-m3.md) — `government-open-data`
 - [CommodityPriceAPI](../entries/finance-markets/commodity-price-api.md) — `finance-markets`
 - [Common Crawl](../entries/news-events/common-crawl.md) — `news-events`
 - [Companies House (UK)](../entries/corporate-registry/companies-house.md) — `corporate-registry`
@@ -133,10 +141,13 @@ _48 dataset(s)._
 - [ECB Data Portal (SDMX API)](../entries/finance-markets/ecb-data.md) — `finance-markets`
 - [ECMWF (European Centre for Medium-Range Weather Forecasts)](../entries/geospatial/ecmwf.md) — `geospatial`
 - [EIA Open Data](../entries/finance-markets/eia-open-data.md) — `finance-markets`
+- [Eurostat PRODCOM](../entries/government-open-data/eurostat-prodcom.md) — `government-open-data`
 - [Event Registry](../entries/news-events/event-registry.md) — `news-events`
+- [FAA Aviation System Performance Metrics (ASPM)](../entries/government-open-data/faa-aspm.md) — `government-open-data`
 - [FINRA Equity Short Interest](../entries/finance-markets/finra-short-interest.md) — `finance-markets`
 - [FINRA TRACE (Trade Reporting and Compliance Engine)](../entries/finance-markets/finra-trace.md) — `finance-markets`
 - [FRED (Federal Reserve Economic Data)](../entries/finance-markets/fred.md) — `finance-markets`
+- [Federal Reserve G.17 Industrial Production and Capacity Utilization](../entries/finance-markets/fed-g17-industrial-production.md) — `finance-markets`
 - [Financial Modeling Prep](../entries/finance-markets/financial-modeling-prep.md) — `finance-markets`
 - [Finnhub Stock API](../entries/finance-markets/finnhub-stock-api.md) — `finance-markets`
 - [GDELT (Global Database of Events, Language, and Tone)](../entries/news-events/gdelt.md) — `news-events`
@@ -146,6 +157,7 @@ _48 dataset(s)._
 - [Hacker News API](../entries/consumer-signal/hacker-news.md) — `consumer-signal`
 - [ICI Fund Flows](../entries/finance-markets/ici-fund-flows.md) — `finance-markets`
 - [IMF Data](../entries/government-open-data/imf-data.md) — `government-open-data`
+- [MarineCadastre AIS Vessel Traffic](../entries/geospatial/marinecadastre-ais.md) — `geospatial`
 - [NHGRI DNA Sequencing Costs](../entries/bio-genomics/nih-genome-sequencing-costs.md) — `bio-genomics`
 - [NHS Prescription Cost Analysis (PCA)](../entries/healthcare-claims/nhs-prescription-cost-analysis.md) — `healthcare-claims`
 - [Nasdaq Data Link](../entries/finance-markets/nasdaq-data-link.md) — `finance-markets`
@@ -153,6 +165,7 @@ _48 dataset(s)._
 - [OCC Options Volume & Open Interest](../entries/finance-markets/occ-options.md) — `finance-markets`
 - [Open-Meteo](../entries/geospatial/open-meteo.md) — `geospatial`
 - [OpenCorporates](../entries/corporate-registry/opencorporates.md) — `corporate-registry`
+- [OpenSky Network](../entries/geospatial/opensky.md) — `geospatial`
 - [Polygon.io](../entries/finance-markets/polygon-io.md) — `finance-markets`
 - [PredScope Prediction Market Data](../entries/finance-markets/predscope-prediction-market-data.md) — `finance-markets`
 - [SEC EDGAR](../entries/corporate-registry/sec-edgar.md) — `corporate-registry`
@@ -162,7 +175,10 @@ _48 dataset(s)._
 - [Stack Exchange Data Explorer](../entries/consumer-signal/stack-exchange-data-explorer.md) — `consumer-signal`
 - [Trading Economics Commodities](../entries/finance-markets/trading-economics-commodities.md) — `finance-markets`
 - [Twelve Data](../entries/finance-markets/twelve-data.md) — `finance-markets`
+- [UN Comtrade](../entries/government-open-data/un-comtrade.md) — `government-open-data`
+- [US Census International Trade API](../entries/government-open-data/census-intl-trade.md) — `government-open-data`
 - [US Treasury Fiscal Data](../entries/finance-markets/treasury-fiscal-data.md) — `finance-markets`
+- [USACE Waterborne Commerce Statistics (WCSC)](../entries/government-open-data/usace-waterborne-commerce.md) — `government-open-data`
 - [VC Deal Flow Signal](../entries/finance-markets/vc-deal-flow-signal.md) — `finance-markets`
 - [Visa Onchain Analytics Dashboard](../entries/finance-markets/visa-onchain-stablecoin-analytics.md) — `finance-markets`
 - [WHO FluNet](../entries/public-health/who-flunet.md) — `public-health`
@@ -171,7 +187,7 @@ _48 dataset(s)._
 
 ## DOI
 
-_41 dataset(s)._
+_42 dataset(s)._
 
 - [American Gut Project](../entries/bio-genomics/american-gut-project.md) — `bio-genomics`
 - [CORE](../entries/academic/core.md) — `academic`
@@ -211,14 +227,16 @@ _41 dataset(s)._
 - [UCSC Genome Browser](../entries/bio-genomics/ucsc-genome-browser.md) — `bio-genomics`
 - [UniProt](../entries/bio-genomics/uniprot.md) — `bio-genomics`
 - [Unpaywall](../entries/academic/unpaywall.md) — `academic`
+- [Vivli](../entries/clinical-biotech/vivli.md) — `clinical-biotech`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
 - [arXiv](../entries/academic/arxiv.md) — `academic`
 - [bioRxiv / medRxiv](../entries/academic/biorxiv-medrxiv.md) — `academic`
 
 ## DRUGBANK_ID
 
-_8 dataset(s)._
+_10 dataset(s)._
 
+- [CT-ADE](../entries/clinical-biotech/ct-ade.md) — `clinical-biotech`
 - [DrugCentral](../entries/clinical-biotech/drugcentral.md) — `clinical-biotech`
 - [DrugComb](../entries/clinical-biotech/drugcomb.md) — `clinical-biotech`
 - [HMDB (Human Metabolome Database)](../entries/bio-genomics/hmdb.md) — `bio-genomics`
@@ -226,6 +244,7 @@ _8 dataset(s)._
 - [PharmGKB](../entries/bio-genomics/pharmgkb.md) — `bio-genomics`
 - [PubChem](../entries/clinical-biotech/pub-chem.md) — `clinical-biotech`
 - [RxNorm](../entries/clinical-biotech/rxnorm.md) — `clinical-biotech`
+- [WITHDRAWN](../entries/clinical-biotech/withdrawn-database.md) — `clinical-biotech`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
 
 ## EFO_ID
@@ -298,11 +317,12 @@ _17 dataset(s)._
 
 ## EUDRACT_NUMBER
 
-_5 dataset(s)._
+_6 dataset(s)._
 
 - [AACT (Aggregate Analysis of ClinicalTrials.gov)](../entries/clinical-biotech/aact.md) — `clinical-biotech`
 - [ClinicalTrials.gov](../entries/clinical-biotech/clinicaltrials-gov.md) — `clinical-biotech`
 - [EU CTIS (Clinical Trials Information System)](../entries/clinical-biotech/eu-ctis.md) — `clinical-biotech`
+- [EU Clinical Trials Register (EUCTR / EudraCT)](../entries/clinical-biotech/euctr-eudract.md) — `clinical-biotech`
 - [ISRCTN Registry](../entries/clinical-biotech/isrctn.md) — `clinical-biotech`
 - [WHO ICTRP (International Clinical Trials Registry Platform)](../entries/clinical-biotech/who-ictrp.md) — `clinical-biotech`
 
@@ -335,11 +355,12 @@ _6 dataset(s)._
 
 ## FIPS
 
-_3 dataset(s)._
+_4 dataset(s)._
 
 - [BEA Data API (Bureau of Economic Analysis)](../entries/government-open-data/bea.md) — `government-open-data`
 - [Bureau of Labor Statistics (BLS) Public Data API](../entries/government-open-data/bureau-of-labour-statistics.md) — `government-open-data`
 - [CMS Medicare Part D Prescribers](../entries/healthcare-claims/cms-medicare-part-d.md) — `healthcare-claims`
+- [EPA Facility Registry Service (FRS)](../entries/government-open-data/epa-frs.md) — `government-open-data`
 
 ## FUNDER_DOI
 
@@ -350,7 +371,7 @@ _2 dataset(s)._
 
 ## GENE_SYMBOL
 
-_39 dataset(s)._
+_40 dataset(s)._
 
 - [Cancer Cell Line Encyclopedia (CCLE)](../entries/bio-genomics/cancer-cell-line-encyclopedia.md) — `bio-genomics`
 - [Cancer Therapeutics Response Portal (CTRP)](../entries/bio-genomics/ctrp.md) — `bio-genomics`
@@ -388,6 +409,7 @@ _39 dataset(s)._
 - [UCSC Genome Browser](../entries/bio-genomics/ucsc-genome-browser.md) — `bio-genomics`
 - [UK Biobank](../entries/public-health/uk-biobank.md) — `public-health`
 - [UniProt](../entries/bio-genomics/uniprot.md) — `bio-genomics`
+- [WITHDRAWN](../entries/clinical-biotech/withdrawn-database.md) — `clinical-biotech`
 - [dbSNP](../entries/bio-genomics/dbsnp.md) — `bio-genomics`
 - [eQTL Catalogue](../entries/bio-genomics/eqtl-catalogue.md) — `bio-genomics`
 - [gnomAD (Genome Aggregation Database)](../entries/bio-genomics/gnomad.md) — `bio-genomics`
@@ -422,7 +444,7 @@ _7 dataset(s)._
 
 ## INCHI_KEY
 
-_9 dataset(s)._
+_10 dataset(s)._
 
 - [BindingDB](../entries/clinical-biotech/bindingdb.md) — `clinical-biotech`
 - [Cancer Therapeutics Response Portal (CTRP)](../entries/bio-genomics/ctrp.md) — `bio-genomics`
@@ -433,6 +455,7 @@ _9 dataset(s)._
 - [IUPHAR/BPS Guide to PHARMACOLOGY](../entries/clinical-biotech/guide-to-pharmacology.md) — `clinical-biotech`
 - [LINCS / CMap L1000 (CLUE)](../entries/bio-genomics/lincs-l1000.md) — `bio-genomics`
 - [PubChem](../entries/clinical-biotech/pub-chem.md) — `clinical-biotech`
+- [WITHDRAWN](../entries/clinical-biotech/withdrawn-database.md) — `clinical-biotech`
 
 ## INTERPRO_ID
 
@@ -472,9 +495,10 @@ _3 dataset(s)._
 
 ## ISO_2
 
-_15 dataset(s)._
+_16 dataset(s)._
 
 - [ECB Data Portal (SDMX API)](../entries/finance-markets/ecb-data.md) — `finance-markets`
+- [Eurostat PRODCOM](../entries/government-open-data/eurostat-prodcom.md) — `government-open-data`
 - [Event Registry](../entries/news-events/event-registry.md) — `news-events`
 - [GLEIF LEI](../entries/corporate-registry/gleif-lei.md) — `corporate-registry`
 - [Global Biodiversity Information Facility (GBIF)](../entries/geospatial/global-biodiversity-information-facility.md) — `geospatial`
@@ -492,7 +516,7 @@ _15 dataset(s)._
 
 ## ISO_3
 
-_19 dataset(s)._
+_20 dataset(s)._
 
 - [Alpha Vantage](../entries/finance-markets/alpha-vantage.md) — `finance-markets`
 - [Companies House (UK)](../entries/corporate-registry/companies-house.md) — `corporate-registry`
@@ -508,6 +532,7 @@ _19 dataset(s)._
 - [OECD Data Explorer](../entries/government-open-data/oecd-data.md) — `government-open-data`
 - [OpenCorporates](../entries/corporate-registry/opencorporates.md) — `corporate-registry`
 - [OpenStreetMap](../entries/geospatial/openstreetmap.md) — `geospatial`
+- [UN Comtrade](../entries/government-open-data/un-comtrade.md) — `government-open-data`
 - [UN/LOCODE (United Nations Code for Trade and Transport Locations)](../entries/government-open-data/united-nations-code-for-trade-and-transport.md) — `government-open-data`
 - [WHO FluNet](../entries/public-health/who-flunet.md) — `public-health`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
@@ -572,8 +597,10 @@ _2 dataset(s)._
 
 ## MEDDRA_TERM
 
-_7 dataset(s)._
+_9 dataset(s)._
 
+- [CT-ADE](../entries/clinical-biotech/ct-ade.md) — `clinical-biotech`
+- [CTG-DB (ClinicalTrials.gov MedDRA-Normalised Safety Database)](../entries/clinical-biotech/ctg-db.md) — `clinical-biotech`
 - [DrugCentral](../entries/clinical-biotech/drugcentral.md) — `clinical-biotech`
 - [FDA Adverse Event Reporting System (FAERS)](../entries/clinical-biotech/fda-faers.md) — `clinical-biotech`
 - [Mondo Disease Ontology](../entries/bio-genomics/mondo.md) — `bio-genomics`
@@ -636,15 +663,23 @@ _17 dataset(s)._
 
 ## NCT_ID
 
-_8 dataset(s)._
+_16 dataset(s)._
 
 - [AACT (Aggregate Analysis of ClinicalTrials.gov)](../entries/clinical-biotech/aact.md) — `clinical-biotech`
+- [ANZCTR (Australian New Zealand Clinical Trials Registry)](../entries/clinical-biotech/anzctr.md) — `clinical-biotech`
+- [CT-ADE](../entries/clinical-biotech/ct-ade.md) — `clinical-biotech`
+- [CTG-DB (ClinicalTrials.gov MedDRA-Normalised Safety Database)](../entries/clinical-biotech/ctg-db.md) — `clinical-biotech`
+- [Clinical Trial Outcomes (CTO)](../entries/clinical-biotech/ctod.md) — `clinical-biotech`
 - [ClinicalTrials.gov](../entries/clinical-biotech/clinicaltrials-gov.md) — `clinical-biotech`
+- [EU Clinical Trials Register (EUCTR / EudraCT)](../entries/clinical-biotech/euctr-eudract.md) — `clinical-biotech`
 - [ISRCTN Registry](../entries/clinical-biotech/isrctn.md) — `clinical-biotech`
 - [PharmGKB](../entries/bio-genomics/pharmgkb.md) — `bio-genomics`
 - [Project Baseline Health Study](../entries/public-health/project-baseline-health-study.md) — `public-health`
+- [Project Data Sphere](../entries/clinical-biotech/project-data-sphere.md) — `clinical-biotech`
+- [Vivli](../entries/clinical-biotech/vivli.md) — `clinical-biotech`
 - [WHO ICTRP (International Clinical Trials Registry Platform)](../entries/clinical-biotech/who-ictrp.md) — `clinical-biotech`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
+- [YODA Project (Yale Open Data Access)](../entries/clinical-biotech/yoda-project.md) — `clinical-biotech`
 - [openFDA](../entries/clinical-biotech/openfda.md) — `clinical-biotech`
 
 ## NDC
@@ -874,7 +909,7 @@ _5 dataset(s)._
 
 ## UNIPROT_ACCESSION
 
-_26 dataset(s)._
+_27 dataset(s)._
 
 - [AlphaFold Protein Structure Database](../entries/bio-genomics/alphafold.md) — `bio-genomics`
 - [BindingDB](../entries/clinical-biotech/bindingdb.md) — `clinical-biotech`
@@ -901,6 +936,7 @@ _26 dataset(s)._
 - [STRING](../entries/bio-genomics/string-db.md) — `bio-genomics`
 - [Therapeutic Target Database (TTD)](../entries/clinical-biotech/ttd.md) — `clinical-biotech`
 - [UniProt](../entries/bio-genomics/uniprot.md) — `bio-genomics`
+- [WITHDRAWN](../entries/clinical-biotech/withdrawn-database.md) — `clinical-biotech`
 - [Wikidata Query Service](../entries/government-open-data/wiki-data-query-service.md) — `government-open-data`
 
 ## URL
@@ -929,20 +965,31 @@ _19 dataset(s)._
 
 ## US_STATE_CODE
 
-_5 dataset(s)._
+_8 dataset(s)._
 
+- [BTS Airline On-Time Performance](../entries/government-open-data/bts-airline-ontime.md) — `government-open-data`
 - [Bureau of Labor Statistics (BLS) Public Data API](../entries/government-open-data/bureau-of-labour-statistics.md) — `government-open-data`
 - [CMS Medicare Part D Prescribers](../entries/healthcare-claims/cms-medicare-part-d.md) — `healthcare-claims`
 - [CMS Open Payments](../entries/healthcare-claims/cms-open-payments.md) — `healthcare-claims`
 - [EIA Open Data](../entries/finance-markets/eia-open-data.md) — `finance-markets`
+- [EPA Facility Registry Service (FRS)](../entries/government-open-data/epa-frs.md) — `government-open-data`
 - [NPPES NPI Registry](../entries/healthcare-claims/nppes-npi.md) — `healthcare-claims`
+- [USACE Waterborne Commerce Statistics (WCSC)](../entries/government-open-data/usace-waterborne-commerce.md) — `government-open-data`
 
 ## WHO_UTN
 
-_3 dataset(s)._
+_11 dataset(s)._
 
+- [ANZCTR (Australian New Zealand Clinical Trials Registry)](../entries/clinical-biotech/anzctr.md) — `clinical-biotech`
+- [Chinese Clinical Trial Registry (ChiCTR)](../entries/clinical-biotech/chictr.md) — `clinical-biotech`
+- [Clinical Research Information Service (CRIS)](../entries/clinical-biotech/cris-korea.md) — `clinical-biotech`
+- [Clinical Trials Registry - India (CTRI)](../entries/clinical-biotech/ctri.md) — `clinical-biotech`
 - [EU CTIS (Clinical Trials Information System)](../entries/clinical-biotech/eu-ctis.md) — `clinical-biotech`
+- [EU Clinical Trials Register (EUCTR / EudraCT)](../entries/clinical-biotech/euctr-eudract.md) — `clinical-biotech`
 - [ISRCTN Registry](../entries/clinical-biotech/isrctn.md) — `clinical-biotech`
+- [Japan Registry of Clinical Trials (jRCT)](../entries/clinical-biotech/jrct.md) — `clinical-biotech`
+- [Pan African Clinical Trials Registry (PACTR)](../entries/clinical-biotech/pactr.md) — `clinical-biotech`
+- [ReBEC (Brazilian Registry of Clinical Trials)](../entries/clinical-biotech/rebec.md) — `clinical-biotech`
 - [WHO ICTRP (International Clinical Trials Registry Platform)](../entries/clinical-biotech/who-ictrp.md) — `clinical-biotech`
 
 ## WIKIDATA_QID
@@ -976,6 +1023,7 @@ _2 dataset(s)._
 
 ## ZCTA
 
-_1 dataset(s)._
+_2 dataset(s)._
 
+- [EPA Facility Registry Service (FRS)](../entries/government-open-data/epa-frs.md) — `government-open-data`
 - [NPPES NPI Registry](../entries/healthcare-claims/nppes-npi.md) — `healthcare-claims`
